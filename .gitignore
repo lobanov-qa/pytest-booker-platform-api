@@ -1,0 +1,22 @@
+# pycharm
+.idea
+
+# VS Code
+.vscode/
+.history/
+
+# python
+.env
+.venv
+__pycache__
+
+# allure
+allure-results
+allure-report
+
+
+# coverage
+coverage.html
+coverage-results
+coverage-report.json
+coverage-history.json
