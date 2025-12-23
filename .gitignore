@@ -20,3 +20,10 @@ coverage.html
 coverage-results
 coverage-report.json
 coverage-history.json
+
+# Egg/Script directories
+*.egg-info/
+.eggs/
+*.egg
+build/
+dist/
