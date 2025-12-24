@@ -77,8 +77,13 @@ def check_service(name: str, port: int) -> bool:
                 print(f"❌ {name}: response is not JSON — {response.text}")
         else:
             print(f"❌ {name}: status {response.status_code} — {response.text}")
-    except (httpx.ConnectError, httpx.TimeoutException, httpx.ReadError) as e:
-        print(f"⏳ {name} error (connect/timeout/read): {e}")
+    except (
+        httpx.ConnectError,
+        httpx.TimeoutException,
+        httpx.ReadError,
+        httpx.RemoteProtocolError,
+    ) as e:
+        print(f"⏳ {name} error: {e}")
     return False
 
 
