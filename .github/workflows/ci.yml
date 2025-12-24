@@ -32,8 +32,9 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: mwinteringham/restful-booker-platform
-          ref: main
+          ref: trunk
           path: restful-booker-platform
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 🔹  Start microservices with docker-compose
         run: |
