@@ -23,21 +23,21 @@ Used by wait_for_services to verify availability.
 """
 
 
-TIMEOUT_PER_SERVICE = 10.0
+TIMEOUT_PER_SERVICE = 15.0
 """Timeout in seconds for a single request to /actuator/health.
 
 If the service does not respond within this time, the request is considered failed.
 """
 
 
-TOTAL_TIMEOUT = 60
+TOTAL_TIMEOUT = 120
 """Total timeout in seconds for waiting all services to become healthy.
 
 If not all services are ready within this time, the script exits with code 1.
 """
 
 
-INTERVAL = 2
+INTERVAL = 3
 """Interval in seconds between full check cycles of remaining services.
 
 The script waits this amount before retrying if not all services are ready.
@@ -62,6 +62,7 @@ def check_service(name: str, port: int) -> bool:
         bool: True if service is healthy (200 + {"status": "UP"}), False otherwise.
     """
     url = f"http://localhost:{port}/{name}/actuator/health"
+    print(f"🔍 Checking {name} at {url}...")
     try:
         response = httpx.get(url, timeout=TIMEOUT_PER_SERVICE)
         if response.status_code == 200:
@@ -76,8 +77,8 @@ def check_service(name: str, port: int) -> bool:
                 print(f"❌ {name}: response is not JSON — {response.text}")
         else:
             print(f"❌ {name}: status {response.status_code} — {response.text}")
-    except (httpx.ConnectError, httpx.TimeoutException) as e:
-        print(f"⏳ {name} unavailable: {e}")
+    except (httpx.ConnectError, httpx.TimeoutException, httpx.ReadError) as e:
+        print(f"⏳ {name} error (connect/timeout/read): {e}")
     return False
 
 
