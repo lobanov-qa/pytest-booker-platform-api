@@ -1,0 +1,61 @@
+name: API tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  setup-and-validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 🔹  Check out test framework
+        uses: actions/checkout@v6
+
+      - name: 🔹  Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: 🔹  Install test framework (pyproject.toml)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: 🔹  Clone restful-booker-platform @ v2.1
+        uses: actions/checkout@v6
+        with:
+          repository: mwinteringham/restful-booker-platform
+          ref: v2.1
+          path: restful-booker-platform
+
+      - name: 🔹  Start microservices with docker-compose
+        run: |
+          cd restful-booker-platform
+          docker compose up -d
+
+      - name: 🔹  Wait for all services to be healthy
+        run: python scripts/wait_for_services.py
+
+      - name: 🔹  Run health check test
+        run:  python -m pytest -k "test_check_health" -s -v
+
+      - name: 🧹  Cleanup (always run)
+        if: always()
+        run: |
+          cd restful-booker-platform 2>/dev/null && docker compose down -v --remove-orphans || true
+
+
+
+     
+
+  
+
+
+
