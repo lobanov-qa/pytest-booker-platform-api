@@ -32,3 +32,6 @@ coverage-history.json
 *.egg
 build/
 dist/
+
+# Docs
+ACCESS_MATRIX_CLIENT.md
