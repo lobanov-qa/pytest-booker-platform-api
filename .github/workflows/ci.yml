@@ -47,11 +47,17 @@ jobs:
       - name: 🔹 Create .env file from GitHub Secrets
         run: |
           cat << 'EOF' > .env
-          AUTH.URL=${{ secrets.AUTH_URL }}
           BOOKING.URL=${{ secrets.BOOKING_URL }}
+          AUTH.URL=${{ secrets.AUTH_URL }}
+          ROOM.URL=${{ secrets.ROOM_URL }}
+          REPORT.URL=${{ secrets.REPORT_URL }}
+          BRANDING.URL=${{ secrets.BRANDING_URL }}
+          MESSAGE.URL=${{ secrets.MESSAGE_URL }}
+
           HTTP_CLIENT.TIMEOUT=${{ secrets.HTTP_CLIENT_TIMEOUT }}
           HTTP_CLIENT.RETRIES=${{ secrets.HTTP_CLIENT_RETRIES }}
           HTTP_CLIENT.VERIFY_SSL=${{ secrets.HTTP_CLIENT_VERIFY_SSL }}
+
           TEST_USER.LOGIN=${{ secrets.TEST_USER_LOGIN }}
           TEST_USER.PASSWORD=${{ secrets.TEST_USER_PASSWORD }}
           EOF
