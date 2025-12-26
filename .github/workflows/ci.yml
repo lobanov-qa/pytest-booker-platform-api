@@ -44,8 +44,13 @@ jobs:
       - name: 🔹  Wait for all services to be healthy
         run: python scripts/wait_for_services.py
 
-      - name: 🔹  Run health check test
-        run:  python -m pytest -k "test_check_health" -s -v
+      - name: 🔹 Run ALL API tests
+        env:
+          AUTH_CLIENT_URL: ${{ secrets.AUTH_CLIENT_URL }}
+          HTTP_CLIENT_TIMEOUT: ${{ secrets.HTTP_CLIENT_TIMEOUT }}
+          TEST_USER_LOGIN: ${{ secrets.TEST_USER_LOGIN }}
+          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
+        run: python -m pytest tests/ --tb=short -v
 
       - name: 🧹  Cleanup (always run)
         if: always()
