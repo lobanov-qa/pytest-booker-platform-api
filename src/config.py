@@ -3,13 +3,11 @@ from typing import  Optional
 from pydantic import BaseModel, AnyHttpUrl, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-# Укажите путь к .env явно
-BASE_DIR = Path(__file__).parent.parent  # → /src → / (корень)
+
+BASE_DIR = Path(__file__).parent.parent
 ENV_FILE = BASE_DIR / ".env"
 
-print(f"Загружаю .env из: {ENV_FILE}")  # ← Отладка: увидите путь
-if not ENV_FILE.exists():
-    raise RuntimeError(f"Файл .env не найден по пути: {ENV_FILE}")
+
 
 class HTTPClientConfig(BaseModel):
     timeout: float = Field(30.0, description="Default timeout for all requests")
