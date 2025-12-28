@@ -112,20 +112,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🔹 Check out gh-pages (with existing reports)
+      - name: 🔹 Check out gh-pages for structure
         uses: actions/checkout@v6
         with:
           ref: gh-pages
           path: gh-pages-output
-          fetch-depth: 0
 
-      - name: 🔹 Download new Allure results
+      - name: 🔹 Download Allure results
         uses: actions/download-artifact@v7
         with:
           name: allure-results
           path: allure-results
 
-      - name: 🔹 Download new Coverage report
+      - name: 🔹 Download Swagger Coverage report
         uses: actions/download-artifact@v7
         with:
           name: coverage-report
@@ -137,84 +136,74 @@ jobs:
         with:
           allure_results: allure-results
           allure_history: allure-history
-          gh_pages: gh-pages-output
-          subfolder: allure/${GITHUB_RUN_NUMBER}
+          subfolder: allure-report
 
-      - name: 🔹 Copy new coverage to versioned folder
+      - name: 🔹 Prepare unified reports structure
         run: |
-          BUILD_NUMBER="${{ github.run_number }}"
-          mkdir -p "gh-pages-output/coverage/${BUILD_NUMBER}"
-          cp -v coverage-report/coverage.html "gh-pages-output/coverage/${BUILD_NUMBER}/index.html"
+          BUILD_NUMBER=${{ github.run_number }}
+          mkdir -p gh-pages-output/$BUILD_NUMBER/allure
+          mkdir -p gh-pages-output/$BUILD_NUMBER/coverage
 
-      - name: 🔹 Create index for this build
-        run: |
-          BUILD_NUMBER="${{ github.run_number }}"
-          COMMIT_SHA="${GITHUB_SHA::8}"
+          cp -r allure-report/* gh-pages-output/$BUILD_NUMBER/allure/ || (echo "❌ Allure report not found" && exit 1)
+          cp -v coverage-report/coverage.html gh-pages-output/$BUILD_NUMBER/coverage/index.html || (echo "❌ coverage.html not found" && exit 1)
 
-          mkdir -p "gh-pages-output/${BUILD_NUMBER}"
-
-          cat > "gh-pages-output/${BUILD_NUMBER}/index.html" << EOF
-          <!DOCTYPE html>
-          <html>
-          <head><title>Build #${BUILD_NUMBER}</title></head>
-          <body>
-            <h1>Build #${BUILD_NUMBER}</h1>
-            <ul>
-              <li><a href="allure/index.html">Allure Report</a></li>
-              <li><a href="coverage/index.html">Coverage Report</a></li>
-            </ul>
-            <p>Commit: ${COMMIT_SHA}</p>
-          </body>
-          </html>
-          EOF
-
-      - name: 🔹 Update global index
-        run: |
-          cd gh-pages-output
-
-          # Находим все папки с номерами (сборки)
-          BUILDS=$(find . -maxdepth 1 -type d -name '[0-9]*' | sed 's|./||' | sort -nr)
-
-          # Создаём/обновляем главный index.html
-          cat > index.html << 'EOF'
+          cat > gh-pages-output/index.html << EOF
           <!DOCTYPE html>
           <html>
           <head>
-            <title>All Test Builds</title>
+            <title>Test Reports</title>
+            <meta charset="utf-8">
             <style>
-              body { font-family: sans-serif; padding: 40px; }
-              .build { margin: 10px 0; padding: 10px; background: #f5f5f5; }
-              .latest { border-left: 4px solid #4CAF50; }
+              body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                padding: 40px;
+                background: #f8f9fa;
+                color: #212529;
+              }
+              .container { max-width: 800px; margin: 0 auto; }
+              h1 { color: #1b6caa; }
+              ul { list-style: none; padding: 0; }
+              li {
+                margin: 15px 0;
+                padding: 12px;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+              }
+              a {
+                color: #1b6caa;
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 1.2em;
+              }
+              a:hover { text-decoration: underline; }
+              small {
+                color: #6c757d;
+                font-size: 0.9em;
+              }
             </style>
           </head>
           <body>
-            <h1>📊 All Test Builds</h1>
-            <p><strong>Latest: Build #${{ github.run_number }}</strong></p>
-          EOF
-
-          # Добавляем ссылки на все сборки
-          for build in $BUILDS; do
-            echo "<div class='build $([ "$build" = "${{ github.run_number }}" ] && echo "latest")'>" >> index.html
-            echo "<strong><a href='${build}/'>Build #${build}</a></strong>" >> index.html
-            echo " | <a href='${build}/allure/index.html'>Allure</a>" >> index.html
-            echo " | <a href='${build}/coverage/index.html'>Coverage</a>" >> index.html
-            echo "</div>" >> index.html
-          done
-
-          cat >> index.html << 'EOF'
-            <p><small>Updated: $(date)</small></p>
+            <div class="container">
+              <h1>🔍 Last Test Report (#$BUILD_NUMBER)</h1>
+              <ul>
+                <li>🟢 <a href="$BUILD_NUMBER/allure/">Allure Test Reports</a></li>
+                <li>🟣 <a href="$BUILD_NUMBER/coverage/">API Coverage Report</a></li>
+              </ul>
+              <small>Generated by GitHub Actions • $BUILD_NUMBER</small>
+            </div>
           </body>
           </html>
           EOF
 
-      - name: 🔹 Deploy ALL reports to GitHub Pages
+      - name: 🔹 Deploy unified reports to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: gh-pages-output
-          force_orphan: false
+
 
 
 
