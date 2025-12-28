@@ -119,14 +119,6 @@ jobs:
           path: gh-pages-output
           fetch-depth: 0
 
-      - name: 🔹 Restore Allure history cache
-        uses: actions/cache@v4
-        with:
-          path: allure-history
-          key: allure-history-main
-          restore-keys: |
-            allure-history-
-
       - name: 🔹 Download Allure results
         uses: actions/download-artifact@v7
         with:
@@ -139,7 +131,23 @@ jobs:
           name: coverage-report
           path: coverage-report
 
-      - name: 🔹 Generate Allure Report DIRECTLY to gh-pages
+      - name: 🔹 Prepare allure-history from PREVIOUS build
+        run: |
+          BUILD_NUMBER="${{ github.run_number }}"
+          PREV_BUILD=$((BUILD_NUMBER - 1))
+
+          echo "🔍 Looking for history in build: $PREV_BUILD"
+
+          if [ -d "gh-pages-output/$PREV_BUILD/allure/history" ]; then
+            echo "✅ Found history, preparing for Allure action"
+            mkdir -p "allure-history/$BUILD_NUMBER/allure/last-history"
+            cp -r "gh-pages-output/$PREV_BUILD/allure/history/"* \
+                  "allure-history/$BUILD_NUMBER/allure/last-history/" 2>/dev/null || true
+          else
+            echo "⚠️ No previous history found (first run or build $PREV_BUILD missing)"
+          fi
+
+      - name: 🔹 Generate Allure Report
         uses: simple-elf/allure-report-action@v1.13
         with:
           allure_results: allure-results
@@ -148,7 +156,6 @@ jobs:
           subfolder: ${{ github.run_number }}/allure
           keep_reports: 10
 
-      # Удаляет старые папки сборок (1/, 2/, ...)
       - name: 🔹 Clean old reports from gh-pages-output
         run: |
           cd gh-pages-output
@@ -156,11 +163,6 @@ jobs:
             sed 's|./||' | sort -nr | tail -n +11 | 
             xargs -I {} rm -rf {}
 
-      - name: 🔹 Save Allure history cache
-        uses: actions/cache@v4
-        with:
-          path: allure-history
-          key: allure-history-main
 
       - name: 🔹 Copy coverage report
         run: |
