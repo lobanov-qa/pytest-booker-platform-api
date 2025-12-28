@@ -65,7 +65,36 @@ jobs:
       - name: 🔹  Run API tests with pytest and generate Allure results
         run: python -m pytest tests/ --alluredir=allure-results
 
-      - name: Upload Allure results
+      - name: 🔹 Restore Coverage history
+        uses: actions/cache/restore@v5
+        with:
+          path: coverage-history.json
+          key: coverage-history-${{ github.run_id }}
+          restore-keys: |
+            coverage-history-
+
+
+      - name: 🔹 Generate Coverage report
+        run: |
+          swagger-coverage-tool save-report
+
+
+      - name: 🔹 Cache Coverage  history
+        if: always()
+        uses: actions/cache/save@v5
+        with:
+          path: coverage-history.json
+          key: coverage-history-${{ github.run_id }}
+
+
+      - name: 🔹 Upload Coverage report
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: coverage-report
+          path: coverage.html
+
+      - name: 🔹 Upload Allure results
         if: always()
         uses: actions/upload-artifact@v6
         with:

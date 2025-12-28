@@ -4,7 +4,7 @@ from clients.api_client import APIClient
 
 from clients.auth.auth_schema import LoginRequestSchema, ValidateRequestSchema, LogoutRequestSchema
 from clients.auth.routes import AuthRoutes
-
+from clients.api_coverage import tracker_auth
 
 class AuthClient(APIClient):
     """
@@ -17,7 +17,7 @@ class AuthClient(APIClient):
         super().__init__(base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs)
         self.token = None
 
-
+    @tracker_auth.track_coverage_httpx(AuthRoutes.LOGIN)
     def login_api(self, request: LoginRequestSchema) -> Response:
         """
         Performs an HTTP request to authenticate the user.
@@ -46,6 +46,7 @@ class AuthClient(APIClient):
         self.token = token
         return token
 
+    @tracker_auth.track_coverage_httpx(AuthRoutes.VALIDATE)
     def validate_api(self, request: ValidateRequestSchema) -> Response:
         """
         Sends a token validation request to the server.
@@ -68,6 +69,8 @@ class AuthClient(APIClient):
             return response.status_code == 200
         except HTTPStatusError:
             return False
+
+    @tracker_auth.track_coverage_httpx(AuthRoutes.LOGOUT)
     def logout_api(self, request: LogoutRequestSchema) -> Response:
         """
         Sends a token logout request to the server.

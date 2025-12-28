@@ -1,0 +1,51 @@
+# List of service configurations.
+# swagger-coverage.yml
+
+services:
+  - key: "auth-api"
+    name: "Auth API"
+    tags: ["API", "MICROSERVICE", "RESTFUL-BOOKER"]
+    repository: "https://github.com/mwinteringham/restful-booker-platform"
+    swagger_url: "http://localhost:3004/auth/v3/api-docs/auth-api"
+
+  - key: "booking-api"
+    name: "Booking API"
+    tags: ["API", "MICROSERVICE", "RESTFUL-BOOKER"]
+    repository: "https://github.com/mwinteringham/restful-booker-platform"
+    swagger_url: "http://localhost:3000/booking/v3/api-docs/booking-api"
+
+  - key: "room-api"
+    name: "Room API"
+    tags: ["API", "MICROSERVICE", "RESTFUL-BOOKER"]
+    repository: "https://github.com/mwinteringham/restful-booker-platform"
+    swagger_url: "http://localhost:3001/room/v3/api-docs/room-api"
+
+  - key: "report-api"
+    name: "Report API"
+    tags: ["API", "MICROSERVICE", "RESTFUL-BOOKER"]
+    repository: "https://github.com/mwinteringham/restful-booker-platform"
+    swagger_url: "http://localhost:3005/report/v3/api-docs/report-api"
+
+  - key: "branding-api"
+    name: "Branding API"
+    tags: ["API", "MICROSERVICE", "RESTFUL-BOOKER"]
+    repository: "https://github.com/mwinteringham/restful-booker-platform"
+    swagger_url: "http://localhost:3002/branding/v3/api-docs/branding-api"
+
+  - key: "message-api"
+    name: "Message API"
+    tags: ["API", "MICROSERVICE", "RESTFUL-BOOKER"]
+    repository: "https://github.com/mwinteringham/restful-booker-platform"
+    swagger_url: "http://localhost:3006/message/v3/api-docs/message-api"
+
+
+
+results_dir: "./coverage-results"
+
+
+history_file: "./coverage-history.json"
+history_retention_limit: 30
+
+
+html_report_file: "./coverage.html"
+json_report_file: "./coverage-report.json"
