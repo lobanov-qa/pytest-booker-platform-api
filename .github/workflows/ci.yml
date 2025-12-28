@@ -112,42 +112,104 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🔹 Check out gh-pages (with history)
+      - name: Check out gh-pages (with history)
         uses: actions/checkout@v6
         with:
           ref: gh-pages
           path: gh-pages-output
           fetch-depth: 0
 
-      - name: 🔹 Download Allure results
+      - name: Debug - check existing allure reports
+        run: |
+          echo "=== Allure reports in gh-pages-output ==="
+          find gh-pages-output -path "*/allure/history" -type d | sort || true
+          echo "=== All files in gh-pages-output ==="
+          ls -la gh-pages-output/ || true
+
+      - name: Download Allure results
         uses: actions/download-artifact@v7
         with:
           name: allure-results
           path: allure-results
 
-      - name: 🔹 Download Coverage report
+      - name: Download Coverage report
         uses: actions/download-artifact@v7
         with:
           name: coverage-report
           path: coverage-report
 
-      - name: 🔹 Prepare allure-history from PREVIOUS build
+      - name: Prepare Allure history from ALL previous builds
         run: |
           BUILD_NUMBER="${{ github.run_number }}"
-          PREV_BUILD=$((BUILD_NUMBER - 1))
 
-          echo "🔍 Looking for history in build: $PREV_BUILD"
+          # Создаём папку для сбора истории
+          mkdir -p allure-history-collected
 
-          if [ -d "gh-pages-output/$PREV_BUILD/allure/history" ]; then
-            echo "✅ Found history, preparing for Allure action"
-            mkdir -p "allure-history/$BUILD_NUMBER/allure/last-history"
-            cp -r "gh-pages-output/$PREV_BUILD/allure/history/"* \
-                  "allure-history/$BUILD_NUMBER/allure/last-history/" 2>/dev/null || true
-          else
-            echo "⚠️ No previous history found (first run or build $PREV_BUILD missing)"
+          echo "=== Debug: checking gh-pages-output structure ==="
+          find gh-pages-output -name "history.json" -o -name "history-trend.json" | head -10 || true
+
+          # Ищем ВСЕ существующие истории в gh-pages-output
+          echo "Searching for Allure history in all builds..."
+
+          # Вариант 1: Ищем в новой структуре (25/allure/history/)
+          find gh-pages-output -path "*/[0-9]*/allure/history" -type d | \
+            while read history_dir; do
+              build_dir=$(dirname "$(dirname "$history_dir")")
+              build_num=$(basename "$build_dir")
+
+              if [[ "$build_num" =~ ^[0-9]+$ ]] && [ -f "$history_dir/history.json" ]; then
+                echo "✓ Found history in build: $build_num (new structure)"
+                mkdir -p "allure-history-collected/$build_num"
+                cp -r "$history_dir"/* "allure-history-collected/$build_num/" 2>/dev/null || true
+              fi
+            done
+
+          # Вариант 2: Ищем в старой структуре (allure/history/)
+          if [ -d "gh-pages-output/allure/history" ] && [ -f "gh-pages-output/allure/history/history.json" ]; then
+            echo "✓ Found history in old structure (allure/history/)"
+            mkdir -p "allure-history-collected/legacy"
+            cp -r "gh-pages-output/allure/history"/* "allure-history-collected/legacy/" 2>/dev/null || true
           fi
 
-      - name: 🔹 Generate Allure Report
+          # Если что-то собрали
+          if [ "$(ls -A allure-history-collected 2>/dev/null)" ]; then
+            echo "✅ Collected from $(ls -1 allure-history-collected | wc -l) sources"
+
+            # Выбираем самую свежую (игнорируем 'legacy')
+            LATEST_BUILD=$(ls -1 allure-history-collected | grep -E '^[0-9]+$' | sort -V | tail -1)
+
+            if [ -z "$LATEST_BUILD" ]; then
+              LATEST_BUILD="legacy"
+            fi
+
+            echo "📊 Using history from: $LATEST_BUILD"
+
+            # Создаём структуру для action
+            mkdir -p "allure-history/$BUILD_NUMBER/allure/last-history"
+
+            # Копируем все файлы истории
+            cp -r "allure-history-collected/$LATEST_BUILD"/* \
+                  "allure-history/$BUILD_NUMBER/allure/last-history/" 2>/dev/null || true
+          else
+            echo "⚠️ No previous history found - starting fresh"
+            mkdir -p "allure-history/$BUILD_NUMBER/allure/last-history"
+          fi
+
+      - name: Generate Allure Report (skip if no results)
+        if: success() || failure()  # Запускаем даже если тесты упали
+        run: |
+          # Проверяем, есть ли результаты для генерации
+          if [ "$(find allure-results -name '*.json' -type f | head -1)" ]; then
+            echo "Allure results found, generating report..."
+            # Генерируем локально для проверки
+            /allure-2.32.0/bin/allure generate allure-results -o allure-report-local --clean
+          else
+            echo "No Allure results found - skipping report generation"
+            mkdir -p "gh-pages-output/${{ github.run_number }}/allure"
+            echo "<html><body>No test results</body></html>" > "gh-pages-output/${{ github.run_number }}/allure/index.html"
+          fi
+
+      - name: Generate Allure Report with action
         uses: simple-elf/allure-report-action@v1.13
         with:
           allure_results: allure-results
@@ -156,40 +218,88 @@ jobs:
           subfolder: ${{ github.run_number }}/allure
           keep_reports: 10
 
-      - name: 🔹 Clean old reports from gh-pages-output
-        run: |
-          cd gh-pages-output
-          find . -maxdepth 1 -type d -name '[0-9]*' | 
-            sed 's|./||' | sort -nr | tail -n +11 | 
-            xargs -I {} rm -rf {}
-
-
-      - name: 🔹 Copy coverage report
+      - name: Copy coverage report
         run: |
           BUILD_NUMBER=${{ github.run_number }}
           mkdir -p "gh-pages-output/$BUILD_NUMBER/coverage"
-          cp -v coverage-report/coverage.html "gh-pages-output/$BUILD_NUMBER/coverage/index.html"
+          cp -v coverage-report/coverage.html "gh-pages-output/$BUILD_NUMBER/coverage/index.html" || echo "No coverage report found"
 
-      - name: 🔹 Create build index page
+      - name: Create build index page
         run: |
           BUILD_NUMBER=${{ github.run_number }}
           mkdir -p "gh-pages-output/$BUILD_NUMBER"
 
-          cat > "gh-pages-output/$BUILD_NUMBER/index.html" << EOF
+          cat > "gh-pages-output/$BUILD_NUMBER/index.html" << 'EOF'
           <!DOCTYPE html>
           <html>
-          <head><title>Build #$BUILD_NUMBER</title></head>
+          <head>
+            <title>Build #$BUILD_NUMBER</title>
+            <meta charset="utf-8">
+            <style>
+              body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+                padding: 40px;
+                background: #f8f9fa;
+                color: #212529;
+              }
+              .container { max-width: 800px; margin: 0 auto; }
+              h1 { color: #1b6caa; }
+              ul { list-style: none; padding: 0; }
+              li {
+                margin: 15px 0;
+                padding: 12px;
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+              }
+              a {
+                color: #1b6caa;
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 1.2em;
+              }
+              a:hover { text-decoration: underline; }
+              small {
+                color: #6c757d;
+                font-size: 0.9em;
+              }
+            </style>
+          </head>
           <body>
-            <h1>Build #$BUILD_NUMBER</h1>
-            <ul>
-              <li><a href="allure/index.html">Allure Report</a></li>
-              <li><a href="coverage/index.html">Coverage Report</a></li>
-            </ul>
+            <div class="container">
+              <h1>Build #$BUILD_NUMBER</h1>
+              <ul>
+                <li><a href="allure/index.html">Allure Report</a></li>
+                <li><a href="coverage/index.html">Coverage Report</a></li>
+              </ul>
+              <small>Generated by GitHub Actions</small>
+            </div>
           </body>
           </html>
           EOF
 
-      - name: 🔹 Deploy to GitHub Pages
+      - name: Clean old reports (keep last 10)
+        run: |
+          cd gh-pages-output
+
+          # Ищем только папки с номерами
+          BUILDS=$(find . -maxdepth 1 -type d -name '[0-9]*' | sed 's|./||' | sort -nr)
+
+          echo "Current builds: $BUILDS"
+
+          COUNT=0
+          for build in $BUILDS; do
+            COUNT=$((COUNT + 1))
+            if [ $COUNT -gt 10 ]; then
+              echo "Removing old build: $build"
+              rm -rf "$build"
+            fi
+          done
+
+          echo "Kept builds:"
+          find . -maxdepth 1 -type d -name '[0-9]*' | sort -nr || true
+
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
