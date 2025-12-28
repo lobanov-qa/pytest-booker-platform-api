@@ -135,15 +135,15 @@ jobs:
         if: always()
         with:
           allure_results: allure-results
-          allure_history: allure-history  
+          allure_history: allure-history
+          report_path: allure-report  
 
       - name: 🔹 Prepare unified reports structure
         run: |
           mkdir -p gh-pages-output/allure
           mkdir -p gh-pages-output/coverage
 
-          cp -v index.html gh-pages-output/allure/ || (echo "❌ Allure index.html not found!" && exit 1)
-          cp -v data/ history/ widgets/ gh-pages-output/allure/ -r || echo "⚠️ Allure assets not copied"
+          cp -r allure-report/* gh-pages-output/allure/ || (echo "❌ Allure report not found in allure-report/" && exit 1)
 
           cp -v coverage-report/coverage.html gh-pages-output/coverage/index.html || (echo "❌ File not found!" && exit 1)
 
