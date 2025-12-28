@@ -101,7 +101,7 @@ jobs:
           name: allure-results
           path: allure-results
 
-      - name: 🧹  Cleanup (always run)
+      - name: 🧹 Cleanup (always run)
         if: always()
         run: |
           cd restful-booker-platform 2>/dev/null && docker compose down -v --remove-orphans || true
