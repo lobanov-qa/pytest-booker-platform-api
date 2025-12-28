@@ -86,14 +86,7 @@ jobs:
           path: coverage-history.json
           key: coverage-history-${{ github.run_id }}
 
-      - name: 🔹 Cache Allure history
-        if: always()
-        uses: actions/cache/save@v5
-        with:
-          path: allure-history
-          key: allure-history-${{ github.sha }}
-
-
+      
       - name: 🔹 Upload Coverage report
         if: always()
         uses: actions/upload-artifact@v6
@@ -119,12 +112,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🔹 Check out gh-pages for structure
+      - name: 🔹 Check out gh-pages (with history)
         uses: actions/checkout@v6
         with:
           ref: gh-pages
           path: gh-pages-output
+          fetch-depth: 0
 
+      - name: 🔹 Restore Allure history cache
+        uses: actions/cache@v4
+        with:
+          path: allure-history
+          key: allure-history-main
+          restore-keys: |
+            allure-history-
 
       - name: 🔹 Download Allure results
         uses: actions/download-artifact@v7
@@ -132,119 +133,64 @@ jobs:
           name: allure-results
           path: allure-results
 
-      - name: 🔹 Download Swagger Coverage report
+      - name: 🔹 Download Coverage report
         uses: actions/download-artifact@v7
         with:
           name: coverage-report
           path: coverage-report
 
-      - name: 🔹 Restore Allure history cache
-        uses: actions/cache/restore@v5
-        with:
-          path: allure-history
-          key: allure-history-${{ github.sha }}
-          restore-keys: |
-            allure-history-
-
-      
-          
-      #debug
-      - name: 🔹 Debug BEFORE Allure generation
-        run: |
-          echo "=== Allure results (input) ==="
-          find allure-results -type f -name "*.json" | head -5
-          echo "=== Allure history cache ==="
-          ls -la allure-history/ 2>/dev/null || echo "No allure-history folder"
-
-      - name: 🔹 Generate Allure Report with history
+      - name: 🔹 Generate Allure Report DIRECTLY to gh-pages
         uses: simple-elf/allure-report-action@v1.13
-        if: always()
         with:
           allure_results: allure-results
           allure_history: allure-history
+          gh_pages: gh-pages-output
           subfolder: ${{ github.run_number }}/allure
-      #debug
-      - name: 🔹 Debug AFTER Allure generation
-        run: |
-          echo "=== Generated report structure ==="
-          find allure-report -type d | head -20
-          echo "=== History files in report ==="
-          find allure-report -name "*history*" -o -name "*trend*" | xargs ls -la 2>/dev/null || echo "No history found"
-      #debug
-      - name: 🔹 Check generated report
-        run: |
-          echo "=== Report has history? ==="
-          find gh-pages-output/${{ github.run_number }}/allure -name "history.json" -o -name "history-trend.json" | xargs ls -la 2>/dev/null || echo "No history files"
+          keep_reports: 10
 
-          echo "=== History folder exists? ==="
-          ls -la gh-pages-output/${{ github.run_number }}/allure/history/ 2>/dev/null || echo "No history folder"
+      # Удаляет старые папки сборок (1/, 2/, ...)
+      - name: 🔹 Clean old reports from gh-pages-output
+        run: |
+          cd gh-pages-output
+          find . -maxdepth 1 -type d -name '[0-9]*' | 
+            sed 's|./||' | sort -nr | tail -n +11 | 
+            xargs -I {} rm -rf {}
 
-      - name: 🔹 Prepare unified reports structure
+      - name: 🔹 Save Allure history cache
+        uses: actions/cache@v4
+        with:
+          path: allure-history
+          key: allure-history-main
+
+      - name: 🔹 Copy coverage report
         run: |
           BUILD_NUMBER=${{ github.run_number }}
-          mkdir -p gh-pages-output/$BUILD_NUMBER/allure
-          mkdir -p gh-pages-output/$BUILD_NUMBER/coverage
+          mkdir -p "gh-pages-output/$BUILD_NUMBER/coverage"
+          cp -v coverage-report/coverage.html "gh-pages-output/$BUILD_NUMBER/coverage/index.html"
 
-          cp -r allure-report/* gh-pages-output/$BUILD_NUMBER/allure/ || (echo "❌ Allure report not found" && exit 1)
-          cp -v coverage-report/coverage.html gh-pages-output/$BUILD_NUMBER/coverage/index.html || (echo "❌ coverage.html not found" && exit 1)
+      - name: 🔹 Create build index page
+        run: |
+          BUILD_NUMBER=${{ github.run_number }}
+          mkdir -p "gh-pages-output/$BUILD_NUMBER"
 
-          cat > gh-pages-output/index.html << EOF
+          cat > "gh-pages-output/$BUILD_NUMBER/index.html" << EOF
           <!DOCTYPE html>
           <html>
-          <head>
-            <title>Test Reports</title>
-            <meta charset="utf-8">
-            <style>
-              body {
-                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-                padding: 40px;
-                background: #f8f9fa;
-                color: #212529;
-              }
-              .container { max-width: 800px; margin: 0 auto; }
-              h1 { color: #1b6caa; }
-              ul { list-style: none; padding: 0; }
-              li {
-                margin: 15px 0;
-                padding: 12px;
-                background: white;
-                border-radius: 8px;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-              }
-              a {
-                color: #1b6caa;
-                text-decoration: none;
-                font-weight: 500;
-                font-size: 1.2em;
-              }
-              a:hover { text-decoration: underline; }
-              small {
-                color: #6c757d;
-                font-size: 0.9em;
-              }
-            </style>
-          </head>
+          <head><title>Build #$BUILD_NUMBER</title></head>
           <body>
-            <div class="container">
-              <h1>🔍 Last Test Report (#$BUILD_NUMBER)</h1>
-              <ul>
-                <li>🟢 <a href="$BUILD_NUMBER/allure/">Allure Test Reports</a></li>
-                <li>🟣 <a href="$BUILD_NUMBER/coverage/">API Coverage Report</a></li>
-              </ul>
-              <small>Generated by GitHub Actions • $BUILD_NUMBER</small>
-            </div>
+            <h1>Build #$BUILD_NUMBER</h1>
+            <ul>
+              <li><a href="allure/index.html">Allure Report</a></li>
+              <li><a href="coverage/index.html">Coverage Report</a></li>
+            </ul>
           </body>
           </html>
           EOF
 
-      - name: 🔹 Deploy unified reports to GitHub Pages
-        if: always()
+      - name: 🔹 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: gh-pages-output
-
-
-
-
+          force_orphan: false
