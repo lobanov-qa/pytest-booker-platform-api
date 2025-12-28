@@ -123,8 +123,6 @@ jobs:
         run: |
           echo "=== Allure reports in gh-pages-output ==="
           find gh-pages-output -path "*/allure/history" -type d | sort || true
-          echo "=== All files in gh-pages-output ==="
-          ls -la gh-pages-output/ || true
 
       - name: Download Allure results
         uses: actions/download-artifact@v7
@@ -193,20 +191,6 @@ jobs:
           else
             echo "⚠️ No previous history found - starting fresh"
             mkdir -p "allure-history/$BUILD_NUMBER/allure/last-history"
-          fi
-
-      - name: Generate Allure Report (skip if no results)
-        if: success() || failure()  # Запускаем даже если тесты упали
-        run: |
-          # Проверяем, есть ли результаты для генерации
-          if [ "$(find allure-results -name '*.json' -type f | head -1)" ]; then
-            echo "Allure results found, generating report..."
-            # Генерируем локально для проверки
-            /allure-2.32.0/bin/allure generate allure-results -o allure-report-local --clean
-          else
-            echo "No Allure results found - skipping report generation"
-            mkdir -p "gh-pages-output/${{ github.run_number }}/allure"
-            echo "<html><body>No test results</body></html>" > "gh-pages-output/${{ github.run_number }}/allure/index.html"
           fi
 
       - name: Generate Allure Report with action
@@ -295,9 +279,6 @@ jobs:
               rm -rf "$build"
             fi
           done
-
-          echo "Kept builds:"
-          find . -maxdepth 1 -type d -name '[0-9]*' | sort -nr || true
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
