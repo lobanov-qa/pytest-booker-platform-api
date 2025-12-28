@@ -1,4 +1,5 @@
 from clients.auth.auth_client import AuthClient
+from clients.event_hooks import curl_event_hook, log_request_event_hook, log_response_event_hook
 from config import settings
 
 
@@ -18,7 +19,14 @@ class ClientFactory:
         :return: AuthClient configured with base URL and timeout from settings.
         :rtype: AuthClient
         """
-        return AuthClient(base_url=settings.auth.client_url, timeout=settings.http_client.timeout)
+        return AuthClient(
+            base_url=settings.auth.client_url,
+            timeout=settings.http_client.timeout,
+            event_hooks={
+                "request": [curl_event_hook, log_request_event_hook],
+                "response": [log_response_event_hook]
+                }
+        )
 
 
 

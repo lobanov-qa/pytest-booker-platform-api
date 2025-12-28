@@ -62,13 +62,55 @@ jobs:
           TEST_USER.PASSWORD=${{ secrets.TEST_USER_PASSWORD }}
           EOF
 
-      - name: 🔹 Run ALL API tests
-        run: python -m pytest tests/ --tb=short -v
+      - name: 🔹  Run API tests with pytest and generate Allure results
+        run: python -m pytest tests/ --alluredir=allure-results
+
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: allure-results
+          path: allure-results
 
       - name: 🧹  Cleanup (always run)
         if: always()
         run: |
           cd restful-booker-platform 2>/dev/null && docker compose down -v --remove-orphans || true
+
+  publish-report:
+    if: always()
+    needs: [ setup-and-validate ]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔹 Check out repository
+        uses: actions/checkout@v6
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: 🔹  Download Allure results
+        uses: actions/download-artifact@v7
+        with:
+          name: allure-results
+          path: allure-results
+
+      - name: 🔹  Generate Allure Report with history
+        uses: simple-elf/allure-report-action@v1.13
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+
+      - name: 🔹  Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+
+      
 
 
 

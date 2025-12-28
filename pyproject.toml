@@ -20,6 +20,18 @@ dependencies = [
     "email-validator==2.3.0",
 ]
 
+[tool.pytest.ini_options]
+addopts = "-v -s --tb=short"
+python_files = "*_tests.py *_test.py test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+markers = [
+    "authentication: auth tests.",
+    "health: checking the status of servers.",
+    "regression: marking for regression tests."
+]
+
+
 [tool.setuptools.packages.find]
 where = ["src"]
 

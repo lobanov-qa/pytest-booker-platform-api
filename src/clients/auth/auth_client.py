@@ -13,8 +13,8 @@ class AuthClient(APIClient):
     Provides methods for performing authentication operations,
     Based on the base APIClient client.
     """
-    def __init__(self, base_url: str, timeout: float):
-        super().__init__(base_url=base_url, timeout=timeout)
+    def __init__(self, base_url: str, timeout: float, event_hooks=None, **kwargs):
+        super().__init__(base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs)
         self.token = None
 
 

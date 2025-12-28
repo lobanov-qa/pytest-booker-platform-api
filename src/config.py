@@ -1,6 +1,8 @@
+from typing import Self
+
 from pathlib import Path
 from typing import  Optional
-from pydantic import BaseModel, AnyHttpUrl, Field
+from pydantic import BaseModel, AnyHttpUrl, Field, DirectoryPath
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -33,6 +35,7 @@ class TestDataConfig(BaseModel):
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
+        extra='allow',
         env_file=ENV_FILE,
         env_file_encoding="utf-8",
         env_nested_delimiter="."
@@ -47,9 +50,21 @@ class Settings(BaseSettings):
     branding: ServiceSettings
     message: ServiceSettings
 
+    allure_results_dir: DirectoryPath
+
     test_user: TestDataConfig = TestDataConfig()
 
-settings = Settings()
+    @classmethod
+    def initialize(cls) -> Self:
+        allure_results_dir = DirectoryPath("./allure-results")
+        allure_results_dir.mkdir(exist_ok=True)
+
+        # Передаем allure_results_dir в инициализацию настроек
+        return Settings(allure_results_dir=allure_results_dir)
+
+
+settings = Settings.initialize()
+
 
 
 

@@ -1,12 +1,23 @@
-from typing import Any
+from typing import Any, Mapping
 
 from httpx import Client, URL, Response, QueryParams
 from httpx._types import RequestData, RequestFiles
 
 
 class APIClient:
-    def __init__(self, base_url: str, timeout: float):
-        self.client = Client(base_url=base_url, timeout=timeout)
+    def __init__(
+            self,
+            base_url: str,
+            timeout: float,
+            event_hooks: Mapping[str, list] | None = None,
+            **kwargs: Any
+    ):
+        self.client = Client(
+            base_url=base_url,
+            timeout=timeout,
+            event_hooks=event_hooks,
+            **kwargs
+        )
 
 
     def get(self, url: URL | str, params: QueryParams | None = None) -> Response:
