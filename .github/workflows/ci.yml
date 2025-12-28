@@ -86,6 +86,13 @@ jobs:
           path: coverage-history.json
           key: coverage-history-${{ github.run_id }}
 
+      - name: 🔹 Cache Allure history
+        if: always()
+        uses: actions/cache/save@v5
+        with:
+          path: allure-history
+          key: allure-history-${{ github.sha }}
+
 
       - name: 🔹 Upload Coverage report
         if: always()
