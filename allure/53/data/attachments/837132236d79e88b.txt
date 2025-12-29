@@ -1,0 +1,2 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/validate
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 403  from http://localhost:3004/auth/validate
