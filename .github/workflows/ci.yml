@@ -88,13 +88,6 @@ jobs:
           path: coverage-history.json
           key: coverage-history-${{ github.run_id }}
 
-#      - name: 🔹 Cache Allure history
-#        if: always()
-#        uses: actions/cache/save@v5
-#        with:
-#          path: allure-history
-#          key: allure-history-${{ github.sha }}
-
 
       - name: 🔹 Upload Coverage report
         if: always()
@@ -121,11 +114,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🔹 Check out gh-pages for structure
-        uses: actions/checkout@v6
-        with:
-          ref: gh-pages
-          path: gh-pages-output
+      # - name: 🔹 Check out gh-pages for structure
+      #   uses: actions/checkout@v6
+      #   with:
+      #     ref: gh-pages
+      #     path: gh-pages-output
 
 
       - name: 🔹 Download Allure results
@@ -140,6 +133,24 @@ jobs:
           name: coverage-report
           path: coverage-report
 
+      - name: 🔹 Prepare clean publish directory
+        run: |
+          mkdir -p publish
+          touch publish/.nojekyll
+
+       # === СБРОС ИСТОРИИ (один раз!) ===
+      - name: 🔥 ONE-TIME Reset ALL history
+        run: |
+          echo "🗑️ Resetting history for clean start"
+
+          # 1. Swagger Coverage
+          rm -f coverage-history.json
+          echo "{}" > coverage-history.json
+
+          # 2. Allure
+          rm -rf allure-history/
+          mkdir -p allure-history
+
 
       - name: 🔹 Generate Allure Report with history
         uses: simple-elf/allure-report-action@v1.13
@@ -147,31 +158,20 @@ jobs:
         with:
           allure_results: allure-results
           allure_history: allure-history
-          gh_pages: gh-pages-output/allure
+          gh_pages: publish/allure
           keep_reports: 15
 
-      - name: Fix permissions
-        run: chmod -R 755 gh-pages-output/ || true
 
-      - name: Clean project files from gh-pages
-        run: |
-          rm -rf gh-pages-output/.idea
-          rm -rf gh-pages-output/src
-          rm -rf gh-pages-output/tests
-          rm -f gh-pages-output/*.py gh-pages-output/*.toml gh-pages-output/*.ini
-
-      - name: Remove .git from gh-pages-output
-        run: rm -rf gh-pages-output/.git
       - name: 🔹 Prepare unified reports structure
         run: |
           BUILD_NUMBER=${{ github.run_number }}
-          mkdir -p gh-pages-output/allure/$BUILD_NUMBER
-          mkdir -p gh-pages-output/coverage/$BUILD_NUMBER
+          mkdir -p publish/allure/$BUILD_NUMBER
+          mkdir -p publish/coverage/$BUILD_NUMBER
 
-          cp -r allure-history/* gh-pages-output/allure/ || (echo "❌ Allure history not found" && exit 1)
-          cp -v coverage-report/coverage.html gh-pages-output/coverage/$BUILD_NUMBER/index.html || (echo "❌ coverage.html not found" && exit 1)
+          cp -r allure-history/* publish/allure/ || (echo "❌ Allure history not found" && exit 1)
+          cp -v coverage-report/coverage.html publish/coverage/$BUILD_NUMBER/index.html || (echo "❌ coverage.html not found" && exit 1)
 
-          cat > gh-pages-output/index.html << EOF
+          cat > publish/index.html << EOF
           <!DOCTYPE html>
           <html>
           <head>
@@ -226,7 +226,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: gh-pages-output
+          publish_dir: publish
+          force_orphan: true
 
 
 
