@@ -44,7 +44,7 @@ results_dir: "./coverage-results"
 
 
 history_file: "./coverage-history.json"
-history_retention_limit: 30
+history_retention_limit: 2
 
 
 html_report_file: "./coverage.html"

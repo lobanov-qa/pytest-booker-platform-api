@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+      - 'fix/**'
+      - 'feat/**'
   pull_request:
     branches:
       - main
@@ -14,21 +16,21 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      - name: 🔹  Check out test framework
+      - name: Check out test framework
         uses: actions/checkout@v6
 
-      - name: 🔹  Set up Python
+      - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: '3.12'
           cache: 'pip'
 
-      - name: 🔹  Install test framework (pyproject.toml)
+      - name: Install test framework (pyproject.toml)
         run: |
           python -m pip install --upgrade pip
           pip install -e .
 
-      - name: 🔹  Clone restful-booker-platform
+      - name: Clone restful-booker-platform
         uses: actions/checkout@v6
         with:
           repository: mwinteringham/restful-booker-platform
@@ -36,15 +38,15 @@ jobs:
           path: restful-booker-platform
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 🔹  Start microservices with docker-compose
+      - name: Start microservices with docker-compose
         run: |
           cd restful-booker-platform
           docker compose up -d
 
-      - name: 🔹  Wait for all services to be healthy
+      - name: Wait for all services to be healthy
         run: python scripts/wait_for_services.py
 
-      - name: 🔹 Create .env file from GitHub Secrets
+      - name: Create .env file from GitHub Secrets
         run: |
           cat << 'EOF' > .env
           BOOKING.URL=${{ secrets.BOOKING_URL }}
@@ -62,10 +64,10 @@ jobs:
           TEST_USER.PASSWORD=${{ secrets.TEST_USER_PASSWORD }}
           EOF
 
-      - name: 🔹  Run API tests with pytest and generate Allure results
+      - name: Run API tests with pytest and generate Allure results
         run: python -m pytest tests/ --alluredir=allure-results
 
-      - name: 🔹 Restore Coverage history
+      - name: Restore Coverage history
         uses: actions/cache/restore@v5
         with:
           path: coverage-history.json
@@ -74,34 +76,34 @@ jobs:
             coverage-history-
 
 
-      - name: 🔹 Generate Coverage report
+      - name: Generate Coverage report
         run: |
           swagger-coverage-tool save-report
 
 
-      - name: 🔹 Cache Coverage history
+      - name: Cache Coverage history
         if: always()
         uses: actions/cache/save@v5
         with:
           path: coverage-history.json
           key: coverage-history-${{ github.run_id }}
 
-      
-      - name: 🔹 Upload Coverage report
+
+      - name: Upload Coverage report
         if: always()
         uses: actions/upload-artifact@v6
         with:
           name: coverage-report
           path: coverage.html
 
-      - name: 🔹 Upload Allure results
+      - name: Upload Allure results
         if: always()
         uses: actions/upload-artifact@v6
         with:
           name: allure-results
           path: allure-results
 
-      - name: 🧹 Cleanup (always run)
+      - name: Cleanup (always run)
         if: always()
         run: |
           cd restful-booker-platform 2>/dev/null && docker compose down -v --remove-orphans || true
@@ -111,8 +113,13 @@ jobs:
     needs: [ setup-and-validate ]
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
     steps:
-      - name: Check out gh-pages (with history)
+      - name: Check out gh-pages for structure
         uses: actions/checkout@v6
         with:
           ref: gh-pages
@@ -130,87 +137,30 @@ jobs:
           name: allure-results
           path: allure-results
 
-      - name: Download Coverage report
+      - name: Download Swagger Coverage report
         uses: actions/download-artifact@v7
         with:
           name: coverage-report
           path: coverage-report
 
-      - name: Prepare Allure history from ALL previous builds
-        run: |
-          BUILD_NUMBER="${{ github.run_number }}"
 
-          # Создаём папку для сбора истории
-          mkdir -p allure-history-collected
-
-          echo "=== Debug: checking gh-pages-output structure ==="
-          find gh-pages-output -name "history.json" -o -name "history-trend.json" | head -10 || true
-
-          # Ищем ВСЕ существующие истории в gh-pages-output
-          echo "Searching for Allure history in all builds..."
-
-          # Вариант 1: Ищем в новой структуре (25/allure/history/)
-          find gh-pages-output -path "*/[0-9]*/allure/history" -type d | \
-            while read history_dir; do
-              build_dir=$(dirname "$(dirname "$history_dir")")
-              build_num=$(basename "$build_dir")
-
-              if [[ "$build_num" =~ ^[0-9]+$ ]] && [ -f "$history_dir/history.json" ]; then
-                echo "✓ Found history in build: $build_num (new structure)"
-                mkdir -p "allure-history-collected/$build_num"
-                cp -r "$history_dir"/* "allure-history-collected/$build_num/" 2>/dev/null || true
-              fi
-            done
-
-          # Вариант 2: Ищем в старой структуре (allure/history/)
-          if [ -d "gh-pages-output/allure/history" ] && [ -f "gh-pages-output/allure/history/history.json" ]; then
-            echo "✓ Found history in old structure (allure/history/)"
-            mkdir -p "allure-history-collected/legacy"
-            cp -r "gh-pages-output/allure/history"/* "allure-history-collected/legacy/" 2>/dev/null || true
-          fi
-
-          # Если что-то собрали
-          if [ "$(ls -A allure-history-collected 2>/dev/null)" ]; then
-            echo "✅ Collected from $(ls -1 allure-history-collected | wc -l) sources"
-
-            # Выбираем самую свежую (игнорируем 'legacy')
-            LATEST_BUILD=$(ls -1 allure-history-collected | grep -E '^[0-9]+$' | sort -V | tail -1)
-
-            if [ -z "$LATEST_BUILD" ]; then
-              LATEST_BUILD="legacy"
-            fi
-
-            echo "📊 Using history from: $LATEST_BUILD"
-
-            # Создаём структуру для action
-            mkdir -p "allure-history/$BUILD_NUMBER/allure/last-history"
-
-            # Копируем все файлы истории
-            cp -r "allure-history-collected/$LATEST_BUILD"/* \
-                  "allure-history/$BUILD_NUMBER/allure/last-history/" 2>/dev/null || true
-          else
-            echo "⚠️ No previous history found - starting fresh"
-            mkdir -p "allure-history/$BUILD_NUMBER/allure/last-history"
-          fi
-
-      - name: Generate Allure Report with action
+      - name: Generate Allure Report with history
         uses: simple-elf/allure-report-action@v1.13
         with:
           allure_results: allure-results
           allure_history: allure-history
-          gh_pages: gh-pages-output
-          subfolder: ${{ github.run_number }}/allure
+          gh_pages: gh-pages-output/allure
           keep_reports: 10
 
-      - name: Copy coverage report
-        run: |
-          BUILD_NUMBER=${{ github.run_number }}
-          mkdir -p "gh-pages-output/$BUILD_NUMBER/coverage"
-          cp -v coverage-report/coverage.html "gh-pages-output/$BUILD_NUMBER/coverage/index.html" || echo "No coverage report found"
 
-      - name: 🔹 Update root index.html (latest report)
+      - name: Prepare unified reports structure
         run: |
           BUILD_NUMBER=${{ github.run_number }}
+          mkdir -p gh-pages-output/allure/$BUILD_NUMBER
+          mkdir -p gh-pages-output/coverage/$BUILD_NUMBER
+
+          cp -r allure-history/* gh-pages-output/allure/ || (echo "❌ Allure history not found" && exit 1)
+          cp -v coverage-report/coverage.html gh-pages-output/coverage/$BUILD_NUMBER/index.html || (echo "❌ coverage.html not found" && exit 1)
 
           cat > "gh-pages-output/index.html" << 'EOF'
           <!DOCTYPE html>
@@ -252,8 +202,8 @@ jobs:
             <div class="container">
               <h1>🔍 Latest Test Report (#$BUILD_NUMBER)</h1>
               <ul>
-                <li>🟢 <a href="$BUILD_NUMBER/allure/">Allure Test Reports</a></li>
-                <li>🟣 <a href="$BUILD_NUMBER/coverage/">API Coverage Report</a></li>
+                <li>🟢 <a href="allure/$BUILD_NUMBER/">Allure Test Reports</a></li>
+                <li>🟣 <a href="coverage/$BUILD_NUMBER/">API Coverage Report</a></li>
               </ul>
               <small>Generated by GitHub Actions • $BUILD_NUMBER</small>
             </div>
@@ -261,28 +211,15 @@ jobs:
           </html>
           EOF
 
-      - name: Clean old reports (keep last 10)
-        run: |
-          cd gh-pages-output
-
-          # Ищем только папки с номерами
-          BUILDS=$(find . -maxdepth 1 -type d -name '[0-9]*' | sed 's|./||' | sort -nr)
-
-          echo "Current builds: $BUILDS"
-
-          COUNT=0
-          for build in $BUILDS; do
-            COUNT=$((COUNT + 1))
-            if [ $COUNT -gt 10 ]; then
-              echo "Removing old build: $build"
-              rm -rf "$build"
-            fi
-          done
-
-      - name: Deploy to GitHub Pages
+      - name: Deploy unified reports to GitHub Pages
+        if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: gh-pages-output
-          force_orphan: false
+          keep_files: false
+
+
+
+
