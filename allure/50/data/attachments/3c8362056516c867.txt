@@ -1,0 +1,3 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3004/auth/login
+INFO     SWAGGER_COVERAGE_TRACKER_STORAGE:storage.py:34 Results directory does not exist, creating: coverage-results
