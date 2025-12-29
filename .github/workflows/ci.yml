@@ -162,7 +162,7 @@ jobs:
           cp -r allure-history/* gh-pages-output/allure/ || (echo "❌ Allure history not found" && exit 1)
           cp -v coverage-report/coverage.html gh-pages-output/coverage/$BUILD_NUMBER/index.html || (echo "❌ coverage.html not found" && exit 1)
 
-          cat > "gh-pages-output/index.html" << 'EOF'
+          cat > "gh-pages-output/index.html" << EOF
           <!DOCTYPE html>
           <html>
           <head>
