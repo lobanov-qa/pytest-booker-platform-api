@@ -140,23 +140,6 @@ jobs:
           name: coverage-report
           path: coverage-report
 
-#      - name: 🔹 Restore Allure history cache
-#        uses: actions/cache/restore@v5
-#        with:
-#          path: allure-history
-#          key: allure-history-${{ github.sha }}
-#          restore-keys: |
-#            allure-history-
-
-      
-          
-      #debug
-      - name: 🔹 Debug BEFORE Allure generation
-        run: |
-          echo "=== Allure results (input) ==="
-          find allure-results -type f -name "*.json" | head -5
-          echo "=== Allure history cache ==="
-          ls -la allure-history/ 2>/dev/null || echo "No allure-history folder"
 
       - name: 🔹 Generate Allure Report with history
         uses: simple-elf/allure-report-action@v1.13
@@ -166,21 +149,7 @@ jobs:
           allure_history: allure-history
           gh_pages: gh-pages-output/allure
           keep_reports: 15
-      #debug
-      - name: 🔹 Debug AFTER Allure generation
-        run: |
-          echo "=== Generated report structure ==="
-          find allure-report -type d | head -20
-          echo "=== History files in report ==="
-          find allure-report -name "*history*" -o -name "*trend*" | xargs ls -la 2>/dev/null || echo "No history found"
-      #debug
-      - name: 🔹 Check generated report
-        run: |
-          echo "=== Report has history? ==="
-          find gh-pages-output/${{ github.run_number }}/allure -name "history.json" -o -name "history-trend.json" | xargs ls -la 2>/dev/null || echo "No history files"
 
-          echo "=== History folder exists? ==="
-          ls -la gh-pages-output/${{ github.run_number }}/allure/history/ 2>/dev/null || echo "No history folder"
 
       - name: 🔹 Prepare unified reports structure
         run: |
