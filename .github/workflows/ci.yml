@@ -113,12 +113,17 @@ jobs:
     needs: [ setup-and-validate ]
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
     steps:
-#      - name: 🔹 Check out gh-pages for structure
-#        uses: actions/checkout@v6
-#        with:
-#          ref: gh-pages
-#          path: gh-pages-output
+      - name: 🔹 Check out gh-pages for structure
+        uses: actions/checkout@v6
+        with:
+          ref: gh-pages
+          path: gh-pages-output
 
 
       - name: 🔹 Download Allure results
@@ -141,28 +146,28 @@ jobs:
 #          # Копируем все из временной gh-pages в рабочую директорию
 #          cp -a gh-pages-temp/. gh-pages-output/ 2>/dev/null || true
           
-      - name: 🔹 Create fresh working directory
-        run: |
-          # УДАЛИТЕ старую директорию если есть
-          rm -rf gh-pages-output
+      # - name: 🔹 Create fresh working directory
+      #   run: |
+      #     # УДАЛИТЕ старую директорию если есть
+      #     rm -rf gh-pages-output
           
-          # СОЗДАЙТЕ новую с правильными правами
-          mkdir -p gh-pages-output
+      #     # СОЗДАЙТЕ новую с правильными правами
+      #     mkdir -p gh-pages-output
           
-          # Установите ПРАВА ДОСТУПА явно
-          chmod 755 gh-pages-output
+      #     # Установите ПРАВА ДОСТУПА явно
+      #     chmod 755 gh-pages-output
           
-          # Создайте обязательные файлы
-          touch gh-pages-output/.nojekyll
-          chmod 644 gh-pages-output/.nojekyll
+      #     # Создайте обязательные файлы
+      #     touch gh-pages-output/.nojekyll
+      #     chmod 644 gh-pages-output/.nojekyll
           
-          # Создайте структуру директорий
-          mkdir -p gh-pages-output/allure
-          mkdir -p gh-pages-output/coverage
+      #     # Создайте структуру директорий
+      #     mkdir -p gh-pages-output/allure
+      #     mkdir -p gh-pages-output/coverage
           
-          # Установите права на поддиректории
-          chmod -R 755 gh-pages-output/allure
-          chmod -R 755 gh-pages-output/coverage
+      #     # Установите права на поддиректории
+      #     chmod -R 755 gh-pages-output/allure
+      #     chmod -R 755 gh-pages-output/coverage
 
       
 
