@@ -16,21 +16,21 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      - name: 🔹  Check out test framework
+      - name: Check out test framework
         uses: actions/checkout@v6
 
-      - name: 🔹  Set up Python
+      - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: '3.12'
           cache: 'pip'
 
-      - name: 🔹  Install test framework (pyproject.toml)
+      - name: Install test framework (pyproject.toml)
         run: |
           python -m pip install --upgrade pip
           pip install -e .
 
-      - name: 🔹  Clone restful-booker-platform
+      - name: Clone restful-booker-platform
         uses: actions/checkout@v6
         with:
           repository: mwinteringham/restful-booker-platform
@@ -38,15 +38,15 @@ jobs:
           path: restful-booker-platform
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 🔹  Start microservices with docker-compose
+      - name: Start microservices with docker-compose
         run: |
           cd restful-booker-platform
           docker compose up -d
 
-      - name: 🔹  Wait for all services to be healthy
+      - name: Wait for all services to be healthy
         run: python scripts/wait_for_services.py
 
-      - name: 🔹 Create .env file from GitHub Secrets
+      - name: Create .env file from GitHub Secrets
         run: |
           cat << 'EOF' > .env
           BOOKING.URL=${{ secrets.BOOKING_URL }}
@@ -64,10 +64,10 @@ jobs:
           TEST_USER.PASSWORD=${{ secrets.TEST_USER_PASSWORD }}
           EOF
 
-      - name: 🔹  Run API tests with pytest and generate Allure results
+      - name: Run API tests with pytest and generate Allure results
         run: python -m pytest tests/ --alluredir=allure-results
 
-      - name: 🔹 Restore Coverage history
+      - name: Restore Coverage history
         uses: actions/cache/restore@v5
         with:
           path: coverage-history.json
@@ -76,12 +76,12 @@ jobs:
             coverage-history-
 
 
-      - name: 🔹 Generate Coverage report
+      - name: Generate Coverage report
         run: |
           swagger-coverage-tool save-report
 
 
-      - name: 🔹 Cache Coverage history
+      - name: Cache Coverage history
         if: always()
         uses: actions/cache/save@v5
         with:
@@ -89,21 +89,21 @@ jobs:
           key: coverage-history-${{ github.run_id }}
 
 
-      - name: 🔹 Upload Coverage report
+      - name: Upload Coverage report
         if: always()
         uses: actions/upload-artifact@v6
         with:
           name: coverage-report
           path: coverage.html
 
-      - name: 🔹 Upload Allure results
+      - name: Upload Allure results
         if: always()
         uses: actions/upload-artifact@v6
         with:
           name: allure-results
           path: allure-results
 
-      - name: 🧹 Cleanup (always run)
+      - name: Cleanup (always run)
         if: always()
         run: |
           cd restful-booker-platform 2>/dev/null && docker compose down -v --remove-orphans || true
@@ -119,60 +119,27 @@ jobs:
       id-token: write
 
     steps:
-      - name: 🔹 Check out gh-pages for structure
+      - name: Check out gh-pages for structure
         uses: actions/checkout@v6
         with:
           ref: gh-pages
           path: gh-pages-output
 
 
-      - name: 🔹 Download Allure results
+      - name: Download Allure results
         uses: actions/download-artifact@v7
         with:
           name: allure-results
           path: allure-results
 
-      - name: 🔹 Download Swagger Coverage report
+      - name: Download Swagger Coverage report
         uses: actions/download-artifact@v7
         with:
           name: coverage-report
           path: coverage-report
 
-#      - name: Prepare working directory from gh-pages
-#        run: |
-#          # Создаем чистую рабочую директорию
-#          mkdir -p gh-pages-output
-#
-#          # Копируем все из временной gh-pages в рабочую директорию
-#          cp -a gh-pages-temp/. gh-pages-output/ 2>/dev/null || true
-          
-      # - name: 🔹 Create fresh working directory
-      #   run: |
-      #     # УДАЛИТЕ старую директорию если есть
-      #     rm -rf gh-pages-output
-          
-      #     # СОЗДАЙТЕ новую с правильными правами
-      #     mkdir -p gh-pages-output
-          
-      #     # Установите ПРАВА ДОСТУПА явно
-      #     chmod 755 gh-pages-output
-          
-      #     # Создайте обязательные файлы
-      #     touch gh-pages-output/.nojekyll
-      #     chmod 644 gh-pages-output/.nojekyll
-          
-      #     # Создайте структуру директорий
-      #     mkdir -p gh-pages-output/allure
-      #     mkdir -p gh-pages-output/coverage
-          
-      #     # Установите права на поддиректории
-      #     chmod -R 755 gh-pages-output/allure
-      #     chmod -R 755 gh-pages-output/coverage
 
-      
-
-
-      - name: 🔹 Generate Allure Report with history
+      - name: Generate Allure Report with history
         uses: simple-elf/allure-report-action@v1.13
         if: always()
         with:
@@ -182,7 +149,7 @@ jobs:
           keep_reports: 10
 
 
-      - name: 🔹 Prepare unified reports structure
+      - name: Prepare unified reports structure
         run: |
           BUILD_NUMBER=${{ github.run_number }}
           mkdir -p gh-pages-output/allure/$BUILD_NUMBER
@@ -240,7 +207,7 @@ jobs:
           </html>
           EOF
 
-      - name: 🔹 Deploy unified reports to GitHub Pages
+      - name: Deploy unified reports to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
