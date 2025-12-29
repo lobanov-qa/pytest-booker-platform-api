@@ -133,15 +133,15 @@ jobs:
           name: coverage-report
           path: coverage-report
 
-      - name: Prepare working directory from gh-pages
-        run: |
-          # Создаем чистую рабочую директорию
-          mkdir -p gh-pages-output
+#      - name: Prepare working directory from gh-pages
+#        run: |
+#          # Создаем чистую рабочую директорию
+#          mkdir -p gh-pages-output
+#
+#          # Копируем все из временной gh-pages в рабочую директорию
+#          cp -a gh-pages-temp/. gh-pages-output/ 2>/dev/null || true
           
-          # Копируем все из временной gh-pages в рабочую директорию
-          cp -a gh-pages-temp/. gh-pages-output/ 2>/dev/null || true
-          
-#          touch gh-pages-output/.nojekyll
+
 
       
 
@@ -221,7 +221,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: gh-pages-output
-          keep_files: false
+
 
 
 
