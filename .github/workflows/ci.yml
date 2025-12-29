@@ -164,8 +164,8 @@ jobs:
         with:
           allure_results: allure-results
           allure_history: allure-history
-          gh_pages: gh-pages-output
-          keep_reports: 10
+          gh_pages: gh-pages-output/allure
+          keep_reports: 20
       #debug
       - name: 🔹 Debug AFTER Allure generation
         run: |
@@ -188,7 +188,7 @@ jobs:
           mkdir -p gh-pages-output/allure/$BUILD_NUMBER
           mkdir -p gh-pages-output/coverage/$BUILD_NUMBER
 
-          cp -r allure-report/* gh-pages-output/allure/$BUILD_NUMBER/ || (echo "❌ Allure report not found" && exit 1)
+          cp -r allure-history/* gh-pages-output/allure/ || (echo "❌ Allure history not found" && exit 1)
           cp -v coverage-report/coverage.html gh-pages-output/coverage/$BUILD_NUMBER/index.html || (echo "❌ coverage.html not found" && exit 1)
 
           cat > gh-pages-output/index.html << EOF
