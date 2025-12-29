@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+      - 'fix/**'  # И для веток fix/
+      - 'feat/**' # И для веток feat/
   pull_request:
     branches:
       - main
