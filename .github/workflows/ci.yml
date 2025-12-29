@@ -165,7 +165,7 @@ jobs:
           allure_results: allure-results
           allure_history: allure-history
           gh_pages: gh-pages-output/allure
-          keep_reports: 20
+          keep_reports: 15
       #debug
       - name: 🔹 Debug AFTER Allure generation
         run: |
