@@ -150,9 +150,17 @@ jobs:
           gh_pages: gh-pages-output/allure
           keep_reports: 15
 
-
+      - name:🔹 Debug: check permissions in gh-pages-output
+        run: |
+          ls -la gh-pages-output/
+          ls -la gh-pages-output/allure/
+          stat gh-pages-output/allure/
+      - name: Remove .git from gh-pages-output
+        run: rm -rf gh-pages-output/.git
       - name: 🔹 Prepare unified reports structure
         run: |
+          sudo chown -R $(whoami) gh-pages-output/ || echo "No sudo or already owned"
+          chmod -R u+w gh-pages-output/ || true
           BUILD_NUMBER=${{ github.run_number }}
           mkdir -p gh-pages-output/allure/$BUILD_NUMBER
           mkdir -p gh-pages-output/coverage/$BUILD_NUMBER
