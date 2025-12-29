@@ -165,7 +165,6 @@ jobs:
           allure_results: allure-results
           allure_history: allure-history
           gh_pages: gh-pages-output
-          #subfolder: ${{ github.run_number }}/allure
           keep_reports: 10
       #debug
       - name: 🔹 Debug AFTER Allure generation
