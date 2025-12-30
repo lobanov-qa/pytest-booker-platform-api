@@ -1,0 +1,5 @@
+"BROKEN","EPIC","FAILED","FEATURE","PASSED","SKIPPED","STORY","UNKNOWN"
+"0","API Health","0","Check Health","6","0","Checking the server's health","0"
+"0","Authentication","0","User Authentication","1","0","User login to the system","0"
+"0","Authentication","0","Token Management","4","0","User logout from the system","0"
+"0","Authentication","0","Token Management","3","0","Token validation process","0"
