@@ -4,6 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pytest-booker-platform-api"
+description = "API Test Automation Framework for the RESTful Booker Platform. Built with Python, Pytest, HTTPX, and Pydantic. Features Dockerized execution, CI/CD with GitHub Actions, Allure reports, and API contract validation."
+keywords = ["aqa", "automation", "api-testing", "restful-booker-platform", "microservices", "pytest", "allure", "swagger-coverage-tool"]
 version = "0.1.0"
 requires-python = ">=3.11"
 dependencies = [

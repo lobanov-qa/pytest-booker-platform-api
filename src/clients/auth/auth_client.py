@@ -1,3 +1,5 @@
+import allure
+
 from httpx import Response, HTTPStatusError
 
 from clients.api_client import APIClient
@@ -17,6 +19,7 @@ class AuthClient(APIClient):
         super().__init__(base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs)
         self.token = None
 
+    @allure.step("Authenticate user")
     @tracker_auth.track_coverage_httpx(AuthRoutes.LOGIN)
     def login_api(self, request: LoginRequestSchema) -> Response:
         """
@@ -46,6 +49,7 @@ class AuthClient(APIClient):
         self.token = token
         return token
 
+    @allure.step("Validate authentication token")
     @tracker_auth.track_coverage_httpx(AuthRoutes.VALIDATE)
     def validate_api(self, request: ValidateRequestSchema) -> Response:
         """
@@ -70,6 +74,7 @@ class AuthClient(APIClient):
         except HTTPStatusError:
             return False
 
+    @allure.step("Revoke authentication token")
     @tracker_auth.track_coverage_httpx(AuthRoutes.LOGOUT)
     def logout_api(self, request: LogoutRequestSchema) -> Response:
         """

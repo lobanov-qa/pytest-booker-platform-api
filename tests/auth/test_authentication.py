@@ -34,6 +34,7 @@ class TestAuthentication:
         token = authentication_client.login(LoginRequestSchema())
         assert authentication_client.is_token_valid(token) is True
 
+
     @allure.feature(AllureFeature.AUTH_TOKEN)
     @allure.story(AllureStory.TOKEN_VALIDATION)
     @allure.severity(Severity.CRITICAL)
