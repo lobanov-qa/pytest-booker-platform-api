@@ -82,6 +82,25 @@ jobs:
           cd docs/zudoku
           npm run build
 
+      - name: Flatten dist structure
+        run: |
+          cd docs/zudoku
+          echo "📁 Before flattening:"
+          find . -path "*/dist/*" -type d | head -10
+
+          # Перемещаем содержимое вложенной папки на уровень выше
+          if [ -d "dist/pytest-booker-platform-api/zudoku-doc" ]; then
+            mv dist/pytest-booker-platform-api/zudoku-doc/* dist/ 2>/dev/null || true
+            mv dist/pytest-booker-platform-api/zudoku-doc/.* dist/ 2>/dev/null || true
+            rm -rf dist/pytest-booker-platform-api
+            echo "✅ Flattened dist structure"
+          else
+            echo "⚠️ No nested structure found — skipping"
+          fi
+
+          echo "📁 After flattening:"
+          ls -la dist/
+
       - name: Upload Zudoku documentation
         if: always()
         uses: actions/upload-artifact@v6
@@ -113,6 +132,12 @@ jobs:
           path: gh-pages-output
           fetch-depth: 0
 
+      - name: Delete old dir
+        run: |
+          rm -rf gh-pages-output/zudoku-doc
+          echo "✅ Удалил старые папки"
+          ls -la
+
       - name: Download Zudoku documentation
         uses: actions/download-artifact@v7
         with:
@@ -120,7 +145,12 @@ jobs:
           path: gh-pages-output/zudoku-doc
 
 
-
+      - name: Check dir
+        run: |
+          echo "✅ перед диплоем"
+          ls -la
+          echo "✅ *******************************"
+          ls -la gh-pages-output
 
       - name: Inject Documentation link into existing index.html
         run: |
