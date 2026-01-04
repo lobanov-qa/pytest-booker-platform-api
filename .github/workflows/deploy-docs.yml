@@ -2,6 +2,9 @@ name: Build Documentation
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - feature/zudoku-integration
 
 jobs:
   setup-and-validate:
