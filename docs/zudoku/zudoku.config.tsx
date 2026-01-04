@@ -5,7 +5,7 @@ import apis from "./apis/_apis.json";
 import navigation from "./apis/_navigation.json";
 
 const config: ZudokuConfig = {
-  basePath: "/pytest-booker-platform-api",
+  basePath: "/pytest-booker-platform-api/zudoku-doc",
   site: {
     title: "Restful Booker Platform",
     description: "Microservices API Documentation",
