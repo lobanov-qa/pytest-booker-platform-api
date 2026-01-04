@@ -9,6 +9,33 @@ const config: ZudokuConfig = {
   site: {
     title: "Restful Booker Platform",
     description: "Microservices API Documentation",
+    header: {
+      right: [
+        {
+          type: "html",
+          html: `
+<a href="/pytest-booker-platform-api/" 
+   style="
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--zuplo-color-primary);
+    text-decoration: none;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--zuplo-border-color);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  "
+   target="_blank"
+   title="Go to Test Reports Dashboard">
+  🏠 Home
+</a>
+          `,
+        },
+      ],
+    },
   },
   
 
