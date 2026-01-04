@@ -23,12 +23,10 @@
     const isEnglish = currentPath.includes("/overview.en");
     const activeLang = isEnglish ? "en" : "ru";
 
-    // Сохраняем текущий язык (на случай, если localStorage пуст)
     if (savedLang !== activeLang) {
       localStorage.setItem("preferred-language", activeLang);
     }
 
-    // Подсвечиваем активную кнопку
     const buttons = document.querySelectorAll(".language-switcher button");
     buttons.forEach((btn) => {
       if (btn.dataset.lang === activeLang) {
