@@ -75,7 +75,7 @@ jobs:
       - name: Install Zudoku dependencies
         run: |
           cd docs/zudoku
-          npm ci
+          npm install --no-audit --no-fund
 
       - name: Build Zudoku documentation
         run: |
