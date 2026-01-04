@@ -1,0 +1,355 @@
+const __refs = Array.from({ length: 4 }, () => ({}));
+const __refMap = {
+  "#/components/schemas/Messages": __refs[0],
+  "#/components/schemas/Message": __refs[1],
+  "#/components/schemas/Count": __refs[2],
+  "#/components/schemas/MessageSummary": __refs[3]
+};
+const __refMapPaths = Object.keys(__refMap);
+Object.assign(__refs[0], {
+  "type": "object",
+  "properties": {
+    "messages": {
+      "type": "array",
+      "items": __refMap["#/components/schemas/MessageSummary"]
+    }
+  }
+});
+Object.defineProperty(__refs[0], "__$ref", { value: __refMapPaths[0], enumerable: false });
+Object.assign(__refs[1], {
+  "type": "object",
+  "properties": {
+    "messageid": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "email": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 21,
+      "minLength": 11
+    },
+    "subject": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 5
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2e3,
+      "minLength": 20
+    }
+  },
+  "required": [
+    "description",
+    "email",
+    "name",
+    "phone",
+    "subject"
+  ]
+});
+Object.defineProperty(__refs[1], "__$ref", { value: __refMapPaths[1], enumerable: false });
+Object.assign(__refs[2], {
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "format": "int32"
+    }
+  }
+});
+Object.defineProperty(__refs[2], "__$ref", { value: __refMapPaths[2], enumerable: false });
+Object.assign(__refs[3], {
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "name": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "read": {
+      "type": "boolean"
+    }
+  }
+});
+Object.defineProperty(__refs[3], "__$ref", { value: __refMapPaths[3], enumerable: false });
+const schema = {
+  "openapi": "3.1.0",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3006",
+      "description": "Message Service"
+    }
+  ],
+  "paths": {
+    "/{id}/read": {
+      "put": {
+        "tags": [
+          "message-controller"
+        ],
+        "operationId": "markAsRead",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "token",
+            "in": "cookie",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "tags": [
+          "message-controller"
+        ],
+        "operationId": "getMessages",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": __refMap["#/components/schemas/Messages"]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "message-controller"
+        ],
+        "operationId": "createMessage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": __refMap["#/components/schemas/Message"]
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": __refMap["#/components/schemas/Message"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id}": {
+      "get": {
+        "tags": [
+          "message-controller"
+        ],
+        "operationId": "getMessage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": __refMap["#/components/schemas/Message"]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "message-controller"
+        ],
+        "operationId": "deleteMessage",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "token",
+            "in": "cookie",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/count": {
+      "get": {
+        "tags": [
+          "message-controller"
+        ],
+        "operationId": "getCount",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": __refMap["#/components/schemas/Count"]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Message": {
+        "type": "object",
+        "properties": {
+          "messageid": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "email": {
+            "type": "string",
+            "minLength": 1
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 21,
+            "minLength": 11
+          },
+          "subject": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 5
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 2e3,
+            "minLength": 20
+          }
+        },
+        "required": [
+          "description",
+          "email",
+          "name",
+          "phone",
+          "subject"
+        ]
+      },
+      "Count": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "MessageSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "read": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Messages": {
+        "type": "object",
+        "properties": {
+          "messages": {
+            "type": "array",
+            "items": __refMap["#/components/schemas/MessageSummary"]
+          }
+        }
+      }
+    }
+  }
+};
+const slugs = {
+  operations: { "/{id}/read-put-markAsRead": "mark-as-read", "/-get-getMessages": "get-messages", "/-post-createMessage": "create-message", "/{id}-get-getMessage": "get-message", "/{id}-delete-deleteMessage": "delete-message", "/count-get-getCount": "get-count" },
+  tags: { "message-controller": "message-controller" }
+};
+export {
+  schema,
+  slugs
+};
+//# sourceMappingURL=api_message-message.json-_vBQBkWT.js.map
