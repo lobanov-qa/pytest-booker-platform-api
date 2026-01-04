@@ -1,0 +1,53 @@
+[
+  {
+    "type": "category",
+    "label": "Microservices",
+    "description": "Independent services running on different ports",
+    "collapsible": false,
+    "icon": "server",
+    "items": [
+      {
+        "type": "link",
+        "label": "Auth Service",
+        "description": "Port 3004 - Authentication & Authorization",
+        "to": "/api/auth",
+        "icon": "key"
+      },
+      {
+        "type": "link",
+        "label": "Booking Service",
+        "description": "Port 3000 - Booking Management",
+        "to": "/api/booking",
+        "icon": "calendar"
+      },
+      {
+        "type": "link",
+        "label": "Room Service",
+        "description": "Port 3001 - Room Management",
+        "to": "/api/room",
+        "icon": "home"
+      },
+      {
+        "type": "link",
+        "label": "Message Service",
+        "description": "Port 3006 - Message Management",
+        "to": "/api/message",
+        "icon": "message-square"
+      },
+      {
+        "type": "link",
+        "label": "Branding Service",
+        "description": "Port 3002 - Branding & Settings",
+        "to": "/api/branding",
+        "icon": "palette"
+      },
+      {
+        "type": "link",
+        "label": "Report Service",
+        "description": "Port 3005 - Reporting & Analytics",
+        "to": "/api/report",
+        "icon": "bar-chart"
+      }
+    ]
+  }
+]
