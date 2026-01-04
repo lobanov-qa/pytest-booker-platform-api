@@ -1,15 +1,4 @@
-name: Build Documentation
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - feature/zudoku-integration
-
-jobs:
-  setup-and-validate:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
 
     steps:
       - name: Check out framework
