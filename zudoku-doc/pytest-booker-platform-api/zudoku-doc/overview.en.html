@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en" >
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <script type="module" crossorigin src="/pytest-booker-platform-api/zudoku-doc/assets/entry.client-DtV5_SEy.js"></script>
+    <link rel="stylesheet" crossorigin href="/pytest-booker-platform-api/zudoku-doc/assets/entry-CU-Pkpu1.css">
+    <title data-rh="true">API Access Matrix for Restful-Booker-Platform - Zudoku</title>
+<meta data-rh="true" name="description" content="This document describes authorization requirements for each endpoint, based on analysis of locally deployed Swagger UI and the official Postman collection for restful-booker-platform."/>
+<link data-rh="true" rel="icon" href="https://cdn.zudoku.dev/logos/favicon.svg"/>
+
+
+    <link rel="preconnect" href="https://cdn.zudoku.dev/">
+  </head>
+  <body>
+    <div id="root"><script>((e, t, n, l, u, o, d, h) => {
+  let m = document.documentElement, v = ["light", "dark"];
+  function f(r) {
+    (Array.isArray(e) ? e : [e]).forEach((y) => {
+      let E = y === "class", P = E && o ? u.map((C) => o[C] || C) : u;
+      E ? (m.classList.remove(...P), m.classList.add(o && o[r] ? o[r] : r)) : m.setAttribute(y, r);
+    }), k(r);
+  }
+  function k(r) {
+    h && v.includes(r) && (m.style.colorScheme = r);
+  }
+  function i() {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  if (l) f(l);
+  else try {
+    let r = localStorage.getItem(t) || n, y = d && r === "system" ? i() : r;
+    f(y);
+  } catch {
+  }
+})("class","theme","system",null,["light","dark"],null,true,true)</script><header class="sticky lg:top-0 z-10 bg-background/80 backdrop-blur w-full" data-pagefind-ignore="all"><style>:root { --banner-height: 0px; }</style><div class="inset-shadow-[0_-1px_0_0_var(--border)] relative"><div class="absolute w-0 left-0 right-0 bottom-[-1px] h-[2px] bg-primary transition-all duration-300 ease-in-out" style="opacity:0;width:0"></div><div class="max-w-screen-2xl mx-auto flex items-center justify-between h-(--top-header-height) px-4 lg:px-8 border-transparent"><div class="flex"><a href="/pytest-booker-platform-api/zudoku-doc" data-discover="true"><div class="flex items-center gap-3.5"><span class="font-semibold text-2xl">Restful Booker Platform</span></div></a></div><div class="absolute inset-x-0 justify-center items-center hidden lg:flex w-full pointer-events-none"><div class="pointer-events-auto"><button type="button" class="flex items-center border border-input hover:bg-accent hover:text-accent-foreground p-4 relative h-8 justify-start rounded-lg bg-background text-sm text-muted-foreground shadow-none w-full sm:w-72"><div class="flex items-center gap-2 grow"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg>Search</div></button><!--$--><!--/$--></div></div><div class="flex items-center gap-8"><div class="flex lg:hidden justify-self-end"><button type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-_R_f9al9_" data-state="closed" class="lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg></button><div class="absolute w-0 left-0 right-0 bottom-[-1px] h-[2px] bg-primary transition-all duration-300 ease-in-out" style="opacity:0;width:0"></div></div><div class="hidden lg:flex items-center justify-self-end text-sm gap-2"><button type="button" class="not-prose inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*=&#x27;size-&#x27;])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 size-9"></button></div></div></div></div><div class="hidden lg:block inset-shadow-[0_-1px_0_0_var(--border)]"><div class="max-w-screen-2xl mx-auto border-transparent relative"><!--$--><div class="items-center justify-between px-8 h-(--top-nav-height) hidden lg:flex text-sm relative"><nav class="text-sm"><ul class="flex flex-row items-center gap-8"><li><a class="flex items-center gap-2 lg:py-3.5 font-medium -mb-px transition duration-150 delay-75 relative text-foreground/75 hover:text-foreground" href="/pytest-booker-platform-api/zudoku-doc/overview" data-discover="true">Microservices APIs</a></li></ul></nav></div><!--/$--></div></div></header><div class="grid max-w-screen-2xl w-full lg:mx-auto [&amp;:has(&gt;:only-child)]:grid-rows-1 grid-rows-[0_min-content_1fr] lg:grid-rows-[min-content_1fr] grid-cols-1 lg:grid-cols-[var(--side-nav-width)_1fr]"><!--$?--><template id="B:0"></template><main class="col-span-full row-span-full grid place-items-center"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-loader-circle animate-spin" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg></main><!--/$--></div><script>window.__staticRouterHydrationData = JSON.parse("{\"loaderData\":{},\"actionData\":null,\"errors\":null}");</script><script>requestAnimationFrame(function(){$RT=performance.now()});</script><div hidden id="S:0"><main data-pagefind-body="true" class="px-4 lg:pe-8 lg:px-8 col-span-full"><div class="grid grid-cols-1 xl:grid-cols-(--sidecar-grid-cols) gap-8 justify-between" data-pagefind-filter="section:markdown" data-pagefind-meta="section:markdown"><div class="prose dark:prose-invert prose-neutral typography max-w-full xl:w-full xl:max-w-3xl flex-1 shrink pt-(--padding-content-top)"><script>
+function switchLanguage(lang) {
+  localStorage.setItem("preferred-language", lang);
+
+  const currentPath = window.location.pathname;
+  let newPath;
+
+  if (lang === "en") {
+    newPath = currentPath.replace(/\/overview(\.(ru|en))?$/, "/overview.en");
+  } else {
+    newPath = currentPath.replace(/\/overview(\.(ru|en))?$/, "/overview");
+  }
+
+  if (currentPath === newPath) return;
+
+  window.location.href = newPath;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const savedLang = localStorage.getItem("preferred-language") || "ru";
+  const currentPath = window.location.pathname;
+  const isEnglish = currentPath.includes("/overview.en");
+  const activeLang = isEnglish ? "en" : "ru";
+
+  // Сохраняем текущий язык (на случай, если localStorage пуст)
+  if (savedLang !== activeLang) {
+    localStorage.setItem("preferred-language", activeLang);
+  }
+
+  // Подсвечиваем активную кнопку
+  const buttons = document.querySelectorAll(".language-switcher button");
+  buttons.forEach((btn) => {
+    if (btn.dataset.lang === activeLang) {
+      btn.classList.add("active");
+    }
+  });
+});
+</script>
+<div class="language-switcher"><button><p>🇷🇺</p></button><button><p>🇬🇧</p></button></div>
+<style>
+.language-switcher {
+  display: flex;
+  gap: 8px;
+  margin: 0 0 20px 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.language-switcher button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--zuplo-border-color);
+  background: var(--zuplo-background-secondary);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
+  padding: 0;
+}
+
+.language-switcher button:hover {
+  background: var(--zuplo-color-primary);
+  transform: scale(1.05);
+}
+
+.language-switcher button.active {
+  background: var(--zuplo-color-primary);
+  color: white;
+  border-color: var(--zuplo-color-primary);
+  font-weight: 600;
+}
+</style>
+<h1 class="group relative text-4xl font-extrabold" id="api-access-matrix-for-restful-booker-platform">API Access Matrix for Restful-Booker-Platform<a href="#api-access-matrix-for-restful-booker-platform" class="ms-[0.33em] rounded text-[0.8em] text-muted-foreground p-0.5 -m-0.5 opacity-0 group-hover:opacity-50 hover:text-primary hover:!opacity-100 transition-opacity duration-200 inline-flex items-center align-middle" aria-label="Link to api-access-matrix-for-restful-booker-platform"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link size-[0.75em] min-w-4 min-h-4" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<div class="service-buttons"><a href="/api/auth" class="service-button auth">🔐 Auth</a><a href="/api/booking" class="service-button booking">📅 Booking</a><a href="/api/room" class="service-button room">🏠 Room</a><a href="/api/message" class="service-button message">💬 Message</a><a href="/api/branding" class="service-button branding">🎨 Branding</a><a href="/api/report" class="service-button report">📊 Report</a></div>
+<style>
+.service-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.service-button {
+  padding: 10px 20px;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.service-button.auth { background: #3b82f6; }
+.service-button.booking { background: #10b981; }
+.service-button.room { background: #8b5cf6; }
+.service-button.message { background: #f97316; }
+.service-button.branding { background: #ec4899; }
+.service-button.report { background: #ef4444; }
+
+.service-button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  transition: all 0.2s;
+}
+</style>
+<p>This document describes authorization requirements for each endpoint, based on analysis of <strong>locally deployed Swagger UI</strong> and the <strong>official Postman collection</strong> for <a href="https://github.com/mwinteringham/restful-booker-platform" target="_blank" rel="noreferrer">restful-booker-platform</a>.</p>
+<blockquote>
+<p>🔍 <strong>About the documentation</strong>:</p>
+<ul>
+<li>Swagger UI is available <strong>locally only</strong>, after launching services via Docker.</li>
+<li>Endpoints and schemas are verified against OpenAPI generated by each microservice.</li>
+<li>Cross-checked with the Postman collection.</li>
+</ul>
+</blockquote>
+<hr/>
+<h2 class="group relative text-2xl font-bold" id="authorization-notes">Authorization Notes<a href="#authorization-notes" class="ms-[0.33em] rounded text-[0.8em] text-muted-foreground p-0.5 -m-0.5 opacity-0 group-hover:opacity-50 hover:text-primary hover:!opacity-100 transition-opacity duration-200 inline-flex items-center align-middle" aria-label="Link to authorization-notes"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link size-[0.75em] min-w-4 min-h-4" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>Token format</strong>: string (e.g., <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">abc123</code>).</li>
+<li><strong>Obtaining a token</strong>:<!-- -->
+<ul>
+<li><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">POST /auth/login</code> with body <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">{&quot;username&quot;: &quot;admin&quot;, &quot;password&quot;: &quot;password&quot;}</code>.</li>
+<li><strong>Token is returned in <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">Set-Cookie</code></strong>, not in the response body (despite OpenAPI).</li>
+<li>Response body is empty.</li>
+</ul>
+</li>
+<li><strong>Sending the token</strong>:<!-- -->
+<ul>
+<li>For all subsequent requests: in header <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">Cookie: token=&lt;value&gt;</code>.</li>
+<li>For <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/auth/validate</code> and <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/auth/logout</code>: token is sent in body: <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">{&quot;token&quot;: &quot;...&quot;}</code>.</li>
+</ul>
+</li>
+<li><strong>Token lifetime</strong>: reset every 10 minutes on the remote instance.</li>
+<li><strong>Client note</strong>: <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">*</code> — client not yet implemented.</li>
+</ul>
+<hr/>
+<h2 class="group relative text-2xl font-bold" id="service-auth-authentication">Service: Auth (Authentication)<a href="#service-auth-authentication" class="ms-[0.33em] rounded text-[0.8em] text-muted-foreground p-0.5 -m-0.5 opacity-0 group-hover:opacity-50 hover:text-primary hover:!opacity-100 transition-opacity duration-200 inline-flex items-center align-middle" aria-label="Link to service-auth-authentication"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link size-[0.75em] min-w-4 min-h-4" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>Base URL</strong>: <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">http://localhost:3004</code></li>
+<li><strong>Swagger UI</strong>: <a href="http://localhost:3004/auth/swagger-ui/index.html" target="_blank" rel="noreferrer">http://localhost:3004/auth/swagger-ui/index.html</a></li>
+<li><strong>Health check</strong>: <a href="http://localhost:3004/auth/actuator/health" target="_blank" rel="noreferrer">http://localhost:3004/auth/actuator/health</a></li>
+</ul>
+<div class="table-container"><table><thead><tr><th>Method</th><th>Path</th><th>Purpose</th><th>Client</th><th>Notes</th></tr></thead><tbody><tr><td>POST</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/auth/login</code></td><td>Create token</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">AuthClient</code></td><td>Token in <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">Set-Cookie</code>. Body is empty.</td></tr><tr><td>POST</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/auth/validate</code></td><td>Validate token</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">AuthClient</code></td><td>Token in body: <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">{&quot;token&quot;: &quot;abc123&quot;}</code></td></tr><tr><td>POST</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/auth/logout</code></td><td>Destroy token</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">AuthClient</code></td><td>Token in body: <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">{&quot;token&quot;: &quot;abc123&quot;}</code></td></tr></tbody></table></div>
+<hr/>
+<h2 class="group relative text-2xl font-bold" id="service-booking">Service: Booking<a href="#service-booking" class="ms-[0.33em] rounded text-[0.8em] text-muted-foreground p-0.5 -m-0.5 opacity-0 group-hover:opacity-50 hover:text-primary hover:!opacity-100 transition-opacity duration-200 inline-flex items-center align-middle" aria-label="Link to service-booking"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link size-[0.75em] min-w-4 min-h-4" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>Base URL</strong>: <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">http://localhost:3000</code></li>
+<li><strong>Swagger UI</strong>: <a href="http://localhost:3000/booking/swagger-ui/index.html" target="_blank" rel="noreferrer">http://localhost:3000/booking/swagger-ui/index.html</a></li>
+<li><strong>Health check</strong>: <a href="http://localhost:3000/booking/actuator/health" target="_blank" rel="noreferrer">http://localhost:3000/booking/actuator/health</a></li>
+</ul>
+<div class="table-container"><table><thead><tr><th>Method</th><th>Path</th><th>Purpose</th><th>Client</th><th>Notes</th></tr></thead><tbody><tr><td>GET</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/booking/unavailable</code></td><td>Check room availability</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PublicBookingClient*</code></td><td>Required: <wbr/><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">checkin</code>, <wbr/><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">checkout</code></td></tr><tr><td>POST</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/booking/</code></td><td>Create booking</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PublicBookingClient*</code></td><td>OpenAPI does not require token</td></tr><tr><td>GET</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/booking/{id}</code></td><td>Get booking details</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PrivateBookingClient*</code></td><td>Token in <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">Cookie</code></td></tr><tr><td>GET</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/booking/</code></td><td>Get all bookings</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PrivateBookingClient*</code></td><td>Optional <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">roomid</code></td></tr><tr><td>GET</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/booking/summary</code></td><td>Booking summary</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PrivateBookingClient*</code></td><td>Required <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">roomid</code></td></tr><tr><td>PUT</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/booking/{id}</code></td><td>Update booking</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PrivateBookingClient*</code></td><td>Token in <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">Cookie</code></td></tr><tr><td>DELETE</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/booking/{id}</code></td><td>Delete booking</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PrivateBookingClient*</code></td><td>Token in <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">Cookie</code></td></tr></tbody></table></div>
+<blockquote>
+<p>⚠️ <strong>Discrepancy</strong>:
+Postman documentation claims <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">POST /booking</code> requires a token.
+<strong>In fact — it does not</strong>. OpenAPI and actual service behavior take precedence.</p>
+</blockquote>
+<hr/>
+<h2 class="group relative text-2xl font-bold" id="service-room">Service: Room<a href="#service-room" class="ms-[0.33em] rounded text-[0.8em] text-muted-foreground p-0.5 -m-0.5 opacity-0 group-hover:opacity-50 hover:text-primary hover:!opacity-100 transition-opacity duration-200 inline-flex items-center align-middle" aria-label="Link to service-room"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link size-[0.75em] min-w-4 min-h-4" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>Base URL</strong>: <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">http://localhost:3001</code></li>
+<li><strong>Swagger UI</strong>: <a href="http://localhost:3001/room/swagger-ui/index.html" target="_blank" rel="noreferrer">http://localhost:3001/room/swagger-ui/index.html</a></li>
+<li><strong>Health check</strong>: <a href="http://localhost:3001/room/actuator/health" target="_blank" rel="noreferrer">http://localhost:3001/room/actuator/health</a></li>
+</ul>
+<div class="table-container"><table><thead><tr><th>Method</th><th>Path</th><th>Purpose</th><th>Client</th><th>Notes</th></tr></thead><tbody><tr><td>GET</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/room/</code></td><td>Get all rooms</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PublicRoomClient*</code></td><td>Optional: <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">checkin</code>, <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">checkout</code></td></tr><tr><td>GET</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/room/{id}</code></td><td>Get room details</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PublicRoomClient*</code></td><td>–</td></tr><tr><td>POST</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/room/</code></td><td>Create room</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PrivateRoomClient*</code></td><td>Token in <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">Cookie</code></td></tr><tr><td>PUT</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/room/{id}</code></td><td>Update room</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PrivateRoomClient*</code></td><td>Token in <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">Cookie</code></td></tr><tr><td>DELETE</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/room/{id}</code></td><td>Delete room</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PrivateRoomClient*</code></td><td>Token in <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">Cookie</code></td></tr></tbody></table></div>
+<hr/>
+<h2 class="group relative text-2xl font-bold" id="service-message">Service: Message<a href="#service-message" class="ms-[0.33em] rounded text-[0.8em] text-muted-foreground p-0.5 -m-0.5 opacity-0 group-hover:opacity-50 hover:text-primary hover:!opacity-100 transition-opacity duration-200 inline-flex items-center align-middle" aria-label="Link to service-message"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link size-[0.75em] min-w-4 min-h-4" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>Base URL</strong>: <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">http://localhost:3006</code></li>
+<li><strong>Swagger UI</strong>: <a href="http://localhost:3006/message/swagger-ui/index.html" target="_blank" rel="noreferrer">http://localhost:3006/message/swagger-ui/index.html</a></li>
+<li><strong>Health check</strong>: <a href="http://localhost:3006/message/actuator/health" target="_blank" rel="noreferrer">http://localhost:3006/message/actuator/health</a></li>
+</ul>
+<div class="table-container"><table><thead><tr><th>Method</th><th>Path</th><th>Purpose</th><th>Client</th><th>Notes</th></tr></thead><tbody><tr><td>GET</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/message/</code></td><td>Get all messages</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PublicMessageClient*</code></td><td>–</td></tr><tr><td>GET</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/message/count</code></td><td>Unread messages count</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PublicMessageClient*</code></td><td>–</td></tr><tr><td>POST</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/message/</code></td><td>Create message</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PublicMessageClient*</code></td><td>–</td></tr><tr><td>GET</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/message/{id}</code></td><td>Get message details</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PrivateMessageClient*</code></td><td>Token in <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">Cookie</code></td></tr><tr><td>PUT</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/message/{id}/read</code></td><td>Mark as read</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PrivateMessageClient*</code></td><td>Token in <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">Cookie</code></td></tr><tr><td>DELETE</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/message/{id}</code></td><td>Delete message</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PrivateMessageClient*</code></td><td>Token in <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">Cookie</code></td></tr></tbody></table></div>
+<hr/>
+<h2 class="group relative text-2xl font-bold" id="service-branding">Service: Branding<a href="#service-branding" class="ms-[0.33em] rounded text-[0.8em] text-muted-foreground p-0.5 -m-0.5 opacity-0 group-hover:opacity-50 hover:text-primary hover:!opacity-100 transition-opacity duration-200 inline-flex items-center align-middle" aria-label="Link to service-branding"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link size-[0.75em] min-w-4 min-h-4" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>Base URL</strong>: <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">http://localhost:3002</code></li>
+<li><strong>Swagger UI</strong>: <a href="http://localhost:3002/branding/swagger-ui/index.html" target="_blank" rel="noreferrer">http://localhost:3002/branding/swagger-ui/index.html</a></li>
+<li><strong>Health check</strong>: <a href="http://localhost:3002/branding/actuator/health" target="_blank" rel="noreferrer">http://localhost:3002/branding/actuator/health</a></li>
+</ul>
+<div class="table-container"><table><thead><tr><th>Method</th><th>Path</th><th>Purpose</th><th>Client</th><th>Notes</th></tr></thead><tbody><tr><td>GET</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/branding/</code></td><td>Get branding data</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PublicBrandingClient*</code></td><td>–</td></tr><tr><td>PUT</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/branding/</code></td><td>Update branding</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PrivateBrandingClient*</code></td><td>Token in <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">Cookie</code></td></tr></tbody></table></div>
+<hr/>
+<h2 class="group relative text-2xl font-bold" id="service-report">Service: Report<a href="#service-report" class="ms-[0.33em] rounded text-[0.8em] text-muted-foreground p-0.5 -m-0.5 opacity-0 group-hover:opacity-50 hover:text-primary hover:!opacity-100 transition-opacity duration-200 inline-flex items-center align-middle" aria-label="Link to service-report"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link size-[0.75em] min-w-4 min-h-4" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><strong>Base URL</strong>: <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">http://localhost:3005</code></li>
+<li><strong>Swagger UI</strong>: <a href="http://localhost:3005/report/swagger-ui/index.html" target="_blank" rel="noreferrer">http://localhost:3005/report/swagger-ui/index.html</a></li>
+<li><strong>Health check</strong>: <a href="http://localhost:3005/report/actuator/health" target="_blank" rel="noreferrer">http://localhost:3005/report/actuator/health</a></li>
+</ul>
+<div class="table-container"><table><thead><tr><th>Method</th><th>Path</th><th>Purpose</th><th>Client</th><th>Notes</th></tr></thead><tbody><tr><td>GET</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/report/room/{id}</code></td><td>Report for a room</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PublicReportClient*</code></td><td>–</td></tr><tr><td>GET</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">/report/</code></td><td>Report for all rooms</td><td><code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">PrivateReportClient*</code></td><td>Token in <code class="font-mono border p-1 py-0.5 rounded-sm bg-border/50 dark:bg-border/70 [overflow-wrap:anywhere] inline">Cookie</code></td></tr></tbody></table></div>
+<hr/>
+<style>
+
+
+/* Responsive table */
+.table-container th:first-child,
+.table-container td:first-child {
+  width: 50px;
+  min-width: 60px;
+  max-width: 65px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0.4rem 0.5rem;
+}
+.table-container {
+  overflow-x: auto;
+  margin: 1rem 0;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 0.5rem;
+  background: var(--zuplo-code-background);
+}
+
+.table-container table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  table-layout: auto;
+}
+
+.table-container th,
+.table-container td {
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid var(--zuplo-border-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 100px;
+}
+
+.table-container th {
+  font-weight: 600;
+  background: var(--zuplo-background-secondary);
+}
+
+.table-container code {
+  font-size: 0.90em;
+  padding: 0.15em 0.4em;
+  background: var(--zuplo-code-background);
+  border: 1px solid var(--zuplo-border-color);
+  border-radius: 6px;
+  color: var(--zuplo-code-color);
+}
+
+@media (max-width: 768px) {
+  .table-container {
+    margin: 0.75rem 0;
+  }
+
+  .table-container table {
+    font-size: 0.8rem;
+  }
+
+  .table-container th,
+  .table-container td {
+    padding: 0.3rem 0.4rem;
+    min-width: 80px;
+  }
+
+  .service-button {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .table-container table {
+    font-size: 0.75rem;
+  }
+
+  .table-container th,
+  .table-container td {
+    padding: 0.25rem 0.3rem;
+    min-width: 60px;
+  }
+
+  .service-button {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+}
+</style><div class="h-16"></div><div class="flex justify-between text-xs text-muted-foreground "><div></div><div class="flex items-center gap-2"><div></div><div><div title="Sunday, January 4, 2026 at 12:00:54 PM">Last modified on<!-- --> <time dateTime="2026-01-04T12:00:54.000Z">January 4, 2026</time></div></div></div></div><div class="h-px bg-border mt-2 mb-6"></div><div class="flex -mx-4 text-muted-foreground font-semibold justify-end mb-10" data-pagefind-ignore="all"></div></div><div class="hidden xl:block" data-pagefind-ignore="all"><aside class="sticky scrollbar top-8 lg:top-(--header-height) h-[calc(100vh-var(--header-height))] pt-(--padding-content-top) pb-(--padding-content-bottom) overflow-y-auto ps-1 text-sm"><div class="flex items-center gap-2 font-medium mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-tree" aria-hidden="true"><path d="M8 5h13"></path><path d="M13 12h8"></path><path d="M13 19h8"></path><path d="M3 10a2 2 0 0 0 2 2h3"></path><path d="M3 5v12a2 2 0 0 0 2 2h3"></path></svg>On this page</div><div class="relative ms-px ps-4"><div class="absolute inset-0 end-auto bg-border w-[1.5px]"></div><div class="absolute start-0 -translate-y-1 h-6 w-[2.5px] bg-primary" style="top:0;opacity:0"></div><ul class="relative font-medium list-none space-y-2"><li class="truncate ps-0" title="Authorization Notes"><a data-active="authorization-notes" aria-current="page" class="hover:text-accent-foreground text-muted-foreground active" href="/pytest-booker-platform-api/zudoku-doc/overview.en#authorization-notes" data-discover="true">Authorization Notes</a></li><li class="truncate ps-0" title="Service: Auth (Authentication)"><a data-active="service-auth-authentication" aria-current="page" class="hover:text-accent-foreground text-muted-foreground active" href="/pytest-booker-platform-api/zudoku-doc/overview.en#service-auth-authentication" data-discover="true">Service: Auth (Authentication)</a></li><li class="truncate ps-0" title="Service: Booking"><a data-active="service-booking" aria-current="page" class="hover:text-accent-foreground text-muted-foreground active" href="/pytest-booker-platform-api/zudoku-doc/overview.en#service-booking" data-discover="true">Service: Booking</a></li><li class="truncate ps-0" title="Service: Room"><a data-active="service-room" aria-current="page" class="hover:text-accent-foreground text-muted-foreground active" href="/pytest-booker-platform-api/zudoku-doc/overview.en#service-room" data-discover="true">Service: Room</a></li><li class="truncate ps-0" title="Service: Message"><a data-active="service-message" aria-current="page" class="hover:text-accent-foreground text-muted-foreground active" href="/pytest-booker-platform-api/zudoku-doc/overview.en#service-message" data-discover="true">Service: Message</a></li><li class="truncate ps-0" title="Service: Branding"><a data-active="service-branding" aria-current="page" class="hover:text-accent-foreground text-muted-foreground active" href="/pytest-booker-platform-api/zudoku-doc/overview.en#service-branding" data-discover="true">Service: Branding</a></li><li class="truncate ps-0" title="Service: Report"><a data-active="service-report" aria-current="page" class="hover:text-accent-foreground text-muted-foreground active" href="/pytest-booker-platform-api/zudoku-doc/overview.en#service-report" data-discover="true">Service: Report</a></li></ul></div></aside></div></div></main></div><script>$RB=[];$RV=function(a){$RT=performance.now();for(var b=0;b<a.length;b+=2){var c=a[b],e=a[b+1];null!==e.parentNode&&e.parentNode.removeChild(e);var f=c.parentNode;if(f){var g=c.previousSibling,h=0;do{if(c&&8===c.nodeType){var d=c.data;if("/$"===d||"/&"===d)if(0===h)break;else h--;else"$"!==d&&"$?"!==d&&"$~"!==d&&"$!"!==d&&"&"!==d||h++}d=c.nextSibling;f.removeChild(c);c=d}while(c);for(;e.firstChild;)f.insertBefore(e.firstChild,c);g.data="$";g._reactRetry&&requestAnimationFrame(g._reactRetry)}}a.length=0};
+$RC=function(a,b){if(b=document.getElementById(b))(a=document.getElementById(a))?(a.previousSibling.data="$~",$RB.push(a,b),2===$RB.length&&("number"!==typeof $RT?requestAnimationFrame($RV.bind(null,$RB)):(a=performance.now(),setTimeout($RV.bind(null,$RB),2300>a&&2E3<a?2300-a:$RT+300-a)))):b.parentNode.removeChild(b)};$RC("B:0","S:0")</script></div>
+  <script>window.DATA={"mutations":[],"queries":[{"dehydratedAt":1767528187505,"state":{"dataUpdateCount":0,"dataUpdatedAt":0,"error":null,"errorUpdateCount":0,"errorUpdatedAt":0,"fetchFailureCount":0,"fetchFailureReason":null,"fetchMeta":null,"isInvalidated":false,"status":"pending","fetchStatus":"idle"},"queryKey":["zuplo-build-check",null,"/__zuplo/docs"],"queryHash":"[\"zuplo-build-check\",null,\"/__zuplo/docs\"]"},{"dehydratedAt":1767528187505,"state":{"data":[],"dataUpdateCount":1,"dataUpdatedAt":1767528187479,"error":null,"errorUpdateCount":0,"errorUpdatedAt":0,"fetchFailureCount":0,"fetchFailureReason":null,"fetchMeta":null,"isInvalidated":false,"status":"success","fetchStatus":"idle"},"queryKey":["plugin-navigation","/overview.en"],"queryHash":"[\"plugin-navigation\",\"/overview.en\"]"}]}</script></body>
+</html>
