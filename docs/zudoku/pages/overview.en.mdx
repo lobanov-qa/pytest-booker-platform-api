@@ -1,4 +1,3 @@
-
 <script dangerouslySetInnerHTML={{__html: /* javascript */`
   function switchLanguage(lang) {
     localStorage.setItem("preferred-language", lang);
@@ -17,18 +16,20 @@
     window.location.href = newPath;
   }
 
+  function goToHome() {
+    window.location.href = "/pytest-booker-platform-api/";
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     const savedLang = localStorage.getItem("preferred-language") || "ru";
     const currentPath = window.location.pathname;
     const isEnglish = currentPath.includes("/overview.en");
     const activeLang = isEnglish ? "en" : "ru";
 
-    // Сохраняем текущий язык (на случай, если localStorage пуст)
     if (savedLang !== activeLang) {
       localStorage.setItem("preferred-language", activeLang);
     }
 
-    // Подсвечиваем активную кнопку
     const buttons = document.querySelectorAll(".language-switcher button");
     buttons.forEach((btn) => {
       if (btn.dataset.lang === activeLang) {
@@ -38,33 +39,22 @@
   });
 `}} />
 
-
 <div className="language-switcher">
-  <a 
-    href="/pytest-booker-platform-api/" 
-    target="_blank" 
+  
+  <button 
+    onClick={() => goToHome()} 
+    data-lang="home"
     title="Go to Test Reports Dashboard"
-    style={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      width: "45px",
-      height: "45px",
-      border: "1px solid var(--zuplo-border-color)",
-      background: "var(--zuplo-background-secondary)",
-      borderRadius: "6px",
-      cursor: "pointer",
-      transition: "all 0.2s ease",
-      textDecoration: "none",
-      marginRight: "8px"
-    }}
+    className="btn-home"
   >
     🏠
-  </a>
-  <button onClick={() => switchLanguage("ru")}>
+  </button>
+
+  
+  <button onClick={() => switchLanguage("ru")} data-lang="ru">
     🇷🇺
   </button>
-  <button onClick={() => switchLanguage("en")}>
+  <button onClick={() => switchLanguage("en")} data-lang="en">
     🇬🇧
   </button>
 </div>
@@ -103,6 +93,7 @@
     border-color: var(--zuplo-color-primary);
     font-weight: 600;
   }
+
 `}</style>
 
 # API Access Matrix for Restful-Booker-Platform
