@@ -1,0 +1,157 @@
+name: Build Documentation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/zudoku-integration
+
+jobs:
+  setup-and-validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out framework
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install test framework (pyproject.toml)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+
+      - name: Clone restful-booker-platform
+        uses: actions/checkout@v6
+        with:
+          repository: mwinteringham/restful-booker-platform
+          ref: trunk
+          path: restful-booker-platform
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Start microservices with docker-compose
+        run: |
+          cd restful-booker-platform
+          docker compose up -d
+
+      - name: Wait for all services to be healthy
+        run: python scripts/wait_for_services.py
+
+
+      - name: Download OpenAPI specs
+        run: |
+          mkdir -p docs/zudoku/apis
+          cd docs/zudoku/apis
+
+          curl -s -o auth.json http://localhost:3004/auth/v3/api-docs/auth-api
+          curl -s -o booking.json http://localhost:3000/booking/v3/api-docs/booking-api
+          curl -s -o room.json http://localhost:3001/room/v3/api-docs/room-api
+          curl -s -o report.json http://localhost:3005/report/v3/api-docs/report-api
+          curl -s -o branding.json http://localhost:3002/branding/v3/api-docs/branding-api
+          curl -s -o message.json http://localhost:3006/message/v3/api-docs/message-api
+          ls -la *.json
+
+      - name: Process OpenAPI specs
+        run: |
+          cd docs/zudoku
+          python scripts/fix-openapi-servers.py
+          python scripts/generate-zudoku-config.py
+          
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: docs/zudoku/package.json
+
+      - name: Install Zudoku dependencies
+        run: |
+          cd docs/zudoku
+          npm install --no-audit --no-fund
+
+      - name: Build Zudoku documentation
+        run: |
+          cd docs/zudoku
+          npm run build
+
+      - name: Flatten dist structure
+        run: |
+          cd docs/zudoku
+          if [ -d "dist/pytest-booker-platform-api/zudoku-doc" ]; then
+            mv dist/pytest-booker-platform-api/zudoku-doc/* dist/ 2>/dev/null || true
+            mv dist/pytest-booker-platform-api/zudoku-doc/.* dist/ 2>/dev/null || true
+            rm -rf dist/pytest-booker-platform-api
+            echo "✅ Flattened dist structure"
+          else
+            echo "⚠️ No nested structure found — skipping"
+          fi
+
+
+      - name: Upload Zudoku documentation
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: zudoku-dist
+          path: docs/zudoku/dist
+          retention-days: 7
+
+      - name: Cleanup (always run)
+        if: always()
+        run: |
+          cd restful-booker-platform 2>/dev/null && docker compose down -v --remove-orphans || true
+
+  publish-report:
+    if: always()
+    needs: [ setup-and-validate ]
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Check out gh-pages for structure
+        uses: actions/checkout@v6
+        with:
+          ref: gh-pages
+          path: gh-pages-output
+          fetch-depth: 0
+
+      - name: Download Zudoku documentation
+        uses: actions/download-artifact@v7
+        with:
+          name: zudoku-dist
+          path: gh-pages-output/zudoku-doc
+
+
+      - name: Inject Documentation link into existing index.html
+        run: |
+          INDEX_FILE="gh-pages-output/index.html"
+
+          if grep -q "zudoku-doc" "$INDEX_FILE"; then
+            echo "Documentation link already exists, skipping."
+          else
+            echo "Adding Documentation link to index.html"
+            sed -i 's|</ul>|    <li>📚 <a href="zudoku-doc/">Documentation</a></li>\n    </ul>|' "$INDEX_FILE"
+          fi
+
+
+      - name: Deploy unified reports to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: gh-pages-output
+          keep_files: false
+
+
+
+
