@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3004/auth/logout' \
+  -H 'host: localhost:3004' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=3u9fjZtTXuDNSoIJ' \
+  -H 'content-length: 28' \
+  -H 'content-type: application/json' \
+  -d '{"token":"3u9fjZtTXuDNSoIJ"}'
