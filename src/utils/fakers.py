@@ -34,7 +34,7 @@ class Fake:
 
         :return: Случайная строка из 16 символов.
         """
-        return self.fake.lexify(text='????????????????')
+        return self.faker.lexify(text='????????????????')
 
     def email(self, domain: str | None = None) -> str:
         """
@@ -70,7 +70,7 @@ class Fake:
         """
         return self.faker.last_name()
 
-    def name(self) -> str:
+    def first_name(self) -> str:
         """
         Генерирует случайное имя.
 

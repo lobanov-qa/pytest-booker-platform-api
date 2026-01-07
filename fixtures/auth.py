@@ -1,7 +1,7 @@
 import pytest
 
 from clients.auth.auth_client import AuthClient
-from clients.factories import  ClientFactory
+from clients.client_factories import  ClientFactory
 
 
 @pytest.fixture
