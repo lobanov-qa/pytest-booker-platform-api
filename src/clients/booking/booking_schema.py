@@ -5,6 +5,9 @@ from datetime import date
 from utils.validators import validate_date_range, validate_stringified_positive_int
 
 
+
+
+
 class BookingDates(BaseModel):
     """
     Schema for booking dates (check-in and check-out).
@@ -28,7 +31,7 @@ class BookingSchema(BaseModel):
     """
     bookingid: int
     depositpaid: bool
-    roomid: Annotated[int, Field(ge=1, description="Room ID, minimum 1")]
+    roomid: int = Field(..., ge=1, description="Room ID, minimum 1")
     firstname: Annotated[str, Field(min_length=3, max_length=18)]
     lastname: Annotated[str, Field(min_length=3, max_length=30)]
     bookingdates: BookingDates
@@ -67,13 +70,13 @@ class CreateBookingRequestSchema(BaseModel):
     """
     Schema for creating a new booking.
     """
-    depositpaid: bool
+    depositpaid: bool = None
     roomid: Annotated[int, Field(ge=1, description="Room ID, minimum 1")]
     firstname: Annotated[str, Field(min_length=3, max_length=18)]
     lastname: Annotated[str, Field(min_length=3, max_length=30)]
     bookingdates: BookingDates
     email: Optional[EmailStr] = None
-    phone: Optional[Annotated[str, Field(min_length=11, max_length=21)]] = None
+    phone: Optional[str] = Field(None, min_length=11, max_length=21)
 
 
 class CreateBookingResponseSchema(BaseModel):
@@ -89,11 +92,12 @@ class UpdateBookingRequestSchema(BaseModel):
     Schema for updating an existing booking (partial update).
     All fields are optional.
     """
-    depositpaid: Optional[bool] = None
+    bookingid: int
+    depositpaid: bool
     roomid: Optional[int] = Field(None, ge=1)
     firstname: Optional[str] = Field(None, min_length=3, max_length=18)
     lastname: Optional[str] = Field(None, min_length=3, max_length=30)
-    bookingdates: Optional[BookingDates] = None
+    bookingdates: BookingDates
     email: Optional[EmailStr] = None
     phone: Optional[str] = Field(None, min_length=11, max_length=21)
 
@@ -181,8 +185,3 @@ class GetSummaryResponseSchema(BaseModel):
     bookings: List[SummaryBookingItem]
 
 
-class DeleteBookingRequestSchema(BaseModel):
-    """
-    Schema for DELETE /{id} — validates booking ID.
-    """
-    id: int = Field(..., ge=1, description="Booking ID to delete, positive integer")
