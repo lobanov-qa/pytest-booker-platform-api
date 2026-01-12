@@ -2,6 +2,7 @@ from enum import StrEnum
 
 
 class BookingRoutes(StrEnum):
+    ROOT = "/"
     UNAVAILABLE = "/unavailable"
     SUMMARY = "/summary"
     BOOKING_ID = "/{id}"
