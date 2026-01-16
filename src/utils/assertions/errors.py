@@ -2,7 +2,7 @@ from typing import Optional, List
 
 import allure
 
-from clients.errors_schema import ValidationErrorSchema, QueryValidationErrorSchema
+from clients.errors_schema import ValidationErrorSchema, BaseErrorResponse
 from utils.assertions.base import assert_equal
 from utils.logger import get_logger
 
@@ -41,8 +41,8 @@ def assert_validation_error(
 
 
 @allure.step("Check query validation error")
-def assert_query_validation_error(
-    error: QueryValidationErrorSchema,
+def assert_base_error_response(
+    error: BaseErrorResponse,
     expected_status: int = 400,
     path_contains: Optional[str] = None
 ) -> None:

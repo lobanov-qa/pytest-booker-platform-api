@@ -32,7 +32,8 @@ markers = [
     "booking: booking tests.",
     "health: checking the status of servers.",
     "regression: marking for regression tests.",
-    "negative: marking for negative tests."
+    "negative: marking for negative tests.",
+    "positive: marking for positive tests."
 ]
 
 

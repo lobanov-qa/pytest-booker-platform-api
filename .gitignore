@@ -4,6 +4,7 @@
 # VS Code
 .vscode/
 .history/
+.continue/
 
 # python
 .env

@@ -1,4 +1,5 @@
 from clients.auth.auth_client import AuthClient
+from clients.booking.public_booking_client import PublicBookingClient
 from clients.event_hooks import curl_event_hook, log_request_event_hook, log_response_event_hook
 from config import settings
 
@@ -28,5 +29,20 @@ class ClientFactory:
                 }
         )
 
+    @staticmethod
+    def get_public_booking_client() -> PublicBookingClient:
+        """
+        Creates and returns a configured PublicBookingClient instance.
 
+        :return: PublicBookingClient configured with base URL and timeout from settings.
+        :rtype: PublicBookingClient
+        """
+        return PublicBookingClient(
+            base_url=settings.booking.client_url,
+            timeout=settings.http_client.timeout,
+            event_hooks={
+                "request": [curl_event_hook, log_request_event_hook],
+                "response": [log_response_event_hook]
+            }
+        )
 

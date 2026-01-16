@@ -13,9 +13,9 @@ class ValidationErrorSchema(BaseModel):
     field_errors: list[str] = Field(alias="fieldErrors")
 
 
-class QueryValidationErrorSchema(BaseModel):
+class BaseErrorResponse(BaseModel):
     """
-    Standard Spring Boot error for missing query params.
+    Standard Spring Boot error.
     """
     timestamp: str
     status: int

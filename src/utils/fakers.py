@@ -1,5 +1,8 @@
 from faker import Faker
 
+from datetime import date, timedelta
+from typing import Optional
+
 
 class Fake:
     """
@@ -8,85 +11,9 @@ class Fake:
 
     def __init__(self, faker: Faker):
         """
-        :param faker: Экземпляр класса Faker, который будет использоваться для генерации данных.
+        :param faker: Экземпляр Faker для генерации данных.
         """
         self.faker = faker
-
-    def text(self) -> str:
-        """
-        Генерирует случайный текст.
-
-        :return: Случайный текст.
-        """
-        return self.faker.text()
-
-    def uuid4(self) -> str:
-        """
-        Генерирует случайный UUID4.
-
-        :return: Случайный UUID4.
-        """
-        return self.faker.uuid4()
-
-    def token(self) -> str:
-        """
-        Генерирует случайную строку из 16 символов.
-
-        :return: Случайная строка из 16 символов.
-        """
-        return self.faker.lexify(text='????????????????')
-
-    def email(self, domain: str | None = None) -> str:
-        """
-        Генерирует случайный email.
-
-        :param domain: Домен электронной почты (например, "example.com").
-        Если не указан, будет использован случайный домен.
-        :return: Случайный email.
-        """
-        return self.faker.email(domain=domain)
-
-    def sentence(self) -> str:
-        """
-        Генерирует случайное предложение.
-
-        :return: Случайное предложение.
-        """
-        return self.faker.sentence()
-
-    def password(self) -> str:
-        """
-        Генерирует случайный пароль.
-
-        :return: Случайный пароль.
-        """
-        return self.faker.password()
-
-    def last_name(self) -> str:
-        """
-        Генерирует случайную фамилию.
-
-        :return: Случайная фамилия.
-        """
-        return self.faker.last_name()
-
-    def first_name(self) -> str:
-        """
-        Генерирует случайное имя.
-
-        :return: Случайное имя.
-        """
-        return self.faker.first_name()
-
-
-
-    def estimated_time(self) -> str:
-        """
-        Генерирует строку с предполагаемым временем (например, "2 weeks").
-
-        :return: Строка с предполагаемым временем.
-        """
-        return f"{self.integer(1, 10)} weeks"
 
     def integer(self, start: int = 1, end: int = 100) -> int:
         """
@@ -97,22 +24,103 @@ class Fake:
         :return: Случайное целое число.
         """
         return self.faker.random_int(start, end)
-
-    def max_score(self) -> int:
+    
+    
+    def booking_dates(
+        self,
+        checkin: Optional[date] = None,
+        delta: int = 1,
+        max_days_ahead: int = 90  # например, максимум 3 месяца вперёд
+    ) -> dict:
         """
-        Генерирует случайный максимальный балл в диапазоне от 50 до 100.
+        Генерирует валидный словарь bookingdates с checkin и checkout.
+        Обеспечивает, что checkout > checkin, и checkin не слишком далёкий.
 
-        :return: Случайный балл.
+        :param checkin: Дата заезда. Если None — берётся случайная дата в ближайшие max_days_ahead.
+        :param delta: Разница между checkout и checkin в днях (минимум 1).
+        :param max_days_ahead: Максимальное количество дней вперёд для checkin.
+        :return: Словарь вида {"checkin": "2025-04-01", "checkout": "2025-04-02"}.
         """
-        return self.integer(50, 100)
+        # Если checkin не передан — выбираем случайную дату в ближайшие max_days_ahead
+        if checkin is None:
+            random_offset = self.faker.random_int(min=1, max=max_days_ahead)
+            checkin = date.today() + timedelta(days=random_offset)
 
-    def min_score(self) -> int:
-        """
-        Генерирует случайный минимальный балл в диапазоне от 1 до 30.
+        # Убедимся, что delta >= 1
+        delta = max(delta, 1)
+        checkout = checkin + timedelta(days=delta)
 
-        :return: Случайный балл.
+        return {
+            "checkin": checkin.isoformat(),
+            "checkout": checkout.isoformat()
+        }
+
+
+    def room_id(self) -> int:
         """
-        return self.integer(1, 30)
+        Генерирует валидный roomid (целое число ≥1).
+
+        :return: Случайный roomid.
+        """
+        return self.integer(1, 100)  
+
+    def phone(self) -> str:
+        """
+        Генерирует валидный телефон (11–21 символ).
+        Пример: +79123456789
+
+        :return: Случайный номер телефона.
+        """
+        phone_number = self.faker.phone_number()
+        while len(phone_number) < 11:
+            phone_number = self.faker.phone_number()
+        return phone_number[:21]
+
+    def first_name(self, min_length: int = 3, max_length: int = 18) -> str:
+        """
+        Генерирует имя с учётом ограничений длины.
+
+        :param min_length: Минимальная длина.
+        :param max_length: Максимальная длина.
+        :return: Имя в диапазоне длины.
+        """
+        name = self.faker.first_name()
+        # Убедимся, что длина в пределах
+        while len(name) < min_length or len(name) > max_length:
+            name = self.faker.first_name()
+        return name
+
+    def last_name(self, min_length: int = 3, max_length = 30) -> str:
+        """
+        Генерирует фамилию с учётом ограничений длины.
+
+        :param min_length: Минимальная длина.
+        :param max_length: Максимальная длина.
+        :return: Фамилия в диапазоне длины.
+        """
+        name = self.faker.last_name()
+        while len(name) < min_length or len(name) > max_length:
+            name = self.faker.last_name()
+        return name
+
+    def deposit_paid(self) -> bool:
+        """
+        Генерирует значение для depositpaid.
+
+        :return: Случайное булево значение.
+        """
+        return self.faker.boolean()
+
+    def email(self, domain: str | None = "example.com") -> str:
+        """
+        Переопределили с domain по умолчанию, чтобы избежать None.
+        """
+        return self.faker.email(domain=domain)
+
+    def date_string(self, days_offset: int = 0) -> str:
+        """Генерирует дату в формате YYYY-MM-DD."""
+        target_date = date.today() + timedelta(days=days_offset)
+        return target_date.isoformat()
 
 
 # Создаем экземпляр класса Fake с использованием Faker
