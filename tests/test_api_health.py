@@ -15,6 +15,8 @@ SERVICES = [
     {"name": "report", "port": 3005},
     {"name": "room", "port": 3001},
 ]
+
+
 @pytest.mark.health
 @allure.epic(AllureEpic.HEALTH)
 @allure.feature(AllureFeature.CHECK_HEALTH)
@@ -44,4 +46,3 @@ class TestHealth:
         assert data.get("status") == "UP", (
             f"Service {name} is not in UP state. Answer: {data}"
         )
- 

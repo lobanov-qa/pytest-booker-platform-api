@@ -1,9 +1,11 @@
-from typing import Any, Mapping
+from typing import Any, Mapping, Type, TypeVar
+from pydantic import BaseModel
 import allure
 
 from httpx import Client, URL, Response, QueryParams
 from httpx._types import RequestData, RequestFiles
 
+T = TypeVar("T", bound=BaseModel)
 
 class APIClient:
     def __init__(
@@ -81,6 +83,19 @@ class APIClient:
         :return: Response object with response data.
         """
         return self.client.delete(url)
+
+    @staticmethod
+    def parse_response(response: Response, model: Type[T]) -> T:
+        """
+        Parse JSON response and validate against Pydantic model.
+        Raises HTTPStatusError if status is not 2xx.
+
+        :param response: HTTP response from httpx.
+        :param model: Target Pydantic model (e.g. CreateBookingResponseSchema).
+        :return: Parsed and validated model instance of the correct type.
+        """
+        response.raise_for_status()
+        return model.model_validate(response.json())
 
     def close(self):
         self.client.close()
