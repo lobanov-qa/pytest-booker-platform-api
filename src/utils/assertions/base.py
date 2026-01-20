@@ -10,11 +10,11 @@ logger = get_logger("BASE_ASSERTIONS")
 @allure.step("Check that response status code equals to {expected}")
 def assert_status_code(actual: int, expected: int):
     """
-    Checks that the actual response status code matches the expected one.
+    Validates that the actual response status code matches the expected one.
 
     :param actual: Actual response status code.
     :param expected: Expected status code.
-    :raises AssertionError: If the status codes do not match.
+    :raises AssertionError: If status codes do not match.
     """
     logger.info(f"Check that response status code equals to {expected}")
 
@@ -24,15 +24,16 @@ def assert_status_code(actual: int, expected: int):
         f'Actual status code: {actual}'
     )
 
+
 @allure.step("Check that {name} equals to {expected}")
 def assert_equal(actual: Any, expected: Any, name: str):
     """
-    Checks that the actual value is equal to the expected value.
+    Validates that the actual value equals the expected value.
 
-    :param name: Name of the value being checked.
+    :param name: Name of the value being checked (for error messages).
     :param actual: Actual value.
     :param expected: Expected value.
-    :raises AssertionError: If the actual value is not equal to the expected value.
+    :raises AssertionError: If values do not match.
     """
     logger.info(f'Check that "{name}" equals to {expected}')
 
@@ -42,14 +43,15 @@ def assert_equal(actual: Any, expected: Any, name: str):
         f'Actual value: {actual}'
     )
 
+
 @allure.step("Check that {name} is true")
 def assert_is_true(actual: Any, name: str):
     """
-    Checks that the actual value is true.
+    Validates that the actual value is truthy.
 
-    :param name: Name of the value being checked.
+    :param name: Name of the value being checked (for error messages).
     :param actual: Actual value.
-    :raises AssertionError: If the actual value is false.
+    :raises AssertionError: If value is falsy.
     """
     logger.info(f'Check that "{name}" is true')
 
@@ -61,12 +63,12 @@ def assert_is_true(actual: Any, name: str):
 
 def assert_length(actual: Sized, expected: Sized, name: str):
     """
-    Checks that the lengths of two objects are the same.
+    Validates that the lengths of two objects are equal.
 
-    :param name: The name of the object being checked.
+    :param name: Name of the object being checked (for error messages).
     :param actual: Actual object.
-    :param expected: The expected object.
-    :raises AssertionError: If the lengths do not match.
+    :param expected: Expected object (used to determine expected length).
+    :raises AssertionError: If lengths do not match.
     """
     with allure.step(f"Check that length of {name} equals to {len(expected)}"):
         logger.info(f'Check that length of "{name}" equals to {len(expected)}')
@@ -78,17 +80,34 @@ def assert_length(actual: Sized, expected: Sized, name: str):
         )
 
 
-
 @allure.step("Check that {name} is greater than zero")
 def assert_positive(actual: int, name: str):
-    """Checks that the value is positive (greater than zero)."""
+    """
+    Validates that the value is positive (greater than zero).
+
+    :param name: Name of the value being checked (for error messages).
+    :param actual: Actual value.
+    :raises AssertionError: If value is not positive.
+    """
     logger.info(f'Check that "{name}" is greater than zero: {actual}')
     assert actual > 0, f'Expected "{name}" > 0, but got: {actual}'
 
 
 def assert_is_instance(obj: Any, expected_type: type, name: str):
-    """Checks that an object is an instance of the specified type."""
-    expected_type_name = expected_type.__name__
+    """
+    Validates that an object is an instance of the specified type.
+
+    :param obj: Object to check.
+    :param expected_type: Expected type.
+    :param name: Name of the object being checked (for error messages).
+    :raises AssertionError: If object is not an instance of expected type.
+    """
+    # Safely get type names for logging
+    try:
+        expected_type_name = expected_type.__name__
+    except AttributeError:
+        expected_type_name = str(expected_type)
+    
     actual_type_name = type(obj).__name__
 
     with allure.step(f'Check that "{name}" is instance of {expected_type_name}'):
@@ -99,11 +118,16 @@ def assert_is_instance(obj: Any, expected_type: type, name: str):
         )
 
 
-
-
 @allure.step("Check that {item} is in {collection_name}")
 def assert_in(item: Any, collection: List[Any], collection_name: str):
-    """Checks that an element is present in the collection."""
+    """
+    Validates that an element is present in the collection.
+
+    :param item: Item to look for.
+    :param collection: Collection to search in.
+    :param collection_name: Name of the collection (for error messages).
+    :raises AssertionError: If item is not found in collection.
+    """
     logger.info(f'Check that "{item}" is in "{collection_name}"')
     assert item in collection, (
         f'Expected "{item}" to be in "{collection_name}", but it is not. '
@@ -113,7 +137,14 @@ def assert_in(item: Any, collection: List[Any], collection_name: str):
 
 @allure.step("Check that length of {name} is {expected_length}")
 def assert_length_equal(actual: Sized, expected_length: int, name: str):
-    """Checks that the length of an object is equal to the expected length."""
+    """
+    Validates that the length of an object equals the expected length.
+
+    :param actual: Object to check length of.
+    :param expected_length: Expected length.
+    :param name: Name of the object (for error messages).
+    :raises AssertionError: If length does not match.
+    """
     logger.info(f'Check that length of "{name}" equals to {expected_length}')
     actual_length = len(actual)
     assert actual_length == expected_length, (
@@ -123,6 +154,12 @@ def assert_length_equal(actual: Sized, expected_length: int, name: str):
 
 @allure.step("Check that {name} is not None")
 def assert_not_none(actual: Any, name: str):
-    """Checks that the value is not None."""
+    """
+    Validates that the value is not None.
+
+    :param actual: Value to check.
+    :param name: Name of the value (for error messages).
+    :raises AssertionError: If value is None.
+    """
     logger.info(f'Check that "{name}" is not None')
     assert actual is not None, f'Expected "{name}" to be not None, but it is None'

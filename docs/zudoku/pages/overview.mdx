@@ -190,21 +190,19 @@
 
 <div class="table-container">
 
-| Метод | Путь                   | Назначение                     | Клиент               | Примечания |
-|-------|------------------------|--------------------------------|----------------------|------------|
-| GET   | `/booking/unavailable` | Проверка доступности комнат  | `PublicBookingClient*` | Обязательные: <wbr />`checkin`, <wbr />`checkout` |
-| POST  | `/booking/`            | Создание бронирования         | `PublicBookingClient*` | OpenAPI не требует токен |
-| GET   | `/booking/{id}`        | Детали бронирования           | `PrivateBookingClient*` | Токен в `Cookie` |
-| GET   | `/booking/`            | Все бронирования              | `PrivateBookingClient*` | Опциональный `roomid` |
-| GET   | `/booking/summary`     | Сводка по броням                | `PrivateBookingClient*` | Обязательный `roomid` |
-| PUT   | `/booking/{id}`        | Обновление бронирования       | `PrivateBookingClient*` | Токен в `Cookie` |
-| DELETE| `/booking/{id}`        | Удаление бронирования         | `PrivateBookingClient*` | Токен в `Cookie` |
+| Метод | Путь                   | Назначение                     | Клиент               | Требует аутентификации | Примечания |
+|-------|------------------------|--------------------------------|----------------------|------------------------|------------|
+| GET   | `/booking/unavailable` | Проверка доступности комнат  | `PublicBookingClient` | ❌ Нет | Обязательные параметры: `checkin`, `checkout` |
+| POST  | `/booking/`            | Создание бронирования         | `PublicBookingClient` | ❌ Нет | OpenAPI не требует токен |
+| GET   | `/booking/summary`     | Сводка по броням              | `PublicBookingClient` | ❌ Нет | Обязательный параметр: `roomid` |
+| GET   | `/booking/{id}`        | Детали бронирования           | `PrivateBookingClient` | ✅ Да | Токен в `Cookie` |
+| GET   | `/booking/`            | Все бронирования              | `PrivateBookingClient` | ✅ Да | Опциональный параметр: `roomid` |
+| PUT   | `/booking/{id}`        | Обновление бронирования       | `PrivateBookingClient` | ✅ Да | Токен в `Cookie` |
+| DELETE| `/booking/{id}`        | Удаление бронирования         | `PrivateBookingClient` | ✅ Да | Токен в `Cookie` |
 
 </div>
 
-> ⚠️ **Расхождение**:  
-> Postman-документация утверждает, что `POST /booking` требует токен.  
-> **Фактически — не требует**. Приоритет у OpenAPI и поведения сервиса.
+
 
 ---
 

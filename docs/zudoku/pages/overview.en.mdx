@@ -190,19 +190,16 @@ This document describes authorization requirements for each endpoint, based on a
 
 | Method | Path                   | Purpose                          | Client                 | Notes |
 |--------|------------------------|----------------------------------|------------------------|-------|
-| GET    | `/booking/unavailable` | Check room availability         | `PublicBookingClient*` | Required: <wbr />`checkin`, <wbr />`checkout` |
-| POST   | `/booking/`            | Create booking                  | `PublicBookingClient*` | OpenAPI does not require token |
-| GET    | `/booking/{id}`        | Get booking details             | `PrivateBookingClient*`| Token in `Cookie` |
-| GET    | `/booking/`            | Get all bookings                | `PrivateBookingClient*`| Optional `roomid` |
-| GET    | `/booking/summary`     | Booking summary                 | `PrivateBookingClient*`| Required `roomid` |
-| PUT    | `/booking/{id}`        | Update booking                  | `PrivateBookingClient*`| Token in `Cookie` |
-| DELETE | `/booking/{id}`        | Delete booking                  | `PrivateBookingClient*`| Token in `Cookie` |
+| GET    | `/booking/unavailable` | Check room availability         | `PublicBookingClient` | Required: <wbr />`checkin`, <wbr />`checkout` |
+| POST   | `/booking/`            | Create booking                  | `PublicBookingClient` | OpenAPI does not require token |
+| GET    | `/booking/{id}`        | Get booking details             | `PrivateBookingClient`| Token in `Cookie` |
+| GET    | `/booking/`            | Get all bookings                | `PrivateBookingClient`| Optional `roomid` |
+| GET    | `/booking/summary`     | Booking summary                 | `PublicBookingClient`| Required `roomid` |
+| PUT    | `/booking/{id}`        | Update booking                  | `PrivateBookingClient`| Token in `Cookie` |
+| DELETE | `/booking/{id}`        | Delete booking                  | `PrivateBookingClient`| Token in `Cookie` |
 
 </div>
 
-> ⚠️ **Discrepancy**:
-> Postman documentation claims `POST /booking` requires a token.
-> **In fact — it does not**. OpenAPI and actual service behavior take precedence.
 
 ---
 

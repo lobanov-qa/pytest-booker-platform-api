@@ -17,21 +17,22 @@ def assert_validation_error(
     expected_fields: Optional[List[str]] = None
 ) -> None:
     """
-    Проверяет ключевые аспекты ошибки валидации.
-    Не требует точного совпадения текста — только наличие полей.
+    Validates key aspects of a validation error response.
+    Does not require exact text match - only checks for field presence.
 
-    :param error: Ошибка, полученная от API.
-    :param expected_status: Ожидаемый HTTP статус (по умолчанию 400).
-    :param expected_error: Ожидаемый тип ошибки (по умолчанию BAD_REQUEST).
-    :param expected_fields: Список полей, которые должны быть упомянуты в ошибках.
+    :param error: Error received from the API.
+    :param expected_status: Expected HTTP status code (default: 400).
+    :param expected_error: Expected error type (default: "BAD_REQUEST").
+    :param expected_fields: List of field names that should be mentioned in error messages.
+    :raises AssertionError: If any validation fails.
     """
     logger.info(f"Validating error: {error.error}")
 
-    # 1. Проверяем статус и тип
+    # 1. Validate status and error type
     assert_equal(error.error_code, expected_status, "error_code")
     assert_equal(error.error, expected_error, "error_type")
 
-    # 2. Проверяем, что указанные поля есть в ошибках
+    # 2. Validate that specified fields are present in error messages
     if expected_fields:
         error_text = " ".join(error.field_errors).lower()
         for field in expected_fields:
@@ -40,18 +41,19 @@ def assert_validation_error(
             )
 
 
-@allure.step("Check query validation error")
+@allure.step("Check base error response")
 def assert_base_error_response(
     error: BaseErrorResponse,
     expected_status: int = 400,
     path_contains: Optional[str] = None
 ) -> None:
     """
-    Проверяет стандартную ошибку Spring Boot (например, при отсутствии query-параметров).
+    Validates a standard Spring Boot error response (e.g., for missing query parameters).
 
-    :param error: Ошибка, полученная от API.
-    :param expected_status: Ожидаемый HTTP статус.
-    :param path_contains: Подстрока, которая должна быть в пути.
+    :param error: Error response received from the API.
+    :param expected_status: Expected HTTP status code.
+    :param path_contains: Substring that should be present in the path.
+    :raises AssertionError: If any validation fails.
     """
     logger.info(f"Validating query error: {error.error}")
 

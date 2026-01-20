@@ -92,14 +92,19 @@ class UpdateBookingRequestSchema(BaseModel):
     Schema for updating an existing booking (partial update).
     All fields are optional.
     """
-    bookingid: int
-    depositpaid: bool
-    roomid: Optional[int] = Field(None, ge=1)
-    firstname: Optional[str] = Field(None, min_length=3, max_length=18)
-    lastname: Optional[str] = Field(None, min_length=3, max_length=30)
+    # Required fields (API validates NotBlank)
+    firstname: str = Field(..., min_length=3, max_length=18)
+    lastname: str = Field(..., min_length=3, max_length=30)
     bookingdates: BookingDates
+    # Optional fields with defaults
+    depositpaid: bool = Field(default=False)
     email: Optional[EmailStr] = None
     phone: Optional[str] = Field(None, min_length=11, max_length=21)
+    # Fields that are sent but have special behavior
+    bookingid: int = Field(..., description="Must match path parameter")
+    roomid: int = Field(..., ge=1, description="Ignored by API, returns original roomid")
+
+
 
 
 class UpdateBookingResponseSchema(BaseModel):

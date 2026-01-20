@@ -1,9 +1,12 @@
 import pytest
 
 from pydantic import BaseModel
+from httpx import Cookies
 
 from clients.booking.booking_schema import CreateBookingRequestSchema, CreateBookingResponseSchema
+from clients.booking.private_booking_client import PrivateBookingClient
 from clients.booking.public_booking_client import PublicBookingClient
+from config import settings
 from src.clients.client_factories import ClientFactory
 from src.data_factories.booking_factory import CreateBookingRequestFactory
 
@@ -42,3 +45,17 @@ def created_booking(
     request=valid_create_booking_request
     response = booking_client.create_booking(request)
     return BookingFixture(request=request, response=response)
+
+@pytest.fixture
+def booking_private_client(auth_cookies: Cookies):
+    client = ClientFactory.get_private_booking_client(auth_cookies)
+    yield client
+    client.close()
+
+
+@pytest.fixture
+def booking_private_client_invalid(invalid_cookies: Cookies):
+    """PrivateBookingClient с невалидными cookies."""
+    client = ClientFactory.get_private_booking_client(invalid_cookies)
+    yield client
+    client.close()
