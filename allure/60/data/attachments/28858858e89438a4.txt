@@ -1,0 +1,24 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3000/booking/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 201  from http://localhost:3000/booking/
+INFO     HTTP_CLIENT:event_hooks.py:28 Make PUT request to http://localhost:3000/booking/14
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3000/booking/14
+INFO     BASE_ASSERTIONS:base.py:114 Check that "response_data" is instance of UpdateBookingResponseSchema (actual: UpdateBookingResponseSchema)
+INFO     BOOKING_ASSERTIONS:booking.py:79 Check update booking response
+INFO     BASE_ASSERTIONS:base.py:38 Check that "bookingid" equals to 14
+INFO     BASE_ASSERTIONS:base.py:38 Check that "depositpaid" equals to False
+INFO     BASE_ASSERTIONS:base.py:38 Check that "roomid" equals to 10
+INFO     BASE_ASSERTIONS:base.py:38 Check that "firstname" equals to Andrea
+INFO     BASE_ASSERTIONS:base.py:38 Check that "lastname" equals to Russell
+INFO     BASE_ASSERTIONS:base.py:38 Check that "bookingdates" equals to checkin=datetime.date(2026, 1, 24) checkout=datetime.date(2026, 1, 25)
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:3000/booking/14
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3000/booking/14
+INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 200
+INFO     BOOKING_ASSERTIONS:booking.py:52 Check booking
+INFO     BASE_ASSERTIONS:base.py:38 Check that "bookingid" equals to 14
+INFO     BASE_ASSERTIONS:base.py:38 Check that "depositpaid" equals to False
+INFO     BASE_ASSERTIONS:base.py:38 Check that "roomid" equals to 10
+INFO     BASE_ASSERTIONS:base.py:38 Check that "firstname" equals to Andrea
+INFO     BASE_ASSERTIONS:base.py:38 Check that "lastname" equals to Russell
+INFO     BASE_ASSERTIONS:base.py:38 Check that "bookingdates" equals to checkin=datetime.date(2026, 1, 24) checkout=datetime.date(2026, 1, 25)

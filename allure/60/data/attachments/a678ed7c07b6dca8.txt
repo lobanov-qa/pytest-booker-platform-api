@@ -1,0 +1,3 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/logout
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 404  from http://localhost:3004/auth/logout
+INFO     BASE_ASSERTIONS:base.py:38 Check that "logout with invalid token" equals to False
