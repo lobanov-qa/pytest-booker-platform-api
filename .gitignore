@@ -35,3 +35,13 @@ build/
 dist/
 
 
+
+
+
+/gh-pages/
+
+.continue/
+in-memoria.db
+in-memoria-vectors.db/
+.serena/
+
