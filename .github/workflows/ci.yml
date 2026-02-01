@@ -101,6 +101,13 @@ jobs:
           name: allure-results
           path: allure-results
 
+      - name: Upload Index
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: index
+          path: .github/templates/
+
       - name: Cleanup (always run)
         if: always()
         run: |
@@ -141,6 +148,12 @@ jobs:
           name: coverage-report
           path: coverage-report
 
+      - name: Download Index
+        uses: actions/download-artifact@v7
+        with:
+          name: index
+          path: templates
+
 
       - name: Generate Allure Report with history
         uses: simple-elf/allure-report-action@v1.13
@@ -160,7 +173,7 @@ jobs:
           cp -r allure-history/* gh-pages-output/allure/ || (echo "❌ Allure history not found" && exit 1)
           cp -v coverage-report/coverage.html gh-pages-output/coverage/$BUILD_NUMBER/index.html || (echo "❌ coverage.html not found" && exit 1)
 
-          cp .github/templates/dashboard-template.html gh-pages-output/index.html
+          cp templates/dashboard-template.html gh-pages-output/index.html
           sed -i "s/\$BUILD_NUMBER/$BUILD_NUMBER/g" gh-pages-output/index.html     
 
       - name: Deploy unified reports to GitHub Pages
