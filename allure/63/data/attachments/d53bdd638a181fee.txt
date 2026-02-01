@@ -1,0 +1,8 @@
+curl -X 'DELETE' \
+  'http://localhost:3000/booking/17' \
+  -H 'host: localhost:3000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=ucxqE2Sf8Z4r0TIg'
