@@ -1,0 +1,231 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"
+        Negative test: Filter bookings with non-numeric roomid values.
+        API returns 500 INTERNAL_SERVER_ERROR for invalid room ID format.
+        ","16","GET /booking?roomid= - Invalid room ID format (500)","tests.booking","Sun Feb 01 03:59:50 UTC 2026","passed","Sun Feb 01 03:59:50 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Positive test: Get booking summary for existing room ID.
+        Validates response structure and JSON schema.
+        ","14","GET /booking/summary - Get booking summary for valid room ID","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Negative test: Delete booking with non-existent ID.
+        Should return 404 Not Found.
+        ","14","DELETE /booking/9999 - Delete non-existent booking (404)","tests.booking","Sun Feb 01 03:59:51 UTC 2026","passed","Sun Feb 01 03:59:51 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Positive test: Use convenience method get_booking().
+        Returns parsed Pydantic model BookingSchema.
+        ","13","GET /booking/{id} - High-level method for retrieving specific booking","tests.booking","Sun Feb 01 03:59:50 UTC 2026","passed","Sun Feb 01 03:59:50 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Positive test: Use convenience method get_all_bookings().
+        Returns parsed Pydantic model GetBookingsResponseSchema.
+        ","13","GET /booking - High-level method for retrieving all bookings","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:50 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Negative test: Update booking with non-existent ID.
+        Should return 404 Not Found.
+        ","14","PUT /booking/9999 - Update non-existent booking (404)","tests.booking","Sun Feb 01 03:59:51 UTC 2026","passed","Sun Feb 01 03:59:51 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Positive test: Successfully delete a booking.
+        Validates 202 Accepted status and verifies booking is no longer accessible.
+        ","23","DELETE /booking/{id} - Delete booking successfully (202)","tests.booking","Sun Feb 01 03:59:51 UTC 2026","passed","Sun Feb 01 03:59:51 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"","26","test_check_health[service5]","tests","Sun Feb 01 03:59:51 UTC 2026","passed","Sun Feb 01 03:59:52 UTC 2026","TestHealth","test_api_health","",""
+"
+        Negative test: Filter bookings with non-numeric roomid values.
+        API returns 500 INTERNAL_SERVER_ERROR for invalid room ID format.
+        ","15","GET /booking?roomid=abc123 - Invalid room ID format (500)","tests.booking","Sun Feb 01 03:59:50 UTC 2026","passed","Sun Feb 01 03:59:50 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"","25","test_check_health[service3]","tests","Sun Feb 01 03:59:51 UTC 2026","passed","Sun Feb 01 03:59:51 UTC 2026","TestHealth","test_api_health","",""
+"
+        Negative test: Attempt to retrieve booking without authentication.
+        Should return 403 Forbidden.
+        ","13","GET /booking/{id} - Retrieve booking without authentication (403)","tests.booking","Sun Feb 01 03:59:50 UTC 2026","passed","Sun Feb 01 03:59:50 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Negative test: Get summary with non-numeric roomid.
+        API returns 500 INTERNAL_SERVER_ERROR.
+        ","11","GET /booking/summary - Invalid roomid (non-number) (500)","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Positive test: Raw API validate method with valid token.
+        Validates status code 200.
+        ","14","POST /auth/validate - Raw API method for valid token returns 200","tests.auth","Sun Feb 01 03:59:48 UTC 2026","passed","Sun Feb 01 03:59:48 UTC 2026","TestAuthentication","test_authentication","",""
+"
+        Positive test: High-level validate method after logout.
+        Returns False for invalidated token.
+        ","13","POST /auth/validate - High-level method returns False after logout","tests.auth","Sun Feb 01 03:59:48 UTC 2026","passed","Sun Feb 01 03:59:48 UTC 2026","TestAuthentication","test_authentication","",""
+"","25","test_check_health[service2]","tests","Sun Feb 01 03:59:51 UTC 2026","passed","Sun Feb 01 03:59:51 UTC 2026","TestHealth","test_api_health","",""
+"
+        Negative test: Attempt to update booking without authentication.
+        Should return 403 Forbidden.
+        ","16","PUT /booking/{id} - Update booking without authentication (403)","tests.booking","Sun Feb 01 03:59:51 UTC 2026","passed","Sun Feb 01 03:59:51 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Positive test: Create booking with full validation.
+        Validates response structure and JSON schema compliance.
+        ","413","POST /booking - Create booking successfully (201)","tests.booking","Sun Feb 01 03:59:48 UTC 2026","passed","Sun Feb 01 03:59:48 UTC 2026","TestBooking","test_booking","",""
+"
+        Positive test: High-level validate method.
+        Returns True for valid token.
+        ","13","POST /auth/validate - High-level method returns True for valid token","tests.auth","Sun Feb 01 03:59:48 UTC 2026","passed","Sun Feb 01 03:59:48 UTC 2026","TestAuthentication","test_authentication","",""
+"
+        Positive test: Filter bookings using roomid query parameter.
+        Verifies filtering functionality and that only bookings for specified room are returned.
+        ","21","GET /booking?roomid={roomid} - Filter bookings by room ID","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Negative test: Update booking with invalid data (empty firstname).
+        Should return 400 Bad Request with validation error details.
+        ","8","PUT /booking/{id} - Update booking with empty firstname (400)","tests.booking","Sun Feb 01 03:59:51 UTC 2026","passed","Sun Feb 01 03:59:51 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Negative test: Get summary with non-numeric roomid.
+        API returns 500 INTERNAL_SERVER_ERROR.
+        ","8","GET /booking/summary - Invalid roomid (non-number) (500)","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Negative test: Filter bookings with non-existent roomid.
+        Should return 200 OK with empty bookings list.
+        ","21","GET /booking?roomid=9999 - Query non-existent room ID","tests.booking","Sun Feb 01 03:59:50 UTC 2026","passed","Sun Feb 01 03:59:50 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Positive test: Retrieve all bookings with valid authentication.
+        Validates response structure and JSON schema compliance.
+        ","24","GET /booking - Retrieve all bookings successfully","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Positive test: Get summary with non-positive roomid.
+        API returns 200 OK with empty bookings list.
+        ","10","GET /booking/summary - Get summary with non-positive roomid (empty list)","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Positive test: Use convenience method update_booking().
+        Returns parsed Pydantic model UpdateBookingResponseSchema.
+        ","27","PUT /booking/{id} - High-level method for updating booking","tests.booking","Sun Feb 01 03:59:51 UTC 2026","passed","Sun Feb 01 03:59:51 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Positive test: Check availability during already booked period.
+        Should return the room as unavailable.
+        ","10","GET /booking/unavailable - Check availability during booked period","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Positive test: Successfully update existing booking.
+        Validates update response and ensures data is correctly updated.
+        ","43","PUT /booking/{id} - Update booking successfully","tests.booking","Sun Feb 01 03:59:50 UTC 2026","passed","Sun Feb 01 03:59:51 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Negative test: Create booking with firstname less than 3 characters.
+        Should return 400 Bad Request with validation error.
+        ","10","POST /booking - Create booking with short firstname (400)","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Positive test: Use convenience method get_booking_summary().
+        Returns parsed Pydantic model GetSummaryResponseSchema.
+        ","5","GET /booking/summary - High-level method for getting summary","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Negative test: Request booking with non-numeric ID in path.
+        Should return 404 Not Found.
+        ","9","GET /booking/one - Retrieve booking with invalid ID format (404)","tests.booking","Sun Feb 01 03:59:50 UTC 2026","passed","Sun Feb 01 03:59:50 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Negative test: Check availability with non-existent date.
+        API returns 500 INTERNAL_SERVER_ERROR.
+        ","13","GET /booking/unavailable - Invalid date (non-existent day) (500)","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Positive test: Get summary with non-positive roomid.
+        API returns 200 OK with empty bookings list.
+        ","10","GET /booking/summary - Get summary with non-positive roomid (empty list)","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Positive test: High-level login method.
+        Returns parsed token string.
+        ","8","POST /auth/login - High-level method returns valid token","tests.auth","Sun Feb 01 03:59:48 UTC 2026","passed","Sun Feb 01 03:59:48 UTC 2026","TestAuthentication","test_authentication","",""
+"
+        Positive test: Use convenience method create_booking().
+        Returns parsed Pydantic model CreateBookingResponseSchema.
+        ","20","POST /booking - High-level method for creating booking","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Negative test: High-level validate method.
+        Returns False for invalid token.
+        ","6","POST /auth/validate - High-level method returns False for invalid token","tests.auth","Sun Feb 01 03:59:48 UTC 2026","passed","Sun Feb 01 03:59:48 UTC 2026","TestAuthentication","test_authentication","",""
+"","26","test_check_health[service4]","tests","Sun Feb 01 03:59:51 UTC 2026","passed","Sun Feb 01 03:59:51 UTC 2026","TestHealth","test_api_health","",""
+"
+        Negative test: High-level logout method with invalid token.
+        Returns False for invalid token.
+        ","5","POST /auth/logout - High-level method returns False for invalid token","tests.auth","Sun Feb 01 03:59:48 UTC 2026","passed","Sun Feb 01 03:59:48 UTC 2026","TestAuthentication","test_authentication","",""
+"","25","test_check_health[service0]","tests","Sun Feb 01 03:59:51 UTC 2026","passed","Sun Feb 01 03:59:51 UTC 2026","TestHealth","test_api_health","",""
+"
+        Negative test: Attempt to retrieve all bookings without authentication.
+        Should return 403 Forbidden.
+        ","17","GET /booking - Retrieve all bookings without authentication (403)","tests.booking","Sun Feb 01 03:59:50 UTC 2026","passed","Sun Feb 01 03:59:50 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Positive test: Raw API login method.
+        Validates status code and token presence in cookies.
+        ","44","POST /auth/login - Raw API method returns 200 with token cookie","tests.auth","Sun Feb 01 03:59:48 UTC 2026","passed","Sun Feb 01 03:59:48 UTC 2026","TestAuthentication","test_authentication","",""
+"
+        Negative test: Check availability with missing required parameter.
+        Should return 400 Bad Request.
+        ","23","GET /booking/unavailable - Missing checkin parameter (400)","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Negative test: Check availability with invalid date format.
+        API returns 500 INTERNAL_SERVER_ERROR.
+        ","9","GET /booking/unavailable - Invalid date format (500)","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Positive test: Use convenience method get_bookings_by_room().
+        Returns parsed Pydantic model GetBookingsResponseSchema with filtered results.
+        ","17","GET /booking?roomid={roomid} - High-level method for filtered bookings","tests.booking","Sun Feb 01 03:59:50 UTC 2026","passed","Sun Feb 01 03:59:50 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Negative test: High-level validate method.
+        Returns False for empty/null token.
+        ","0","POST /auth/validate - High-level method returns False for empty/null token","tests.auth","Sun Feb 01 03:59:48 UTC 2026","passed","Sun Feb 01 03:59:48 UTC 2026","TestAuthentication","test_authentication","",""
+"
+        Negative test: Filter bookings with non-numeric roomid values.
+        API returns 500 INTERNAL_SERVER_ERROR for invalid room ID format.
+        ","18","GET /booking?roomid=one - Invalid room ID format (500)","tests.booking","Sun Feb 01 03:59:50 UTC 2026","passed","Sun Feb 01 03:59:50 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Negative test: Get summary with non-numeric roomid.
+        API returns 500 INTERNAL_SERVER_ERROR.
+        ","8","GET /booking/summary - Invalid roomid (non-number) (500)","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Positive test: Raw API logout method.
+        Validates status code 200.
+        ","12","POST /auth/logout - Raw API method returns 200 for valid token","tests.auth","Sun Feb 01 03:59:48 UTC 2026","passed","Sun Feb 01 03:59:48 UTC 2026","TestAuthentication","test_authentication","",""
+"
+        Negative test: Request booking with non-existent ID.
+        Should return 404 Not Found.
+        ","14","GET /booking/9999 - Retrieve non-existent booking (404)","tests.booking","Sun Feb 01 03:59:50 UTC 2026","passed","Sun Feb 01 03:59:50 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Positive test: High-level logout method.
+        Returns True for successful logout.
+        ","13","POST /auth/logout - High-level method returns True for valid token","tests.auth","Sun Feb 01 03:59:48 UTC 2026","passed","Sun Feb 01 03:59:48 UTC 2026","TestAuthentication","test_authentication","",""
+"
+        Positive test: Use convenience method delete_booking().
+        Method doesn't return a model (only validates status).
+        ","24","DELETE /booking/{id} - High-level method for deleting booking","tests.booking","Sun Feb 01 03:59:51 UTC 2026","passed","Sun Feb 01 03:59:51 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Positive test: Check availability for free date range.
+        Should return empty list or list without conflicts.
+        ","21","GET /booking/unavailable - Check availability for free date range","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Positive test: Get summary with non-positive roomid.
+        API returns 200 OK with empty bookings list.
+        ","9","GET /booking/summary - Get summary with non-positive roomid (empty list)","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Positive test: Retrieve specific booking by booking ID.
+        Validates response matches the created booking data.
+        ","21","GET /booking/{id} - Retrieve specific booking by ID","tests.booking","Sun Feb 01 03:59:50 UTC 2026","passed","Sun Feb 01 03:59:50 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Negative test: High-level logout method for already logged out token.
+        Returns False for second logout attempt.
+        ","15","POST /auth/logout - High-level method returns False for second logout","tests.auth","Sun Feb 01 03:59:48 UTC 2026","passed","Sun Feb 01 03:59:48 UTC 2026","TestAuthentication","test_authentication","",""
+"
+        Negative test: Get summary without required roomid parameter.
+        Should return 400 Bad Request.
+        ","6","GET /booking/summary - Missing roomid parameter (400)","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Positive test: Use convenience method get_unavailable_rooms().
+        Returns parsed Pydantic model UnavailableDatesResponseSchema.
+        ","6","GET /booking/unavailable - High-level method for checking availability","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Negative test: Create booking with roomid=0 (must be >=1).
+        Should return 400 Bad Request with validation error.
+        ","32","POST /booking - Create booking with roomid=0 (400)","tests.booking","Sun Feb 01 03:59:48 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Negative test: Create booking without required firstname field.
+        Should return 400 Bad Request with validation error.
+        ","9","POST /booking - Create booking without firstname field (400)","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"
+        Negative test: Attempt to delete booking without authentication.
+        Should return 403 Forbidden.
+        ","12","DELETE /booking/{id} - Delete booking without authentication (403)","tests.booking","Sun Feb 01 03:59:51 UTC 2026","passed","Sun Feb 01 03:59:51 UTC 2026","TestPrivateBooking","test_private_booking","",""
+"
+        Negative test: Check availability with missing required parameter.
+        Should return 400 Bad Request.
+        ","8","GET /booking/unavailable - Missing checkout parameter (400)","tests.booking","Sun Feb 01 03:59:49 UTC 2026","passed","Sun Feb 01 03:59:49 UTC 2026","TestBooking","test_booking","",""
+"","25","test_check_health[service1]","tests","Sun Feb 01 03:59:51 UTC 2026","passed","Sun Feb 01 03:59:51 UTC 2026","TestHealth","test_api_health","",""
+"
+        Negative test: Delete already deleted booking (idempotent operation).
+        Should return 404 Not Found on second attempt.
+        ","21","DELETE /booking/{id} - Delete already deleted booking (404)","tests.booking","Sun Feb 01 03:59:51 UTC 2026","passed","Sun Feb 01 03:59:51 UTC 2026","TestPrivateBooking","test_private_booking","",""
