@@ -160,7 +160,7 @@ jobs:
           cp -r allure-history/* gh-pages-output/allure/ || (echo "❌ Allure history not found" && exit 1)
           cp -v coverage-report/coverage.html gh-pages-output/coverage/$BUILD_NUMBER/index.html || (echo "❌ coverage.html not found" && exit 1)
 
-          cp .github/workflows/dashboard-template.html gh-pages-output/index.html
+          cp .github/templates/dashboard-template.html gh-pages-output/index.html
           sed -i "s/\$BUILD_NUMBER/$BUILD_NUMBER/g" gh-pages-output/index.html     
 
       - name: Deploy unified reports to GitHub Pages
