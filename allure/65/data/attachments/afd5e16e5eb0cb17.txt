@@ -1,0 +1,7 @@
+curl -X 'GET' \
+  'http://localhost:3000/booking/summary?roomid=21' \
+  -H 'host: localhost:3000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1'

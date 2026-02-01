@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3000/booking/14' \
+  -H 'host: localhost:3000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=fzrpvbwWvDb2HqaW' \
+  -H 'content-length: 215' \
+  -H 'content-type: application/json' \
+  -d '{"firstname":"Marcia","lastname":"Poole","bookingdates":{"checkin":"2026-03-30","checkout":"2026-03-31"},"depositpaid":false,"email":"caldwellrandy@example.com","phone":"477.741.6622x248","bookingid":14,"roomid":69}'
