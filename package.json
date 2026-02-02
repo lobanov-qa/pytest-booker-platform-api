@@ -1,0 +1,11 @@
+{
+  "name": "pytest-booker-platform-api",
+  "version": "1.0.0",
+  "description": "API Test Framework with Allure 3",
+  "devDependencies": {
+    "allure": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

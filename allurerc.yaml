@@ -1,0 +1,4 @@
+name: Allure Report
+output: ./allure-report
+historyPath: ./history.jsonl
+appendHistory: true

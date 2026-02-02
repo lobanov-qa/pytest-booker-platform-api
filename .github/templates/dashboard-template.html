@@ -311,30 +311,7 @@
             border: 1px solid var(--tech-tag-border);
         }
 
-        /* Theme Toggle Button */
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 100;
-            color: var(--text-primary);
-            font-size: 1.2rem;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.1);
-        }
-
+        /* Theme Toggle Button specific styles */
         .theme-toggle .fa-sun {
             display: none;
         }
@@ -348,30 +325,7 @@
             }
         }
 
-        /* Language Toggle Button */
-        .lang-toggle {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 100;
-            color: var(--text-primary);
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .lang-toggle:hover {
-            transform: scale(1.1);
-        }
+        /* Language Toggle Button specific styles */
 
         /* Manual dark theme class */
         body.dark-theme {
@@ -418,19 +372,7 @@
                 padding: 20px;
             }
 
-            .theme-toggle {
-                top: 10px;
-                right: 10px;
-                width: 40px;
-                height: 40px;
-            }
 
-            .lang-toggle {
-                top: 60px;
-                right: 10px;
-                width: 40px;
-                height: 40px;
-            }
         }
 
         /* Language-specific styles */
@@ -469,19 +411,85 @@
         .card.docs {
             animation-delay: 0.3s;
         }
+        .control-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+        
+        .control-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .control-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .github-button {
+            background: #333;
+            color: white;
+        }
+        
+        .github-button:hover {
+            background: #222;
+            color: white;
+            border-color: #222;
+        }
+        
+        /* Для мобильных */
+        @media (max-width: 768px) {
+            .control-buttons {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .control-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Theme Toggle Button -->
-    <div class="theme-toggle" id="themeToggle">
-        <i class="fas fa-moon"></i>
-        <i class="fas fa-sun"></i>
-    </div>
-
-    <!-- Language Toggle Button -->
-    <div class="lang-toggle" id="langToggle" title="Switch language / Переключить язык">
-        <span class="en-only">EN</span>
-        <span class="ru-only">RU</span>
+    <!-- Кнопки управления -->
+    <div class="control-buttons">
+        <!-- Кнопка GitHub -->
+        <a href="https://github.com/lobanov-qa/pytest-booker-platform-api" 
+           class="control-button github-button" 
+           target="_blank"
+           title="View source on GitHub">
+            <i class="fab fa-github"></i>
+        </a>
+        
+        <!-- Кнопка языка -->
+        <div class="control-button lang-toggle" id="langToggle" title="Switch language">
+            <span class="en-only">EN</span>
+            <span class="ru-only">RU</span>
+        </div>
+        
+        <!-- Кнопка темы -->
+        <div class="control-button theme-toggle" id="themeToggle" title="Toggle theme">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+        </div>
     </div>
 
     <div class="container">
@@ -538,7 +546,7 @@
                         <span class="en-only">Run history and result comparison</span>
                     </li>
                 </ul>
-                <a href="allure/$BUILD_NUMBER/" target="_blank" class="card-button">
+                <a href="allure/allure-report/" target="_blank" class="card-button">
                     <i class="fas fa-external-link-alt"></i>
                     <span class="ru-only">Открыть Allure Report</span>
                     <span class="en-only">Open Allure Report</span>
@@ -576,7 +584,7 @@
                         <span class="en-only">Coverage history and trends across builds</span>
                     </li>
                 </ul>
-                <a href="coverage/$BUILD_NUMBER/" target="_blank" class="card-button">
+                <a href="coverage/" target="_blank" class="card-button">
                     <i class="fas fa-external-link-alt"></i>
                     <span class="ru-only">Открыть Coverage Report</span>
                     <span class="en-only">Open Coverage Report</span>

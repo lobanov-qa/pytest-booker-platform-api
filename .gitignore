@@ -19,7 +19,7 @@ scripts/__pycache__/
 # allure
 allure-results
 allure-report
-
+history.jsonl
 
 # coverage
 coverage.html
@@ -34,7 +34,7 @@ coverage-history.json
 build/
 dist/
 
-
+node_modules
 
 
 
