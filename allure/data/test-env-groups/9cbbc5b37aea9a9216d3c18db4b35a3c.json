@@ -1,1 +1,1 @@
-{"id":"9cbbc5b37aea9a9216d3c18db4b35a3c","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_get_all_bookings_success","name":"GET /booking - Retrieve all bookings successfully","status":"passed","testResultsByEnv":{"default":"61568efe2c17a281cc05fb6670ea9a36"}}
+{"id":"9cbbc5b37aea9a9216d3c18db4b35a3c","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_get_all_bookings_success","name":"GET /booking - Retrieve all bookings successfully","status":"passed","testResultsByEnv":{"default":"45136625665e4f9276b474c2a1c74ce9"}}

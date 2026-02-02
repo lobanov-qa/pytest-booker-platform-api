@@ -1,0 +1,1 @@
+{"id":"5c47a3ded204d61e226b3c4e45d7036c","fullName":"tests.booking.test_booking.TestBooking#test_get_summary_invalid_roomid_non_number","name":"GET /booking/summary - Invalid roomid (non-number) (500)","status":"passed","testResultsByEnv":{"default":"d548dc770b68e7996d7e21f3feee1c78"}}

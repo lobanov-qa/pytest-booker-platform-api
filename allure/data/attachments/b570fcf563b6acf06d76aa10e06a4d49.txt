@@ -1,0 +1,17 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3000/booking/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 201  from http://localhost:3000/booking/
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:3000/booking/?roomid=85
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3000/booking/?roomid=85
+INFO     BASE_ASSERTIONS:base.py:114 Check that "response_data" is instance of GetBookingsResponseSchema (actual: GetBookingsResponseSchema)
+INFO     BASE_ASSERTIONS:base.py:114 Check that "bookings" is instance of list (actual: list)
+INFO     BOOKING_ASSERTIONS:booking.py:100 Check get bookings response
+INFO     BASE_ASSERTIONS:base.py:114 Check that "bookings" is instance of list (actual: list)
+INFO     BOOKING_ASSERTIONS:booking.py:52 Check booking
+INFO     BASE_ASSERTIONS:base.py:38 Check that "bookingid" equals to 9
+INFO     BASE_ASSERTIONS:base.py:38 Check that "depositpaid" equals to False
+INFO     BASE_ASSERTIONS:base.py:38 Check that "roomid" equals to 85
+INFO     BASE_ASSERTIONS:base.py:38 Check that "firstname" equals to Melissa
+INFO     BASE_ASSERTIONS:base.py:38 Check that "lastname" equals to Alvarez
+INFO     BASE_ASSERTIONS:base.py:38 Check that "bookingdates" equals to checkin=datetime.date(2026, 4, 15) checkout=datetime.date(2026, 4, 16)

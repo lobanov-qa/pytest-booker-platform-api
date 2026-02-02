@@ -1,0 +1,1 @@
+{"id":"87f21bea15916313677c73b4bd626b57","fullName":"tests.booking.test_booking.TestBooking#test_get_summary_with_non_positive_roomid_returns_empty_list","name":"GET /booking/summary - Get summary with non-positive roomid (empty list)","status":"passed","testResultsByEnv":{"default":"466f53f487f69a05168bc7da3f8e34cf"}}

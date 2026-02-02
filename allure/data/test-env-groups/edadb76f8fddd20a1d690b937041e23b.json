@@ -1,0 +1,1 @@
+{"id":"edadb76f8fddd20a1d690b937041e23b","fullName":"tests.booking.test_booking.TestBooking#test_unavailable_dates_high_level","name":"GET /booking/unavailable - High-level method for checking availability","status":"passed","testResultsByEnv":{"default":"9dd3b45f268ff87f1b7e373ea3703419"}}

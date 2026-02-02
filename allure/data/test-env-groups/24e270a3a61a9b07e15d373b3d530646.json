@@ -1,0 +1,1 @@
+{"id":"24e270a3a61a9b07e15d373b3d530646","fullName":"tests.booking.test_booking.TestBooking#test_create_booking_short_firstname","name":"POST /booking - Create booking with short firstname (400)","status":"passed","testResultsByEnv":{"default":"27c8728eb644a5194a325d091b64253d"}}

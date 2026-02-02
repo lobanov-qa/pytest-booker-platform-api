@@ -1,1 +1,1 @@
-{"id":"8e79c21c63f2262f32500096767ff4de","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_update_booking_not_found","name":"PUT /booking/9999 - Update non-existent booking (404)","status":"passed","testResultsByEnv":{"default":"f1f5ace019284c44deb1b7aa3d97a68c"}}
+{"id":"8e79c21c63f2262f32500096767ff4de","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_update_booking_not_found","name":"PUT /booking/9999 - Update non-existent booking (404)","status":"passed","testResultsByEnv":{"default":"2d8b95703f9b2ba08e5350527fae446a"}}
