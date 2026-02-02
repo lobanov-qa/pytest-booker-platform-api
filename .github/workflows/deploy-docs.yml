@@ -128,18 +128,6 @@ jobs:
           path: gh-pages-output/zudoku-doc
 
 
-      - name: Inject Documentation link into existing index.html
-        run: |
-          INDEX_FILE="gh-pages-output/index.html"
-
-          if grep -q "zudoku-doc" "$INDEX_FILE"; then
-            echo "Documentation link already exists, skipping."
-          else
-            echo "Adding Documentation link to index.html"
-            sed -i 's|</ul>|    <li>📚 <a href="zudoku-doc/">Documentation</a></li>\n    </ul>|' "$INDEX_FILE"
-          fi
-
-
       - name: Deploy unified reports to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4

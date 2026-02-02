@@ -76,7 +76,7 @@ jobs:
           EOF
 
       - name: Run API tests with pytest and generate Allure results
-        run: python -m pytest tests/ -m health --alluredir=allure-results
+        run: python -m pytest tests/ -m "health or authentication" --alluredir=allure-results
 
       - name: Restore Coverage history
         uses: actions/cache/restore@v5
