@@ -176,7 +176,7 @@ jobs:
         uses: actions/download-artifact@v7
         with:
           name: allure-history-jsonl
-          path: history.jsonl
+          path: .
 
       - name: Download Swagger Coverage report
         uses: actions/download-artifact@v7
