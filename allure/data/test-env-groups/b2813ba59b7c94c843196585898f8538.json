@@ -1,0 +1,1 @@
+{"id":"b2813ba59b7c94c843196585898f8538","fullName":"tests.auth.test_authentication.TestAuthentication#test_login_returns_token","name":"POST /auth/login - High-level method returns valid token","status":"passed","testResultsByEnv":{"default":"9a0d7b99ddccfb199d1a9fd9b918bd54"}}

@@ -1,0 +1,1 @@
+{"id":"85875682549e1d621136dfd5d770e28f","fullName":"tests.auth.test_authentication.TestAuthentication#test_login_api_returns_token_in_cookies","name":"POST /auth/login - Raw API method returns 200 with token cookie","status":"passed","testResultsByEnv":{"default":"56bf5ee2121adc85d31cef1ca42757cf"}}

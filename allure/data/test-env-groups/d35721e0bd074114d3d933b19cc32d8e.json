@@ -1,0 +1,1 @@
+{"id":"d35721e0bd074114d3d933b19cc32d8e","fullName":"tests.auth.test_authentication.TestAuthentication#test_logout_returns_false_on_invalid_token","name":"POST /auth/logout - High-level method returns False for invalid token","status":"passed","testResultsByEnv":{"default":"2a6bea4544b3b5e0ace53b80e9db8a17"}}
