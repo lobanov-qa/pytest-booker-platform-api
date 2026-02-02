@@ -76,7 +76,7 @@ jobs:
           EOF
 
       - name: Run API tests with pytest and generate Allure results
-        run: python -m pytest tests/ -m "health or authentication or positive" --alluredir=allure-results
+        run: python -m pytest tests/  --alluredir=allure-results
 
       - name: Restore Coverage history
         uses: actions/cache/restore@v5
@@ -108,25 +108,13 @@ jobs:
 
 
       - name: Restore Allure history
-        uses: actions/cache/restore@v5
-        with:
-          path: history.jsonl
-          key: allure-history-${{ github.run_id }}
-          restore-keys: |
-            allure-history-
+        run: |
+          curl -s -L https://raw.githubusercontent.com/lobanov-qa/pytest-booker-platform-api/gh-pages/history.jsonl -o history.jsonl
 
 
       - name: Generate Allure report
         run: |
           npx allure generate allure-results
-
-
-      - name: Cache Allure history
-        if: always()
-        uses: actions/cache/save@v5
-        with:
-          path: history.jsonl
-          key: allure-history-${{ github.run_id }}
 
 
       - name: Upload Allure report
