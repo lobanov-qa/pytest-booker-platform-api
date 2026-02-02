@@ -76,7 +76,7 @@ jobs:
           EOF
 
       - name: Run API tests with pytest and generate Allure results
-        run: python -m pytest tests/ -m "health or authentication" --alluredir=allure-results
+        run: python -m pytest tests/ -m "health or authentication or positive" --alluredir=allure-results
 
       - name: Restore Coverage history
         uses: actions/cache/restore@v5
@@ -136,6 +136,13 @@ jobs:
           name: allure-report
           path: allure-report
 
+      - name: Upload Allure history
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: allure-history-jsonl
+          path: history.jsonl
+
       - name: Upload Index
         if: always()
         uses: actions/upload-artifact@v6
@@ -164,6 +171,12 @@ jobs:
         with:
           name: allure-report
           path: allure-report
+
+      - name: Download Allure history
+        uses: actions/download-artifact@v7
+        with:
+          name: allure-history-jsonl
+          path: history.jsonl
 
       - name: Download Swagger Coverage report
         uses: actions/download-artifact@v7
@@ -195,6 +208,7 @@ jobs:
           cp coverage-report/coverage.html public/coverage/index.html || (echo "❌ coverage.html not found" && exit 1)
           cp -r gh-pages/zudoku-doc public/
           cp gh-pages/.nojekyll public/
+          cp history.jsonl public/
           cp templates/dashboard-template.html public/index.html
           sed -i "s/\$BUILD_NUMBER/$BUILD_NUMBER/g" public/index.html     
 
