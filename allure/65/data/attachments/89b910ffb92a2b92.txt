@@ -1,5 +1,0 @@
-INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:3000/booking/unavailable?checkin=2025-01-01
-INFO     HTTP_CLIENT:event_hooks.py:37 Got response 400  from http://localhost:3000/booking/unavailable?checkin=2025-01-01
-INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 400
-INFO     ERRORS_ASSERTIONS:errors.py:58 Validating query error: Bad Request
-INFO     BASE_ASSERTIONS:base.py:38 Check that "error_status" equals to 400

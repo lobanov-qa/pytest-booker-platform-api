@@ -1,2 +1,0 @@
-INFO     BASE_ASSERTIONS:base.py:38 Check that "empty token validity" equals to False
-INFO     BASE_ASSERTIONS:base.py:38 Check that "null token validity" equals to False

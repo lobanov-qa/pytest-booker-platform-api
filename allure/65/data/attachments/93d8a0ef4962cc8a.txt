@@ -1,8 +1,0 @@
-INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/login
-INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3004/auth/login
-INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/logout
-INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3004/auth/logout
-INFO     BASE_ASSERTIONS:base.py:56 Check that "logout" is true
-INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/validate
-INFO     HTTP_CLIENT:event_hooks.py:37 Got response 403  from http://localhost:3004/auth/validate
-INFO     BASE_ASSERTIONS:base.py:38 Check that "token validity after logout" equals to False

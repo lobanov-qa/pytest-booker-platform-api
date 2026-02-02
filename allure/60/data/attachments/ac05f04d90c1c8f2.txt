@@ -1,5 +1,0 @@
-INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/login
-INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3004/auth/login
-INFO     BASE_ASSERTIONS:base.py:114 Check that "token" is instance of str (actual: str)
-INFO     BASE_ASSERTIONS:base.py:164 Check that "token" is not None
-INFO     BASE_ASSERTIONS:base.py:56 Check that "token length" is true
