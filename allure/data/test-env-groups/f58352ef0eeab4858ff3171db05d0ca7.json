@@ -1,0 +1,1 @@
+{"id":"f58352ef0eeab4858ff3171db05d0ca7","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_get_booking_without_auth","name":"GET /booking/{id} - Retrieve booking without authentication (403)","status":"passed","testResultsByEnv":{"default":"29b46583c92b1270e54ed2d5d419c6fe"}}

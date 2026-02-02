@@ -1,0 +1,1 @@
+{"id":"1965432c5fc4922fa8e68019b757610a","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_get_all_bookings_high_level","name":"GET /booking - High-level method for retrieving all bookings","status":"passed","testResultsByEnv":{"default":"46a9e06c5fca86644376271466c03cd5"}}
