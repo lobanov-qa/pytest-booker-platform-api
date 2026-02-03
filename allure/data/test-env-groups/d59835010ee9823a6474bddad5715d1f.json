@@ -1,1 +1,1 @@
-{"id":"d59835010ee9823a6474bddad5715d1f","fullName":"tests.booking.test_booking.TestBooking#test_create_booking_missing_firstname","name":"POST /booking - Create booking without firstname field (400)","status":"passed","testResultsByEnv":{"default":"8346910fb12ec97bf4d752f3e43f06b2"}}
+{"id":"d59835010ee9823a6474bddad5715d1f","fullName":"tests.booking.test_booking.TestBooking#test_create_booking_missing_firstname","name":"POST /booking - Create booking without firstname field (400)","status":"passed","testResultsByEnv":{"default":"a542147f0e84936c83bdd672ad30fddd"}}

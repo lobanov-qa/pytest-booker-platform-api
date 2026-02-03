@@ -1,1 +1,1 @@
-{"id":"5c47a3ded204d61e226b3c4e45d7036c","fullName":"tests.booking.test_booking.TestBooking#test_get_summary_invalid_roomid_non_number","name":"GET /booking/summary - Invalid roomid (non-number) (500)","status":"passed","testResultsByEnv":{"default":"38c53185fb8079497153e634e1e120ad"}}
+{"id":"5c47a3ded204d61e226b3c4e45d7036c","fullName":"tests.booking.test_booking.TestBooking#test_get_summary_invalid_roomid_non_number","name":"GET /booking/summary - Invalid roomid (non-number) (500)","status":"passed","testResultsByEnv":{"default":"aa54093f94666635cf4296d4ce79c218"}}

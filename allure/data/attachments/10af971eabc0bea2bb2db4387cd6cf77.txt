@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3000/booking/' \
+  -H 'host: localhost:3000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 203' \
+  -H 'content-type: application/json' \
+  -d '{"depositpaid":false,"roomid":49,"firstname":"Kevin","lastname":"Stafford","bookingdates":{"checkin":"2026-03-30","checkout":"2026-03-31"},"email":"medinatyler@example.com","phone":"(531)496-1326x38462"}'
