@@ -1,1 +1,1 @@
-{"id":"67836145b2e6ada231984f3d6b5855c5","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_get_booking_not_found","name":"GET /booking/9999 - Retrieve non-existent booking (404)","status":"passed","testResultsByEnv":{"default":"a6004fd35c3af3104120778da62ee145"}}
+{"id":"67836145b2e6ada231984f3d6b5855c5","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_get_booking_not_found","name":"GET /booking/9999 - Retrieve non-existent booking (404)","status":"passed","testResultsByEnv":{"default":"72b3b0d86e642d08fe31ad53e524978a"}}
