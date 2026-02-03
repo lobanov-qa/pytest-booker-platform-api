@@ -14,47 +14,57 @@
     <style>
         :root {
             /* Светлая тема (по умолчанию) */
-            --primary-color: #1890ff;
-            --secondary-color: #13c2c2;
-            --success-color: #52c41a;
-            --warning-color: #faad14;
-            --error-color: #ff4d4f;
-            --text-primary: #1f1f1f;
-            --text-secondary: #666;
-            --text-muted: #888;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            --primary-color: #16b67b;          
+            --secondary-color: #49a7eb;        
+            --success-color: #09a232;          
+            --warning-color: #ebc746;          
+            --error-color: #eb5146;            
+            --text-primary: #121926;           
+            --text-secondary: #364152;         
+            --text-muted: #cdd5df;             
+            --bg-primary: #ffffff;             
+            --bg-secondary: #f8fafc;           
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #eef2f6 100%);
             --card-bg: #ffffff;
-            --border-color: #f0f0f0;
+            --border-color: #e3e8ef;           
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
-            --tech-tag-bg: #f0f9ff;
-            --tech-tag-border: #bae7ff;
-            --build-info-bg: #f0f9ff;
+            --tech-tag-bg: #eefcf5;            
+            --tech-tag-border: #d2f9e6;        
+            --build-info-bg: #eefcf5;
         }
 
         /* Темная тема */
         @media (prefers-color-scheme: dark) {
             :root {
-                --primary-color: #1890ff;
-                --secondary-color: #13c2c2;
-                --success-color: #52c41a;
-                --warning-color: #faad14;
-                --error-color: #ff4d4f;
-                --text-primary: #f0f0f0;
-                --text-secondary: #b0b0b0;
-                --text-muted: #888;
-                --bg-primary: #0d1117;
-                --bg-secondary: #161b22;
-                --bg-gradient: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
-                --card-bg: #161b22;
-                --border-color: #30363d;
-                --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-                --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.6);
-                --tech-tag-bg: rgba(0, 100, 255, 0.15);
-                --tech-tag-border: rgba(0, 100, 255, 0.3);
-                --build-info-bg: rgba(0, 100, 255, 0.15);
+                --primary-color: #45e57b;          /* castor-night-base */
+                --secondary-color: #7ac7ff;        /* sirius-night-base */
+                --success-color: #45e57b;          /* castor-night-base */
+                --warning-color: #ffd84d;          /* rigel-night-base */
+                --error-color: #ff584d;            /* capella-night-base */
+                
+                /* Текст */
+                --text-primary: #fcfcfd;           /* on-text-primary-night */
+                --text-secondary: #cedff84d;       /* on-text-secondary-night */
+                --text-muted: #bed7f836;           /* on-text-hint-night */
+                
+                /* Фоны - светлый серый как в Allure */
+                --bg-primary: #2a2f38;             /* Светло-серый фон всей страницы */
+                --bg-secondary: #363c47;           /* Вторичный фон для некоторых элементов */
+                --bg-gradient: var(--bg-primary);  /* Убираем градиент, используем однотонный */
+                
+                /* Карточки - темнее фона */
+                --card-bg: #1e2229;               /* Темный фон для карточек, хедера, футера */
+                --border-color: #3d4450;           /* Цвет границ */
+                
+                /* Тени */
+                --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.4);
+                
+                /* Теги и плашки */
+                --tech-tag-bg: rgba(22, 182, 123, 0.15);
+                --tech-tag-border: rgba(22, 182, 123, 0.3);
+                --build-info-bg: rgba(22, 182, 123, 0.15);
             }
 
             /* Специфичные стили для темной темы */
@@ -96,7 +106,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--text-primary);
-            background: var(--bg-gradient);
+            background: var(--bg-primary);  /* Вместо var(--bg-gradient) */
             min-height: 100vh;
             padding: 20px;
         }
@@ -329,19 +339,24 @@
 
         /* Manual dark theme class */
         body.dark-theme {
-            --text-primary: #f0f0f0;
-            --text-secondary: #b0b0b0;
-            --text-muted: #888;
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-gradient: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
-            --card-bg: #161b22;
-            --border-color: #30363d;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.6);
-            --tech-tag-bg: rgba(0, 100, 255, 0.15);
-            --tech-tag-border: rgba(0, 100, 255, 0.3);
-            --build-info-bg: rgba(0, 100, 255, 0.15);
+            --primary-color: #45e57b;
+            --secondary-color: #7ac7ff;
+            --success-color: #45e57b;
+            --warning-color: #ffd84d;
+            --error-color: #ff584d;
+            --text-primary: #fcfcfd;
+            --text-secondary: #cedff84d;
+            --text-muted: #bed7f836;
+            --bg-primary: #2a2f38;
+            --bg-secondary: #363c47;
+            --bg-gradient: var(--bg-primary);
+            --card-bg: #1e2229;
+            --border-color: #3d4450;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.4);
+            --tech-tag-bg: rgba(22, 182, 123, 0.15);
+            --tech-tag-border: rgba(22, 182, 123, 0.3);
+            --build-info-bg: rgba(22, 182, 123, 0.15);
         }
 
         body.dark-theme .header,
