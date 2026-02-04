@@ -1,1 +1,1 @@
-{"id":"45466e4d40f4da45c2dce0cb66f2b50f","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_update_booking_high_level","name":"PUT /booking/{id} - High-level method for updating booking","status":"passed","testResultsByEnv":{"default":"13ca60fde250f521398ddc6df653a45e"}}
+{"id":"45466e4d40f4da45c2dce0cb66f2b50f","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_update_booking_high_level","name":"PUT /booking/14 - High-level method for updating booking","status":"passed","testResultsByEnv":{"default":"2cad8771dd6d5b0c9c4bb6b7df33b46d"}}

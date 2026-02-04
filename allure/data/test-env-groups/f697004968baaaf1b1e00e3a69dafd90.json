@@ -1,1 +1,1 @@
-{"id":"f697004968baaaf1b1e00e3a69dafd90","fullName":"tests.booking.test_booking.TestBooking#test_get_summary_valid_roomid","name":"GET /booking/summary - Get booking summary for valid room ID","status":"passed","testResultsByEnv":{"default":"75f607e2b76f10c468a496d7ac8b0aaa"}}
+{"id":"f697004968baaaf1b1e00e3a69dafd90","fullName":"tests.booking.test_booking.TestBooking#test_get_summary_valid_roomid","name":"GET /booking/summary - Get booking summary for valid room ID","status":"passed","testResultsByEnv":{"default":"3f95a70aab3a2e649c37564eb695e4bd"}}
