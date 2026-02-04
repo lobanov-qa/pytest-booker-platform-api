@@ -1,1 +1,1 @@
-{"id":"b1a06b4207762c36d5e8f9db8598dad7","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_update_booking_success","name":"PUT /booking/13 - Update booking successfully","status":"passed","testResultsByEnv":{"default":"348bce12e5ff55cea0b900bba6923dd1"}}
+{"id":"b1a06b4207762c36d5e8f9db8598dad7","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_update_booking_success","name":"PUT /booking/13 - Update booking successfully","status":"passed","testResultsByEnv":{"default":"7e040b717e2835f14666539de75c3629"}}

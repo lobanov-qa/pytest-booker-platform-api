@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3000/booking/16' \
+  -H 'host: localhost:3000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=oa6npJKa5GEbNyeI' \
+  -H 'content-length: 206' \
+  -H 'content-type: application/json' \
+  -d '{"firstname":"","lastname":"Nguyen","bookingdates":{"checkin":"2026-03-15","checkout":"2026-03-16"},"depositpaid":true,"email":"ismith@example.com","phone":"+1-347-400-6610x0116","bookingid":16,"roomid":35}'
