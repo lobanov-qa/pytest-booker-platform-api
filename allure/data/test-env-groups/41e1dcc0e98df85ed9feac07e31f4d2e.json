@@ -1,1 +1,1 @@
-{"id":"41e1dcc0e98df85ed9feac07e31f4d2e","fullName":"tests.booking.test_booking.TestBooking#test_create_booking_high_level","name":"POST /booking - High-level method for creating booking","status":"passed","testResultsByEnv":{"default":"742c460bd448d6365112e39c1dba4105"}}
+{"id":"41e1dcc0e98df85ed9feac07e31f4d2e","fullName":"tests.booking.test_booking.TestBooking#test_create_booking_high_level","name":"POST /booking - High-level method for creating booking","status":"passed","testResultsByEnv":{"default":"2e4f39dae28571002aa29d2a43320ddc"}}
