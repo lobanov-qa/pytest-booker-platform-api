@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   setup-and-validate:
@@ -144,7 +145,7 @@ jobs:
           cd restful-booker-platform 2>/dev/null && docker compose down -v --remove-orphans || true
 
   publish-report:
-    if: always()
+    if: github.event_name == 'workflow_dispatch'
     needs: [ setup-and-validate ]
     runs-on: ubuntu-latest
 
