@@ -6,9 +6,9 @@ from clients.api_client import APIClient
 from clients.booking.booking_schema import (
     GetBookingQuerySchema,
     GetBookingsResponseSchema,
-    GetBookingResponseSchema,
     UpdateBookingRequestSchema,
-    UpdateBookingResponseSchema, BookingSchema,
+    UpdateBookingResponseSchema,
+    BookingSchema
 )
 from clients.booking.routes import BookingRoutes
 from clients.api_coverage import tracker_booking
