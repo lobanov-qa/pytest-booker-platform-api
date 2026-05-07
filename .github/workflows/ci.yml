@@ -62,11 +62,11 @@ jobs:
         with:
           maven-version: '3.9.14'
 
-      - name: Build microservices (create JARs)
+      - name: Build backend microservices (create JARs)
         run: |
           cd restful-booker-platform
-          mvn clean package -DskipTests
-          
+          mvn clean package -DskipTests -pl auth,booking,room,report,branding,message -am
+
       - name: Start microservices with docker-compose
         run: |
           cd restful-booker-platform
