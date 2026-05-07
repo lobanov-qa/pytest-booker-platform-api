@@ -1,1 +1,1 @@
-{"id":"24e270a3a61a9b07e15d373b3d530646","fullName":"tests.booking.test_booking.TestBooking#test_create_booking_short_firstname","name":"POST /booking - Create booking with short firstname (400)","status":"passed","testResultsByEnv":{"default":"d043b2832bc36e5f506959c3bfeca1c3"}}
+{"id":"24e270a3a61a9b07e15d373b3d530646","fullName":"tests.booking.test_booking.TestBooking#test_create_booking_short_firstname","name":"POST /booking - Create booking with short firstname (400)","status":"passed","testResultsByEnv":{"default":"49f9f32dfd066f922be2e0a20074875a"}}

@@ -1,1 +1,1 @@
-{"id":"7f1304408addbae0c633cfb90fd96517","fullName":"tests.booking.test_booking.TestBooking#test_create_booking_invalid_roomid_zero","name":"POST /booking - Create booking with roomid=0 (400)","status":"passed","testResultsByEnv":{"default":"cd9b0f8e5202fc1804974ae889a2317a"}}
+{"id":"7f1304408addbae0c633cfb90fd96517","fullName":"tests.booking.test_booking.TestBooking#test_create_booking_invalid_roomid_zero","name":"POST /booking - Create booking with roomid=0 (400)","status":"passed","testResultsByEnv":{"default":"520498c2d0563d75ca5202e392d76cb3"}}

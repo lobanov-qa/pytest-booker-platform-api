@@ -1,0 +1,16 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3000/booking/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 201  from http://localhost:3000/booking/
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:3000/booking/10
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3000/booking/10
+INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 200
+INFO     SCHEMA_ASSERTIONS:schema.py:22 Validating JSON schema
+INFO     BOOKING_ASSERTIONS:booking.py:72 Check get booking response
+INFO     BOOKING_ASSERTIONS:booking.py:52 Check booking
+INFO     BASE_ASSERTIONS:base.py:38 Check that "bookingid" equals to 10
+INFO     BASE_ASSERTIONS:base.py:38 Check that "depositpaid" equals to False
+INFO     BASE_ASSERTIONS:base.py:38 Check that "roomid" equals to 81
+INFO     BASE_ASSERTIONS:base.py:38 Check that "firstname" equals to Jeffrey
+INFO     BASE_ASSERTIONS:base.py:38 Check that "lastname" equals to Fox
+INFO     BASE_ASSERTIONS:base.py:38 Check that "bookingdates" equals to checkin=datetime.date(2026, 5, 21) checkout=datetime.date(2026, 5, 22)
