@@ -301,6 +301,7 @@
           },
           "email": {
             "type": "string",
+            "format": "email",
             "minLength": 1
           },
           "phone": {
@@ -313,7 +314,11 @@
           }
         },
         "required": [
-          "depositpaid"
+          "depositpaid",
+          "email",
+          "firstname",
+          "lastname",
+          "phone"
         ]
       },
       "BookingDates": {
