@@ -44,4 +44,4 @@ node_modules
 in-memoria.db
 in-memoria-vectors.db/
 .serena/
-
+memory-bank/

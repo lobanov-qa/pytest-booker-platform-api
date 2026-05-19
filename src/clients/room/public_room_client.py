@@ -1,5 +1,6 @@
 import allure
 
+from typing import Optional
 from httpx import Response
 
 from clients.api_client import APIClient
@@ -33,15 +34,15 @@ class PublicRoomClient(APIClient):
 
     @allure.step("Get all rooms")
     @tracker_room.track_coverage_httpx(RoomRoutes.ROOT)
-    def get_rooms_api(self, query: GetRoomsQuerySchema) -> Response:
+    def get_rooms_api(self, query: Optional[GetRoomsQuerySchema] = None) -> Response:
         """
         Get all rooms optionally filtered by check-in/check-out dates (raw response).
         :param query: Optional date filter.
         :return: HTTP response.
         """
-        return self.get(RoomRoutes.ROOT, params=query.model_dump())
+        return self.get(RoomRoutes.ROOT, params=query.model_dump(exclude_none=True) if query else None)
 
-    def get_rooms(self, query: GetRoomsQuerySchema) -> RoomsResponseSchema:
+    def get_rooms(self, query: Optional[GetRoomsQuerySchema] = None) -> RoomsResponseSchema:
         """
         Get all rooms and return parsed model (expects success).
         :param query: Optional date filter.

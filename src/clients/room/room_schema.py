@@ -60,12 +60,14 @@ class GetRoomsQuerySchema(BaseModel):
     Schema for query parameters when getting rooms (GET /rooms).
     checkin and checkout are optional parameters for filtering availability.
     """
-    checkin: str = Field(..., pattern=r"^\d{4}-\d{2}-\d{2}$", description="Check-in date (YYYY-MM-DD)")
-    checkout: str = Field(..., pattern=r"^\d{4}-\d{2}-\d{2}$", description="Check-out date (YYYY-MM-DD)")
+    checkin: Optional[str] = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$", description="Check-in date (YYYY-MM-DD)")
+    checkout: Optional[str] = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$", description="Check-out date (YYYY-MM-DD)")
 
     @field_validator("checkout")
     @classmethod
-    def validate_checkout(cls, v: str, info) -> str:
+    def validate_checkout(cls, v: Optional[str], info) -> Optional[str]:
+        if v is None:
+            return v
         checkin = info.data.get("checkin")
         if not checkin:
             return v

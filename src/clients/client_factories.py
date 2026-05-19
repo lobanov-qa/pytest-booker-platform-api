@@ -2,6 +2,7 @@ from clients.auth.auth_client import AuthClient
 from clients.booking.private_booking_client import PrivateBookingClient
 from clients.booking.public_booking_client import PublicBookingClient
 from clients.event_hooks import curl_event_hook, log_request_event_hook, log_response_event_hook
+from clients.room.public_room_client import PublicRoomClient
 from config import settings
 
 
@@ -59,6 +60,23 @@ class ClientFactory:
             base_url=settings.booking.client_url,
             timeout=settings.http_client.timeout,
             cookies=cookies,
+            event_hooks={
+                "request": [curl_event_hook, log_request_event_hook],
+                "response": [log_response_event_hook]
+            }
+        )
+
+    @staticmethod
+    def get_public_room_client() -> PublicRoomClient:
+        """
+        Creates and returns a configured PublicRoomClient instance.
+
+        :return: PublicRoomClient configured with base URL and timeout from settings.
+        :rtype: PublicRoomClient
+        """
+        return PublicRoomClient(
+            base_url=settings.room.client_url,
+            timeout=settings.http_client.timeout,
             event_hooks={
                 "request": [curl_event_hook, log_request_event_hook],
                 "response": [log_response_event_hook]
