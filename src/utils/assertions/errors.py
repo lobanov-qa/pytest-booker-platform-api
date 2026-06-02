@@ -18,7 +18,7 @@ def assert_validation_error(
 ) -> None:
     """
     Validates key aspects of a validation error response.
-    Does not require exact text match - only checks for field presence.
+    Does not require exact text match — only checks for field presence.
 
     :param error: Error received from the API.
     :param expected_status: Expected HTTP status code (default: 400).
@@ -28,11 +28,9 @@ def assert_validation_error(
     """
     logger.info(f"Validating error: {error.error}")
 
-    # 1. Validate status and error type
     assert_equal(error.error_code, expected_status, "error_code")
     assert_equal(error.error, expected_error, "error_type")
 
-    # 2. Validate that specified fields are present in error messages
     if expected_fields:
         error_text = " ".join(error.field_errors).lower()
         for field in expected_fields:
@@ -48,7 +46,7 @@ def assert_base_error_response(
     path_contains: Optional[str] = None
 ) -> None:
     """
-    Validates a standard Spring Boot error response (e.g., for missing query parameters).
+    Validates a standard Spring Boot error response.
 
     :param error: Error response received from the API.
     :param expected_status: Expected HTTP status code.
@@ -61,5 +59,5 @@ def assert_base_error_response(
 
     if path_contains:
         assert path_contains in error.path, (
-            f"Expected '{path_contains}' in path, got '{error.path}'"
+            f"Expected path to contain '{path_contains}', but got '{error.path}'"
         )

@@ -6,122 +6,122 @@ from typing import Optional
 
 class Fake:
     """
-    Класс для генерации случайных тестовых данных с использованием библиотеки Faker.
+    Generates random test data using the Faker library.
+    All methods are wrapped to provide deterministic, valid test data
+    matching the API constraints (length limits, patterns, etc.).
     """
 
     def __init__(self, faker: Faker):
-        """
-        :param faker: Экземпляр Faker для генерации данных.
-        """
         self.faker = faker
 
     def integer(self, start: int = 1, end: int = 100) -> int:
-        """
-        Генерирует случайное целое число в заданном диапазоне.
-
-        :param start: Начало диапазона (включительно).
-        :param end: Конец диапазона (включительно).
-        :return: Случайное целое число.
-        """
+        """Generates a random integer in [start, end]."""
         return self.faker.random_int(start, end)
-    
-    
+
     def booking_dates(
         self,
         checkin: Optional[date] = None,
         delta: int = 1,
-        max_days_ahead: int = 90  # например, максимум 3 месяца вперёд
+        max_days_ahead: int = 90
     ) -> dict:
-        """
-        Генерирует валидный словарь bookingdates с checkin и checkout.
-        Обеспечивает, что checkout > checkin, и checkin не слишком далёкий.
-
-        :param checkin: Дата заезда. Если None — берётся случайная дата в ближайшие max_days_ahead.
-        :param delta: Разница между checkout и checkin в днях (минимум 1).
-        :param max_days_ahead: Максимальное количество дней вперёд для checkin.
-        :return: Словарь вида {"checkin": "2025-04-01", "checkout": "2025-04-02"}.
-        """
-        # Если checkin не передан — выбираем случайную дату в ближайшие max_days_ahead
+        """Generates valid booking dates with checkin < checkout."""
         if checkin is None:
             random_offset = self.faker.random_int(min=1, max=max_days_ahead)
             checkin = date.today() + timedelta(days=random_offset)
-
-        # Убедимся, что delta >= 1
         delta = max(delta, 1)
         checkout = checkin + timedelta(days=delta)
-
-        return {
-            "checkin": checkin.isoformat(),
-            "checkout": checkout.isoformat()
-        }
-
+        return {"checkin": checkin.isoformat(), "checkout": checkout.isoformat()}
 
     def room_id(self) -> int:
-        """
-        Генерирует валидный roomid (целое число ≥1).
-
-        :return: Случайный roomid.
-        """
-        return self.integer(1, 100)  
+        """Generates a valid room ID (integer >= 1)."""
+        return self.integer(1, 100)
 
     def phone(self) -> str:
-        """
-        Генерирует валидный телефон (11–21 символ).
-        Пример: +79123456789
-
-        :return: Случайный номер телефона.
-        """
+        """Generates a phone number (11-21 chars, digits only)."""
         phone_number = self.faker.phone_number()
         while len(phone_number) < 11:
             phone_number = self.faker.phone_number()
         return phone_number[:21]
 
     def first_name(self, min_length: int = 3, max_length: int = 18) -> str:
-        """
-        Генерирует имя с учётом ограничений длины.
-
-        :param min_length: Минимальная длина.
-        :param max_length: Максимальная длина.
-        :return: Имя в диапазоне длины.
-        """
+        """Generates a first name within length constraints."""
         name = self.faker.first_name()
-        # Убедимся, что длина в пределах
         while len(name) < min_length or len(name) > max_length:
             name = self.faker.first_name()
         return name
 
-    def last_name(self, min_length: int = 3, max_length = 30) -> str:
-        """
-        Генерирует фамилию с учётом ограничений длины.
-
-        :param min_length: Минимальная длина.
-        :param max_length: Максимальная длина.
-        :return: Фамилия в диапазоне длины.
-        """
+    def last_name(self, min_length: int = 3, max_length=30) -> str:
+        """Generates a last name within length constraints."""
         name = self.faker.last_name()
         while len(name) < min_length or len(name) > max_length:
             name = self.faker.last_name()
         return name
 
     def deposit_paid(self) -> bool:
-        """
-        Генерирует значение для depositpaid.
-
-        :return: Случайное булево значение.
-        """
         return self.faker.boolean()
 
     def email(self, domain: str | None = "example.com") -> str:
-        """
-        Переопределили с domain по умолчанию, чтобы избежать None.
-        """
         return self.faker.email(domain=domain)
 
-    def date_string(self, days_offset: int = 0) -> str:
-        """Генерирует дату в формате YYYY-MM-DD."""
-        target_date = date.today() + timedelta(days=days_offset)
-        return target_date.isoformat()
+    def room_name(self) -> str:
+        return f"Room {self.faker.word().title()} {self.integer(1, 999)}"
+
+    def room_type(self) -> str:
+        return self.faker.random_element(["Single", "Double", "Twin", "Family", "Suite"])
+
+    def room_accessible(self) -> bool:
+        return self.faker.boolean()
+
+    def room_image(self) -> str:
+        return f"https://dummyimage.com/{self.integer(100, 800)}x{self.integer(50, 600)}"
+
+    def room_description(self) -> str:
+        return self.faker.paragraph(nb_sentences=2)
+
+    def room_features(self) -> list[str]:
+        return self.faker.words(nb=3)
+
+    def room_price(self) -> int:
+        return self.integer(50, 999)
+
+    def message_subject(self) -> str:
+        return self.faker.sentence(nb_words=4)[:100]
+
+    def message_description(self) -> str:
+        return self.faker.paragraph(nb_sentences=4)[:2000]
+
+    def company_name(self) -> str:
+        return self.faker.company()
+
+    def branding_description(self) -> str:
+        return self.faker.catch_phrase()
+
+    def directions_text(self) -> str:
+        return self.faker.paragraph(nb_sentences=2)
+
+    def logo_url(self) -> str:
+        return f"https://placekitten.com/{self.integer(200, 800)}/{self.integer(200, 600)}"
+
+    def map_latitude(self) -> float:
+        return self.faker.latitude()
+
+    def map_longitude(self) -> float:
+        return self.faker.longitude()
+
+    def address_line1(self) -> str:
+        return self.faker.street_address()
+
+    def address_line2(self) -> str:
+        return self.faker.secondary_address()
+
+    def post_town(self) -> str:
+        return self.faker.city()
+
+    def county(self) -> str:
+        return self.faker.state()
+
+    def post_code(self) -> str:
+        return self.faker.postcode()
 
 
-# Создаем экземпляр класса Fake с использованием Faker
 fake = Fake(faker=Faker())

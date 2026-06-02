@@ -41,6 +41,7 @@ node_modules
 /gh-pages/
 
 .continue/
+.hermes/
 in-memoria.db
 in-memoria-vectors.db/
 .serena/

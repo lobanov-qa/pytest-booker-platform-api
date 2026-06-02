@@ -1,4 +1,3 @@
-
 <script dangerouslySetInnerHTML={{__html: /* javascript */`
   function switchLanguage(lang) {
     localStorage.setItem("preferred-language", lang);
@@ -109,173 +108,207 @@
 </div>
 
 <style>{`
-.service-buttons {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin: 20px 0;
-}
+  .service-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
 
-.service-button {
-  padding: 10px 20px;
-  color: white;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 0.875rem;
-}
+  .service-button {
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.875rem;
+  }
 
-.service-button.auth { background: #3b82f6; }
-.service-button.booking { background: #10b981; }
-.service-button.room { background: #8b5cf6; }
-.service-button.message { background: #f97316; }
-.service-button.branding { background: #ec4899; }
-.service-button.report { background: #ef4444; }
+  .service-button.auth { background: #3b82f6; }
+  .service-button.booking { background: #10b981; }
+  .service-button.room { background: #8b5cf6; }
+  .service-button.message { background: #f97316; }
+  .service-button.branding { background: #ec4899; }
+  .service-button.report { background: #ef4444; }
 
-.service-button:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-  transition: all 0.2s;
-}
+  .service-button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    transition: all 0.2s;
+  }
 `}</style>
 
-Документ описывает требования к авторизации для каждого эндпоинта согласно анализу **локально развернутых Swagger UI** и **официальной Postman-коллекции** к [restful-booker-platform](https://github.com/mwinteringham/restful-booker-platform).
+Документ описывает реальное поведение API каждого микросервиса [restful-booker-platform](https://github.com/mwinteringham/restful-booker-platform). Все статусы и форматы ответов проверены через curl.
 
-> 🔍 **Важно о документации**:
-> - Swagger UI доступен **только локально** после запуска сервисов через Docker.
-> - Эндпоинты и схемы проверены по OpenAPI, генерируемому каждым микросервисом.
-> - Дополнительно сверено с Postman-коллекцией.
+> 🔍 **Проверка API**:
+> - Swagger/OpenAPI: `http://localhost:<port>/<service>/v3/api-docs`
+> - Health: `http://localhost:<port>/<service>/actuator/health`
+> - Статусы: ✅ соответствует OpenAPI, ⚠️ отличается от спецификации
 
 ---
 
 ## Важные замечания по авторизации
 
-- **Формат токена**: строка (например, `abc123`).
-- **Получение токена**:
-  - `POST /auth/login` с телом `{"username": "admin", "password": "password"}`.
-  - **Токен возвращается в `Set-Cookie`**, а не в теле (несмотря на OpenAPI).
-  - Тело ответа — пустое.
-- **Передача токена**:
-  - Для всех последующих запросов: в заголовке `Cookie: token=<значение>`.
-  - Для `/auth/validate` и `/auth/logout`: токен отправляется в теле: `{"token": "..."}`.
-- **Жизненный цикл токена**: На удалённом сервере токен сбрасывается каждые 10 минут.
-- **Примечание по клиентам**: `*` — клиент ещё не реализован.
-
+- **Токен** — строка (например, `abc123`).
+- **Получение**: `POST /auth/login` с телом `{"username": "admin", "password": "password"}`.
+- **Возвращается в `Set-Cookie`**, не в теле.
+- **Передача**: `Cookie: token=<значение>`.
 
 ---
 
-## Сервис: Auth (Аутентификация)
+## Сервис: Auth
 
 - **Базовый URL**: `http://localhost:3004`
-- **Swagger UI**: [http://localhost:3004/auth/swagger-ui/index.html](http://localhost:3004/auth/swagger-ui/index.html)
-- **Проверка здоровья сервиса**: [http://localhost:3004/auth/actuator/health](http://localhost:3004/auth/actuator/health)
+- **Swagger**: `http://localhost:3004/auth/v3/api-docs`
+- **Health**: `http://localhost:3004/auth/actuator/health`
 
 <div class="table-container">
 
-| Метод | Путь              | Назначение         | Клиент             | Примечания |
-|-------|-------------------|--------------------|--------------------|------------|
-| POST  | `/auth/login`     | Создание токена    | `AuthClient` | Токен в `Set-Cookie`. Тело пустое. |
-| POST  | `/auth/validate`  | Валидация токена   | `AuthClient` | Токен в теле: `{"token": "abc123"}` |
-| POST  | `/auth/logout`    | Уничтожение токена | `AuthClient` | Токен в теле: `{"token": "abc123"}` |
+| Метод | Путь | Назначение | Клиент | Статус | Примечания |
+|-------|------|-----------|--------|--------|------------|
+| POST | `/auth/login` | Вход | `AuthClient` | **200** ✅ | Токен в `Set-Cookie` |
+| POST | `/auth/validate` | Валидация | `AuthClient` | **200** ✅ | Токен в теле: `{"token": "..."}` |
+| POST | `/auth/logout` | Выход | `AuthClient` | **200** ✅ | Токен в теле: `{"token": "..."}` |
 
 </div>
 
 ---
 
-## Сервис: Booking (Бронирования)
+## Сервис: Booking
 
 - **Базовый URL**: `http://localhost:3000`
-- **Swagger UI**: [http://localhost:3000/booking/swagger-ui/index.html](http://localhost:3000/booking/swagger-ui/index.html)
-- **Проверка здоровья сервиса**: [http://localhost:3000/booking/actuator/health](http://localhost:3000/booking/actuator/health)
+- **Swagger**: `http://localhost:3000/booking/v3/api-docs`
+- **Health**: `http://localhost:3000/booking/actuator/health`
 
 <div class="table-container">
 
-| Метод | Путь                   | Назначение                     | Клиент               | Требует аутентификации | Примечания |
-|-------|------------------------|--------------------------------|----------------------|------------------------|------------|
-| GET   | `/booking/unavailable` | Проверка доступности комнат  | `PublicBookingClient` | ❌ Нет | Обязательные параметры: `checkin`, `checkout` |
-| POST  | `/booking/`            | Создание бронирования         | `PublicBookingClient` | ❌ Нет | OpenAPI не требует токен |
-| GET   | `/booking/summary`     | Сводка по броням              | `PublicBookingClient` | ❌ Нет | Обязательный параметр: `roomid` |
-| GET   | `/booking/{id}`        | Детали бронирования           | `PrivateBookingClient` | ✅ Да | Токен в `Cookie` |
-| GET   | `/booking/`            | Все бронирования              | `PrivateBookingClient` | ✅ Да | Опциональный параметр: `roomid` |
-| PUT   | `/booking/{id}`        | Обновление бронирования       | `PrivateBookingClient` | ✅ Да | Токен в `Cookie` |
-| DELETE| `/booking/{id}`        | Удаление бронирования         | `PrivateBookingClient` | ✅ Да | Токен в `Cookie` |
+| Метод | Путь | Назначение | Клиент | Требует токен | Статус | Примечания |
+|-------|------|-----------|--------|:----------:|--------|-----------|
+| GET | `/booking/unavailable` | Доступность | `PublicBookingClient` | ❌ | **200** ✅ | Параметры: `checkin`, `checkout` |
+| POST | `/booking/` | Создание | `PublicBookingClient` | ❌ | **201** ⚠️ | Спека: 200. Реальность: 201 |
+| GET | `/booking/summary` | Сводка | `PublicBookingClient` | ❌ | **200** ✅ | Параметр: `roomid` |
+| GET | `/booking/{id}` | Детали | `PrivateBookingClient` | ✅ | **200** ✅ | — |
+| GET | `/booking/` | Все брони | `PrivateBookingClient` | ✅ | **200** ✅ | Опциональный: `roomid` |
+| PUT | `/booking/{id}` | Обновление | `PrivateBookingClient` | ✅ | **200** ✅ | — |
+| DELETE | `/booking/{id}` | Удаление | `PrivateBookingClient` | ✅ | **202** ⚠️ | Спека: 200. Реальность: 202 |
 
 </div>
 
+### Отклонения от OpenAPI
 
+| Эндпоинт | Ожидание | Реальность |
+|----------|---------|------------|
+| `POST /booking/` | 200 OK | **201 Created** |
+| `DELETE /booking/{id}` | 200 OK | **202 Accepted** |
+| `GET /booking/-1` (отрицательный ID) | 400 Bad Request | **404 Not Found** |
 
 ---
 
-## Сервис: Room (Комнаты)
+## Сервис: Room
 
 - **Базовый URL**: `http://localhost:3001`
-- **Swagger UI**: [http://localhost:3001/room/swagger-ui/index.html](http://localhost:3001/room/swagger-ui/index.html)
-- **Проверка здоровья сервиса**: [http://localhost:3001/room/actuator/health](http://localhost:3001/room/actuator/health)
+- **Swagger**: `http://localhost:3001/room/v3/api-docs`
+- **Health**: `http://localhost:3001/room/actuator/health`
 
 <div class="table-container">
 
-| Метод | Путь             | Назначение           | Клиент             | Примечания |
-|-------|------------------|----------------------|--------------------|------------|
-| GET   | `/room/`         | Все комнаты          | `PublicRoomClient*` | Опциональные: `checkin`, `checkout` |
-| GET   | `/room/{id}`     | Детали комнаты       | `PublicRoomClient*` | – |
-| POST  | `/room/`         | Создание комнаты     | `PrivateRoomClient*` | Токен в `Cookie` |
-| PUT   | `/room/{id}`     | Обновление комнаты   | `PrivateRoomClient*` | Токен в `Cookie` |
-| DELETE| `/room/{id}`     | Удаление комнаты     | `PrivateRoomClient*` | Токен в `Cookie` |
+| Метод | Путь | Назначение | Клиент | Требует токен | Статус | Примечания |
+|-------|------|-----------|--------|:----------:|--------|-----------|
+| GET | `/room/` | Все комнаты | `PublicRoomClient` | ❌ | **200** ✅ | Опциональные: `checkin`, `checkout` |
+| GET | `/room/{id}` | Детали | `PublicRoomClient` | ❌ | **200** ✅ | — |
+| POST | `/room/` | Создание | `PrivateRoomClient` | ✅ | **201** ✅ | Требует `roomPrice` >= 1 |
+| PUT | `/room/{id}` | Обновление | `PrivateRoomClient` | ✅ | **202** ⚠️ | Спека: 200. Реальность: 202 |
+| DELETE | `/room/{id}` | Удаление | `PrivateRoomClient` | ✅ | **202** ⚠️ | Спека: 200. Реальность: 202 |
 
 </div>
 
+### Отклонения от OpenAPI
+
+| Эндпоинт | Ожидание | Реальность |
+|----------|---------|------------|
+| `GET /room/9999` (не найдено) | 404 | **500** |
+| `GET /room/0` (невалидный ID) | 400 | **500** |
+| `GET /room/-1` (отрицательный ID) | 400 | **404** |
+| `POST /room/` поле `roomPrice` | опционально | **Required >= 1** |
+
+### Сериализация
+- Поля в **camelCase** (roomName, type, roomPrice, roomid)
+- `null` → 400. Используется `exclude_none=True`
+
 ---
 
-## Сервис: Message (Сообщения)
+## Сервис: Message
 
 - **Базовый URL**: `http://localhost:3006`
-- **Swagger UI**: [http://localhost:3006/message/swagger-ui/index.html](http://localhost:3006/message/swagger-ui/index.html)
-- **Проверка здоровья сервиса**: [http://localhost:3006/message/actuator/health](http://localhost:3006/message/actuator/health)
+- **Swagger**: `http://localhost:3006/message/v3/api-docs`
+- **Health**: `http://localhost:3006/message/actuator/health`
 
 <div class="table-container">
 
-| Метод | Путь               | Назначение               | Клиент               | Примечания |
-|-------|--------------------|--------------------------|----------------------|------------|
-| GET   | `/message/`        | Все сообщения            | `PublicMessageClient*` | – |
-| GET   | `/message/count`   | Кол-во непрочитанных     | `PublicMessageClient*` | – |
-| POST  | `/message/`        | Создание сообщения       | `PublicMessageClient*` | – |
-| GET   | `/message/{id}`    | Детали сообщения         | `PrivateMessageClient*` | Токен в `Cookie` |
-| PUT   | `/message/{id}/read`| Пометить как прочитанное| `PrivateMessageClient*` | Токен в `Cookie` |
-| DELETE| `/message/{id}`    | Удаление сообщения       | `PrivateMessageClient*` | Токен в `Cookie` |
+| Метод | Путь | Назначение | Клиент | Требует токен | Статус | Примечания |
+|-------|------|-----------|--------|:----------:|--------|-----------|
+| GET | `/message/` | Все сообщения | `PublicMessageClient` | ❌ | **200** ✅ | — |
+| GET | `/message/count` | Кол-во | `PublicMessageClient` | ❌ | **200** ✅ | — |
+| POST | `/message/` | Создание | `PublicMessageClient` | ❌ | **201** ⚠️ | Спека: 200. Реальность: 201 |
+| GET | `/message/{id}` | Детали | `PublicMessageClient` | ❌ | **200** ✅ | **Публичный**, токен не нужен |
+| PUT | `/message/{id}/read` | Прочитано | `PrivateMessageClient` | ✅ | **202** ⚠️ | Спека: 200. Реальность: 202 |
+| DELETE | `/message/{id}` | Удаление | `PrivateMessageClient` | ✅ | **202** ⚠️ | Спека: 200. Реальность: 202 |
 
 </div>
 
+### Отклонения от OpenAPI
+
+| Эндпоинт | Ожидание | Реальность |
+|----------|---------|------------|
+| `GET /message/{id}` | требует токен | **Публичный** |
+| `GET /message/9999` (не найдено) | 404 | **500** |
+
+### Схемы
+- `MessageSchema`: messageid, name, email, phone, subject, description
+- `MessageSummarySchema` (список): id, name, subject, read — поле `id`, не `messageid`
+
 ---
 
-## Сервис: Branding (Брендирование)
+## Сервис: Branding
 
 - **Базовый URL**: `http://localhost:3002`
-- **Swagger UI**: [http://localhost:3002/branding/swagger-ui/index.html](http://localhost:3002/branding/swagger-ui/index.html)
-- **Проверка здоровья сервиса**: [http://localhost:3002/branding/actuator/health](http://localhost:3002/branding/actuator/health)
+- **Swagger**: `http://localhost:3002/branding/v3/api-docs`
+- **Health**: `http://localhost:3002/branding/actuator/health`
 
 <div class="table-container">
 
-| Метод | Путь           | Назначение               | Клиент               | Примечания |
-|-------|----------------|--------------------------|----------------------|------------|
-| GET   | `/branding/`   | Данные брендинга         | `PublicBrandingClient*` | – |
-| PUT   | `/branding/`   | Обновление брендинга     | `PrivateBrandingClient*` | Токен в `Cookie` |
+| Метод | Путь | Назначение | Клиент | Требует токен | Статус | Примечания |
+|-------|------|-----------|--------|:----------:|--------|-----------|
+| GET | `/branding/` | Данные | `PublicBrandingClient` | ❌ | **200** ✅ | — |
+| PUT | `/branding/` | Обновление | `PrivateBrandingClient` | ✅ | **202** ⚠️ | Спека: 200. Реальность: 202 |
 
 </div>
 
+### Отклонения от OpenAPI
+
+| Эндпоинт | Ожидание | Реальность |
+|----------|---------|------------|
+| `PUT /branding/` без nested объектов | — | **500** (NullPointerException) |
+| `contact.phone` > 15 символов | — | **500** (VARCHAR(15) в БД) |
+
+### Сериализация
+- Поля в **camelCase** (logoUrl, postTown, postCode)
+- `phone`: только цифры, макс 15 символов
+
 ---
 
-## Сервис: Report (Отчёты)
+## Сервис: Report
 
 - **Базовый URL**: `http://localhost:3005`
-- **Swagger UI**: [http://localhost:3005/report/swagger-ui/index.html](http://localhost:3005/report/swagger-ui/index.html)
-- **Проверка здоровья сервиса**: [http://localhost:3005/report/actuator/health](http://localhost:3005/report/actuator/health)
+- **Swagger**: `http://localhost:3005/report/v3/api-docs`
+- **Health**: `http://localhost:3005/report/actuator/health`
 
 <div class="table-container">
 
-| Метод | Путь               | Назначение               | Клиент             | Примечания |
-|-------|--------------------|--------------------------|--------------------|------------|
-| GET   | `/report/room/{id}`| Отчёт по комнате         | `PublicReportClient*` | – |
-| GET   | `/report/`         | Отчёт по всем комнатам   | `PrivateReportClient*` | Токен в `Cookie` |
+| Метод | Путь | Назначение | Клиент | Требует токен | Статус | Примечания |
+|-------|------|-----------|--------|:----------:|--------|-----------|
+| GET | `/report/room/{id}` | Отчёт по комнате | `PublicReportClient` | ❌ | **200** ✅ | Несуществующие id → 200 с пустым списком |
+| GET | `/report/` | Все отчёты | `PrivateReportClient` | ✅ | **200** ✅ | — |
 
 </div>
 
@@ -374,4 +407,3 @@
     }
   }
 `}</style>
-

@@ -1,10 +1,8 @@
 import allure
 
-from clients.booking.booking_schema import CreateBookingRequestSchema, CreateBookingResponseSchema, BookingDates, \
-    GetBookingsResponseSchema, UpdateBookingRequestSchema, UpdateBookingResponseSchema, BookingSchema
-from clients.errors_schema import BaseErrorResponse
-from utils.assertions.base import assert_equal, assert_is_instance, assert_positive, assert_length_equal
-from utils.assertions.errors import assert_base_error_response
+from clients.booking.booking_schema import (CreateBookingRequestSchema, CreateBookingResponseSchema,
+    GetBookingsResponseSchema, UpdateBookingRequestSchema, UpdateBookingResponseSchema, BookingSchema)
+from utils.assertions.base import assert_equal, assert_is_instance, assert_positive
 from utils.logger import get_logger
 
 logger = get_logger("BOOKING_ASSERTIONS")
@@ -28,17 +26,6 @@ def assert_create_booking_response(request: CreateBookingRequestSchema, response
     assert_equal(response.booking.lastname, request.lastname, "lastname")
     assert_equal(response.booking.bookingdates, request.bookingdates, "bookingdates")
     
-
-@allure.step("Assert booking dates equal")
-def assert_booking_dates_equal(
-    actual: BookingDates,
-    expected: BookingDates
-) -> None:
-    """Helper method for comparing dates."""
-    logger.info("Assert booking dates equal")
-    assert_equal(actual.checkin, expected.checkin, "bookingdates.checkin")
-    assert_equal(actual.checkout, expected.checkout, "bookingdates.checkout")
-
 
 @allure.step("Check booking")
 def assert_booking(actual: BookingSchema, expected: BookingSchema):
@@ -115,17 +102,4 @@ def assert_get_bookings_response(
         )
 
         assert_booking(found_booking, expected_booking)
-
-
-@allure.step("Check booking not found response")
-def assert_booking_not_found_response(error: BaseErrorResponse):
-    """
-    Function to check the error if the booking is not found on the server.
-
-    :param error: Actual API error response.
-    :raises AssertionError: If the actual response does not match the "Not Found" error.
-    """
-    logger.info("Check booking not found response")
-    assert_base_error_response(error, expected_status=404)
-
 

@@ -40,7 +40,7 @@ class PublicBookingClient(APIClient):
         :param request: Booking data.
         :return: HTTP response.
         """
-        return self.post(BookingRoutes.ROOT, json=request.model_dump(mode='json'))
+        return self.post(BookingRoutes.ROOT, json=request.model_dump(mode='json', exclude_none=True))
 
     def create_booking(self, request: CreateBookingRequestSchema) -> CreateBookingResponseSchema:
         """

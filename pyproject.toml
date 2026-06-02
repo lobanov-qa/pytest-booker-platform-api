@@ -30,7 +30,13 @@ python_functions = "test_*"
 markers = [
     "authentication: auth tests.",
     "booking: booking tests.",
+    "branding: branding tests.",
     "health: checking the status of servers.",
+    "message: message tests.",
+    "report: report tests.",
+    "room: room tests.",
+    "smoke: critical happy-path tests for smoke/sanity runs.",
+    "e2e: end-to-end scenarios covering multiple services.",
     "regression: marking for regression tests.",
     "negative: marking for negative tests.",
     "positive: marking for positive tests."
