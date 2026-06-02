@@ -1,8 +1,11 @@
+from httpx import Cookies
+
 from clients.auth.auth_client import AuthClient
 from clients.booking.private_booking_client import PrivateBookingClient
 from clients.booking.public_booking_client import PublicBookingClient
 from clients.event_hooks import curl_event_hook, log_request_event_hook, log_response_event_hook
 from clients.room.public_room_client import PublicRoomClient
+from clients.room.private_room_client import PrivateRoomClient
 from config import settings
 
 
@@ -14,6 +17,7 @@ class ClientFactory:
     (base URL, timeout) pulled from settings, ensuring consistency across tests.
     It does not perform HTTP requests itself — only constructs and returns client instances.
     """
+
     @staticmethod
     def get_auth_client() -> AuthClient:
         """
@@ -28,7 +32,7 @@ class ClientFactory:
             event_hooks={
                 "request": [curl_event_hook, log_request_event_hook],
                 "response": [log_response_event_hook]
-                }
+            }
         )
 
     @staticmethod
@@ -77,6 +81,23 @@ class ClientFactory:
         return PublicRoomClient(
             base_url=settings.room.client_url,
             timeout=settings.http_client.timeout,
+            event_hooks={
+                "request": [curl_event_hook, log_request_event_hook],
+                "response": [log_response_event_hook]
+            }
+        )
+
+    @staticmethod
+    def get_private_room_client(cookies: Cookies) -> PrivateRoomClient:
+        """
+        Creates and returns a configured PrivateRoomClient instance.
+        :param cookies: Auth cookies obtained via authentication.
+        :return: PrivateRoomClient configured with base URL, timeout and cookies.
+        """
+        return PrivateRoomClient(
+            base_url=settings.room.client_url,
+            timeout=settings.http_client.timeout,
+            cookies=cookies,
             event_hooks={
                 "request": [curl_event_hook, log_request_event_hook],
                 "response": [log_response_event_hook]
