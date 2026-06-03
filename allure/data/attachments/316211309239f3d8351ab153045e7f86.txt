@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=m3vHvwerDsLxsNCU' \
+  -H 'content-length: 251' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Step 151","type":"Suite","accessible":true,"image":"https://dummyimage.com/671x52","description":"Through she idea capital cultural think individual. Receive issue land large want.","features":["have","plant","edge"],"roomPrice":619}'

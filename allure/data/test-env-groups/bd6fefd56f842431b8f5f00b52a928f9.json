@@ -1,1 +1,1 @@
-{"id":"bd6fefd56f842431b8f5f00b52a928f9","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_delete_booking_not_found","name":"DELETE /booking/9999 - Delete non-existent booking (404)","status":"passed","testResultsByEnv":{"default":"702b7d9d8ed12feaf4e2d399be0c7cfe"}}
+{"id":"bd6fefd56f842431b8f5f00b52a928f9","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_delete_booking_not_found","name":"DELETE /booking/9999 - Delete non-existent booking (404)","status":"passed","testResultsByEnv":{"default":"4685f77fe3780243294436a5aed6a0ed"}}

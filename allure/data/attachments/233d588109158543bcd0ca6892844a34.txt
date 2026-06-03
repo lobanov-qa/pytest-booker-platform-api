@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3001/room/1' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=invalid_token_value' \
+  -H 'content-length: 240' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Win 545","type":"Twin","accessible":false,"image":"https://dummyimage.com/697x285","description":"East listen history. Evening happen local study energy what cell.","features":["line","health","professor"],"roomPrice":442}'

@@ -1,1 +1,1 @@
-{"id":"a55a5db0a3760745b33192b5bfffdfc0","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_create_room_high_level","name":"POST /room/ - High-level method for creating room","status":"passed","testResultsByEnv":{"default":"9c1aa146d137d9dd707bbfeb55c113a8"}}
+{"id":"a55a5db0a3760745b33192b5bfffdfc0","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_create_room_high_level","name":"POST /room/ - High-level method for creating room","status":"passed","testResultsByEnv":{"default":"9650c05b119e5e22049d45ca4f1539e2"}}

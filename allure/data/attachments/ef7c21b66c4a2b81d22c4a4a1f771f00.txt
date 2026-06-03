@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=gJQYyGiKiZMOUHNY' \
+  -H 'content-length: 199' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Quality 635","type":"Family","accessible":true,"image":"https://dummyimage.com/517x249","description":"Prove dark television.","features":["read","threat","design"],"roomPrice":164}'

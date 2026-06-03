@@ -1,1 +1,1 @@
-{"id":"412808a85210f8d6f10738583196b2e1","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_update_room_high_level","name":"PUT /room/9 - High-level method for updating room","status":"passed","testResultsByEnv":{"default":"357e2c443ae33a33e1f88a528e2de78b"}}
+{"id":"412808a85210f8d6f10738583196b2e1","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_update_room_high_level","name":"PUT /room/9 - High-level method for updating room","status":"passed","testResultsByEnv":{"default":"ff2ca4c9994837178988b2bce696c56f"}}

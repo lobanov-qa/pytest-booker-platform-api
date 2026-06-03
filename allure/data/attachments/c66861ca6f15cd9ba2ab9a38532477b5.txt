@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3000/booking/' \
+  -H 'host: localhost:3000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 198' \
+  -H 'content-type: application/json' \
+  -d '{"depositpaid":true,"roomid":1,"firstname":"Gregory","lastname":"Chavez","bookingdates":{"checkin":"2026-07-20","checkout":"2026-07-21"},"email":"qbarrera@example.com","phone":"+1-361-851-0853x731"}'

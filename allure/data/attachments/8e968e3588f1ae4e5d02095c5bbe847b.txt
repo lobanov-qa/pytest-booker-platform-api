@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=SVYaCkY6YxIfJtLe' \
+  -H 'content-length: 210' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Size 757","type":"Double","accessible":false,"image":"https://dummyimage.com/659x234","description":"Recognize contain left simple.","features":["probably","charge","company"],"roomPrice":997}'

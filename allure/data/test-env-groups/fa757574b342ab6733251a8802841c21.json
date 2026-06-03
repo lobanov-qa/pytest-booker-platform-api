@@ -1,1 +1,1 @@
-{"id":"fa757574b342ab6733251a8802841c21","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_rooms_with_dates","name":"GET /room/ - Get rooms filtered by dates","status":"passed","testResultsByEnv":{"default":"01db6691b30308957e19e428d121ec8f"}}
+{"id":"fa757574b342ab6733251a8802841c21","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_rooms_with_dates","name":"GET /room/ - Get rooms filtered by dates","status":"passed","testResultsByEnv":{"default":"754758993b18f33f45760a3af4b487a9"}}
