@@ -1,0 +1,5 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:3000/booking/unavailable?checkin=2026-01-40&checkout=2026-01-45
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 500  from http://localhost:3000/booking/unavailable?checkin=2026-01-40&checkout=2026-01-45
+INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 500
+INFO     ERRORS_ASSERTIONS:errors.py:56 Validating query error: Internal Server Error
+INFO     BASE_ASSERTIONS:base.py:38 Check that "error_status" equals to 500

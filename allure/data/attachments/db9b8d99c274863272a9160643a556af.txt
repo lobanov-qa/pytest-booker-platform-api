@@ -1,0 +1,8 @@
+curl -X 'GET' \
+  'http://localhost:3001/room/9' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=k6KsVepLJWxemFeq'

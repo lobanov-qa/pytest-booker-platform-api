@@ -1,1 +1,1 @@
-{"id":"d7a51e22697ef7a5be7276370376ded4","fullName":"tests.booking.test_booking.TestBooking#test_get_summary_high_level","name":"GET /booking/summary - High-level method for getting summary","status":"passed","testResultsByEnv":{"default":"6e24eef93fa6003b02aac1b013181765"}}
+{"id":"d7a51e22697ef7a5be7276370376ded4","fullName":"tests.booking.test_booking.TestBooking#test_get_summary_high_level","name":"GET /booking/summary - High-level method for getting summary","status":"passed","testResultsByEnv":{"default":"80d376fd2f6f092b4849974cc5058a1f"}}

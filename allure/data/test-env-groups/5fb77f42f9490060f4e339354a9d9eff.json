@@ -1,0 +1,1 @@
+{"id":"5fb77f42f9490060f4e339354a9d9eff","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_delete_room_202","name":"DELETE /room/10 - Delete room successfully (202)","status":"passed","testResultsByEnv":{"default":"f535359051c8396c105e0a89ffe20f13"}}

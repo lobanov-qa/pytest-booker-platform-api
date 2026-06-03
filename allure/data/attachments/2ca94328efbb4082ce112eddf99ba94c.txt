@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=QqwZZIFofDBjI8Gc' \
+  -H 'content-length: 205' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Change 273","type":"Single","accessible":true,"image":"https://dummyimage.com/431x248","description":"Future ability old then half.","features":["side","whether","voice"],"roomPrice":727}'

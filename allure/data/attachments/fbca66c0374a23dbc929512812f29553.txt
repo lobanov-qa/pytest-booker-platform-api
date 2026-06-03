@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=eR1M5pxSzl35WXTH' \
+  -H 'content-length: 267' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Simple 128","type":"Family","accessible":false,"image":"https://dummyimage.com/186x432","description":"Read themselves measure behind very year instead vote. Nearly plan sing cell fund voice TV.","features":["six","reveal","answer"],"roomPrice":492}'

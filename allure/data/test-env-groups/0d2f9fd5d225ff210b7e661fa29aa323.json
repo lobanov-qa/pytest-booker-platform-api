@@ -1,1 +1,1 @@
-{"id":"0d2f9fd5d225ff210b7e661fa29aa323","fullName":"tests.booking.test_booking.TestBooking#test_create_booking","name":"POST /booking - Create booking successfully (201)","status":"passed","testResultsByEnv":{"default":"2cae9bd211d5a77e22435df0c9d09cc5"}}
+{"id":"0d2f9fd5d225ff210b7e661fa29aa323","fullName":"tests.booking.test_booking.TestBooking#test_create_booking","name":"POST /booking - Create booking successfully (201)","status":"passed","testResultsByEnv":{"default":"473a06c8443655e4bc775ba7171b5dde"}}

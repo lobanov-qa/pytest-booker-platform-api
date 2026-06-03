@@ -1,0 +1,8 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3001/room/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 400  from http://localhost:3001/room/
+INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 400
+INFO     ERRORS_ASSERTIONS:errors.py:29 Validating error: BAD_REQUEST
+INFO     BASE_ASSERTIONS:base.py:38 Check that "error_code" equals to 400
+INFO     BASE_ASSERTIONS:base.py:38 Check that "error_type" equals to BAD_REQUEST

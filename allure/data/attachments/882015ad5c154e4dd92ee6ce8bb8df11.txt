@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3001/room/8' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=XbJnVeihFuHxua05' \
+  -H 'content-length: 212' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Fear 735","type":"Single","accessible":true,"image":"https://dummyimage.com/291x152","description":"Per some long alone country open prove.","features":["service","you","stage"],"roomPrice":175}'

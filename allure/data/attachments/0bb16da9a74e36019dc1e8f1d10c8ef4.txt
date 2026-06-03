@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=OeMcj33kvRMvu5qJ' \
+  -H 'content-length: 243' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Relate 106","type":"Double","accessible":true,"image":"https://dummyimage.com/767x86","description":"Wait state before less local four focus. State Republican analysis sell.","features":["glass","who","down"],"roomPrice":880}'

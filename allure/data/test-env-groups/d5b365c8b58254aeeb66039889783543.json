@@ -1,0 +1,1 @@
+{"id":"d5b365c8b58254aeeb66039889783543","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_update_room_unauthorized_403","name":"PUT /room/1 - Update room without authentication (403)","status":"passed","testResultsByEnv":{"default":"e21b72afc07c5a9eaec3824dbd6c13d2"}}

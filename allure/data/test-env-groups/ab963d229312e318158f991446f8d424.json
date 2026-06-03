@@ -1,0 +1,1 @@
+{"id":"ab963d229312e318158f991446f8d424","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_delete_room_high_level","name":"DELETE /room/5 - High-level method for deleting room","status":"passed","testResultsByEnv":{"default":"b5b4643f7cf529f75a684979068c37ec"}}
