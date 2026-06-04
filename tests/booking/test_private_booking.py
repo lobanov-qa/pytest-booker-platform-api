@@ -9,7 +9,7 @@ from clients.booking.booking_schema import (
     GetBookingsResponseSchema,
     BookingSchema,
     GetBookingQuerySchema,
-    UpdateBookingResponseSchema
+    UpdateBookingResponseSchema,
 )
 from clients.booking.routes import BookingRoutes
 from clients.errors_schema import BaseErrorResponse, ValidationErrorSchema
@@ -24,23 +24,24 @@ from utils.assertions.booking import (
     assert_booking,
     assert_get_bookings_response,
     assert_get_booking_response,
-    assert_update_booking_response
+    assert_update_booking_response,
 )
 from utils.assertions.errors import assert_base_error_response, assert_validation_error
 from utils.assertions.schema import validate_json_schema
 
 
 @pytest.mark.booking
-@pytest.mark.positive
+@pytest.mark.regression
 @allure.tag(AllureTag.BOOKING)
 @allure.epic(AllureEpic.BOOKING)
 @allure.feature(AllureFeature.BOOKING_CRUD)
-class TestPrivateBooking:
+class TestPrivateBookingAPI:
     """
     Test suite for authenticated booking operations.
     These tests require valid authentication tokens.
     """
 
+    @pytest.mark.smoke
     @allure.story(AllureStory.BOOKING_LIST)
     @allure.tag(AllureTag.GET_ENTITIES)
     @allure.title("GET /booking - Retrieve all bookings successfully")
@@ -55,13 +56,14 @@ class TestPrivateBooking:
         response_data = GetBookingsResponseSchema.model_validate_json(response.text)
         validate_json_schema(response.json(), response_data.model_json_schema())
 
+    @pytest.mark.smoke
     @allure.story(AllureStory.BOOKING_FILTERING)
     @allure.tag(AllureTag.GET_ENTITIES)
-    @allure.severity(Severity.BLOCKER)
+    @allure.severity(Severity.CRITICAL)
     def test_get_bookings_by_room_success(
         self,
         booking_private_client: PrivateBookingClient,
-        created_booking: BookingFixture
+        created_booking: BookingFixture,
     ):
         """
         Positive test: Filter bookings using roomid query parameter.
@@ -78,14 +80,14 @@ class TestPrivateBooking:
 
         assert_get_bookings_response(
             get_bookings_response=response_data,
-            expected_bookings=[created_booking.response.booking]
+            expected_bookings=[created_booking.response.booking],
         )
 
         for booking in response_data.bookings:
             assert_equal(
                 booking.roomid,
                 created_booking.response.booking.roomid,
-                f"Room ID mismatch for booking {booking.bookingid}"
+                f"Room ID mismatch for booking {booking.bookingid}",
             )
 
     @allure.story(AllureStory.BOOKING_LIST)
@@ -107,7 +109,7 @@ class TestPrivateBooking:
     def test_get_bookings_by_room_high_level(
         self,
         booking_private_client: PrivateBookingClient,
-        created_booking: BookingFixture
+        created_booking: BookingFixture,
     ):
         """
         Positive test: Use convenience method get_bookings_by_room().
@@ -121,7 +123,7 @@ class TestPrivateBooking:
 
         assert_get_bookings_response(
             get_bookings_response=response_data,
-            expected_bookings=[created_booking.response.booking]
+            expected_bookings=[created_booking.response.booking],
         )
 
     @allure.story(AllureStory.BOOKING_LIST)
@@ -130,7 +132,7 @@ class TestPrivateBooking:
     @allure.severity(Severity.CRITICAL)
     def test_get_all_bookings_without_auth(
         self,
-        booking_private_client_invalid: PrivateBookingClient
+        booking_private_client_invalid: PrivateBookingClient,
     ):
         """
         Negative test: Attempt to retrieve all bookings without authentication.
@@ -141,18 +143,18 @@ class TestPrivateBooking:
 
     @allure.story(AllureStory.BOOKING_FILTERING)
     @allure.tag(AllureTag.GET_ENTITIES, AllureTag.NEGATIVE)
-    @pytest.mark.parametrize("invalid_value", ["", "one", "abc123"])
-    @allure.title("GET /booking?roomid={invalid_value} - Invalid room ID format (500)")
     @allure.severity(Severity.NORMAL)
+    @pytest.mark.parametrize("invalid_value", ["", "one", "abc123"])
     def test_get_bookings_invalid_roomid_format(
         self,
         booking_private_client: PrivateBookingClient,
-        invalid_value: str
+        invalid_value: str,
     ):
         """
         Negative test: Filter bookings with non-numeric roomid values.
         API returns 500 INTERNAL_SERVER_ERROR for invalid room ID format.
         """
+        allure.dynamic.title(f"GET /booking?roomid={invalid_value} - Invalid room ID format (500)")
         params = {"roomid": invalid_value}
         response = booking_private_client.get(BookingRoutes.ROOT, params=params)
         assert_status_code(response.status_code, HTTPStatus.INTERNAL_SERVER_ERROR)
@@ -168,7 +170,7 @@ class TestPrivateBooking:
         Negative test: Filter bookings with non-existent roomid.
         Should return 200 OK with empty bookings list.
         """
-        query = GetBookingQuerySchema(roomid='9999')
+        query = GetBookingQuerySchema(roomid="9999")
 
         response = booking_private_client.get_bookings_api(query)
         assert_status_code(response.status_code, HTTPStatus.OK)
@@ -177,16 +179,17 @@ class TestPrivateBooking:
 
         assert_get_bookings_response(
             get_bookings_response=response_data,
-            expected_bookings=[]
+            expected_bookings=[],
         )
 
+    @pytest.mark.smoke
     @allure.story(AllureStory.BOOKING_RETRIEVAL)
     @allure.tag(AllureTag.GET_ENTITY)
     @allure.severity(Severity.BLOCKER)
     def test_get_booking_success(
         self,
         booking_private_client: PrivateBookingClient,
-        created_booking: BookingFixture
+        created_booking: BookingFixture,
     ):
         """
         Positive test: Retrieve specific booking by booking ID.
@@ -206,7 +209,7 @@ class TestPrivateBooking:
     def test_get_booking_high_level(
         self,
         booking_private_client: PrivateBookingClient,
-        created_booking: BookingFixture
+        created_booking: BookingFixture,
     ):
         """
         Positive test: Use convenience method get_booking().
@@ -224,7 +227,7 @@ class TestPrivateBooking:
     def test_get_booking_without_auth(
         self,
         booking_private_client_invalid: PrivateBookingClient,
-        created_booking: BookingFixture
+        created_booking: BookingFixture,
     ):
         """
         Negative test: Attempt to retrieve booking without authentication.
@@ -260,25 +263,26 @@ class TestPrivateBooking:
         response = booking_private_client.get(path)
         assert_status_code(response.status_code, HTTPStatus.NOT_FOUND)
 
+    @pytest.mark.smoke
     @allure.story(AllureStory.BOOKING_UPDATE)
     @allure.tag(AllureTag.UPDATE_ENTITY)
     @allure.severity(Severity.BLOCKER)
-    def test_update_booking_success(
+    def test_update_booking_200(
         self,
         booking_private_client: PrivateBookingClient,
-        created_booking: BookingFixture
+        created_booking: BookingFixture,
     ):
         """
         Positive test: Successfully update existing booking.
         Validates update response and ensures data is correctly updated.
         """
         booking_id = created_booking.response.bookingid
-        allure.dynamic.title(f"PUT /booking/{booking_id} - Update booking successfully")
+        allure.dynamic.title(f"PUT /booking/{booking_id} - Update booking successfully (200)")
         original_roomid = created_booking.request.roomid
 
         update_request = UpdateBookingRequestFactory.build(
             booking_id=booking_id,
-            original_roomid=original_roomid
+            original_roomid=original_roomid,
         )
 
         response = booking_private_client.update_booking_api(booking_id, update_request)
@@ -301,7 +305,7 @@ class TestPrivateBooking:
     def test_update_booking_high_level(
         self,
         booking_private_client: PrivateBookingClient,
-        created_booking: BookingFixture
+        created_booking: BookingFixture,
     ):
         """
         Positive test: Use convenience method update_booking().
@@ -313,7 +317,7 @@ class TestPrivateBooking:
 
         update_request = UpdateBookingRequestFactory.build(
             booking_id=booking_id,
-            original_roomid=original_roomid
+            original_roomid=original_roomid,
         )
 
         response_data = booking_private_client.update_booking(booking_id, update_request)
@@ -332,7 +336,7 @@ class TestPrivateBooking:
     def test_update_booking_without_auth(
         self,
         booking_private_client_invalid: PrivateBookingClient,
-        created_booking: BookingFixture
+        created_booking: BookingFixture,
     ):
         """
         Negative test: Attempt to update booking without authentication.
@@ -344,7 +348,7 @@ class TestPrivateBooking:
 
         update_request = UpdateBookingRequestFactory.build(
             booking_id=booking_id,
-            original_roomid=original_roomid
+            original_roomid=original_roomid,
         )
 
         response = booking_private_client_invalid.update_booking_api(booking_id, update_request)
@@ -364,7 +368,7 @@ class TestPrivateBooking:
 
         update_request = UpdateBookingRequestFactory.build(
             booking_id=non_existent_id,
-            original_roomid=original_roomid
+            original_roomid=original_roomid,
         )
 
         response = booking_private_client.update_booking_api(non_existent_id, update_request)
@@ -376,19 +380,19 @@ class TestPrivateBooking:
     def test_update_booking_invalid_data(
         self,
         booking_private_client: PrivateBookingClient,
-        created_booking: BookingFixture
+        created_booking: BookingFixture,
     ):
         """
         Negative test: Update booking with invalid data (empty firstname).
         Should return 400 Bad Request with validation error details.
         """
         booking_id = created_booking.response.bookingid
-        allure.title(f"PUT /booking/{booking_id} - Update booking with empty firstname (400)")
+        allure.dynamic.title(f"PUT /booking/{booking_id} - Update booking with empty firstname (400)")
         original_roomid = created_booking.request.roomid
 
         update_request = UpdateBookingRequestFactory.build(
             booking_id=booking_id,
-            original_roomid=original_roomid
+            original_roomid=original_roomid,
         )
         invalid_data = update_request.model_dump(mode="json")
         invalid_data["firstname"] = ""
@@ -399,13 +403,14 @@ class TestPrivateBooking:
         error_data = ValidationErrorSchema.model_validate_json(response.text)
         assert_validation_error(error_data, expected_fields=["firstname"])
 
+    @pytest.mark.smoke
     @allure.story(AllureStory.BOOKING_DELETION)
     @allure.tag(AllureTag.DELETE_ENTITY)
     @allure.severity(Severity.BLOCKER)
-    def test_delete_booking_success(
+    def test_delete_booking_202(
         self,
         booking_private_client: PrivateBookingClient,
-        created_booking: BookingFixture
+        created_booking: BookingFixture,
     ):
         """
         Positive test: Successfully delete a booking.
@@ -425,12 +430,32 @@ class TestPrivateBooking:
             assert_base_error_response(error_data, expected_status=404)
 
     @allure.story(AllureStory.BOOKING_DELETION)
+    @allure.tag(AllureTag.DELETE_ENTITY)
+    @allure.severity(Severity.NORMAL)
+    def test_delete_booking_high_level(
+        self,
+        booking_private_client: PrivateBookingClient,
+        created_booking: BookingFixture,
+    ):
+        """
+        Positive test: Use convenience method delete_booking().
+        Method doesn't return a model (only validates status).
+        """
+        booking_id = created_booking.response.bookingid
+        allure.dynamic.title(f"DELETE /booking/{booking_id} - High-level method for deleting booking")
+
+        booking_private_client.delete_booking(booking_id)
+
+        get_response = booking_private_client.get_booking_api(booking_id)
+        assert_status_code(get_response.status_code, HTTPStatus.NOT_FOUND)
+
+    @allure.story(AllureStory.BOOKING_DELETION)
     @allure.tag(AllureTag.DELETE_ENTITY, AllureTag.NEGATIVE)
     @allure.severity(Severity.CRITICAL)
     def test_delete_booking_without_auth(
         self,
         booking_private_client_invalid: PrivateBookingClient,
-        created_booking: BookingFixture
+        created_booking: BookingFixture,
     ):
         """
         Negative test: Attempt to delete booking without authentication.
@@ -452,7 +477,6 @@ class TestPrivateBooking:
         Should return 404 Not Found.
         """
         non_existent_id = 9999
-
         response = booking_private_client.delete_booking_api(non_existent_id)
         assert_status_code(response.status_code, HTTPStatus.NOT_FOUND)
 
@@ -462,7 +486,7 @@ class TestPrivateBooking:
     def test_delete_booking_already_deleted(
         self,
         booking_private_client: PrivateBookingClient,
-        created_booking: BookingFixture
+        created_booking: BookingFixture,
     ):
         """
         Negative test: Delete already deleted booking (idempotent operation).
@@ -476,26 +500,3 @@ class TestPrivateBooking:
 
         second_response = booking_private_client.delete_booking_api(booking_id)
         assert_status_code(second_response.status_code, HTTPStatus.NOT_FOUND)
-
-    @allure.story(AllureStory.BOOKING_DELETION)
-    @allure.tag(AllureTag.DELETE_ENTITY)
-    @allure.severity(Severity.NORMAL)
-    def test_delete_booking_high_level(
-        self,
-        booking_private_client: PrivateBookingClient,
-        created_booking: BookingFixture
-    ):
-        """
-        Positive test: Use convenience method delete_booking().
-        Method doesn't return a model (only validates status).
-        """
-        booking_id = created_booking.response.bookingid
-        allure.dynamic.title(f"DELETE /booking/{booking_id} - High-level method for deleting booking")
-
-        try:
-            booking_private_client.delete_booking(booking_id)
-        except Exception as e:
-            pytest.fail(f"High-level delete_booking method raised exception: {e}")
-
-        get_response = booking_private_client.get_booking_api(booking_id)
-        assert_status_code(get_response.status_code, HTTPStatus.NOT_FOUND)
