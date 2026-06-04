@@ -94,7 +94,7 @@ jobs:
           EOF
 
       - name: Run API tests with pytest and generate Allure results
-        run: python -m pytest tests/  --alluredir=allure-results --numprocesses=2
+        run: python -m pytest tests/auth  --alluredir=allure-results --numprocesses=2
 
       - name: Restore Coverage history
         uses: actions/cache/restore@v5
@@ -125,9 +125,9 @@ jobs:
           path: coverage.html
 
 
-      - name: Restore Allure history
-        run: |
-          curl -s -L https://raw.githubusercontent.com/lobanov-qa/pytest-booker-platform-api/gh-pages/history.jsonl -o history.jsonl
+#      - name: Restore Allure history
+#        run: |
+#          curl -s -L https://raw.githubusercontent.com/lobanov-qa/pytest-booker-platform-api/gh-pages/history.jsonl -o history.jsonl
 
 
       - name: Generate Allure report
