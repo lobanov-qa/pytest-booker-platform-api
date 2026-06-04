@@ -1,0 +1,1 @@
+{"id":"6cccec9338a6721a7535d00f630c0e25","fullName":"tests.booking.test_public_booking.TestPublicBookingAPI#test_get_summary_high_level","name":"GET /booking/summary - High-level method for getting summary","status":"passed","testResultsByEnv":{"default":"a5bc96f45884022c53f38047baf3f828"}}

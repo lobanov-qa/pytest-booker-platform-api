@@ -1,0 +1,1 @@
+{"id":"418a8987cd332b501473f6653e34dc21","fullName":"tests.booking.test_private_booking.TestPrivateBookingAPI#test_get_bookings_invalid_roomid_format","name":"GET /booking?roomid=abc123 - Invalid room ID format (500)","status":"passed","testResultsByEnv":{"default":"0722941114205319f2f2758273646ee7"}}

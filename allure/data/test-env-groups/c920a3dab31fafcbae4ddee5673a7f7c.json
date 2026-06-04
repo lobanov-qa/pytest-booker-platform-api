@@ -1,0 +1,1 @@
+{"id":"c920a3dab31fafcbae4ddee5673a7f7c","fullName":"tests.booking.test_private_booking.TestPrivateBookingAPI#test_delete_booking_already_deleted","name":"DELETE /booking/14 - Delete already deleted booking (404)","status":"passed","testResultsByEnv":{"default":"2963e911816485b33defe5f8cbd55dd0"}}

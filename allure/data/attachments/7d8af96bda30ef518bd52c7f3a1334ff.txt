@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3000/booking/' \
+  -H 'host: localhost:3000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 200' \
+  -H 'content-type: application/json' \
+  -d '{"depositpaid":false,"roomid":39,"firstname":"Kaitlyn","lastname":"Gray","bookingdates":{"checkin":"2026-07-19","checkout":"2026-07-20"},"email":"hallebony@example.com","phone":"+1-794-693-1642x3321"}'

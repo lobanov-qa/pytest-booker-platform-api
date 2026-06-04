@@ -1,0 +1,1 @@
+{"id":"c89161567394682b12cd2322e6748dcc","fullName":"tests.booking.test_public_booking.TestPublicBookingAPI#test_get_summary_with_non_positive_roomid_returns_empty_list","name":"GET /booking/summary?roomid=-1 - Non-positive roomid returns empty list","status":"passed","testResultsByEnv":{"default":"b4745fcf8c47b38045f23b5c2cce4ddd"}}

@@ -1,0 +1,1 @@
+{"id":"0774939130305e046fcbe8ec656e0ed3","fullName":"tests.booking.test_private_booking.TestPrivateBookingAPI#test_delete_booking_not_found","name":"DELETE /booking/9999 - Delete non-existent booking (404)","status":"passed","testResultsByEnv":{"default":"d2d83d5acb62566e1b7948fa1db1435e"}}

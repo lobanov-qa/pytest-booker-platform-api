@@ -1,0 +1,1 @@
+{"id":"a13d0045aca4a911f84e300fe2485e46","fullName":"tests.booking.test_private_booking.TestPrivateBookingAPI#test_delete_booking_high_level","name":"DELETE /booking/18 - High-level method for deleting booking","status":"passed","testResultsByEnv":{"default":"d200cb5d986937aa4517336a118abb98"}}

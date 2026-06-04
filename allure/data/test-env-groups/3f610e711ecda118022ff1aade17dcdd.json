@@ -1,0 +1,1 @@
+{"id":"3f610e711ecda118022ff1aade17dcdd","fullName":"tests.booking.test_public_booking.TestPublicBookingAPI#test_create_booking_missing_firstname","name":"POST /booking - Create booking without firstname field (400)","status":"passed","testResultsByEnv":{"default":"6ffffe69ea9840a259ce79e25da18d2d"}}
