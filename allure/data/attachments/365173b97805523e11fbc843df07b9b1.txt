@@ -1,4 +1,0 @@
-INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:3001/room/1
-INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3001/room/1
-INFO     BASE_ASSERTIONS:base.py:114 Check that "response_data" is instance of RoomResponseSchema (actual: RoomResponseSchema)
-INFO     BASE_ASSERTIONS:base.py:92 Check that "roomid" is greater than zero: 1

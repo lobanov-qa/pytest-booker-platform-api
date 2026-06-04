@@ -1,1 +1,0 @@
-{"id":"cde83f6eb77abd21d286c1fad576fea0","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_room_invalid_id_negative","name":"GET /room/-1 - Retrieve room with negative ID (404)","status":"passed","testResultsByEnv":{"default":"6cd1b304d3b601553c162d26d5b23387"}}

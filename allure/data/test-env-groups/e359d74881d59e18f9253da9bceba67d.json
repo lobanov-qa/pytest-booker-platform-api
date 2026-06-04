@@ -1,1 +1,0 @@
-{"id":"e359d74881d59e18f9253da9bceba67d","fullName":"tests.booking.test_booking.TestBooking#test_unavailable_dates_missing_param","name":"GET /booking/unavailable - Missing checkout parameter (400)","status":"passed","testResultsByEnv":{"default":"0887e687919086349b7b3c7d2726d1e6"}}

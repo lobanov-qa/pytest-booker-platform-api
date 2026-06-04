@@ -1,1 +1,0 @@
-{"id":"be88f978609858698cd23ad628f0c81c","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_delete_room_not_found_404","name":"DELETE /room/9999 - Delete non-existent room (404)","status":"passed","testResultsByEnv":{"default":"bde59ef9524b0d69a1ac3e50b10b6eb7"}}

@@ -1,1 +1,0 @@
-{"id":"67836145b2e6ada231984f3d6b5855c5","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_get_booking_not_found","name":"GET /booking/9999 - Retrieve non-existent booking (404)","status":"passed","testResultsByEnv":{"default":"6a9c5d9e9d2f59fac5f2926baa244b8f"}}

@@ -1,1 +1,0 @@
-{"id":"d4646a97b45535f762e032f45a38777b","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_room_not_found_500","name":"GET /room/9999 - Retrieve non-existent room (500)","status":"passed","testResultsByEnv":{"default":"bfb167177baf55badc69a89e2f2cfc8b"}}

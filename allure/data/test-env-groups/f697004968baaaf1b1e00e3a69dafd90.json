@@ -1,1 +1,0 @@
-{"id":"f697004968baaaf1b1e00e3a69dafd90","fullName":"tests.booking.test_booking.TestBooking#test_get_summary_valid_roomid","name":"GET /booking/summary - Get booking summary for valid room ID","status":"passed","testResultsByEnv":{"default":"b79bf89b15cf6a9c89d5952f205a1efd"}}

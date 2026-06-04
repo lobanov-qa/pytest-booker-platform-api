@@ -1,1 +1,0 @@
-{"id":"f94e500e21c20e73be0f9417420e0c45","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_get_bookings_by_room_high_level","name":"GET /booking?roomid=44 - High-level method for filtered bookings","status":"passed","testResultsByEnv":{"default":"fa56483448bc5edfea8c7ccc515a2ff1"}}

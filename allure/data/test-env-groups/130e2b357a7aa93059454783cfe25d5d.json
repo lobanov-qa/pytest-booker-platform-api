@@ -1,1 +1,0 @@
-{"id":"130e2b357a7aa93059454783cfe25d5d","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_rooms_contains_created_room","name":"GET /room/ - Verify created room appears in rooms list","status":"passed","testResultsByEnv":{"default":"a9d96c310ddf03d59f6293066763d017"}}

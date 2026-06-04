@@ -1,1 +1,0 @@
-{"id":"5b72f7786059cb75cf0586d850d8c8ad","fullName":"tests.booking.test_private_booking.TestPrivateBooking#test_get_booking_high_level","name":"GET /booking/11 - Retrieve specific booking by ID","status":"passed","testResultsByEnv":{"default":"9743e272f690360cb7e2f3a7f2ab8545"}}

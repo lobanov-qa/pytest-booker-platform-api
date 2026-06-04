@@ -1,1 +1,0 @@
-{"id":"d61e75978094341e66eea8c417add19f","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_room_by_id","name":"GET /room/1 - Get room by ID successfully (200)","status":"passed","testResultsByEnv":{"default":"38f6ff05497444d1bc341117b5154880"}}

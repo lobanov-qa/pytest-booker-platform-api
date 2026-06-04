@@ -1,1 +1,0 @@
-{"id":"05039bf44fd8ea10dcae6794bc2d8694","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_create_room_without_room_price_400","name":"POST /room/ - Create room without roomPrice (400)","status":"passed","testResultsByEnv":{"default":"b52f9012561781ccdbe248039f6a516b"}}
