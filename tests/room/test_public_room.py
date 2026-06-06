@@ -20,14 +20,10 @@ from utils.allure.tags import AllureTag
 from utils.assertions.base import (
     assert_status_code,
     assert_positive,
-    assert_is_instance,
-    assert_equal,
+    assert_is_instance
 )
 from utils.assertions.errors import assert_base_error_response
-from utils.assertions.room import (
-    assert_get_room_response,
-    assert_rooms_list_contains,
-)
+from utils.assertions.room import assert_rooms_list_contains
 from utils.assertions.schema import validate_json_schema
 
 

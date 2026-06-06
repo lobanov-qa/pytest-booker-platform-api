@@ -35,10 +35,6 @@ class TestPrivateRoomAPI:
     These tests require valid authentication tokens.
     """
 
-    # ------------------------------------------------------------------
-    # CREATE — positive
-    # ------------------------------------------------------------------
-
     @pytest.mark.smoke
     @allure.story(AllureStory.ROOM_CREATION)
     @allure.tag(AllureTag.CREATE_ENTITY)
@@ -77,10 +73,6 @@ class TestPrivateRoomAPI:
         assert_positive(response_data.roomid, "roomid")
         assert_create_room_response(valid_room_request, response_data)
 
-    # ------------------------------------------------------------------
-    # READ — verify get matches create
-    # ------------------------------------------------------------------
-
     @pytest.mark.smoke
     @allure.story(AllureStory.ROOM_RETRIEVAL)
     @allure.tag(AllureTag.GET_ENTITY)
@@ -100,10 +92,6 @@ class TestPrivateRoomAPI:
 
         get_response_data = private_room_client.get_room(room_id)
         assert_get_room_response(get_response_data, created_room.response)
-
-    # ------------------------------------------------------------------
-    # UPDATE — positive
-    # ------------------------------------------------------------------
 
     @pytest.mark.smoke
     @allure.story(AllureStory.ROOM_UPDATE)
@@ -159,10 +147,6 @@ class TestPrivateRoomAPI:
         get_response = private_room_client.get_room(room_id)
         assert_room(get_response, response_data)
 
-    # ------------------------------------------------------------------
-    # DELETE — positive
-    # ------------------------------------------------------------------
-
     @pytest.mark.smoke
     @allure.story(AllureStory.ROOM_DELETION)
     @allure.tag(AllureTag.DELETE_ENTITY)
@@ -211,10 +195,6 @@ class TestPrivateRoomAPI:
         get_response = private_room_client.get_room_api(room_id)
         assert_status_code(get_response.status_code, HTTPStatus.INTERNAL_SERVER_ERROR)
 
-    # ------------------------------------------------------------------
-    # NEGATIVE — unauthorized
-    # ------------------------------------------------------------------
-
     @allure.story(AllureStory.ROOM_CREATION)
     @allure.tag(AllureTag.CREATE_ENTITY, AllureTag.NEGATIVE)
     @allure.title("POST /room/ - Create room without authentication (403)")
@@ -262,10 +242,6 @@ class TestPrivateRoomAPI:
         response = private_room_client_invalid.delete_room_api(1)
         assert_status_code(response.status_code, HTTPStatus.FORBIDDEN)
 
-    # ------------------------------------------------------------------
-    # NEGATIVE — validation errors
-    # ------------------------------------------------------------------
-
     @allure.story(AllureStory.ROOM_CREATION)
     @allure.tag(AllureTag.CREATE_ENTITY, AllureTag.NEGATIVE)
     @allure.title("POST /room/ - Create room without roomPrice (400)")
@@ -287,10 +263,6 @@ class TestPrivateRoomAPI:
         assert_status_code(response.status_code, HTTPStatus.BAD_REQUEST)
         error_data = ValidationErrorSchema.model_validate_json(response.text)
         assert_validation_error(error_data)
-
-    # ------------------------------------------------------------------
-    # NEGATIVE — not found
-    # ------------------------------------------------------------------
 
     @allure.story(AllureStory.ROOM_UPDATE)
     @allure.tag(AllureTag.UPDATE_ENTITY, AllureTag.NEGATIVE)

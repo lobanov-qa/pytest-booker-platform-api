@@ -4,7 +4,7 @@
 # VS Code
 .vscode/
 .history/
-.continue/
+
 
 # python
 .env
@@ -46,3 +46,5 @@ in-memoria.db
 in-memoria-vectors.db/
 .serena/
 memory-bank/
+.continue/
+.gigacode/
