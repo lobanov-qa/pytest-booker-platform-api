@@ -1,0 +1,1 @@
+{"id":"9efffdaa79c4db6124f96891eb816bc0","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_rooms_invalid_dates_500","name":"GET /room/ - Get rooms with invalid date format (500)","status":"passed","testResultsByEnv":{"default":"c5065344aefa6a22ef4be7c32c20b7f6"}}

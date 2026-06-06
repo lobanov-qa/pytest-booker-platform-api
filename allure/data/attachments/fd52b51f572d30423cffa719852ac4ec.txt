@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=03huPTJrBDA8pKIY' \
+  -H 'content-length: 204' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Key 421","type":"Double","accessible":true,"image":"https://dummyimage.com/467x186","description":"Hair arrive benefit smile head.","features":["billion","wear","group"],"roomPrice":234}'
