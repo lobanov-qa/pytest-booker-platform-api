@@ -4,9 +4,7 @@ from pydantic import BaseModel
 from httpx import Cookies
 
 from clients.booking.booking_schema import CreateBookingRequestSchema, CreateBookingResponseSchema
-from clients.booking.private_booking_client import PrivateBookingClient
 from clients.booking.public_booking_client import PublicBookingClient
-from config import settings
 from src.clients.client_factories import ClientFactory
 from src.data_factories.booking_factory import CreateBookingRequestFactory
 
