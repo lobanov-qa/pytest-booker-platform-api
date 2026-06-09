@@ -1,1 +1,1 @@
-{"id":"d4646a97b45535f762e032f45a38777b","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_room_not_found_500","name":"GET /room/9999 - Retrieve non-existent room (500)","status":"passed","testResultsByEnv":{"default":"ef076fcf82012e51fcb43d94d2296ec9"}}
+{"id":"d4646a97b45535f762e032f45a38777b","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_room_not_found_500","name":"GET /room/9999 - Retrieve non-existent room (500)","status":"passed","testResultsByEnv":{"default":"18ebad01ce91eb1a4c1d6a4ead9c35d8"}}

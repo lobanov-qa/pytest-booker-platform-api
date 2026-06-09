@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3000/booking/11' \
+  -H 'host: localhost:3000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=H7hzlG74Dw8ZOFgy' \
+  -H 'content-length: 201' \
+  -H 'content-type: application/json' \
+  -d '{"firstname":"","lastname":"Preston","bookingdates":{"checkin":"2026-07-26","checkout":"2026-07-27"},"depositpaid":false,"email":"agarcia@example.com","phone":"827-401-2391","bookingid":11,"roomid":13}'

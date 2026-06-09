@@ -1,0 +1,1 @@
+{"id":"210286646a3f7c657fb1183a74e38e73","fullName":"tests.branding.test_public_branding.TestPublicBrandingAPI#test_get_branding_high_level","name":"GET /branding – High-level method returns parsed model","status":"passed","testResultsByEnv":{"default":"c39c71d760581171d03fb4bf534069c8"}}

@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=Ee5q8SixwYLlOUxV' \
+  -H 'content-length: 500' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Hotel123","map":{"latitude":-64.4980795,"longitude":14.038564},"logo_url":"https://placekitten.com/438/269","description":"Centralized exuding functionalities","directions":"Near environment consumer figure hot safe represent force. Research data even ground key bank.","contact":{"name":"Fisher Inc","phone":"4193785791","email":"robert60@example.com"},"address":{"line1":"11080 Kristen Spring","line2":"Suite 299","post_town":"South Tonystad","county":"Massachusetts","post_code":"62728"}}'

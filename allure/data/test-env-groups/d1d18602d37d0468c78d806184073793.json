@@ -1,0 +1,1 @@
+{"id":"d1d18602d37d0468c78d806184073793","fullName":"tests.branding.test_private_branding.TestPrivateBrandingAPI#test_update_branding_high_level","name":"PUT /branding – High-level method returns parsed model","status":"passed","testResultsByEnv":{"default":"5fef5928df537f0c70522b793a1eb385"}}

@@ -1,1 +1,1 @@
-{"id":"b4c30715d196adab9b230c9b6434c64c","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_rooms_returns_200","name":"GET /room/ - Get all rooms successfully (200)","status":"passed","testResultsByEnv":{"default":"65a811eb288b48642840620a8179c745"}}
+{"id":"b4c30715d196adab9b230c9b6434c64c","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_rooms_returns_200","name":"GET /room/ - Get all rooms successfully (200)","status":"passed","testResultsByEnv":{"default":"339124395d0326c4ca0872b025474bcd"}}

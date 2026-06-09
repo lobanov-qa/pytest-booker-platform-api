@@ -1,0 +1,12 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3000/booking/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 201  from http://localhost:3000/booking/
+INFO     BASE_ASSERTIONS:base.py:114 Check that "response_data" is instance of CreateBookingResponseSchema (actual: CreateBookingResponseSchema)
+INFO     BASE_ASSERTIONS:base.py:92 Check that "bookingid" is greater than zero: 19
+INFO     BOOKING_ASSERTIONS:booking.py:20 Check create booking response
+INFO     BASE_ASSERTIONS:base.py:92 Check that "booking.bookingid not positive" is greater than zero: 19
+INFO     BASE_ASSERTIONS:base.py:38 Check that "booking.bookingid" equals to 19
+INFO     BASE_ASSERTIONS:base.py:38 Check that "depositpaid" equals to False
+INFO     BASE_ASSERTIONS:base.py:38 Check that "roomid" equals to 6
+INFO     BASE_ASSERTIONS:base.py:38 Check that "firstname" equals to Kevin
+INFO     BASE_ASSERTIONS:base.py:38 Check that "lastname" equals to Russell
+INFO     BASE_ASSERTIONS:base.py:38 Check that "bookingdates" equals to checkin=datetime.date(2026, 8, 12) checkout=datetime.date(2026, 8, 13)

@@ -1,0 +1,1 @@
+{"id":"08573c6beebbd270489d25823533b46f","fullName":"tests.branding.test_private_branding.TestPrivateBrandingAPI#test_update_branding_invalid_pattern_400","name":"PUT /branding – Invalid name pattern (digits, 400)","status":"passed","testResultsByEnv":{"default":"0196d9e6ae427f12994f80e7d60daa89"}}

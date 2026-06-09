@@ -1,0 +1,1 @@
+{"id":"06652d3d94742a5af128e1ee154a5af6","fullName":"tests.branding.test_private_branding.TestPrivateBrandingAPI#test_update_branding_name_too_short_400","name":"PUT /branding – Name too short (400)","status":"passed","testResultsByEnv":{"default":"e853482a4be7d0ca46f54071f271b377"}}

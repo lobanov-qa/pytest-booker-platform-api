@@ -1,0 +1,5 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:3000/booking/unavailable?checkin=2026-09-07&checkout=2026-09-08
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3000/booking/unavailable?checkin=2026-09-07&checkout=2026-09-08
+INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 200
+INFO     SCHEMA_ASSERTIONS:schema.py:22 Validating JSON schema
+INFO     BASE_ASSERTIONS:base.py:114 Check that "response_data.root" is instance of list (actual: list)

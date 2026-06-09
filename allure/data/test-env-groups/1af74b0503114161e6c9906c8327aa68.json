@@ -1,1 +1,1 @@
-{"id":"1af74b0503114161e6c9906c8327aa68","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_update_room_200","name":"PUT /room/9 - Update room successfully (200)","status":"passed","testResultsByEnv":{"default":"b6e69978fde099cf2d33451b0c13e927"}}
+{"id":"1af74b0503114161e6c9906c8327aa68","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_update_room_200","name":"PUT /room/5 - Update room successfully (200)","status":"passed","testResultsByEnv":{"default":"bd4292dfe62c98c756eb9c9ec9153f9f"}}

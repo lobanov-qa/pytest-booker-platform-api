@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=laMM55deUHNvIgas' \
+  -H 'content-length: 424' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Cordova Ltd","map":{"latitude":-10.0951215,"longitude":-85.104626},"logoUrl":"https://placekitten.com/499/456","description":"Cloned faulttolerant analyzer","directions":"Offer always professor dream.","contact":{"name":"LoweryGordon","phone":"9225409352769","email":"william30@example.com"},"address":{"line1":"900 Crystal Fork","line2":"Apt. 784","postTown":"New Amanda","county":"New Jersey","postCode":"52028"}}'

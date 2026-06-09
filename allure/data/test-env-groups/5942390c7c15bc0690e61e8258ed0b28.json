@@ -1,0 +1,1 @@
+{"id":"5942390c7c15bc0690e61e8258ed0b28","fullName":"tests.branding.test_public_branding.TestPublicBrandingAPI#test_get_branding_returns_200","name":"GET /branding – Retrieve branding information (200)","status":"passed","testResultsByEnv":{"default":"e941d234838708520b474490eadfd7d5"}}

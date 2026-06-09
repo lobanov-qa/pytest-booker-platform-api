@@ -1,0 +1,8 @@
+curl -X 'DELETE' \
+  'http://localhost:3001/room/9999' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=Z9D2xhHl1VR9jmFU'

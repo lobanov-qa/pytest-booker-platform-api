@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3001/room/5' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=MpeOwPLRGdzNh3zb' \
+  -H 'content-length: 202' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Resource 333","type":"Suite","accessible":true,"image":"https://dummyimage.com/441x155","description":"Mean responsibility suffer.","features":["push","house","front"],"roomPrice":115}'

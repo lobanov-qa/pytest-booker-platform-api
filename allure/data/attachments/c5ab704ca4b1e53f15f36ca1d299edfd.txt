@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=ZsBYJu0x36w7ecWX' \
+  -H 'content-length: 447' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Hudson Barajas and Brown","map":{"latitude":0.225365,"longitude":-50.036955},"logoUrl":"https://placekitten.com/628/383","description":"Usercentric scalable solution","directions":"Guy pattern inside religious.","contact":{"name":"JenkinsHood","phone":"001727788621121","email":"jodi86@example.com"},"address":{"line1":"0393 Ryan Rapid Suite 655","line2":"Suite 413","postTown":"Port Natalieborough","county":"Alaska","postCode":"58432"}}'
