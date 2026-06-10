@@ -6,6 +6,8 @@ from clients.booking.public_booking_client import PublicBookingClient
 from clients.branding.private_branding_client import PrivateBrandingClient
 from clients.branding.public_branding_client import PublicBrandingClient
 from clients.event_hooks import curl_event_hook, log_request_event_hook, log_response_event_hook
+from clients.message.private_message_client import PrivateMessageClient
+from clients.message.public_message_client import PublicMessageClient
 from clients.room.public_room_client import PublicRoomClient
 from clients.room.private_room_client import PrivateRoomClient
 from config import settings
@@ -121,6 +123,29 @@ class ClientFactory:
     def get_private_branding_client(cookies: Cookies) -> PrivateBrandingClient:
         return PrivateBrandingClient(
             base_url=settings.branding.client_url,
+            timeout=settings.http_client.timeout,
+            cookies=cookies,
+            event_hooks={
+                "request": [curl_event_hook, log_request_event_hook],
+                "response": [log_response_event_hook]
+            }
+        )
+
+    @staticmethod
+    def get_public_message_client() -> PublicMessageClient:
+        return PublicMessageClient(
+            base_url=settings.message.client_url,
+            timeout=settings.http_client.timeout,
+            event_hooks={
+                "request": [curl_event_hook, log_request_event_hook],
+                "response": [log_response_event_hook]
+            }
+        )
+
+    @staticmethod
+    def get_private_message_client(cookies: Cookies) -> PrivateMessageClient:
+        return PrivateMessageClient(
+            base_url=settings.message.client_url,
             timeout=settings.http_client.timeout,
             cookies=cookies,
             event_hooks={
