@@ -3,5 +3,6 @@ pytest_plugins = (
     "fixtures.booking",
     "fixtures.room",
     "fixtures.branding",
+    "fixtures.message",
     "fixtures.allure"
 )
