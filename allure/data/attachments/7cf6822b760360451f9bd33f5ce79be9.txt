@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=Akp4BIUpLkGBaaf7' \
+  -H 'content-length: 525' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Payne and Sons","map":{"latitude":-88.587053,"longitude":57.48402},"logoUrl":"https://placekitten.com/494/441","description":"Reverseengineered thgeneration infomediaries","directions":"Risk tax lose recognize good appear begin. Fall movement another accept but consider maintain.","contact":{"name":"Scott Mora and Barker","phone":"67057332466951","email":"joanvelasquez@example.com"},"address":{"line1":"5778 Sarah Light Apt. 267","line2":"Apt. 894","postTown":"Joshuabury","county":"New York","postCode":"35759"}}'

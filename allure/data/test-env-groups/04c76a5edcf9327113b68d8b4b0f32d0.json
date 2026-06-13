@@ -1,0 +1,1 @@
+{"id":"04c76a5edcf9327113b68d8b4b0f32d0","fullName":"tests.message.test_private_message.TestPrivateMessageAPI#test_delete_message_returns_202","name":"DELETE /message/26 - Delete message (202)","status":"passed","testResultsByEnv":{"default":"97f02cb224ddddb305cf0ec236c886bb"}}

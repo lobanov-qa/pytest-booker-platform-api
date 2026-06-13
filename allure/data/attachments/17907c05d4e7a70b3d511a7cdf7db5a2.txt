@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3000/booking/' \
+  -H 'host: localhost:3000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 199' \
+  -H 'content-type: application/json' \
+  -d '{"depositpaid":true,"roomid":43,"firstname":"Maureen","lastname":"Frederick","bookingdates":{"checkin":"2026-08-05","checkout":"2026-08-06"},"email":"petersonkent@example.com","phone":"959-380-8697"}'

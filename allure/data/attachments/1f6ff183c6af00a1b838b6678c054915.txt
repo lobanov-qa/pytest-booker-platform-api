@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=2sUGwDBlxbuVlQia' \
+  -H 'content-length: 479' \
+  -H 'content-type: application/json' \
+  -d '{"name":"A","map":{"latitude":-45.4870125,"longitude":116.425457},"logo_url":"https://placekitten.com/481/408","description":"Rightsized intangible analyzer","directions":"Lay keep today reason citizen yes environmental nation. Which current industry store church.","contact":{"name":"Grant Inc","phone":"8378438609","email":"sburke@example.com"},"address":{"line1":"056 Burns Estates","line2":"Suite 660","post_town":"Espinozamouth","county":"Pennsylvania","post_code":"98353"}}'

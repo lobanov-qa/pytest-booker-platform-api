@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=Ud7pkFjRXg4RseFC' \
+  -H 'content-length: 224' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Pressure 48","type":"Single","accessible":true,"image":"https://dummyimage.com/144x91","description":"Something manager whole it sit but. Ok authority day.","features":["main","note","two"],"roomPrice":530}'

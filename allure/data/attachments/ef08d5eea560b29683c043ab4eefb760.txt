@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=ouQmGMaLXpnOPahU' \
+  -H 'content-length: 371' \
+  -H 'content-type: application/json' \
+  -d '{"name":"SinghMiller","map":{"latitude":-22.6225205,"longitude":154.164153},"logo_url":"https://placekitten.com/750/272","directions":"Add drop eight future.","contact":{"name":"Davis Inc","phone":"80925627984863","email":"casey10@example.com"},"address":{"line1":"615 Brandon Dam","line2":"Suite 275","post_town":"Gregoryfurt","county":"New Jersey","post_code":"87046"}}'

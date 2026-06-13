@@ -1,0 +1,22 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make PUT request to http://localhost:3002/branding/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 202  from http://localhost:3002/branding/
+INFO     BASE_ASSERTIONS:base.py:114 Check that "updated" is instance of BrandingSchema (actual: BrandingSchema)
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:3002/branding/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3002/branding/
+INFO     BRANDING_ASSERTIONS:branding.py:19 Check branding
+INFO     BASE_ASSERTIONS:base.py:38 Check that "name" equals to Payne and Sons
+INFO     BASE_ASSERTIONS:base.py:38 Check that "logo_url" equals to https://placekitten.com/494/441
+INFO     BASE_ASSERTIONS:base.py:38 Check that "description" equals to Reverseengineered thgeneration infomediaries
+INFO     BASE_ASSERTIONS:base.py:38 Check that "directions" equals to Risk tax lose recognize good appear begin. Fall movement another accept but consider maintain.
+INFO     BASE_ASSERTIONS:base.py:38 Check that "map.latitude" equals to -88.587053
+INFO     BASE_ASSERTIONS:base.py:38 Check that "map.longitude" equals to 57.48402
+INFO     BASE_ASSERTIONS:base.py:38 Check that "contact.name" equals to Scott Mora and Barker
+INFO     BASE_ASSERTIONS:base.py:38 Check that "contact.phone" equals to 67057332466951
+INFO     BASE_ASSERTIONS:base.py:38 Check that "contact.email" equals to joanvelasquez@example.com
+INFO     BASE_ASSERTIONS:base.py:38 Check that "address.line1" equals to 5778 Sarah Light Apt. 267
+INFO     BASE_ASSERTIONS:base.py:38 Check that "address.line2" equals to Apt. 894
+INFO     BASE_ASSERTIONS:base.py:38 Check that "address.post_town" equals to Joshuabury
+INFO     BASE_ASSERTIONS:base.py:38 Check that "address.county" equals to New York
+INFO     BASE_ASSERTIONS:base.py:38 Check that "address.post_code" equals to 35759

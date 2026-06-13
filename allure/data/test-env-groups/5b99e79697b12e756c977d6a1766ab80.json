@@ -1,0 +1,1 @@
+{"id":"5b99e79697b12e756c977d6a1766ab80","fullName":"tests.message.test_public_message.TestPublicMessageAPI#test_get_count_high_level","name":"GET /message/count - High-level method for getting message count","status":"passed","testResultsByEnv":{"default":"a5cf1640cf5bd02d7acb97371d52a57a"}}

@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3006/message/' \
+  -H 'host: localhost:3006' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 306' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Jacob","email":"bwolf@example.com","phone":"698-288-8893x39329","subject":"Quality listen result.","description":"Best bag region mission. Interview treat story man thing wrong. Miss baby almost especially night such. School push lawyer research common. Possible cause it drive dinner choose of."}'

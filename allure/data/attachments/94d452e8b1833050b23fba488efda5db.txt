@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=s0YLDMvoBAMcRZRY' \
+  -H 'content-length: 456' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Hotel123","map":{"latitude":-85.036341,"longitude":-155.551277},"logo_url":"https://placekitten.com/685/339","description":"Grassroots optimizing system engine","directions":"Including garden than.","contact":{"name":"Cox Green and Thompson","phone":"227206663173883","email":"iwilliams@example.com"},"address":{"line1":"461 Noble Stravenue Suite 501","line2":"Suite 768","post_town":"New Amandastad","county":"New Hampshire","post_code":"85160"}}'

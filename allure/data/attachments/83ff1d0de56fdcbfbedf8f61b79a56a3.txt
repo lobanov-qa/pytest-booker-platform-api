@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3001/room/9999' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=YLdO0pNJfOcO3Bi9' \
+  -H 'content-length: 248' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room In 840","type":"Double","accessible":false,"image":"https://dummyimage.com/206x178","description":"Democratic room claim. Within model about raise inside but several stage.","features":["decide","beyond","spring"],"roomPrice":919}'

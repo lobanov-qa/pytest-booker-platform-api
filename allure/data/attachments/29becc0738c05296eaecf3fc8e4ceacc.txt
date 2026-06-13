@@ -1,0 +1,29 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:3006/message/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3006/message/
+INFO     BASE_ASSERTIONS:base.py:114 Check that "response_data" is instance of MessagesResponseSchema (actual: MessagesResponseSchema)
+INFO     BASE_ASSERTIONS:base.py:114 Check that "messages" is instance of list (actual: list)
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 1
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 2
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 3
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 4
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 5
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 6
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 7
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 8
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 9
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 10
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 11
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 12
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 13
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 14
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 15
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 16
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 17
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 18
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 19
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 20
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 21
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 22
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 23
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 24
+INFO     BASE_ASSERTIONS:base.py:92 Check that "message id" is greater than zero: 25

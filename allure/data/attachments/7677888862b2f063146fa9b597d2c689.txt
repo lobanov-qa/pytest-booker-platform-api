@@ -1,7 +1,0 @@
-curl -X 'GET' \
-  'http://localhost:3000/booking/unavailable?checkin=2026-09-07&checkout=2026-09-08' \
-  -H 'host: localhost:3000' \
-  -H 'accept: */*' \
-  -H 'accept-encoding: gzip, deflate' \
-  -H 'connection: keep-alive' \
-  -H 'user-agent: python-httpx/0.28.1'

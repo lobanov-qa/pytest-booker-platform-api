@@ -1,0 +1,1 @@
+{"id":"e30901682fd9aac0573a1718ec6bb570","fullName":"tests.message.test_public_message.TestPublicMessageAPI#test_get_messages_contains_created_message","name":"GET /message/ - Verify created message appears in messages list","status":"passed","testResultsByEnv":{"default":"79e6f036f9ff7c4207427570a31e546d"}}

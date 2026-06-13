@@ -1,0 +1,3 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3006/message/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 400  from http://localhost:3006/message/
+INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 400

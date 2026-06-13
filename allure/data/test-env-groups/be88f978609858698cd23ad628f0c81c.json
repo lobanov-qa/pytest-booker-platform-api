@@ -1,1 +1,1 @@
-{"id":"be88f978609858698cd23ad628f0c81c","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_delete_room_not_found_404","name":"DELETE /room/9999 - Delete non-existent room (404)","status":"passed","testResultsByEnv":{"default":"44286b2bf0b014e5c7486fec19d544e5"}}
+{"id":"be88f978609858698cd23ad628f0c81c","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_delete_room_not_found_404","name":"DELETE /room/9999 - Delete non-existent room (404)","status":"passed","testResultsByEnv":{"default":"6adfe4c87c47bbfb70779938926fcc90"}}

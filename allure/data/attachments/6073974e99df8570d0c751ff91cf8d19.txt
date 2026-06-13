@@ -1,0 +1,6 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3006/message/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 201  from http://localhost:3006/message/
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:3006/message/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3006/message/
+INFO     MESSAGE_ASSERTIONS:message.py:75 Check messages list contains message
+INFO     BASE_ASSERTIONS:base.py:114 Check that "messages" is instance of list (actual: list)

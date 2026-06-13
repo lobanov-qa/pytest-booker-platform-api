@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3006/message/' \
+  -H 'host: localhost:3006' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 232' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Donna","email":"ericanderson@example.com","phone":"001-832-794-0890x8151","subject":"Glass to follow lead.","description":"Move student according ahead memory throw. Almost soon mean world. Follow provide floor beautiful."}'

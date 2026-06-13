@@ -1,0 +1,1 @@
+{"id":"bc3a0ebc05a48ce5ee0e2781f86101ce","fullName":"tests.message.test_public_message.TestPublicMessageAPI#test_create_message_high_level","name":"POST /message/ - High-level method for creating message","status":"passed","testResultsByEnv":{"default":"c91b1b70da4dbdf55f6dfb84e031577e"}}

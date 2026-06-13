@@ -1,1 +1,1 @@
-{"id":"9efffdaa79c4db6124f96891eb816bc0","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_rooms_invalid_dates_500","name":"GET /room/ - Get rooms with invalid date format (500)","status":"passed","testResultsByEnv":{"default":"a134e8d814eb02f0d9f7b028a66a2969"}}
+{"id":"9efffdaa79c4db6124f96891eb816bc0","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_rooms_invalid_dates_500","name":"GET /room/ - Get rooms with invalid date format (500)","status":"passed","testResultsByEnv":{"default":"333cc9b4037e26d899769bb48b4513ac"}}

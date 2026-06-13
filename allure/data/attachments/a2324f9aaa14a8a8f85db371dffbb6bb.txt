@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3001/room/1' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=invalid_token_value' \
+  -H 'content-length: 206' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Mention 744","type":"Family","accessible":true,"image":"https://dummyimage.com/450x517","description":"Visit task health visit thing.","features":["check","less","expect"],"roomPrice":294}'

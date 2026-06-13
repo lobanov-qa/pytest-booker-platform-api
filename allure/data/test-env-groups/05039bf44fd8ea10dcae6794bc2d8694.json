@@ -1,1 +1,1 @@
-{"id":"05039bf44fd8ea10dcae6794bc2d8694","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_create_room_without_room_price_400","name":"POST /room/ - Create room without roomPrice (400)","status":"passed","testResultsByEnv":{"default":"f19e19d9fd27914b1abf0ae274d1b43f"}}
+{"id":"05039bf44fd8ea10dcae6794bc2d8694","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_create_room_without_room_price_400","name":"POST /room/ - Create room without roomPrice (400)","status":"passed","testResultsByEnv":{"default":"7e2661420ed5fed5154fbfd6e41ae71c"}}

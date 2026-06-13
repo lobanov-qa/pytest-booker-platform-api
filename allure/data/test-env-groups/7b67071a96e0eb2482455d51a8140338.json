@@ -1,1 +1,1 @@
-{"id":"7b67071a96e0eb2482455d51a8140338","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_create_room_201","name":"POST /room/ - Create room successfully (201)","status":"passed","testResultsByEnv":{"default":"8761974a3096e6d93518fdb01c41911c"}}
+{"id":"7b67071a96e0eb2482455d51a8140338","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_create_room_201","name":"POST /room/ - Create room successfully (201)","status":"passed","testResultsByEnv":{"default":"18d7ad0857c0573ab8ca5448987b1640"}}

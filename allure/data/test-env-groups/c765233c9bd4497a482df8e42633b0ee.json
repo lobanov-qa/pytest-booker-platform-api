@@ -1,0 +1,1 @@
+{"id":"c765233c9bd4497a482df8e42633b0ee","fullName":"tests.message.test_private_message.TestPrivateMessageAPI#test_mark_read_returns_202","name":"PUT /message/22/read - Mark message as read (202)","status":"passed","testResultsByEnv":{"default":"10be8de159830e113d0743012ca1296f"}}

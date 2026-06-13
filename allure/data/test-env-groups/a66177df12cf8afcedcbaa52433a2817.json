@@ -1,1 +1,1 @@
-{"id":"a66177df12cf8afcedcbaa52433a2817","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_update_room_not_found_404","name":"PUT /room/9999 - Update non-existent room (404)","status":"passed","testResultsByEnv":{"default":"2c3e769ac954825642b9d02bceae26c1"}}
+{"id":"a66177df12cf8afcedcbaa52433a2817","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_update_room_not_found_404","name":"PUT /room/9999 - Update non-existent room (404)","status":"passed","testResultsByEnv":{"default":"8ee8426e87fb5652732d060a39a70170"}}

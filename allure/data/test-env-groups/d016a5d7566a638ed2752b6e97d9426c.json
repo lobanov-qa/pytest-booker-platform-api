@@ -1,1 +1,1 @@
-{"id":"d016a5d7566a638ed2752b6e97d9426c","fullName":"tests.booking.test_public_booking.TestPublicBookingAPI#test_get_summary_missing_roomid","name":"GET /booking/summary - Missing roomid parameter (400)","status":"passed","testResultsByEnv":{"default":"786c574c39f0aa7750cabe4b7ed5afc7"}}
+{"id":"d016a5d7566a638ed2752b6e97d9426c","fullName":"tests.booking.test_public_booking.TestPublicBookingAPI#test_get_summary_missing_roomid","name":"GET /booking/summary - Missing roomid parameter (400)","status":"passed","testResultsByEnv":{"default":"07e0df314e0759bda728f8087b6362f8"}}

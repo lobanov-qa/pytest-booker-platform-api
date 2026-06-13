@@ -1,0 +1,1 @@
+{"id":"0fab785a23127332f0e6615de63587da","fullName":"tests.message.test_private_message.TestPrivateMessageAPI#test_get_message_high_level","name":"GET /message/20 - High-level method for getting message by ID","status":"passed","testResultsByEnv":{"default":"235e18b826a6d28f6f86fca0d3ec9b3f"}}

@@ -1,0 +1,10 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3006/message/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 201  from http://localhost:3006/message/
+INFO     BASE_ASSERTIONS:base.py:114 Check that "response_data" is instance of MessageSchema (actual: MessageSchema)
+INFO     MESSAGE_ASSERTIONS:message.py:19 Check create message response
+INFO     BASE_ASSERTIONS:base.py:92 Check that "messageid not positive" is greater than zero: 25
+INFO     BASE_ASSERTIONS:base.py:38 Check that "name" equals to Diana
+INFO     BASE_ASSERTIONS:base.py:38 Check that "email" equals to elizabethgibson@example.com
+INFO     BASE_ASSERTIONS:base.py:38 Check that "phone" equals to (705)817-6276x928
+INFO     BASE_ASSERTIONS:base.py:38 Check that "subject" equals to Wrong chance car.
+INFO     BASE_ASSERTIONS:base.py:38 Check that "description" equals to Record purpose something blood. Star so unit strategy middle cultural. Prevent hair sell wait top affect truth.

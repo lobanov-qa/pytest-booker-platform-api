@@ -1,1 +1,1 @@
-{"id":"ab963d229312e318158f991446f8d424","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_delete_room_high_level","name":"DELETE /room/10 - High-level method for deleting room","status":"passed","testResultsByEnv":{"default":"9a5cba6a0581a36c2f4a082380780af9"}}
+{"id":"ab963d229312e318158f991446f8d424","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_delete_room_high_level","name":"DELETE /room/7 - High-level method for deleting room","status":"passed","testResultsByEnv":{"default":"838e329edf803bb485154ce1af7c3d6a"}}

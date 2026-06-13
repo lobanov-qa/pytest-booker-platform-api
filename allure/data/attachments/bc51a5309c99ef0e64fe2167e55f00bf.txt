@@ -1,0 +1,15 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3006/message/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 201  from http://localhost:3006/message/
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:3006/message/20
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3006/message/20
+INFO     BASE_ASSERTIONS:base.py:114 Check that "response_data" is instance of MessageSchema (actual: MessageSchema)
+INFO     MESSAGE_ASSERTIONS:message.py:58 Check get message response
+INFO     MESSAGE_ASSERTIONS:message.py:37 Check message
+INFO     BASE_ASSERTIONS:base.py:38 Check that "messageid" equals to 20
+INFO     BASE_ASSERTIONS:base.py:38 Check that "name" equals to Emily
+INFO     BASE_ASSERTIONS:base.py:38 Check that "email" equals to dianemccarthy@example.com
+INFO     BASE_ASSERTIONS:base.py:38 Check that "phone" equals to (609)717-4597x56660
+INFO     BASE_ASSERTIONS:base.py:38 Check that "subject" equals to Control church.
+INFO     BASE_ASSERTIONS:base.py:38 Check that "description" equals to President option case cell cup picture seem. Data else world begin fill own offer. Huge health example seat pretty economy.

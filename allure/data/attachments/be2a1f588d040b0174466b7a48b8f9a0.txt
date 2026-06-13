@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3001/room/10' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=PkEfhDaxGV59Lk5P' \
+  -H 'content-length: 208' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Issue 299","type":"Suite","accessible":false,"image":"https://dummyimage.com/433x471","description":"Between international call.","features":["recognize","expect","western"],"roomPrice":400}'

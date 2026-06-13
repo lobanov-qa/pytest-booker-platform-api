@@ -1,0 +1,1 @@
+{"id":"c898b86e2bc749db765f8767d6d6dfe0","fullName":"tests.message.test_public_message.TestPublicMessageAPI#test_create_message_empty_body_400","name":"POST /message/ - Create message with empty body (400)","status":"passed","testResultsByEnv":{"default":"0f85f26a6ca7bb763d0aaad70fe33d9f"}}
