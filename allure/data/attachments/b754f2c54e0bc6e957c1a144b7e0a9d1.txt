@@ -1,0 +1,14 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3006/message/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 201  from http://localhost:3006/message/
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:3006/message/19
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3006/message/19
+INFO     MESSAGE_ASSERTIONS:message.py:58 Check get message response
+INFO     MESSAGE_ASSERTIONS:message.py:37 Check message
+INFO     BASE_ASSERTIONS:base.py:38 Check that "messageid" equals to 19
+INFO     BASE_ASSERTIONS:base.py:38 Check that "name" equals to Brittany
+INFO     BASE_ASSERTIONS:base.py:38 Check that "email" equals to washingtonmargaret@example.com
+INFO     BASE_ASSERTIONS:base.py:38 Check that "phone" equals to +1-703-264-5941x5874
+INFO     BASE_ASSERTIONS:base.py:38 Check that "subject" equals to Many face yard how.
+INFO     BASE_ASSERTIONS:base.py:38 Check that "description" equals to Exist wind ahead view allow. Relate hear your. Save wait customer small drug. Born lay suggest pattern reflect alone. Exist live foreign fast rather himself ground.

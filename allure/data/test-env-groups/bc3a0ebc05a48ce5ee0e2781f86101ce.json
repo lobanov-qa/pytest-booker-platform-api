@@ -1,1 +1,1 @@
-{"id":"bc3a0ebc05a48ce5ee0e2781f86101ce","fullName":"tests.message.test_public_message.TestPublicMessageAPI#test_create_message_high_level","name":"POST /message/ - High-level method for creating message","status":"passed","testResultsByEnv":{"default":"37c467c37bebb682bd86ab9ef420af21"}}
+{"id":"bc3a0ebc05a48ce5ee0e2781f86101ce","fullName":"tests.message.test_public_message.TestPublicMessageAPI#test_create_message_high_level","name":"POST /message/ - High-level method for creating message","status":"passed","testResultsByEnv":{"default":"638b3a4d1f46d0a1ccef7c4bf756a0a4"}}

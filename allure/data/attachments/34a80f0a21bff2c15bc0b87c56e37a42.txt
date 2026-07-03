@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=fHHQn6ij4UMpKFfr' \
+  -H 'content-length: 434' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Williams Inc","map":{"latitude":-28.3334345,"longitude":48.146888},"logo_url":"https://placekitten.com/466/326","directions":"Recognize source network article concern natural from early.","contact":{"name":"ClarkGonzalez","phone":"+14748270499023","email":"brenda15@example.com"},"address":{"line1":"0764 Martin Squares Suite 793","line2":"Apt. 863","post_town":"North Michelleview","county":"Tennessee","post_code":"58270"}}'

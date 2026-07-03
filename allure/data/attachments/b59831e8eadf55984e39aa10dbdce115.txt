@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=FxJfDxhodTuzxGEj' \
+  -H 'content-length: 223' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Someone 94","type":"Suite","accessible":false,"image":"https://dummyimage.com/250x59","description":"Seek always free. Goal authority wind responsibility.","features":["whole","test","if"],"roomPrice":888}'

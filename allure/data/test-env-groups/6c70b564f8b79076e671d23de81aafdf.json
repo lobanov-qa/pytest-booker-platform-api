@@ -1,1 +1,1 @@
-{"id":"6c70b564f8b79076e671d23de81aafdf","fullName":"tests.report.test_public_report.TestPublicReportAPI#test_get_room_report_zero_id","name":"GET /report/room/0 - Zero id returns 200 (empty report)","status":"passed","testResultsByEnv":{"default":"ceca053cf3eb40cf6bc54992df51dd37"}}
+{"id":"6c70b564f8b79076e671d23de81aafdf","fullName":"tests.report.test_public_report.TestPublicReportAPI#test_get_room_report_zero_id","name":"GET /report/room/0 - Zero id returns 200 (empty report)","status":"passed","testResultsByEnv":{"default":"ee37be97e9fd14b48c1cb39034fa2e48"}}

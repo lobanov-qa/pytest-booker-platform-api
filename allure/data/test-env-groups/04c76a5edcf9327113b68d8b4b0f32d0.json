@@ -1,1 +1,1 @@
-{"id":"04c76a5edcf9327113b68d8b4b0f32d0","fullName":"tests.message.test_private_message.TestPrivateMessageAPI#test_delete_message_returns_202","name":"DELETE /message/23 - Delete message (202)","status":"passed","testResultsByEnv":{"default":"8920fcf3dc57d53a31d2d8cd40a5d6dc"}}
+{"id":"04c76a5edcf9327113b68d8b4b0f32d0","fullName":"tests.message.test_private_message.TestPrivateMessageAPI#test_delete_message_returns_202","name":"DELETE /message/22 - Delete message (202)","status":"passed","testResultsByEnv":{"default":"739315b3c6cb3647ce9744338422cc9f"}}

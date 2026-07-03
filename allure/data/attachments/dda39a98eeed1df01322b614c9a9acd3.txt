@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=ZxYWGigg4jcYrPDP' \
+  -H 'content-length: 462' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Hotel123","map":{"latitude":-72.0845025,"longitude":63.3186},"logo_url":"https://placekitten.com/296/361","description":"Facetoface multimedia datawarehouse","directions":"Affect color able event yourself. Alone half paper fly.","contact":{"name":"GreenMckay","phone":"23543466659634","email":"laura63@example.com"},"address":{"line1":"377 Austin Mountains Suite 173","line2":"Suite 813","post_town":"Montoyaport","county":"Alaska","post_code":"11128"}}'

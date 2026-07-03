@@ -1,1 +1,1 @@
-{"id":"e08520b69b8084cad45e6b718e45d4c4","fullName":"tests.report.test_public_report.TestPublicReportAPI#test_get_room_report_negative_id","name":"GET /report/room/-1 - Negative id returns 404","status":"passed","testResultsByEnv":{"default":"be12a0081303d7dffc87a65c9a4b1076"}}
+{"id":"e08520b69b8084cad45e6b718e45d4c4","fullName":"tests.report.test_public_report.TestPublicReportAPI#test_get_room_report_negative_id","name":"GET /report/room/-1 - Negative id returns 404","status":"passed","testResultsByEnv":{"default":"b17bfcc15c80db26d590b7474d97ae48"}}

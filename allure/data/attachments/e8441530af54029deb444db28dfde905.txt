@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=npvZC8fqEA2M7ccd' \
+  -H 'content-length: 501' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Jones Perez and Barnes","map":{"latitude":-16.5249275,"longitude":-179.416983},"logoUrl":"https://placekitten.com/563/369","description":"Triplebuffered userfacing installation","directions":"Environmental watch particular. Democratic floor cause develop.","contact":{"name":"Harrison Gonzalez and Hensley","phone":"4539144863","email":"ble@example.com"},"address":{"line1":"31302 Lane Canyon Suite 120","line2":"Apt. 202","postTown":"North Kevinborough","county":"Texas","postCode":"34162"}}'

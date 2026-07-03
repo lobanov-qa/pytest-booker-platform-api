@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3006/message/' \
+  -H 'host: localhost:3006' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 297' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Paul","email":"carriekrause@example.com","phone":"+1-779-219-7189x80610","subject":"Education be.","description":"Run chance statement still final commercial. Yes assume world course. Those level subject leader sometimes. Lay fish within three leg rise off. Mr different character kind."}'

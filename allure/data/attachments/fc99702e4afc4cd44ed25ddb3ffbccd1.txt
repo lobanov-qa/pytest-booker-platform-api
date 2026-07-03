@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3001/room/10' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=yP2M0Cn6YceAWGPk' \
+  -H 'content-length: 206' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Give 922","type":"Family","accessible":true,"image":"https://dummyimage.com/432x229","description":"Republican sense executive modern.","features":["seem","bank","couple"],"roomPrice":303}'

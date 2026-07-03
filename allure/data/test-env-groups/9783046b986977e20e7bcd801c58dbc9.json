@@ -1,1 +1,1 @@
-{"id":"9783046b986977e20e7bcd801c58dbc9","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_get_room_matches_created","name":"GET /room/6 - Get room matches created room data","status":"passed","testResultsByEnv":{"default":"c6db6adb1302367ee5e0dba604263659"}}
+{"id":"9783046b986977e20e7bcd801c58dbc9","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_get_room_matches_created","name":"GET /room/7 - Get room matches created room data","status":"passed","testResultsByEnv":{"default":"efedc7a3653622a959f4ea8d59f10965"}}

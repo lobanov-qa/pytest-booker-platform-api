@@ -1,1 +1,1 @@
-{"id":"d5b365c8b58254aeeb66039889783543","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_update_room_unauthorized_403","name":"PUT /room/1 - Update room without authentication (403)","status":"passed","testResultsByEnv":{"default":"f723f6f8c4d125c3ba9aded802c57236"}}
+{"id":"d5b365c8b58254aeeb66039889783543","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_update_room_unauthorized_403","name":"PUT /room/1 - Update room without authentication (403)","status":"passed","testResultsByEnv":{"default":"c9d0635ecbacc4fef99392e237eefb73"}}

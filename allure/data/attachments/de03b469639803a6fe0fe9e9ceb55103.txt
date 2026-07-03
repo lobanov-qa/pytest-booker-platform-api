@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=TwdOtzUpg4xivUvZ' \
+  -H 'content-length: 217' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Ok 815","type":"Twin","accessible":true,"image":"https://dummyimage.com/255x71","description":"Around successful end economic education summer off.","features":["issue","art","lose"],"roomPrice":356}'

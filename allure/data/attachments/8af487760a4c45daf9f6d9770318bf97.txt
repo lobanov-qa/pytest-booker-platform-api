@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3001/room/1' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=invalid_token_value' \
+  -H 'content-length: 223' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Finish 410","type":"Family","accessible":true,"image":"https://dummyimage.com/342x70","description":"East civil perhaps include group. Blood line life.","features":["well","take","effort"],"roomPrice":381}'

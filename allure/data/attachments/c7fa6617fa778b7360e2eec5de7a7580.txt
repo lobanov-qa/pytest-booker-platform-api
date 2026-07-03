@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=fGCSOr6wMygFay94' \
+  -H 'content-length: 245' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Action 122","type":"Twin","accessible":false,"image":"https://dummyimage.com/110x366","description":"Too respond truth produce. Kid table others finally statement perform.","features":["he","woman","education"],"roomPrice":538}'

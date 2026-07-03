@@ -1,1 +1,1 @@
-{"id":"b5349b410bddfa62b6d5ec4df9a5e080","fullName":"tests.message.test_public_message.TestPublicMessageAPI#test_get_messages_high_level","name":"GET /message/ - High-level method for getting all messages","status":"passed","testResultsByEnv":{"default":"aa731055c5b45fafbd8d5745a60316a0"}}
+{"id":"b5349b410bddfa62b6d5ec4df9a5e080","fullName":"tests.message.test_public_message.TestPublicMessageAPI#test_get_messages_high_level","name":"GET /message/ - High-level method for getting all messages","status":"passed","testResultsByEnv":{"default":"94929f4c5fc745ba22775afc9db37483"}}

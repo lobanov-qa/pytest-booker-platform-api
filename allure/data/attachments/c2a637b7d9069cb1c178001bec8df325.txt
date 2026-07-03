@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=JU9zfQ3ETD5h2wG7' \
+  -H 'content-length: 436' \
+  -H 'content-type: application/json' \
+  -d '{"name":"ShawRoman","map":{"latitude":75.1322685,"longitude":-69.624603},"logoUrl":"https://placekitten.com/202/239","description":"Seamless holistic focus group","directions":"Thus reveal thousand those company region.","contact":{"name":"AllenRodgers","phone":"+18122865581983","email":"ggarcia@example.com"},"address":{"line1":"64213 Janet Haven","line2":"Apt. 829","postTown":"Sherrymouth","county":"New Jersey","postCode":"93440"}}'
