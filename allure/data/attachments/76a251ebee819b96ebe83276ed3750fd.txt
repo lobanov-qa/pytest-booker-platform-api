@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=aAthX23JwEqZjrK0' \
+  -H 'content-length: 258' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Stock 220","type":"Single","accessible":false,"image":"https://dummyimage.com/405x178","description":"Tree law long security relationship. Campaign authority in improve suddenly.","features":["democratic","note","election"],"roomPrice":564}'

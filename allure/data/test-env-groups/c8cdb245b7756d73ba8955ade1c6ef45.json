@@ -1,1 +1,1 @@
-{"id":"c8cdb245b7756d73ba8955ade1c6ef45","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_delete_room_unauthorized_403","name":"DELETE /room/1 - Delete room without authentication (403)","status":"passed","testResultsByEnv":{"default":"e3da1e4b3d379a95654842fd47da8c7f"}}
+{"id":"c8cdb245b7756d73ba8955ade1c6ef45","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_delete_room_unauthorized_403","name":"DELETE /room/1 - Delete room without authentication (403)","status":"passed","testResultsByEnv":{"default":"7df7aa65bf480ea3b83ea3055eb5260c"}}

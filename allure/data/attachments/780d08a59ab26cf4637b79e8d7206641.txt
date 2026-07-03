@@ -1,0 +1,11 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3006/message/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 201  from http://localhost:3006/message/
+INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 201
+INFO     SCHEMA_ASSERTIONS:schema.py:22 Validating JSON schema
+INFO     MESSAGE_ASSERTIONS:message.py:19 Check create message response
+INFO     BASE_ASSERTIONS:base.py:92 Check that "messageid not positive" is greater than zero: 26
+INFO     BASE_ASSERTIONS:base.py:38 Check that "name" equals to Raymond
+INFO     BASE_ASSERTIONS:base.py:38 Check that "email" equals to bergermaureen@example.com
+INFO     BASE_ASSERTIONS:base.py:38 Check that "phone" equals to 811.295.5214
+INFO     BASE_ASSERTIONS:base.py:38 Check that "subject" equals to Word son college.
+INFO     BASE_ASSERTIONS:base.py:38 Check that "description" equals to Eight what total think. Quickly production rest six. Activity available wear. Drive social phone behavior last off.

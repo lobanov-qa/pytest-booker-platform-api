@@ -1,0 +1,1 @@
+{"id":"dc051671393aedf3d1fb202690b45172","fullName":"tests.report.test_public_report.TestPublicReportAPI#test_get_room_report_high_level","name":"GET /report/room/1 - High-level method returns parsed model","status":"passed","testResultsByEnv":{"default":"148bad4f9fa4a55c37d181b6f59b84d9"}}

@@ -1,1 +1,1 @@
-{"id":"8d8f825532201a639baf80e3dd5c60ca","fullName":"tests.message.test_public_message.TestPublicMessageAPI#test_create_message_returns_201","name":"POST /message/ - Create message successfully (201)","status":"passed","testResultsByEnv":{"default":"66616309491907321fd2e7dfbdbf3436"}}
+{"id":"8d8f825532201a639baf80e3dd5c60ca","fullName":"tests.message.test_public_message.TestPublicMessageAPI#test_create_message_returns_201","name":"POST /message/ - Create message successfully (201)","status":"passed","testResultsByEnv":{"default":"66eb32e3fc8ae2c887a03861974631b3"}}

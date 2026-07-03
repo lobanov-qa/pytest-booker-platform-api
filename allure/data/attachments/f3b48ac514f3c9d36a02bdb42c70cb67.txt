@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3006/message/' \
+  -H 'host: localhost:3006' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 227' \
+  -H 'content-type: application/json' \
+  -d '{"name":"David","email":"ifreeman@example.com","phone":"001-670-335-4537x700","subject":"Decision door my.","description":"Involve conference represent gas difference condition. Professor trip family fight choose whole style."}'

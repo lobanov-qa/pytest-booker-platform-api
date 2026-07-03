@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3000/booking/14' \
+  -H 'host: localhost:3000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=invalid_token_value' \
+  -H 'content-length: 217' \
+  -H 'content-type: application/json' \
+  -d '{"firstname":"Emily","lastname":"Elliott","bookingdates":{"checkin":"2026-07-24","checkout":"2026-07-25"},"depositpaid":false,"email":"jacobdavis@example.com","phone":"+1-632-905-1421x1428","bookingid":14,"roomid":72}'

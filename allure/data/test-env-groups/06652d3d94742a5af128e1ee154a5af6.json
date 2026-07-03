@@ -1,1 +1,1 @@
-{"id":"06652d3d94742a5af128e1ee154a5af6","fullName":"tests.branding.test_private_branding.TestPrivateBrandingAPI#test_update_branding_name_too_short_400","name":"PUT /branding – Name too short (400)","status":"passed","testResultsByEnv":{"default":"85a5a6579be9830428a86ee79bf27604"}}
+{"id":"06652d3d94742a5af128e1ee154a5af6","fullName":"tests.branding.test_private_branding.TestPrivateBrandingAPI#test_update_branding_name_too_short_400","name":"PUT /branding – Name too short (400)","status":"passed","testResultsByEnv":{"default":"9284464840122d4e0d4b660c62ca30bb"}}

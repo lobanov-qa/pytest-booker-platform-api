@@ -1,1 +1,1 @@
-{"id":"0703094f1b287c740d23a74406439992","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_room_invalid_id_500","name":"GET /room/0 - Retrieve room with invalid ID 0 (500)","status":"passed","testResultsByEnv":{"default":"59e00d0facd7385b134d140399f1d9be"}}
+{"id":"0703094f1b287c740d23a74406439992","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_room_invalid_id_500","name":"GET /room/0 - Retrieve room with invalid ID 0 (500)","status":"passed","testResultsByEnv":{"default":"ff8e0558ea434671c12fdb9bc52b1029"}}

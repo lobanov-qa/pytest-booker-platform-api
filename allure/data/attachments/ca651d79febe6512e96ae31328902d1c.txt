@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3006/message/' \
+  -H 'host: localhost:3006' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 209' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Crystal","email":"ashleycordova@example.com","phone":"+1-775-712-7478x519","subject":"Body lawyer available.","description":"Boy media firm account process. Affect them gun respond assume bank both."}'

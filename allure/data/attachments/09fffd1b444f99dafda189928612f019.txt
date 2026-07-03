@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=yIf9GpUbKkN9XXhu' \
+  -H 'content-length: 222' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Play 528","type":"Suite","accessible":true,"image":"https://dummyimage.com/427x596","description":"Data church fight sea article sister smile each.","features":["mind","loss","newspaper"],"roomPrice":366}'

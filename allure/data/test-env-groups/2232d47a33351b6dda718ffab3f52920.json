@@ -1,1 +1,1 @@
-{"id":"2232d47a33351b6dda718ffab3f52920","fullName":"tests.message.test_public_message.TestPublicMessageAPI#test_get_messages_returns_200","name":"GET /message/ - Get all messages successfully (200)","status":"passed","testResultsByEnv":{"default":"644c728ce5201896d55b3470c0c1605f"}}
+{"id":"2232d47a33351b6dda718ffab3f52920","fullName":"tests.message.test_public_message.TestPublicMessageAPI#test_get_messages_returns_200","name":"GET /message/ - Get all messages successfully (200)","status":"passed","testResultsByEnv":{"default":"5d7e69b43f33cefb6aa41904d2255ac7"}}

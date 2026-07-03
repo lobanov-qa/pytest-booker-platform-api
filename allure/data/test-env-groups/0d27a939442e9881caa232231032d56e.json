@@ -1,0 +1,1 @@
+{"id":"0d27a939442e9881caa232231032d56e","fullName":"tests.report.test_public_report.TestPublicReportAPI#test_get_room_report","name":"GET /report/room/1 - Get report for existing room (200)","status":"passed","testResultsByEnv":{"default":"63b4381c9b70c05ace0daff58993173a"}}

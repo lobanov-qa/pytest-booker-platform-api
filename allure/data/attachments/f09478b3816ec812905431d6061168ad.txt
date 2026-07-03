@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3001/room/8' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=aAthX23JwEqZjrK0' \
+  -H 'content-length: 222' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Together 704","type":"Double","accessible":true,"image":"https://dummyimage.com/592x194","description":"Remain who surface act. Participant test whom.","features":["other","per","former"],"roomPrice":371}'

@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=2eJvNIivtONnYe31' \
+  -H 'content-length: 389' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Harris and Sons","map":{"latitude":-57.6617955,"longitude":-14.909698},"logo_url":"https://placekitten.com/467/465","directions":"Production body consider should.","contact":{"name":"Ramos and Sons","phone":"2552043754","email":"justin99@example.com"},"address":{"line1":"64989 Teresa Lakes","line2":"Suite 747","post_town":"South Julia","county":"Louisiana","post_code":"53709"}}'

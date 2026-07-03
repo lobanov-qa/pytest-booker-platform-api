@@ -1,0 +1,1 @@
+{"id":"004a35470568655b1ff995b1c6b2f72c","fullName":"tests.report.test_private_report.TestPrivateReportAPI#test_get_all_reports_without_auth","name":"GET /report/ - Without authentication (403)","status":"passed","testResultsByEnv":{"default":"0a97900287beaf1d80349e14c7386f8f"}}

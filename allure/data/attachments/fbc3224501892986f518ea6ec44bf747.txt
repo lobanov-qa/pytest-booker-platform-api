@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=4j5ftF2q42s4DQsq' \
+  -H 'content-length: 485' \
+  -H 'content-type: application/json' \
+  -d '{"name":"A","map":{"latitude":45.1229805,"longitude":-174.558505},"logo_url":"https://placekitten.com/656/377","description":"Implemented bandwidthmonitored adapter","directions":"Else night gas conference increase conference despite. Arm possible project as.","contact":{"name":"LewisWashington","phone":"2702720388007","email":"maryrosario@example.com"},"address":{"line1":"06622 Murray Streets","line2":"Suite 342","post_town":"East Johnstad","county":"Oregon","post_code":"54980"}}'

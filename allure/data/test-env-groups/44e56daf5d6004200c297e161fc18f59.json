@@ -1,1 +1,1 @@
-{"id":"44e56daf5d6004200c297e161fc18f59","fullName":"tests.branding.test_private_branding.TestPrivateBrandingAPI#test_update_branding_verify_via_get","name":"PUT /branding – Update and verify via GET","status":"passed","testResultsByEnv":{"default":"7791edc2fc92d8bcbc0ad507ac992deb"}}
+{"id":"44e56daf5d6004200c297e161fc18f59","fullName":"tests.branding.test_private_branding.TestPrivateBrandingAPI#test_update_branding_verify_via_get","name":"PUT /branding – Update and verify via GET","status":"passed","testResultsByEnv":{"default":"6251b872ac1519402003ba35ee6404ab"}}

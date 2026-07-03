@@ -1,0 +1,22 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make PUT request to http://localhost:3002/branding/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 202  from http://localhost:3002/branding/
+INFO     BASE_ASSERTIONS:base.py:114 Check that "updated" is instance of BrandingSchema (actual: BrandingSchema)
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:3002/branding/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3002/branding/
+INFO     BRANDING_ASSERTIONS:branding.py:19 Check branding
+INFO     BASE_ASSERTIONS:base.py:38 Check that "name" equals to Alexander Ltd
+INFO     BASE_ASSERTIONS:base.py:38 Check that "logo_url" equals to https://placekitten.com/450/416
+INFO     BASE_ASSERTIONS:base.py:38 Check that "description" equals to Phased dedicated definition
+INFO     BASE_ASSERTIONS:base.py:38 Check that "directions" equals to None catch southern large car enter customer. Well often expert pretty full miss.
+INFO     BASE_ASSERTIONS:base.py:38 Check that "map.latitude" equals to -8.4253205
+INFO     BASE_ASSERTIONS:base.py:38 Check that "map.longitude" equals to -111.786838
+INFO     BASE_ASSERTIONS:base.py:38 Check that "contact.name" equals to Johnson Group
+INFO     BASE_ASSERTIONS:base.py:38 Check that "contact.phone" equals to +19015335043471
+INFO     BASE_ASSERTIONS:base.py:38 Check that "contact.email" equals to christophermcintyre@example.com
+INFO     BASE_ASSERTIONS:base.py:38 Check that "address.line1" equals to 59568 Gray Vista Apt. 347
+INFO     BASE_ASSERTIONS:base.py:38 Check that "address.line2" equals to Apt. 725
+INFO     BASE_ASSERTIONS:base.py:38 Check that "address.post_town" equals to West Oscarchester
+INFO     BASE_ASSERTIONS:base.py:38 Check that "address.county" equals to New York
+INFO     BASE_ASSERTIONS:base.py:38 Check that "address.post_code" equals to 37832

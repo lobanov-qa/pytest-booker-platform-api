@@ -1,1 +1,1 @@
-{"id":"8723bf244ea8a1afc66712ef42a84ae5","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_create_room_unauthorized_403","name":"POST /room/ - Create room without authentication (403)","status":"passed","testResultsByEnv":{"default":"447d3d6fea96c2d06c8a96ff62865b1d"}}
+{"id":"8723bf244ea8a1afc66712ef42a84ae5","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_create_room_unauthorized_403","name":"POST /room/ - Create room without authentication (403)","status":"passed","testResultsByEnv":{"default":"a9a407a2a3635907d9e0cee55fd6be5d"}}

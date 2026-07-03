@@ -1,0 +1,13 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make GET request to http://localhost:3005/report/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3005/report/
+INFO     BASE_ASSERTIONS:base.py:19 Check that response status code equals to 200
+INFO     BASE_ASSERTIONS:base.py:114 Check that "report" is instance of list (actual: list)
+INFO     REPORT_ASSERTIONS:report.py:50 Check report not empty
+INFO     BASE_ASSERTIONS:base.py:114 Check that "report" is instance of list (actual: list)
+INFO     BASE_ASSERTIONS:base.py:92 Check that "report length" is greater than zero: 4
+INFO     BASE_ASSERTIONS:base.py:114 Check that "entry" is instance of EntrySchema (actual: EntrySchema)
+INFO     BASE_ASSERTIONS:base.py:114 Check that "entry" is instance of EntrySchema (actual: EntrySchema)
+INFO     BASE_ASSERTIONS:base.py:114 Check that "entry" is instance of EntrySchema (actual: EntrySchema)
+INFO     BASE_ASSERTIONS:base.py:114 Check that "entry" is instance of EntrySchema (actual: EntrySchema)

@@ -1,0 +1,1 @@
+{"id":"1513ef5cafa51150292e4b5e12a697d6","fullName":"tests.report.test_public_report.TestPublicReportAPI#test_get_room_report_no_id","name":"GET /report/room/ — Missing id (404)","status":"passed","testResultsByEnv":{"default":"22830fe95133d582576369f691d50ef7"}}

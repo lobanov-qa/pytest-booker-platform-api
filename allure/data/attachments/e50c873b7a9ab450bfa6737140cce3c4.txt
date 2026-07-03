@@ -1,0 +1,20 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make PUT request to http://localhost:3002/branding/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 202  from http://localhost:3002/branding/
+INFO     BASE_ASSERTIONS:base.py:114 Check that "updated" is instance of BrandingSchema (actual: BrandingSchema)
+INFO     BRANDING_ASSERTIONS:branding.py:56 Check update branding response
+INFO     BASE_ASSERTIONS:base.py:38 Check that "name" equals to Banks Le and Griffith
+INFO     BASE_ASSERTIONS:base.py:38 Check that "logo_url" equals to https://placekitten.com/718/527
+INFO     BASE_ASSERTIONS:base.py:38 Check that "description" equals to Facetoface intangible neuralnet
+INFO     BASE_ASSERTIONS:base.py:38 Check that "directions" equals to Energy million small skill many.
+INFO     BASE_ASSERTIONS:base.py:38 Check that "map.latitude" equals to -20.53879
+INFO     BASE_ASSERTIONS:base.py:38 Check that "map.longitude" equals to -147.923379
+INFO     BASE_ASSERTIONS:base.py:38 Check that "contact.name" equals to Mclaughlin LLC
+INFO     BASE_ASSERTIONS:base.py:38 Check that "contact.phone" equals to 5502316849817
+INFO     BASE_ASSERTIONS:base.py:38 Check that "contact.email" equals to travis41@example.com
+INFO     BASE_ASSERTIONS:base.py:38 Check that "address.line1" equals to 92101 Rogers Point
+INFO     BASE_ASSERTIONS:base.py:38 Check that "address.line2" equals to Apt. 320
+INFO     BASE_ASSERTIONS:base.py:38 Check that "address.post_town" equals to New Jennifer
+INFO     BASE_ASSERTIONS:base.py:38 Check that "address.county" equals to South Carolina
+INFO     BASE_ASSERTIONS:base.py:38 Check that "address.post_code" equals to 19161

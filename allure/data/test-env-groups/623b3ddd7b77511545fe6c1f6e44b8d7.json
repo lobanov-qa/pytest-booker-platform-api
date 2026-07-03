@@ -1,1 +1,1 @@
-{"id":"623b3ddd7b77511545fe6c1f6e44b8d7","fullName":"tests.message.test_private_message.TestPrivateMessageAPI#test_get_message_returns_200","name":"GET /message/19 - Get message by ID successfully (200)","status":"passed","testResultsByEnv":{"default":"3efff3992726958fde473e0af7ebbe97"}}
+{"id":"623b3ddd7b77511545fe6c1f6e44b8d7","fullName":"tests.message.test_private_message.TestPrivateMessageAPI#test_get_message_returns_200","name":"GET /message/25 - Get message by ID successfully (200)","status":"passed","testResultsByEnv":{"default":"dad7b2be1f971cf62efcd7546009a6eb"}}

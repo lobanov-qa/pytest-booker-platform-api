@@ -1,0 +1,6 @@
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 200  from http://localhost:3004/auth/login
+INFO     HTTP_CLIENT:event_hooks.py:28 Make POST request to http://localhost:3006/message/
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 201  from http://localhost:3006/message/
+INFO     HTTP_CLIENT:event_hooks.py:28 Make PUT request to http://localhost:3006/message/22/read
+INFO     HTTP_CLIENT:event_hooks.py:37 Got response 202  from http://localhost:3006/message/22/read

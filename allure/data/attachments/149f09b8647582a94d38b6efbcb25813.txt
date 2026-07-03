@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3001/room/9999' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=tVmRhY47Ml6wRIMF' \
+  -H 'content-length: 230' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Be 780","type":"Single","accessible":false,"image":"https://dummyimage.com/152x529","description":"Decade world partner role major. Nothing yeah each figure.","features":["story","she","contain"],"roomPrice":526}'

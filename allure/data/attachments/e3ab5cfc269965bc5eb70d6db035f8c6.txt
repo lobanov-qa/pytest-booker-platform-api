@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3000/booking/18' \
+  -H 'host: localhost:3000' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=oaAoBs3ALQfYZocu' \
+  -H 'content-length: 207' \
+  -H 'content-type: application/json' \
+  -d '{"firstname":"","lastname":"Noble","bookingdates":{"checkin":"2026-07-06","checkout":"2026-07-07"},"depositpaid":false,"email":"athomas@example.com","phone":"001-940-695-3363x888","bookingid":18,"roomid":24}'
