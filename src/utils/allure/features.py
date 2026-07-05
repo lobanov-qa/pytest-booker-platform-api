@@ -18,3 +18,5 @@ class AllureFeature(StrEnum):
     REPORT_GENERATION = "Report Generation"
 
     CHECK_HEALTH = "Check Health"
+
+    FULL_AUDIT_TRAIL = "Full Audit Trail"

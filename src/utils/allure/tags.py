@@ -18,3 +18,6 @@ class AllureTag(str, Enum):
     VALIDATE_ENTITY = "VALIDATE_ENTITY"
     NEGATIVE = "NEGATIVE"
     BUG = "BUG"
+
+    E2E = "E2E"
+    AUDIT = "AUDIT"

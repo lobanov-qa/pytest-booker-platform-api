@@ -42,3 +42,10 @@ class AllureStory(StrEnum):
     ROOM_REPORT = "Generate report for specific room"
     REPORT_BY_ROOM = "Generate report for specific room"
     REPORT_ALL = "Get all reports"
+
+    # E2E Stories
+    FULL_HOTEL_AUDIT = "Complete hotel audit"
+    ROOM_CREATION_IN_FLOW = "Create room and verify in public list"
+    BOOKING_WITHIN_AUDIT = "Create booking and verify within audit flow"
+    MESSAGE_WITHIN_AUDIT = "Create, read, and verify message"
+    BOOKING_CANCELLATION = "Cancel booking and verify report"

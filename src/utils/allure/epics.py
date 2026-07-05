@@ -9,3 +9,5 @@ class AllureEpic(StrEnum):
     BRANDING = "Branding"
     REPORT = "Reporting"
     HEALTH = "API Health"
+
+    E2E = "End-to-End"
