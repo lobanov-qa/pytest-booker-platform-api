@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=MfLs7kOYASn0EAiH' \
+  -H 'content-length: 252' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Growth 162","type":"Twin","accessible":true,"image":"https://dummyimage.com/441x172","description":"Sea true pull still you charge. Trade order research piece majority spend would.","features":["large","stage","much"],"roomPrice":329}'

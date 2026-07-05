@@ -1,0 +1,1 @@
+{"id":"99d0816c00a17b7f5438fedb099fdf65","fullName":"tests.e2e.test_full_audit.TestFullHotelAudit#test_room_creation_and_visibility","name":"Admin creates a room and it appears in the public list","status":"passed","testResultsByEnv":{"default":"71645b328703559fea2a7708b3b6389a"}}

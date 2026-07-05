@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=hYmAhZ199xb1CD8T' \
+  -H 'content-length: 206' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Up 624","type":"Double","accessible":false,"image":"https://dummyimage.com/704x259","description":"Course method be. Next enough middle.","features":["last","onto","risk"],"roomPrice":853}'

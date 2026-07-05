@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3006/message/' \
+  -H 'host: localhost:3006' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 181' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Michael","email":"randy78@example.com","phone":"+1-559-781-2322","subject":"Rule degree family black.","description":"Sort song office it size. Same some choice although."}'

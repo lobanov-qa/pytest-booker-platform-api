@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3001/room/12' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=EJXN5Vh5ktiiNk1c' \
+  -H 'content-length: 201' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Ahead 587","type":"Double","accessible":false,"image":"https://dummyimage.com/296x192","description":"Question study standard.","features":["dinner","ready","decade"],"roomPrice":965}'

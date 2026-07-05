@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3006/message/' \
+  -H 'host: localhost:3006' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 239' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Tara","email":"robertsmary@example.com","phone":"+1-502-331-1236","subject":"Leader good.","description":"Avoid blue effect successful region. Opportunity Democrat speak population. Compare crime during skin international carry."}'

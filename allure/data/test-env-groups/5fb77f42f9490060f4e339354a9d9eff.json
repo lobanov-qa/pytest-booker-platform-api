@@ -1,1 +1,1 @@
-{"id":"5fb77f42f9490060f4e339354a9d9eff","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_delete_room_202","name":"DELETE /room/6 - Delete room successfully (202)","status":"passed","testResultsByEnv":{"default":"7bac7f634a27d8aaa20d6a20b1e16434"}}
+{"id":"5fb77f42f9490060f4e339354a9d9eff","fullName":"tests.room.test_private_room.TestPrivateRoomAPI#test_delete_room_202","name":"DELETE /room/10 - Delete room successfully (202)","status":"passed","testResultsByEnv":{"default":"fbd8353cf2ef9637d36106baf76c42c4"}}

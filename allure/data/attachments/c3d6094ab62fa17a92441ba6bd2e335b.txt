@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3006/message/' \
+  -H 'host: localhost:3006' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 330' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Laura","email":"npearson@example.com","phone":"(361)729-2000x113","subject":"Get debate.","description":"System peace want than recently stage. Who account require free sure. Full truth drop indeed election remain improve. Page level entire everyone life best situation. Behind score simply let usually other necessary."}'

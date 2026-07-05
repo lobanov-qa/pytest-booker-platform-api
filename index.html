@@ -523,8 +523,8 @@
 
             <div class="build-info" id="buildInfo">
                 <i class="fas fa-code-branch"></i>
-                <span class="ru-only">Сборка: #115 • GitHub Actions CI/CD</span>
-                <span class="en-only">Build: #115 • GitHub Actions CI/CD</span>
+                <span class="ru-only">Сборка: #118 • GitHub Actions CI/CD</span>
+                <span class="en-only">Build: #118 • GitHub Actions CI/CD</span>
             </div>
         </header>
 
@@ -667,7 +667,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Update build number
-            const buildNumber = "115" || "latest";
+            const buildNumber = "118" || "latest";
 
             // Theme toggle functionality
             const themeToggle = document.getElementById('themeToggle');
@@ -701,9 +701,9 @@
             document.documentElement.lang = savedLang;
 
             // Update links with build number
-            const links = document.querySelectorAll('a[href*="115"]');
+            const links = document.querySelectorAll('a[href*="118"]');
             links.forEach(link => {
-                link.href = link.href.replace('115', buildNumber);
+                link.href = link.href.replace('118', buildNumber);
             });
 
             // Update build info text

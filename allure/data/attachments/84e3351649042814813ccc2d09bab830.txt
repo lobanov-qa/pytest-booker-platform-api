@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3001/room/8' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=7us7Ybg0PJLVauc3' \
+  -H 'content-length: 199' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room There 871","type":"Twin","accessible":true,"image":"https://dummyimage.com/227x323","description":"Respond enough natural want.","features":["pass","hair","recent"],"roomPrice":308}'

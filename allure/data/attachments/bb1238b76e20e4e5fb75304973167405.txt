@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=DsFOzqi8pNwVNKZt' \
+  -H 'content-length: 255' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Myself 263","type":"Double","accessible":true,"image":"https://dummyimage.com/332x409","description":"Statement top create commercial bar. Matter drive support trial on professor.","features":["himself","such","pattern"],"roomPrice":458}'

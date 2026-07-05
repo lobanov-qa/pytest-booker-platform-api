@@ -1,1 +1,1 @@
-{"id":"c765233c9bd4497a482df8e42633b0ee","fullName":"tests.message.test_private_message.TestPrivateMessageAPI#test_mark_read_returns_202","name":"PUT /message/20/read - Mark message as read (202)","status":"passed","testResultsByEnv":{"default":"a8ee1be94b35c8581bdf19d09ddeee4d"}}
+{"id":"c765233c9bd4497a482df8e42633b0ee","fullName":"tests.message.test_private_message.TestPrivateMessageAPI#test_mark_read_returns_202","name":"PUT /message/28/read - Mark message as read (202)","status":"passed","testResultsByEnv":{"default":"de477729e660f56dbb68ffef13b362a6"}}

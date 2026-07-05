@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=pBRghYOFkFeUqHZY' \
+  -H 'content-length: 475' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Schultz Alexander and Dudley","map":{"latitude":9.5817505,"longitude":45.720824},"logoUrl":"https://placekitten.com/645/494","description":"Ergonomic discrete system engine","directions":"Board history thus science though gun. Own top wait society.","contact":{"name":"Thompson PLC","phone":"4318755267","email":"vrogers@example.com"},"address":{"line1":"88787 Joseph Fall Apt. 123","line2":"Apt. 958","postTown":"Bakerville","county":"Delaware","postCode":"56187"}}'

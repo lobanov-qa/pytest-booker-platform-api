@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3006/message/' \
+  -H 'host: localhost:3006' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 268' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Kelly","email":"edwin49@example.com","phone":"001-480-579-6248","subject":"Phone wear effect only.","description":"Very charge art president modern. Financial fine issue affect teach. Conference easy car night start despite. Baby long these grow management."}'

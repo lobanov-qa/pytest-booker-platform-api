@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=7us7Ybg0PJLVauc3' \
+  -H 'content-length: 207' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Shoulder 210","type":"Family","accessible":true,"image":"https://dummyimage.com/457x409","description":"Almost research cause consumer.","features":["term","method","edge"],"roomPrice":757}'

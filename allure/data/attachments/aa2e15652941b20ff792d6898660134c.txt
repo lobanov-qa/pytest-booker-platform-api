@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=BpYbCehnyo3I8vdn' \
+  -H 'content-length: 436' \
+  -H 'content-type: application/json' \
+  -d '{"name":"A","map":{"latitude":19.9971345,"longitude":-116.875199},"logo_url":"https://placekitten.com/581/590","description":"Secured dedicated success","directions":"Common tough drug development cause provide.","contact":{"name":"Bryant PLC","phone":"+15699204290246","email":"hoganadam@example.com"},"address":{"line1":"021 Frances Fields","line2":"Suite 281","post_town":"Port Kelseyside","county":"New Mexico","post_code":"17978"}}'

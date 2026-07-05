@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3006/message/' \
+  -H 'host: localhost:3006' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 279' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Johnathan","email":"kevindalton@example.com","phone":"(259)438-7497x472","subject":"But certainly push letter.","description":"Style foot politics security top. Democratic figure marriage. Only technology about term mention happy. Hot beautiful among together clearly."}'

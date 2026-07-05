@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3006/message/' \
+  -H 'host: localhost:3006' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 236' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Amy","email":"ydawson@example.com","phone":"248.666.7061","subject":"Phone control page appear.","description":"Morning oil quality my particularly officer. Peace fall when also. Board born soon raise father way morning take."}'

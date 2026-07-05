@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=AwSMAuZfpgkp6bUG' \
+  -H 'content-length: 424' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Hotel123","map":{"latitude":38.2013145,"longitude":74.545656},"logo_url":"https://placekitten.com/404/476","description":"Networked secondary hierarchy","directions":"Price oil measure myself be chance.","contact":{"name":"LongPham","phone":"6789567401","email":"christopher92@example.com"},"address":{"line1":"44377 Smith Harbor","line2":"Apt. 205","post_town":"Keithburgh","county":"Vermont","post_code":"68370"}}'

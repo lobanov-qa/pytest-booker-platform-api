@@ -1,0 +1,1 @@
+{"id":"a8219d5ccb7cef7149323c1488b720da","fullName":"tests.e2e.test_full_audit.TestFullHotelAudit#test_booking_creation_and_verification","name":"Guest books the room and admin verifies the booking","status":"passed","testResultsByEnv":{"default":"8c1a555b0c1db5f6686c7ef00595e96f"}}

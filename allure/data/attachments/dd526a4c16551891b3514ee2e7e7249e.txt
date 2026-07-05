@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=sAI1V7zMxxc3cTDW' \
+  -H 'content-length: 203' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Between 676","type":"Twin","accessible":true,"image":"https://dummyimage.com/160x403","description":"Eat like need music.","features":["opportunity","manager","future"],"roomPrice":345}'

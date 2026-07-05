@@ -1,1 +1,1 @@
-{"id":"0d27a939442e9881caa232231032d56e","fullName":"tests.report.test_public_report.TestPublicReportAPI#test_get_room_report","name":"GET /report/room/1 - Get report for existing room (200)","status":"passed","testResultsByEnv":{"default":"2b7494033f145ba50844df0fae41c7e8"}}
+{"id":"0d27a939442e9881caa232231032d56e","fullName":"tests.report.test_public_report.TestPublicReportAPI#test_get_room_report","name":"GET /report/room/1 - Get report for existing room (200)","status":"passed","testResultsByEnv":{"default":"b08194f042361822d34509af909c4998"}}

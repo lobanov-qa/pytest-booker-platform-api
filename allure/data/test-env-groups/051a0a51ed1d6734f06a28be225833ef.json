@@ -1,0 +1,1 @@
+{"id":"051a0a51ed1d6734f06a28be225833ef","fullName":"tests.e2e.test_full_audit.TestFullHotelAudit#test_cancellation_and_report","name":"Admin cancels the booking and verifies the report is updated","status":"passed","testResultsByEnv":{"default":"b4c21538f8a76c662f13aaae1bd19c92"}}

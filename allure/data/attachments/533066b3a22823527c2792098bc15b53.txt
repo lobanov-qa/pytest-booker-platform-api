@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3006/message/' \
+  -H 'host: localhost:3006' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 228' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Kimberly","email":"elizabethblackburn@example.com","phone":"001-884-539-2337x6016","subject":"My ground none.","description":"House prove upon through bit able small. Early factor relationship power. Good parent need."}'

@@ -1,0 +1,11 @@
+curl -X 'PUT' \
+  'http://localhost:3002/branding/' \
+  -H 'host: localhost:3002' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=wCSuufAqsAy5gW6v' \
+  -H 'content-length: 397' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Baker and Sons","map":{"latitude":-70.121745,"longitude":93.16207},"logo_url":"https://placekitten.com/316/254","directions":"Able describe hour little various pretty.","contact":{"name":"Bridges Group","phone":"688894458704833","email":"erica43@example.com"},"address":{"line1":"524 Zachary Greens","line2":"Suite 912","post_town":"Beanfort","county":"South Dakota","post_code":"77874"}}'

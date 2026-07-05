@@ -1,0 +1,10 @@
+curl -X 'POST' \
+  'http://localhost:3006/message/' \
+  -H 'host: localhost:3006' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'content-length: 317' \
+  -H 'content-type: application/json' \
+  -d '{"name":"Shirley","email":"sarahmiller@example.com","phone":"001-206-779-8548","subject":"Play number.","description":"Financial local who. Central politics attorney thought through professor. Seem culture later kind. Visit property more present develop yeah ahead try. Stay win much picture age section very wrong."}'

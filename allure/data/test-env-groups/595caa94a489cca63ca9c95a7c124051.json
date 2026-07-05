@@ -1,1 +1,1 @@
-{"id":"595caa94a489cca63ca9c95a7c124051","fullName":"tests.message.test_public_message.TestPublicMessageAPI#test_get_count_returns_200","name":"GET /message/count - Get message count successfully (200)","status":"passed","testResultsByEnv":{"default":"8150dd5b076c8cb25e53526b9912de7d"}}
+{"id":"595caa94a489cca63ca9c95a7c124051","fullName":"tests.message.test_public_message.TestPublicMessageAPI#test_get_count_returns_200","name":"GET /message/count - Get message count successfully (200)","status":"passed","testResultsByEnv":{"default":"972e26946f812da413ad8474747007b2"}}

@@ -1,1 +1,1 @@
-{"id":"455ce401083859016156e6017c95257e","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_rooms_high_level","name":"GET /room/ - High-level method for getting all rooms","status":"passed","testResultsByEnv":{"default":"58b30981d1e514070fe94c8df95ff9b3"}}
+{"id":"455ce401083859016156e6017c95257e","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_rooms_high_level","name":"GET /room/ - High-level method for getting all rooms","status":"passed","testResultsByEnv":{"default":"1c577893986768c92fa38f20f0e245c3"}}

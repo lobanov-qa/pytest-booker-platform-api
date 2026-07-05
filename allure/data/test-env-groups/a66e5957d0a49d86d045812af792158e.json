@@ -1,1 +1,1 @@
-{"id":"a66e5957d0a49d86d045812af792158e","fullName":"tests.booking.test_private_booking.TestPrivateBookingAPI#test_get_booking_high_level","name":"GET /booking/6 - Retrieve specific booking by ID","status":"passed","testResultsByEnv":{"default":"4774a2e5b8b5c87748c84e770ac7aad7"}}
+{"id":"a66e5957d0a49d86d045812af792158e","fullName":"tests.booking.test_private_booking.TestPrivateBookingAPI#test_get_booking_high_level","name":"GET /booking/6 - Retrieve specific booking by ID","status":"passed","testResultsByEnv":{"default":"b0e57f69a6ba52490c42a66a8e364622"}}

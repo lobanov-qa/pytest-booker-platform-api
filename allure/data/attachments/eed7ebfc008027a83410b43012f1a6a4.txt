@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=ZEuMZVlHks5FEGTN' \
+  -H 'content-length: 214' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Street 513","type":"Family","accessible":true,"image":"https://dummyimage.com/354x291","description":"Activity best high various main candidate.","features":["leg","crime","give"],"roomPrice":846}'

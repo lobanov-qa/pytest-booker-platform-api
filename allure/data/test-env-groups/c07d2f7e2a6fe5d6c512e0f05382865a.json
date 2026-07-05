@@ -1,1 +1,1 @@
-{"id":"c07d2f7e2a6fe5d6c512e0f05382865a","fullName":"tests.branding.test_private_branding.TestPrivateBrandingAPI#test_update_branding_unauthorized_403","name":"PUT /branding – Without authentication (403)","status":"passed","testResultsByEnv":{"default":"f75fb1bb94a79309a98e1e39e89e79b8"}}
+{"id":"c07d2f7e2a6fe5d6c512e0f05382865a","fullName":"tests.branding.test_private_branding.TestPrivateBrandingAPI#test_update_branding_unauthorized_403","name":"PUT /branding – Without authentication (403)","status":"passed","testResultsByEnv":{"default":"1917da4fbd77411e3ac15a85b8ffb59c"}}

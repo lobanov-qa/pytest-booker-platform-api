@@ -1,0 +1,1 @@
+{"id":"694908e75b6c3f1b0faba437767c324e","fullName":"tests.e2e.test_full_audit.TestFullHotelAudit#test_message_flow","name":"Guest sends a message, admin reads it and marks as read","status":"passed","testResultsByEnv":{"default":"1e94a303b51b1bb05c54b09b7b60d46c"}}

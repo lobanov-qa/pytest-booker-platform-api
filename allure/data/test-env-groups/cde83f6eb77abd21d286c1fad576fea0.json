@@ -1,1 +1,1 @@
-{"id":"cde83f6eb77abd21d286c1fad576fea0","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_room_invalid_id_negative","name":"GET /room/-999 - Retrieve room with negative ID (404)","status":"passed","testResultsByEnv":{"default":"96ad707f5cc4d52389b841f626a685d0"}}
+{"id":"cde83f6eb77abd21d286c1fad576fea0","fullName":"tests.room.test_public_room.TestPublicRoomAPI#test_get_room_invalid_id_negative","name":"GET /room/-999 - Retrieve room with negative ID (404)","status":"passed","testResultsByEnv":{"default":"c99d050a50bfcc74cade50269aeca439"}}

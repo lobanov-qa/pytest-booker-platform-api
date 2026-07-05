@@ -1,1 +1,1 @@
-{"id":"689b1efd50cfa328253b86f10afc1dd1","fullName":"tests.booking.test_private_booking.TestPrivateBookingAPI#test_delete_booking_202","name":"DELETE /booking/9 - Delete booking successfully (202)","status":"passed","testResultsByEnv":{"default":"dc5e2bb7a01fef9e9dec6d0935398924"}}
+{"id":"689b1efd50cfa328253b86f10afc1dd1","fullName":"tests.booking.test_private_booking.TestPrivateBookingAPI#test_delete_booking_202","name":"DELETE /booking/18 - Delete booking successfully (202)","status":"passed","testResultsByEnv":{"default":"bf364d010e594f5c7ce5290f4e1b9670"}}

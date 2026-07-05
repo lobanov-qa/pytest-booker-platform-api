@@ -1,0 +1,11 @@
+curl -X 'POST' \
+  'http://localhost:3001/room/' \
+  -H 'host: localhost:3001' \
+  -H 'accept: */*' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'connection: keep-alive' \
+  -H 'user-agent: python-httpx/0.28.1' \
+  -H 'cookie: token=EeDLgkcGl14Wli1f' \
+  -H 'content-length: 241' \
+  -H 'content-type: application/json' \
+  -d '{"roomName":"Room Song 415","type":"Single","accessible":false,"image":"https://dummyimage.com/397x82","description":"Read explain heart. Physical with weight clearly national purpose.","features":["language","ever","value"],"roomPrice":664}'
