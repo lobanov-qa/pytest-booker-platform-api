@@ -43,6 +43,82 @@ markers = [
 ]
 
 
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+src = ["src", "tests", "fixtures", "clients", "utils", "data_factories"]
+extend-exclude = ["docs"]
+
+[tool.ruff.format]
+quote-style = "double"
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = [
+    "E", "W",   # pycodestyle: spacing, blank lines, line length
+    "F",        # pyflakes: unused imports/variables, undefined names
+    "I",        # isort: import order and grouping
+    "N",        # pep8-naming: snake_case functions, CamelCase classes
+    "D",        # pydocstyle: docstrings on public code
+    "UP",       # pyupgrade: modern syntax
+    "B",        # bugbear: common bugs and unsafe patterns
+    "C90",      # mccabe: function complexity
+    "SIM",      # simplify: readable, early-exit code
+    "RET",      # return: no useless else after return
+    "PL",       # pylint: magic values, too many args/branches
+    "PT",       # pytest-style: fixtures and parametrize conventions
+    "S",        # bandit: no hardcoded secrets
+    "ERA",      # eradicate: no commented-out code
+    "RUF100",   # no dead noqa directives
+]
+ignore = [
+    "D212",  # summary line on the second line after """ is fine
+    "D100", "D104", "D105", "D107",  # module/package/dunder/init docstrings not required
+    "B008",  # calls in default arguments are normal in pytest/pydantic code
+]
+
+[tool.ruff.lint.pycodestyle]
+# the formatter wraps code at 88; E501 fires only above 100,
+# covering what the formatter cannot break (URLs, long text)
+max-line-length = 100
+
+[tool.ruff.lint.mccabe]
+max-complexity = 6
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.isort]
+known-first-party = ["clients", "config", "data_factories", "fixtures", "utils"]
+combine-as-imports = true
+lines-after-imports = 2
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "PLR2004", "ERA001", "D103"]  # asserts are the point, expected codes are data, test names are self-documenting
+"test_*.py" = ["S101", "PLR2004", "ERA001", "D103"]
+"*_test.py" = ["S101", "PLR2004", "ERA001", "D103"]
+"*_tests.py" = ["S101", "PLR2004", "ERA001", "D103"]
+"conftest.py" = ["S101", "D103"]
+"fixtures/**" = ["D103", "S101"]  # fixture names describe the test state
+"src/utils/assertions/**" = ["S101"]  # assertion library by definition
+"scripts/**" = ["T201", "D103", "E402"]  # standalone dev utilities
+"__init__.py" = ["F401"]  # package re-exports
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unreachable = true
+ignore_missing_imports = true
+explicit_package_bases = true
+
+[[tool.mypy.overrides]]
+module = ["tests.*", "fixtures.*"]
+# test functions are untyped by pytest convention
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+check_untyped_defs = true
+
+
 [tool.setuptools.packages.find]
 where = ["src"]
 

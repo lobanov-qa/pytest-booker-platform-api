@@ -1,0 +1,36 @@
+# Local quality gates. Install once per clone:
+#   .venv/bin/pre-commit install
+# Run manually over everything:
+#   .venv/bin/pre-commit run --all-files
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ["--maxkb=500"]
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.5
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v2.4.0
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - pytest>=9.0
+          - httpx>=0.28
+          - pydantic>=2.12
+          - pydantic-settings>=2.12
+          - faker>=38.2
+          - allure-pytest>=2.15
+          - jsonschema>=4.25
+        files: ^(src/|tests/|fixtures/|config\.py|conftest\.py)
