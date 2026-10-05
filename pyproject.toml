@@ -117,6 +117,7 @@ module = ["tests.*", "fixtures.*"]
 # test functions are untyped by pytest convention
 disallow_untyped_defs = false
 disallow_incomplete_defs = false
+disallow_untyped_calls = false  # allure/pytest helpers ship no annotations
 check_untyped_defs = true
 
 
