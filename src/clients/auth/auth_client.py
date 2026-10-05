@@ -1,12 +1,15 @@
+from httpx import HTTPStatusError, Response
+
 import allure
-
-from httpx import Response, HTTPStatusError
-
 from clients.api_client import APIClient
-
-from clients.auth.auth_schema import LoginRequestSchema, ValidateRequestSchema, LogoutRequestSchema
-from clients.auth.routes import AuthRoutes
 from clients.api_coverage import tracker_auth
+from clients.auth.auth_schema import (
+    LoginRequestSchema,
+    LogoutRequestSchema,
+    ValidateRequestSchema,
+)
+from clients.auth.routes import AuthRoutes
+
 
 class AuthClient(APIClient):
     """
@@ -15,8 +18,11 @@ class AuthClient(APIClient):
     Provides methods for performing authentication operations,
     Based on the base APIClient client.
     """
+
     def __init__(self, base_url: str, timeout: float, event_hooks=None, **kwargs):
-        super().__init__(base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs)
+        super().__init__(
+            base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs
+        )
         self.token = None
 
     @allure.step("Authenticate user")
@@ -30,8 +36,6 @@ class AuthClient(APIClient):
         :return: A response object from the server containing the status, headers, and body.
         """
         return self.post(AuthRoutes.LOGIN, json=request.model_dump())
-
-
 
     def login(self, request: LoginRequestSchema) -> str:
         """

@@ -1,5 +1,5 @@
-from utils.fakers import fake
 from clients.room.room_schema import RoomRequestSchema
+from utils.fakers import fake
 
 
 class RoomRequestFactory:

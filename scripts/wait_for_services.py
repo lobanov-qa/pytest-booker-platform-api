@@ -5,6 +5,7 @@ Used in CI to wait for services to be ready before running tests.
 
 import sys
 import time
+
 import httpx
 
 
@@ -71,8 +72,7 @@ def check_service(name: str, port: int) -> bool:
                 if data.get("status") == "UP":
                     print(f"✅ {name} (port {port}) is UP")
                     return True
-                else:
-                    print(f"🟡 {name} returned status: {data.get('status')}")
+                print(f"🟡 {name} returned status: {data.get('status')}")
             except httpx.ResponseNotJSON:
                 print(f"❌ {name}: response is not JSON — {response.text}")
         else:
@@ -134,4 +134,3 @@ if __name__ == "__main__":
     Does nothing when the module is imported.
     """
     wait_for_services()
-

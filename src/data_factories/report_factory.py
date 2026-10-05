@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
-from utils.fakers import fake
+
 from clients.report.report_schema import EntrySchema
+from utils.fakers import fake
 
 
 class EntryFactory:

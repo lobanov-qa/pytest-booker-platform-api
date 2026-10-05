@@ -1,10 +1,10 @@
-import allure
 from httpx import Response
 
+import allure
 from clients.api_client import APIClient
+from clients.api_coverage import tracker_branding
 from clients.branding.branding_schema import BrandingSchema
 from clients.branding.routes import BrandingRoutes
-from clients.api_coverage import tracker_branding
 
 
 class PublicBrandingClient(APIClient):
@@ -22,7 +22,9 @@ class PublicBrandingClient(APIClient):
         :param event_hooks: Optional hooks (logging, etc.).
         :param kwargs: Passed to APIClient.
         """
-        super().__init__(base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs)
+        super().__init__(
+            base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs
+        )
 
     @allure.step("Get branding")
     @tracker_branding.track_coverage_httpx(BrandingRoutes.ROOT)

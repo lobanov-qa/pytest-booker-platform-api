@@ -1,5 +1,5 @@
-from utils.fakers import fake
 from clients.message.message_schema import CreateMessageRequestSchema
+from utils.fakers import fake
 
 
 class MessageRequestFactory:

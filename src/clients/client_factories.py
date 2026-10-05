@@ -5,13 +5,17 @@ from clients.booking.private_booking_client import PrivateBookingClient
 from clients.booking.public_booking_client import PublicBookingClient
 from clients.branding.private_branding_client import PrivateBrandingClient
 from clients.branding.public_branding_client import PublicBrandingClient
-from clients.event_hooks import curl_event_hook, log_request_event_hook, log_response_event_hook
+from clients.event_hooks import (
+    curl_event_hook,
+    log_request_event_hook,
+    log_response_event_hook,
+)
 from clients.message.private_message_client import PrivateMessageClient
 from clients.message.public_message_client import PublicMessageClient
 from clients.report.private_report_client import PrivateReportClient
 from clients.report.public_report_client import PublicReportClient
-from clients.room.public_room_client import PublicRoomClient
 from clients.room.private_room_client import PrivateRoomClient
+from clients.room.public_room_client import PublicRoomClient
 from config import settings
 
 
@@ -37,8 +41,8 @@ class ClientFactory:
             timeout=settings.http_client.timeout,
             event_hooks={
                 "request": [curl_event_hook, log_request_event_hook],
-                "response": [log_response_event_hook]
-            }
+                "response": [log_response_event_hook],
+            },
         )
 
     @staticmethod
@@ -54,8 +58,8 @@ class ClientFactory:
             timeout=settings.http_client.timeout,
             event_hooks={
                 "request": [curl_event_hook, log_request_event_hook],
-                "response": [log_response_event_hook]
-            }
+                "response": [log_response_event_hook],
+            },
         )
 
     @staticmethod
@@ -72,8 +76,8 @@ class ClientFactory:
             cookies=cookies,
             event_hooks={
                 "request": [curl_event_hook, log_request_event_hook],
-                "response": [log_response_event_hook]
-            }
+                "response": [log_response_event_hook],
+            },
         )
 
     @staticmethod
@@ -89,8 +93,8 @@ class ClientFactory:
             timeout=settings.http_client.timeout,
             event_hooks={
                 "request": [curl_event_hook, log_request_event_hook],
-                "response": [log_response_event_hook]
-            }
+                "response": [log_response_event_hook],
+            },
         )
 
     @staticmethod
@@ -106,8 +110,8 @@ class ClientFactory:
             cookies=cookies,
             event_hooks={
                 "request": [curl_event_hook, log_request_event_hook],
-                "response": [log_response_event_hook]
-            }
+                "response": [log_response_event_hook],
+            },
         )
 
     @staticmethod
@@ -123,8 +127,8 @@ class ClientFactory:
             timeout=settings.http_client.timeout,
             event_hooks={
                 "request": [curl_event_hook, log_request_event_hook],
-                "response": [log_response_event_hook]
-            }
+                "response": [log_response_event_hook],
+            },
         )
 
     @staticmethod
@@ -142,8 +146,8 @@ class ClientFactory:
             cookies=cookies,
             event_hooks={
                 "request": [curl_event_hook, log_request_event_hook],
-                "response": [log_response_event_hook]
-            }
+                "response": [log_response_event_hook],
+            },
         )
 
     @staticmethod
@@ -159,8 +163,8 @@ class ClientFactory:
             timeout=settings.http_client.timeout,
             event_hooks={
                 "request": [curl_event_hook, log_request_event_hook],
-                "response": [log_response_event_hook]
-            }
+                "response": [log_response_event_hook],
+            },
         )
 
     @staticmethod
@@ -178,8 +182,8 @@ class ClientFactory:
             cookies=cookies,
             event_hooks={
                 "request": [curl_event_hook, log_request_event_hook],
-                "response": [log_response_event_hook]
-            }
+                "response": [log_response_event_hook],
+            },
         )
 
     @staticmethod
@@ -195,8 +199,8 @@ class ClientFactory:
             timeout=settings.http_client.timeout,
             event_hooks={
                 "request": [curl_event_hook, log_request_event_hook],
-                "response": [log_response_event_hook]
-            }
+                "response": [log_response_event_hook],
+            },
         )
 
     @staticmethod
@@ -214,6 +218,6 @@ class ClientFactory:
             cookies=cookies,
             event_hooks={
                 "request": [curl_event_hook, log_request_event_hook],
-                "response": [log_response_event_hook]
-            }
+                "response": [log_response_event_hook],
+            },
         )

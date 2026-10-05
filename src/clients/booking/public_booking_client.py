@@ -1,18 +1,17 @@
-import allure
-
 from httpx import Response
 
+import allure
 from clients.api_client import APIClient
+from clients.api_coverage import tracker_booking
 from clients.booking.booking_schema import (
     CreateBookingRequestSchema,
     CreateBookingResponseSchema,
-    UnavailableDatesQuerySchema,
-    UnavailableDatesResponseSchema,
     GetSummaryQuerySchema,
     GetSummaryResponseSchema,
+    UnavailableDatesQuerySchema,
+    UnavailableDatesResponseSchema,
 )
 from clients.booking.routes import BookingRoutes
-from clients.api_coverage import tracker_booking
 
 
 class PublicBookingClient(APIClient):
@@ -30,7 +29,9 @@ class PublicBookingClient(APIClient):
         :param event_hooks: Optional hooks (logging, etc.).
         :param kwargs: Passed to APIClient.
         """
-        super().__init__(base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs)
+        super().__init__(
+            base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs
+        )
 
     @allure.step("Create booking")
     @tracker_booking.track_coverage_httpx(BookingRoutes.ROOT)
@@ -40,16 +41,22 @@ class PublicBookingClient(APIClient):
         :param request: Booking data.
         :return: HTTP response.
         """
-        return self.post(BookingRoutes.ROOT, json=request.model_dump(mode='json', exclude_none=True))
+        return self.post(
+            BookingRoutes.ROOT, json=request.model_dump(mode="json", exclude_none=True)
+        )
 
-    def create_booking(self, request: CreateBookingRequestSchema) -> CreateBookingResponseSchema:
+    def create_booking(
+        self, request: CreateBookingRequestSchema
+    ) -> CreateBookingResponseSchema:
         """
         Create booking and return parsed model (expects success).
         :param request: Valid booking data.
         :return: Response model with booking ID.
         :raises HTTPStatusError: If status != 2xx.
         """
-        return self.parse_response(self.create_booking_api(request), CreateBookingResponseSchema)
+        return self.parse_response(
+            self.create_booking_api(request), CreateBookingResponseSchema
+        )
 
     @allure.step("Get unavailable dates")
     @tracker_booking.track_coverage_httpx(BookingRoutes.UNAVAILABLE)
@@ -61,14 +68,18 @@ class PublicBookingClient(APIClient):
         """
         return self.get(BookingRoutes.UNAVAILABLE, params=query.model_dump())
 
-    def get_unavailable_rooms(self, query: UnavailableDatesQuerySchema) -> UnavailableDatesResponseSchema:
+    def get_unavailable_rooms(
+        self, query: UnavailableDatesQuerySchema
+    ) -> UnavailableDatesResponseSchema:
         """
         Get unavailable rooms and return parsed model (expects success).
         :param query: Date range.
         :return: Parsed response with room IDs.
         :raises HTTPStatusError: If status != 2xx.
         """
-        return self.parse_response(self.get_unavailable_api(query), UnavailableDatesResponseSchema)
+        return self.parse_response(
+            self.get_unavailable_api(query), UnavailableDatesResponseSchema
+        )
 
     @allure.step("Get booking date ranges")
     @tracker_booking.track_coverage_httpx(BookingRoutes.SUMMARY)
@@ -80,11 +91,15 @@ class PublicBookingClient(APIClient):
         """
         return self.get(BookingRoutes.SUMMARY, params=query.model_dump())
 
-    def get_booking_summary(self, query: GetSummaryQuerySchema) -> GetSummaryResponseSchema:
+    def get_booking_summary(
+        self, query: GetSummaryQuerySchema
+    ) -> GetSummaryResponseSchema:
         """
         Get booking summary and return parsed model (expects success).
         :param query: Room ID.
         :return: Parsed response with date ranges.
         :raises HTTPStatusError: If status != 2xx.
         """
-        return self.parse_response(self.get_summary_api(query), GetSummaryResponseSchema)
+        return self.parse_response(
+            self.get_summary_api(query), GetSummaryResponseSchema
+        )

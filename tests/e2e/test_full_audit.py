@@ -1,9 +1,9 @@
 from http import HTTPStatus
 
-import allure
 import pytest
 from allure_commons.types import Severity
 
+import allure
 from clients.booking.booking_schema import GetSummaryQuerySchema
 from clients.report.report_schema import ReportSchema
 from data_factories.booking_factory import CreateBookingRequestFactory
@@ -12,9 +12,9 @@ from utils.allure.features import AllureFeature
 from utils.allure.stories import AllureStory
 from utils.allure.tags import AllureTag
 from utils.assertions.base import (
-    assert_status_code,
     assert_is_instance,
     assert_length_equal,
+    assert_status_code,
 )
 
 
@@ -67,7 +67,9 @@ class TestFullHotelAudit:
         get_resp = booking_private_client.get_booking_api(booking_id)
         assert_status_code(get_resp.status_code, HTTPStatus.OK)
         booking_detail = get_resp.json()
-        assert booking_detail["roomid"] == room_id, "Booking roomid should match created room"
+        assert booking_detail["roomid"] == room_id, (
+            "Booking roomid should match created room"
+        )
 
     @allure.story(AllureStory.MESSAGE_WITHIN_AUDIT)
     @allure.tag(AllureTag.CREATE_ENTITY)

@@ -1,10 +1,8 @@
-from typing import Optional, List
-
 import allure
-
-from clients.errors_schema import ValidationErrorSchema, BaseErrorResponse
+from clients.errors_schema import BaseErrorResponse, ValidationErrorSchema
 from utils.assertions.base import assert_equal
 from utils.logger import get_logger
+
 
 logger = get_logger("ERRORS_ASSERTIONS")
 
@@ -14,7 +12,7 @@ def assert_validation_error(
     error: ValidationErrorSchema,
     expected_status: int = 400,
     expected_error: str = "BAD_REQUEST",
-    expected_fields: Optional[List[str]] = None
+    expected_fields: list[str] | None = None,
 ) -> None:
     """
     Validates key aspects of a validation error response.
@@ -43,7 +41,7 @@ def assert_validation_error(
 def assert_base_error_response(
     error: BaseErrorResponse,
     expected_status: int = 400,
-    path_contains: Optional[str] = None
+    path_contains: str | None = None,
 ) -> None:
     """
     Validates a standard Spring Boot error response.

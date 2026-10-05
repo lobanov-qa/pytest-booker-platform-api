@@ -1,8 +1,8 @@
 import allure
-
-from clients.report.report_schema import ReportSchema, EntrySchema
-from utils.assertions.base import assert_is_instance, assert_equal, assert_positive
+from clients.report.report_schema import EntrySchema, ReportSchema
+from utils.assertions.base import assert_equal, assert_is_instance, assert_positive
 from utils.logger import get_logger
+
 
 logger = get_logger("REPORT_ASSERTIONS")
 
@@ -20,7 +20,9 @@ def assert_report(actual: ReportSchema, expected: ReportSchema):
     assert_is_instance(actual.report, list, "report")
     assert_equal(len(actual.report), len(expected.report), "report length")
 
-    for i, (actual_entry, expected_entry) in enumerate(zip(actual.report, expected.report)):
+    for i, (actual_entry, expected_entry) in enumerate(
+        zip(actual.report, expected.report)
+    ):
         assert_entry_equal(actual_entry, expected_entry, index=i)
 
 

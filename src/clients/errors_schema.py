@@ -1,10 +1,11 @@
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class ValidationErrorSchema(BaseModel):
     """
     Модель, описывающая структуру ошибки валидации API.
     """
+
     model_config = ConfigDict(populate_by_name=True)
 
     error_code: int = Field(alias="errorCode")
@@ -17,6 +18,7 @@ class BaseErrorResponse(BaseModel):
     """
     Standard Spring Boot error.
     """
+
     timestamp: str
     status: int
     error: str

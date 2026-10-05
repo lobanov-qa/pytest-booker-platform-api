@@ -1,10 +1,10 @@
-import allure
-from httpx import Response, Cookies
+from httpx import Cookies, Response
 
+import allure
 from clients.api_client import APIClient
+from clients.api_coverage import tracker_report
 from clients.report.report_schema import ReportSchema
 from clients.report.routes import ReportRoutes
-from clients.api_coverage import tracker_report
 
 
 class PrivateReportClient(APIClient):
@@ -16,7 +16,14 @@ class PrivateReportClient(APIClient):
     Designed to be used with authenticated session cookies.
     """
 
-    def __init__(self, base_url: str, timeout: float, cookies: Cookies, event_hooks=None, **kwargs):
+    def __init__(
+        self,
+        base_url: str,
+        timeout: float,
+        cookies: Cookies,
+        event_hooks=None,
+        **kwargs,
+    ):
         """
         :param base_url: Base URL of the report service (e.g., http://localhost:3005).
         :param timeout: Request timeout in seconds.
@@ -24,7 +31,13 @@ class PrivateReportClient(APIClient):
         :param event_hooks: Optional hooks for logging, cURL printing, etc.
         :param kwargs: Additional arguments passed to APIClient.
         """
-        super().__init__(base_url=base_url, timeout=timeout, cookies=cookies, event_hooks=event_hooks, **kwargs)
+        super().__init__(
+            base_url=base_url,
+            timeout=timeout,
+            cookies=cookies,
+            event_hooks=event_hooks,
+            **kwargs,
+        )
 
     @allure.step("Get all room reports")
     @tracker_report.track_coverage_httpx(ReportRoutes.ROOT)

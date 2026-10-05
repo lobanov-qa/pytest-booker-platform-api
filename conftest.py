@@ -5,5 +5,5 @@ pytest_plugins = (
     "fixtures.branding",
     "fixtures.message",
     "fixtures.report",
-    "fixtures.allure"
+    "fixtures.allure",
 )

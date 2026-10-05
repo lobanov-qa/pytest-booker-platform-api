@@ -1,8 +1,9 @@
-from typing import Any, Sized, List
+from collections.abc import Sized
+from typing import Any
 
 import allure
-
 from utils.logger import get_logger
+
 
 logger = get_logger("BASE_ASSERTIONS")
 
@@ -19,9 +20,9 @@ def assert_status_code(actual: int, expected: int):
     logger.info(f"Check that response status code equals to {expected}")
 
     assert actual == expected, (
-        f'Incorrect response status code. '
-        f'Expected status code: {expected}. '
-        f'Actual status code: {actual}'
+        f"Incorrect response status code. "
+        f"Expected status code: {expected}. "
+        f"Actual status code: {actual}"
     )
 
 
@@ -38,9 +39,7 @@ def assert_equal(actual: Any, expected: Any, name: str):
     logger.info(f'Check that "{name}" equals to {expected}')
 
     assert actual == expected, (
-        f'Incorrect value: "{name}". '
-        f'Expected value: {expected}. '
-        f'Actual value: {actual}'
+        f'Incorrect value: "{name}". Expected value: {expected}. Actual value: {actual}'
     )
 
 
@@ -55,10 +54,7 @@ def assert_is_true(actual: Any, name: str):
     """
     logger.info(f'Check that "{name}" is true')
 
-    assert actual, (
-        f'Incorrect value: "{name}". '
-        f'Expected true value but got: {actual}'
-    )
+    assert actual, f'Incorrect value: "{name}". Expected true value but got: {actual}'
 
 
 def assert_length(actual: Sized, expected: Sized, name: str):
@@ -75,8 +71,8 @@ def assert_length(actual: Sized, expected: Sized, name: str):
 
         assert len(actual) == len(expected), (
             f'Incorrect object length: "{name}". '
-            f'Expected length: {len(expected)}. '
-            f'Actual length: {len(actual)}'
+            f"Expected length: {len(expected)}. "
+            f"Actual length: {len(actual)}"
         )
 
 
@@ -107,19 +103,21 @@ def assert_is_instance(obj: Any, expected_type: type, name: str):
         expected_type_name = expected_type.__name__
     except AttributeError:
         expected_type_name = str(expected_type)
-    
+
     actual_type_name = type(obj).__name__
 
     with allure.step(f'Check that "{name}" is instance of {expected_type_name}'):
-        logger.info(f'Check that "{name}" is instance of {expected_type_name} (actual: {actual_type_name})')
+        logger.info(
+            f'Check that "{name}" is instance of {expected_type_name} (actual: {actual_type_name})'
+        )
         assert isinstance(obj, expected_type), (
             f'Expected "{name}" to be instance of {expected_type_name}, '
-            f'but got {actual_type_name}'
+            f"but got {actual_type_name}"
         )
 
 
 @allure.step("Check that {item} is in {collection_name}")
-def assert_in(item: Any, collection: List[Any], collection_name: str):
+def assert_in(item: Any, collection: list[Any], collection_name: str):
     """
     Validates that an element is present in the collection.
 
@@ -131,7 +129,7 @@ def assert_in(item: Any, collection: List[Any], collection_name: str):
     logger.info(f'Check that "{item}" is in "{collection_name}"')
     assert item in collection, (
         f'Expected "{item}" to be in "{collection_name}", but it is not. '
-        f'Available: {collection}'
+        f"Available: {collection}"
     )
 
 

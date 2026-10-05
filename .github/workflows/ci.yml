@@ -39,8 +39,8 @@ jobs:
 
       - name: Install Allure dependencies
         run: |
-          npm ci  
-          
+          npm ci
+
 
       - name: Clone restful-booker-platform
         uses: actions/checkout@v6
@@ -216,7 +216,7 @@ jobs:
           cp gh-pages/.nojekyll public/
           cp history.jsonl public/
           cp templates/dashboard-template.html public/index.html
-          sed -i "s/\$BUILD_NUMBER/$BUILD_NUMBER/g" public/index.html     
+          sed -i "s/\$BUILD_NUMBER/$BUILD_NUMBER/g" public/index.html
 
       - name: Deploy unified reports to GitHub Pages
         if: always()
@@ -226,7 +226,3 @@ jobs:
           publish_branch: gh-pages
           publish_dir: public
           keep_files: false
-
-
-
-

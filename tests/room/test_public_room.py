@@ -1,26 +1,26 @@
 from http import HTTPStatus
 
-import allure
 import pytest
 from allure_commons.types import Severity
 
-from clients.room.public_room_client import PublicRoomClient
+import allure
+from clients.errors_schema import BaseErrorResponse
 from clients.room.private_room_client import PrivateRoomClient
+from clients.room.public_room_client import PublicRoomClient
 from clients.room.room_schema import (
+    GetRoomsQuerySchema,
     RoomResponseSchema,
     RoomsResponseSchema,
-    GetRoomsQuerySchema,
 )
-from clients.errors_schema import BaseErrorResponse
 from fixtures.room import RoomFixture
 from utils.allure.epics import AllureEpic
 from utils.allure.features import AllureFeature
 from utils.allure.stories import AllureStory
 from utils.allure.tags import AllureTag
 from utils.assertions.base import (
-    assert_status_code,
+    assert_is_instance,
     assert_positive,
-    assert_is_instance
+    assert_status_code,
 )
 from utils.assertions.errors import assert_base_error_response
 from utils.assertions.room import assert_rooms_list_contains

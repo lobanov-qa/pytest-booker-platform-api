@@ -45,7 +45,7 @@ def test_get_booking_success(
     booking_id = created_booking.response.bookingid
     response = booking_private_client.get_booking_api(booking_id)
     allure.dynamic.title(f"GET /booking/{booking_id} - Retrieve specific booking by ID")
-    
+
     assert_status_code(response.status_code, HTTPStatus.OK)
     response_data = BookingSchema.model_validate_json(response.text)
     validate_json_schema(response.json(), response_data.model_json_schema())
@@ -196,7 +196,7 @@ pytest-booker-platform-api/
 
 ## 📞 **Контакты**
 
-Готов к код-ревью, обсуждению решений и обратной связи.  
+Готов к код-ревью, обсуждению решений и обратной связи.
 Ищу возможность начать карьеру в качестве **инженера AQA**, чтобы расти в команде и вносить вклад в качество ПО.
 
 - **GitHub**: [lobanov-qa](https://github.com/lobanov-qa)

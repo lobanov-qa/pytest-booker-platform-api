@@ -1,16 +1,15 @@
-import allure
-
 from httpx import Response
 
+import allure
 from clients.api_client import APIClient
+from clients.api_coverage import tracker_message
 from clients.message.message_schema import (
+    CountSchema,
     CreateMessageRequestSchema,
     MessageSchema,
     MessagesResponseSchema,
-    CountSchema,
 )
 from clients.message.routes import MessageRoutes
-from clients.api_coverage import tracker_message
 
 
 class PublicMessageClient(APIClient):
@@ -28,7 +27,9 @@ class PublicMessageClient(APIClient):
         :param event_hooks: Optional hooks (logging, etc.).
         :param kwargs: Passed to APIClient.
         """
-        super().__init__(base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs)
+        super().__init__(
+            base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs
+        )
 
     @allure.step("Create message")
     @tracker_message.track_coverage_httpx(MessageRoutes.ROOT)

@@ -1,11 +1,10 @@
-import allure
-
 from httpx import Response
 
+import allure
 from clients.api_client import APIClient
+from clients.api_coverage import tracker_report
 from clients.report.report_schema import ReportSchema
 from clients.report.routes import ReportRoutes
-from clients.api_coverage import tracker_report
 
 
 class PublicReportClient(APIClient):
@@ -17,7 +16,9 @@ class PublicReportClient(APIClient):
     """
 
     def __init__(self, base_url: str, timeout: float, event_hooks=None, **kwargs):
-        super().__init__(base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs)
+        super().__init__(
+            base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs
+        )
 
     @allure.step("Get specific room report by id {room_id}")
     @tracker_report.track_coverage_httpx(ReportRoutes.ROOM_REPORT)

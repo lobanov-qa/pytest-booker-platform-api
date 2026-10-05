@@ -1,17 +1,16 @@
-from typing import Optional
-import allure
-from httpx import Response, Cookies
+from httpx import Cookies, Response
 
+import allure
 from clients.api_client import APIClient
+from clients.api_coverage import tracker_booking
 from clients.booking.booking_schema import (
+    BookingSchema,
     GetBookingQuerySchema,
     GetBookingsResponseSchema,
     UpdateBookingRequestSchema,
     UpdateBookingResponseSchema,
-    BookingSchema
 )
 from clients.booking.routes import BookingRoutes
-from clients.api_coverage import tracker_booking
 
 
 class PrivateBookingClient(APIClient):
@@ -23,7 +22,14 @@ class PrivateBookingClient(APIClient):
     Designed to be used with authenticated session cookies.
     """
 
-    def __init__(self, base_url: str, timeout: float, cookies: Cookies, event_hooks=None, **kwargs):
+    def __init__(
+        self,
+        base_url: str,
+        timeout: float,
+        cookies: Cookies,
+        event_hooks=None,
+        **kwargs,
+    ):
         """
         :param base_url: Base URL of the booking service (e.g., http://localhost:3000).
         :param timeout: Request timeout in seconds.
@@ -31,11 +37,17 @@ class PrivateBookingClient(APIClient):
         :param event_hooks: Optional hooks for logging, cURL printing, etc.
         :param kwargs: Additional arguments passed to APIClient.
         """
-        super().__init__(base_url=base_url, timeout=timeout, cookies=cookies, event_hooks=event_hooks, **kwargs)
+        super().__init__(
+            base_url=base_url,
+            timeout=timeout,
+            cookies=cookies,
+            event_hooks=event_hooks,
+            **kwargs,
+        )
 
     @allure.step("Get all bookings")
     @tracker_booking.track_coverage_httpx(BookingRoutes.ROOT)
-    def get_bookings_api(self, query: Optional[GetBookingQuerySchema] = None) -> Response:
+    def get_bookings_api(self, query: GetBookingQuerySchema | None = None) -> Response:
         """
         Retrieve all bookings with optional filtering by roomid.
         :param query: Optional query parameters (roomid).
@@ -63,7 +75,7 @@ class PrivateBookingClient(APIClient):
         return self.parse_response(response, GetBookingsResponseSchema)
 
     @allure.step("Get booking by id {bookingid}")
-    @tracker_booking.track_coverage_httpx(BookingRoutes.BOOKING_ID) 
+    @tracker_booking.track_coverage_httpx(BookingRoutes.BOOKING_ID)
     def get_booking_api(self, bookingid: int) -> Response:
         """
         Retrieve booking details by ID.
@@ -83,8 +95,10 @@ class PrivateBookingClient(APIClient):
         return self.parse_response(response, BookingSchema)
 
     @allure.step("Update booking by id {bookingid}")
-    @tracker_booking.track_coverage_httpx(BookingRoutes.BOOKING_ID) 
-    def update_booking_api(self, bookingid: int, request: UpdateBookingRequestSchema) -> Response:
+    @tracker_booking.track_coverage_httpx(BookingRoutes.BOOKING_ID)
+    def update_booking_api(
+        self, bookingid: int, request: UpdateBookingRequestSchema
+    ) -> Response:
         """
         Update an existing booking.
         :param bookingid: ID of the booking to update.
@@ -94,7 +108,9 @@ class PrivateBookingClient(APIClient):
         path = BookingRoutes.BOOKING_ID.format(id=bookingid)
         return self.put(path, json=request.model_dump(mode="json"))
 
-    def update_booking(self, bookingid: int, request: UpdateBookingRequestSchema) -> UpdateBookingResponseSchema:
+    def update_booking(
+        self, bookingid: int, request: UpdateBookingRequestSchema
+    ) -> UpdateBookingResponseSchema:
         """
         High-level method: update booking (success path).
         :param bookingid: ID of the booking.
@@ -105,7 +121,7 @@ class PrivateBookingClient(APIClient):
         return self.parse_response(response, UpdateBookingResponseSchema)
 
     @allure.step("Delete booking by id {bookingid}")
-    @tracker_booking.track_coverage_httpx(BookingRoutes.BOOKING_ID) 
+    @tracker_booking.track_coverage_httpx(BookingRoutes.BOOKING_ID)
     def delete_booking_api(self, bookingid: int) -> Response:
         """
         Delete a booking by ID.

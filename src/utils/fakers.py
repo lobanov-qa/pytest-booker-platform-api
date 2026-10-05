@@ -1,7 +1,6 @@
-from faker import Faker
-
 from datetime import date, timedelta
-from typing import Optional
+
+from faker import Faker
 
 
 class Fake:
@@ -19,10 +18,7 @@ class Fake:
         return self.faker.random_int(start, end)
 
     def booking_dates(
-        self,
-        checkin: Optional[date] = None,
-        delta: int = 1,
-        max_days_ahead: int = 90
+        self, checkin: date | None = None, delta: int = 1, max_days_ahead: int = 90
     ) -> dict:
         """Generates valid booking dates with checkin < checkout."""
         if checkin is None:
@@ -67,13 +63,17 @@ class Fake:
         return f"Room {self.faker.word().title()} {self.integer(1, 999)}"
 
     def room_type(self) -> str:
-        return self.faker.random_element(["Single", "Double", "Twin", "Family", "Suite"])
+        return self.faker.random_element(
+            ["Single", "Double", "Twin", "Family", "Suite"]
+        )
 
     def room_accessible(self) -> bool:
         return self.faker.boolean()
 
     def room_image(self) -> str:
-        return f"https://dummyimage.com/{self.integer(100, 800)}x{self.integer(50, 600)}"
+        return (
+            f"https://dummyimage.com/{self.integer(100, 800)}x{self.integer(50, 600)}"
+        )
 
     def room_description(self) -> str:
         return self.faker.paragraph(nb_sentences=2)
@@ -100,7 +100,9 @@ class Fake:
         return self.faker.paragraph(nb_sentences=2)
 
     def logo_url(self) -> str:
-        return f"https://placekitten.com/{self.integer(200, 800)}/{self.integer(200, 600)}"
+        return (
+            f"https://placekitten.com/{self.integer(200, 800)}/{self.integer(200, 600)}"
+        )
 
     def map_latitude(self) -> float:
         return self.faker.latitude()

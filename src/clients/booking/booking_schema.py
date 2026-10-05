@@ -1,11 +1,9 @@
-from pydantic import BaseModel, Field, EmailStr, field_validator, RootModel, ConfigDict
-from typing import Annotated, Optional, List
 from datetime import date
+from typing import Annotated
+
+from pydantic import BaseModel, ConfigDict, EmailStr, Field, RootModel, field_validator
 
 from utils.validators import validate_date_range, validate_stringified_positive_int
-
-
-
 
 
 class BookingDates(BaseModel):
@@ -13,6 +11,7 @@ class BookingDates(BaseModel):
     Schema for booking dates (check-in and check-out).
     Validates that check-out is after check-in.
     """
+
     checkin: date
     checkout: date
 
@@ -29,6 +28,7 @@ class BookingSchema(BaseModel):
     """
     Schema for a full booking record.
     """
+
     bookingid: int
     depositpaid: bool
     roomid: int = Field(..., ge=1, description="Room ID, minimum 1")
@@ -42,11 +42,12 @@ class GetBookingQuerySchema(BaseModel):
     Schema for GET /bookings — get all bookings or filter by roomid.
     roomid is optional: if not provided, returns all bookings.
     """
-    roomid: Optional[str] = None
+
+    roomid: str | None = None
 
     @field_validator("roomid")
     @classmethod
-    def validate_roomid(cls, v: Optional[str]) -> Optional[str]:
+    def validate_roomid(cls, v: str | None) -> str | None:
         if v is None:
             return v
         return validate_stringified_positive_int(v)
@@ -56,13 +57,15 @@ class GetBookingsResponseSchema(BaseModel):
     """
     Schema for response containing a list of bookings.
     """
-    bookings: List[BookingSchema]
+
+    bookings: list[BookingSchema]
 
 
 class GetBookingResponseSchema(BaseModel):
     """
     Schema for response containing a single booking.
     """
+
     booking: BookingSchema
 
 
@@ -70,19 +73,21 @@ class CreateBookingRequestSchema(BaseModel):
     """
     Schema for creating a new booking.
     """
+
     depositpaid: bool = None
     roomid: Annotated[int, Field(ge=1, description="Room ID, minimum 1")]
     firstname: Annotated[str, Field(min_length=3, max_length=18)]
     lastname: Annotated[str, Field(min_length=3, max_length=30)]
     bookingdates: BookingDates
-    email: Optional[EmailStr] = None
-    phone: Optional[str] = Field(None, min_length=11, max_length=21)
+    email: EmailStr | None = None
+    phone: str | None = Field(None, min_length=11, max_length=21)
 
 
 class CreateBookingResponseSchema(BaseModel):
     """
     Schema for response after creating a booking.
     """
+
     bookingid: int
     booking: BookingSchema
 
@@ -92,25 +97,27 @@ class UpdateBookingRequestSchema(BaseModel):
     Schema for updating an existing booking (partial update).
     All fields are optional.
     """
+
     # Required fields (API validates NotBlank)
     firstname: str = Field(..., min_length=3, max_length=18)
     lastname: str = Field(..., min_length=3, max_length=30)
     bookingdates: BookingDates
     # Optional fields with defaults
     depositpaid: bool = Field(default=False)
-    email: Optional[EmailStr] = None
-    phone: Optional[str] = Field(None, min_length=11, max_length=21)
+    email: EmailStr | None = None
+    phone: str | None = Field(None, min_length=11, max_length=21)
     # Fields that are sent but have special behavior
     bookingid: int = Field(..., description="Must match path parameter")
-    roomid: int = Field(..., ge=1, description="Ignored by API, returns original roomid")
-
-
+    roomid: int = Field(
+        ..., ge=1, description="Ignored by API, returns original roomid"
+    )
 
 
 class UpdateBookingResponseSchema(BaseModel):
     """
     Schema for response after updating a booking.
     """
+
     bookingid: int
     booking: BookingSchema
 
@@ -119,8 +126,13 @@ class UnavailableDatesQuerySchema(BaseModel):
     """
     Schema for query parameters to check room availability in date range.
     """
-    checkin: str = Field(..., pattern=r"^\d{4}-\d{2}-\d{2}$", description="Check-in date (YYYY-MM-DD)")
-    checkout: str = Field(..., pattern=r"^\d{4}-\d{2}-\d{2}$", description="Check-out date (YYYY-MM-DD)")
+
+    checkin: str = Field(
+        ..., pattern=r"^\d{4}-\d{2}-\d{2}$", description="Check-in date (YYYY-MM-DD)"
+    )
+    checkout: str = Field(
+        ..., pattern=r"^\d{4}-\d{2}-\d{2}$", description="Check-out date (YYYY-MM-DD)"
+    )
 
     @field_validator("checkout")
     @classmethod
@@ -141,21 +153,20 @@ class UnavailableRoom(BaseModel):
     """
     Schema for a single unavailable room in response.
     """
-    roomid: int = Field(..., ge=1, description="ID of unavailable room (positive integer)")
+
+    roomid: int = Field(
+        ..., ge=1, description="ID of unavailable room (positive integer)"
+    )
 
 
-class UnavailableDatesResponseSchema(RootModel[List[UnavailableRoom]]):
+class UnavailableDatesResponseSchema(RootModel[list[UnavailableRoom]]):
     """
     Schema for response listing unavailable rooms in a date range.
     Returns an array of room IDs. Empty array means all rooms are available.
     """
+
     model_config = ConfigDict(
-        json_schema_extra={
-            "example": [
-                {"roomid": 1},
-                {"roomid": 2}
-            ]
-        }
+        json_schema_extra={"example": [{"roomid": 1}, {"roomid": 2}]}
     )
 
 
@@ -165,6 +176,7 @@ class GetSummaryQuerySchema(BaseModel):
     Accepts stringified integer (e.g. ?roomid=1).
     This matches API contract: roomid is passed as string in query params.
     """
+
     roomid: str
 
     @field_validator("roomid")
@@ -177,6 +189,7 @@ class SummaryBookingItem(BaseModel):
     """
     Schema for an item in booking summary — contains only booking dates.
     """
+
     model_config = ConfigDict(populate_by_name=True)
 
     booking_dates: BookingDates = Field(alias="bookingDates")
@@ -187,6 +200,5 @@ class GetSummaryResponseSchema(BaseModel):
     Schema for response from /booking/summary — list of booking date ranges.
     May be empty.
     """
-    bookings: List[SummaryBookingItem]
 
-
+    bookings: list[SummaryBookingItem]

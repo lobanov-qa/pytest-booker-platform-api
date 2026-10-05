@@ -1,11 +1,13 @@
-import allure
-import httpx
-import pytest
 from http import HTTPStatus
 
+import httpx
+import pytest
+
+import allure
 from utils.allure.epics import AllureEpic
 from utils.allure.features import AllureFeature
 from utils.allure.tags import AllureTag
+
 
 SERVICES = [
     {"name": "auth", "port": 3004},
@@ -41,7 +43,9 @@ class TestHealth:
         try:
             data = response.json()
         except httpx.ResponseNotJSON:
-            pytest.fail(f"The response is not in JSON format. Status: {response.status_code}, Body: {response.text}")
+            pytest.fail(
+                f"The response is not in JSON format. Status: {response.status_code}, Body: {response.text}"
+            )
 
         assert data.get("status") == "UP", (
             f"Service {name} is not in UP state. Answer: {data}"

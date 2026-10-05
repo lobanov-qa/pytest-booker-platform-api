@@ -1,15 +1,23 @@
 import allure
-
-from clients.booking.booking_schema import (CreateBookingRequestSchema, CreateBookingResponseSchema,
-    GetBookingsResponseSchema, UpdateBookingRequestSchema, UpdateBookingResponseSchema, BookingSchema)
+from clients.booking.booking_schema import (
+    BookingSchema,
+    CreateBookingRequestSchema,
+    CreateBookingResponseSchema,
+    GetBookingsResponseSchema,
+    UpdateBookingRequestSchema,
+    UpdateBookingResponseSchema,
+)
 from utils.assertions.base import assert_equal, assert_is_instance, assert_positive
 from utils.logger import get_logger
+
 
 logger = get_logger("BOOKING_ASSERTIONS")
 
 
 @allure.step("Check create booking response")
-def assert_create_booking_response(request: CreateBookingRequestSchema, response: CreateBookingResponseSchema):
+def assert_create_booking_response(
+    request: CreateBookingRequestSchema, response: CreateBookingResponseSchema
+):
     """
     Verifies that the job creation response matches the request.
 
@@ -25,7 +33,7 @@ def assert_create_booking_response(request: CreateBookingRequestSchema, response
     assert_equal(response.booking.firstname, request.firstname, "firstname")
     assert_equal(response.booking.lastname, request.lastname, "lastname")
     assert_equal(response.booking.bookingdates, request.bookingdates, "bookingdates")
-    
+
 
 @allure.step("Check booking")
 def assert_booking(actual: BookingSchema, expected: BookingSchema):
@@ -44,10 +52,10 @@ def assert_booking(actual: BookingSchema, expected: BookingSchema):
     assert_equal(actual.lastname, expected.lastname, "lastname")
     assert_equal(actual.bookingdates, expected.bookingdates, "bookingdates")
 
+
 @allure.step("Check get booking response")
 def assert_get_booking_response(
-    get_response: BookingSchema,
-    create_response: BookingSchema
+    get_response: BookingSchema, create_response: BookingSchema
 ):
     """
     Checks that the response when receiving a booking matches the response when creating it.
@@ -61,7 +69,9 @@ def assert_get_booking_response(
 
 
 @allure.step("Check update booking response")
-def assert_update_booking_response(request: UpdateBookingRequestSchema, response: UpdateBookingResponseSchema):
+def assert_update_booking_response(
+    request: UpdateBookingRequestSchema, response: UpdateBookingResponseSchema
+):
     """Checking response to booking update"""
     logger.info("Check update booking response")
     assert_equal(response.bookingid, request.bookingid, "bookingid")
@@ -75,7 +85,7 @@ def assert_update_booking_response(request: UpdateBookingRequestSchema, response
 @allure.step("Check get bookings response")
 def assert_get_bookings_response(
     get_bookings_response: GetBookingsResponseSchema,
-    expected_bookings: list[BookingSchema]
+    expected_bookings: list[BookingSchema],
 ):
     """
     Checks that the response when receiving a list of bookings matches the expected bookings.
@@ -85,7 +95,7 @@ def assert_get_bookings_response(
     :raises AssertionError: If booking data does not match.
     """
     logger.info("Check get bookings response")
-    
+
     actual_bookings = get_bookings_response.bookings
     assert_is_instance(actual_bookings, list, "bookings")
 
@@ -102,4 +112,3 @@ def assert_get_bookings_response(
         )
 
         assert_booking(found_booking, expected_booking)
-

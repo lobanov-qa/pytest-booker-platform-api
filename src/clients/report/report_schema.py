@@ -1,6 +1,6 @@
-from pydantic import BaseModel,  ConfigDict
-from typing import List
 from datetime import date
+
+from pydantic import BaseModel, ConfigDict
 
 
 class EntrySchema(BaseModel):
@@ -10,6 +10,7 @@ class EntrySchema(BaseModel):
     Corresponds to the Java Entry model:
       start (Date), end (Date), title (String)
     """
+
     model_config = ConfigDict(populate_by_name=True)
 
     start: date
@@ -24,6 +25,7 @@ class ReportSchema(BaseModel):
     Corresponds to the Java Report model:
       report (List<Entry>)
     """
+
     model_config = ConfigDict(populate_by_name=True)
 
-    report: List[EntrySchema]
+    report: list[EntrySchema]

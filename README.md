@@ -32,9 +32,7 @@ Below is an example test using Allure, Pydantic, and custom fixtures:
 @allure.tag(AllureTag.GET_ENTITY)
 @allure.severity(Severity.BLOCKER)
 def test_get_booking_success(
-    self,
-    booking_private_client: PrivateBookingClient,
-    created_booking: BookingFixture
+    self, booking_private_client: PrivateBookingClient, created_booking: BookingFixture
 ):
     """
     Positive test: Retrieve specific booking by booking ID.
@@ -43,7 +41,7 @@ def test_get_booking_success(
     booking_id = created_booking.response.bookingid
     response = booking_private_client.get_booking_api(booking_id)
     allure.dynamic.title(f"GET /booking/{booking_id} - Retrieve specific booking by ID")
-    
+
     assert_status_code(response.status_code, HTTPStatus.OK)
     response_data = BookingSchema.model_validate_json(response.text)
     validate_json_schema(response.json(), response_data.model_json_schema())
@@ -189,7 +187,7 @@ This project has served as a "testing ground" for experimenting with best practi
 
 ## 📞 **Contacts**
 
-Ready for code reviews, discussion of solutions, and feedback.  
+Ready for code reviews, discussion of solutions, and feedback.
 Looking for an opportunity to start a career as an **AQA Engineer** to grow within a team and contribute to software quality.
 
 - **GitHub:** [lobanov-qa](https://github.com/lobanov-qa)

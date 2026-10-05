@@ -1,10 +1,10 @@
-import allure
-from httpx import Response, Cookies
+from httpx import Cookies, Response
 
+import allure
 from clients.api_client import APIClient
+from clients.api_coverage import tracker_branding
 from clients.branding.branding_schema import BrandingSchema
 from clients.branding.routes import BrandingRoutes
-from clients.api_coverage import tracker_branding
 
 
 class PrivateBrandingClient(APIClient):
@@ -16,7 +16,14 @@ class PrivateBrandingClient(APIClient):
     Designed to be used with authenticated session cookies.
     """
 
-    def __init__(self, base_url: str, timeout: float, cookies: Cookies, event_hooks=None, **kwargs):
+    def __init__(
+        self,
+        base_url: str,
+        timeout: float,
+        cookies: Cookies,
+        event_hooks=None,
+        **kwargs,
+    ):
         """
         :param base_url: Base URL of the branding service (e.g., http://localhost:3002).
         :param timeout: Request timeout in seconds.
@@ -24,7 +31,13 @@ class PrivateBrandingClient(APIClient):
         :param event_hooks: Optional hooks for logging, cURL printing, etc.
         :param kwargs: Additional arguments passed to APIClient.
         """
-        super().__init__(base_url=base_url, timeout=timeout, cookies=cookies, event_hooks=event_hooks, **kwargs)
+        super().__init__(
+            base_url=base_url,
+            timeout=timeout,
+            cookies=cookies,
+            event_hooks=event_hooks,
+            **kwargs,
+        )
 
     @allure.step("Update branding")
     @tracker_branding.track_coverage_httpx(BrandingRoutes.ROOT)
@@ -34,7 +47,10 @@ class PrivateBrandingClient(APIClient):
         :param request: Branding data to update (all fields optional).
         :return: HTTP response.
         """
-        return self.put(BrandingRoutes.ROOT, json=request.model_dump(mode="json", by_alias=True, exclude_none=True))
+        return self.put(
+            BrandingRoutes.ROOT,
+            json=request.model_dump(mode="json", by_alias=True, exclude_none=True),
+        )
 
     def update_branding(self, request: BrandingSchema) -> BrandingSchema:
         """

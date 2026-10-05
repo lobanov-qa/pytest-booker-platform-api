@@ -1,12 +1,12 @@
 import re
 
-from utils.fakers import fake
 from clients.branding.branding_schema import (
+    AddressSchema,
     BrandingSchema,
-    MapSchema,
     ContactSchema,
-    AddressSchema
+    MapSchema,
 )
+from utils.fakers import fake
 
 
 def _clean_name(value: str) -> str:
@@ -52,20 +52,19 @@ class BrandingFactory:
             "directions": fake.directions_text(),
             "logo_url": fake.logo_url(),
             "map": MapSchema(
-                latitude=fake.map_latitude(),
-                longitude=fake.map_longitude()
+                latitude=fake.map_latitude(), longitude=fake.map_longitude()
             ),
             "contact": ContactSchema(
                 name=_clean_name(fake.company_name()),
                 phone=_clean_phone(fake.phone()),
-                email=fake.email()
+                email=fake.email(),
             ),
             "address": AddressSchema(
                 line1=fake.address_line1(),
                 line2=fake.address_line2(),
                 post_town=fake.post_town(),
                 county=fake.county(),
-                post_code=fake.post_code()
+                post_code=fake.post_code(),
             ),
         }
 

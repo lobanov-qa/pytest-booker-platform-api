@@ -10,7 +10,7 @@ const config: ZudokuConfig = {
     title: "Restful Booker Platform Documentation",
     description: "Microservices API Documentation",
   },
-  
+
 
   theme: {
     noDefaultTheme: true,
@@ -97,7 +97,7 @@ const config: ZudokuConfig = {
     files: "/pages/**/*.{md,mdx}",
   },
 
-  
+
 };
 
 export default config;

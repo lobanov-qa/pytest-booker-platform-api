@@ -1,9 +1,9 @@
 from http import HTTPStatus
 
-import allure
 import pytest
 from allure_commons.types import Severity
 
+import allure
 from clients.branding.branding_schema import BrandingSchema
 from clients.branding.private_branding_client import PrivateBrandingClient
 from clients.branding.public_branding_client import PublicBrandingClient
@@ -13,7 +13,7 @@ from utils.allure.epics import AllureEpic
 from utils.allure.features import AllureFeature
 from utils.allure.stories import AllureStory
 from utils.allure.tags import AllureTag
-from utils.assertions.base import assert_status_code, assert_is_instance
+from utils.assertions.base import assert_is_instance, assert_status_code
 from utils.assertions.branding import assert_branding, assert_update_branding_response
 from utils.assertions.schema import validate_json_schema
 
@@ -34,7 +34,7 @@ class TestPrivateBrandingAPI:
     def test_update_branding_returns_202(
         self,
         private_branding_client: PrivateBrandingClient,
-        valid_branding_update: BrandingSchema
+        valid_branding_update: BrandingSchema,
     ):
         """Positive test: Update branding via raw API method, validate status and JSON schema."""
         response = private_branding_client.update_branding_api(valid_branding_update)
@@ -49,7 +49,7 @@ class TestPrivateBrandingAPI:
     def test_update_branding_high_level(
         self,
         private_branding_client: PrivateBrandingClient,
-        valid_branding_update: BrandingSchema
+        valid_branding_update: BrandingSchema,
     ):
         """Positive test: Use convenience method update_branding() and validate response fields match request."""
         updated = private_branding_client.update_branding(valid_branding_update)
@@ -64,7 +64,7 @@ class TestPrivateBrandingAPI:
         self,
         public_branding_client: PublicBrandingClient,
         private_branding_client: PrivateBrandingClient,
-        valid_branding_update: BrandingSchema
+        valid_branding_update: BrandingSchema,
     ):
         """Positive test: Update branding, then retrieve via GET and assert data persistence."""
         updated = private_branding_client.update_branding(valid_branding_update)
@@ -77,13 +77,17 @@ class TestPrivateBrandingAPI:
     @allure.title("PUT /branding – Without authentication (403)")
     @allure.severity(Severity.CRITICAL)
     def test_update_branding_unauthorized_403(
-        self,
-        private_branding_client_invalid: PrivateBrandingClient
+        self, private_branding_client_invalid: PrivateBrandingClient
     ):
         """Negative test: Update branding with invalid cookies should return 403 Forbidden."""
         response = private_branding_client_invalid.put(
             BrandingRoutes.ROOT,
-            json={"name": "Test Brand", "logoUrl": "http://x.com/l.png", "description": "Valid description", "directions": "Go straight ahead."}
+            json={
+                "name": "Test Brand",
+                "logoUrl": "http://x.com/l.png",
+                "description": "Valid description",
+                "directions": "Go straight ahead.",
+            },
         )
         assert_status_code(response.status_code, HTTPStatus.FORBIDDEN)
 
@@ -92,8 +96,7 @@ class TestPrivateBrandingAPI:
     @allure.title("PUT /branding – Name too short (400)")
     @allure.severity(Severity.NORMAL)
     def test_update_branding_name_too_short_400(
-        self,
-        private_branding_client: PrivateBrandingClient
+        self, private_branding_client: PrivateBrandingClient
     ):
         """Negative test: Update branding with name shorter than minimum length (1 char)."""
         invalid_data = BrandingFactory.build().model_dump(mode="json")
@@ -107,8 +110,7 @@ class TestPrivateBrandingAPI:
     @allure.title("PUT /branding – Invalid name pattern (digits, 400)")
     @allure.severity(Severity.NORMAL)
     def test_update_branding_invalid_pattern_400(
-        self,
-        private_branding_client: PrivateBrandingClient
+        self, private_branding_client: PrivateBrandingClient
     ):
         """Negative test: Update branding with digits in name — API rejects non-alpha characters."""
         invalid_data = BrandingFactory.build().model_dump(mode="json")
@@ -122,8 +124,7 @@ class TestPrivateBrandingAPI:
     @allure.title("PUT /branding – Missing required field (description, 400)")
     @allure.severity(Severity.NORMAL)
     def test_update_branding_missing_required_field_400(
-        self,
-        private_branding_client: PrivateBrandingClient
+        self, private_branding_client: PrivateBrandingClient
     ):
         """Negative test: Update branding without required description field."""
         invalid_data = BrandingFactory.build().model_dump(mode="json")

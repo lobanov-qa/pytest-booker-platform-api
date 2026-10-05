@@ -1,8 +1,7 @@
+from pathlib import Path
 from typing import Self
 
-from pathlib import Path
-from typing import  Optional
-from pydantic import BaseModel, AnyHttpUrl, Field, DirectoryPath
+from pydantic import AnyHttpUrl, BaseModel, DirectoryPath, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -10,16 +9,14 @@ BASE_DIR = Path(__file__).parent.parent
 ENV_FILE = BASE_DIR / ".env"
 
 
-
 class HTTPClientConfig(BaseModel):
     timeout: float = Field(30.0, description="Default timeout for all requests")
     retries: int = Field(3, description="Default retry count")
 
-    
 
 class ServiceSettings(BaseModel):
     url: AnyHttpUrl
-    timeout: Optional[float] = None  
+    timeout: float | None = None
 
     def get_timeout(self, default_timeout: float) -> float:
         return self.timeout if self.timeout is not None else default_timeout
@@ -27,18 +24,19 @@ class ServiceSettings(BaseModel):
     @property
     def client_url(self) -> str:
         return str(self.url)
-    
+
 
 class TestDataConfig(BaseModel):
     login: str = Field(default="admin")
     password: str = Field(default="password")
 
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        extra='allow',
+        extra="allow",
         env_file=ENV_FILE,
         env_file_encoding="utf-8",
-        env_nested_delimiter="."
+        env_nested_delimiter=".",
     )
 
     http_client: HTTPClientConfig = HTTPClientConfig()
@@ -64,7 +62,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings.initialize()
-
-
-
-

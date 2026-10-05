@@ -1,9 +1,10 @@
 from http import HTTPStatus
 
-import allure
 import pytest
 from allure_commons.types import Severity
 
+import allure
+from clients.errors_schema import ValidationErrorSchema
 from clients.room.private_room_client import PrivateRoomClient
 from clients.room.room_schema import RoomRequestSchema, RoomResponseSchema
 from clients.room.routes import RoomRoutes
@@ -13,15 +14,18 @@ from utils.allure.epics import AllureEpic
 from utils.allure.features import AllureFeature
 from utils.allure.stories import AllureStory
 from utils.allure.tags import AllureTag
-from utils.assertions.base import assert_status_code, assert_is_instance, assert_positive
+from utils.assertions.base import (
+    assert_is_instance,
+    assert_positive,
+    assert_status_code,
+)
+from utils.assertions.errors import assert_validation_error
 from utils.assertions.room import (
     assert_create_room_response,
-    assert_room,
     assert_get_room_response,
+    assert_room,
 )
 from utils.assertions.schema import validate_json_schema
-from clients.errors_schema import ValidationErrorSchema
-from utils.assertions.errors import assert_validation_error
 
 
 @pytest.mark.room
@@ -88,7 +92,9 @@ class TestPrivateRoomAPI:
         Uses assert_get_room_response for validation.
         """
         room_id = created_room.room_id
-        allure.dynamic.title(f"GET /room/{room_id} - Get room matches created room data")
+        allure.dynamic.title(
+            f"GET /room/{room_id} - Get room matches created room data"
+        )
 
         get_response_data = private_room_client.get_room(room_id)
         assert_get_room_response(get_response_data, created_room.response)
@@ -136,7 +142,9 @@ class TestPrivateRoomAPI:
         Returns parsed Pydantic model RoomResponseSchema.
         """
         room_id = created_room.room_id
-        allure.dynamic.title(f"PUT /room/{room_id} - High-level method for updating room")
+        allure.dynamic.title(
+            f"PUT /room/{room_id} - High-level method for updating room"
+        )
 
         update_request = RoomRequestFactory.build()
         response_data = private_room_client.update_room(room_id, update_request)
@@ -184,7 +192,9 @@ class TestPrivateRoomAPI:
         Method doesn't return a model (only validates status).
         """
         room_id = created_room.room_id
-        allure.dynamic.title(f"DELETE /room/{room_id} - High-level method for deleting room")
+        allure.dynamic.title(
+            f"DELETE /room/{room_id} - High-level method for deleting room"
+        )
 
         try:
             private_room_client.delete_room(room_id)
@@ -257,8 +267,7 @@ class TestPrivateRoomAPI:
         """
         # Send raw JSON to bypass Pydantic validation (roomPrice=0 fails Field(ge=1))
         response = private_room_client.client.post(
-            RoomRoutes.ROOT,
-            json={"roomName": "Test", "type": "Single", "roomPrice": 0}
+            RoomRoutes.ROOT, json={"roomName": "Test", "type": "Single", "roomPrice": 0}
         )
         assert_status_code(response.status_code, HTTPStatus.BAD_REQUEST)
         error_data = ValidationErrorSchema.model_validate_json(response.text)

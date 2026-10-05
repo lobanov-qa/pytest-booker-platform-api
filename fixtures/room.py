@@ -1,11 +1,10 @@
 import pytest
-
-from pydantic import BaseModel
 from httpx import Cookies
+from pydantic import BaseModel
 
-from clients.room.room_schema import RoomRequestSchema, RoomResponseSchema
-from clients.room.private_room_client import PrivateRoomClient
 from clients.client_factories import ClientFactory
+from clients.room.private_room_client import PrivateRoomClient
+from clients.room.room_schema import RoomRequestSchema, RoomResponseSchema
 from data_factories.room_factory import RoomRequestFactory
 
 
@@ -13,6 +12,7 @@ class RoomFixture(BaseModel):
     """
     Room context - used to pass data between tests and validation.
     """
+
     request: RoomRequestSchema
     response: RoomResponseSchema
 

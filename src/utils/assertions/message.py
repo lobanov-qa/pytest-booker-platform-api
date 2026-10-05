@@ -1,14 +1,16 @@
 import allure
-
 from clients.message.message_schema import CreateMessageRequestSchema, MessageSchema
 from utils.assertions.base import assert_equal, assert_is_instance, assert_positive
 from utils.logger import get_logger
+
 
 logger = get_logger("MESSAGE_ASSERTIONS")
 
 
 @allure.step("Check create message response")
-def assert_create_message_response(request: CreateMessageRequestSchema, response: MessageSchema):
+def assert_create_message_response(
+    request: CreateMessageRequestSchema, response: MessageSchema
+):
     """
     Verifies that the message creation response matches the request.
 
@@ -45,8 +47,7 @@ def assert_message(actual: MessageSchema, expected: MessageSchema):
 
 @allure.step("Check get message response")
 def assert_get_message_response(
-    get_response: MessageSchema,
-    create_response: MessageSchema
+    get_response: MessageSchema, create_response: MessageSchema
 ):
     """
     Checks that the response when receiving a message matches the response when creating it.
@@ -77,7 +78,10 @@ def assert_messages_list_contains(messages: list, expected_message: MessageSchem
 
     found_message = None
     for message in messages:
-        if message.name == expected_message.name and message.subject == expected_message.subject:
+        if (
+            message.name == expected_message.name
+            and message.subject == expected_message.subject
+        ):
             found_message = message
             break
 
@@ -85,5 +89,3 @@ def assert_messages_list_contains(messages: list, expected_message: MessageSchem
         f"Expected message with name '{expected_message.name}' not found in response. "
         f"Found names: {[m.name for m in messages]}"
     )
-
-

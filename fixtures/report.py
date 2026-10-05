@@ -1,10 +1,9 @@
 import pytest
-
 from httpx import Cookies
 
-from clients.report.public_report_client import PublicReportClient
-from clients.report.private_report_client import PrivateReportClient
 from clients.client_factories import ClientFactory
+from clients.report.private_report_client import PrivateReportClient
+from clients.report.public_report_client import PublicReportClient
 
 
 @pytest.fixture

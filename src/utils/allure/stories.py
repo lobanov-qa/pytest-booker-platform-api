@@ -1,5 +1,6 @@
 from enum import StrEnum
 
+
 class AllureStory(StrEnum):
     # Authentication Stories
     LOGIN_WITH_VALID_CREDENTIALS = "User login to the system"

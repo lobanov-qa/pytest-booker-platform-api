@@ -1,11 +1,11 @@
 from typing import Any
 
-import allure
-
 from jsonschema import validate
 from jsonschema.validators import Draft202012Validator
 
+import allure
 from utils.logger import get_logger
+
 
 logger = get_logger("SCHEMA_ASSERTIONS")
 
@@ -24,5 +24,5 @@ def validate_json_schema(instance: Any, schema: dict) -> None:
     validate(
         schema=schema,
         instance=instance,
-        format_checker=Draft202012Validator.FORMAT_CHECKER
+        format_checker=Draft202012Validator.FORMAT_CHECKER,
     )

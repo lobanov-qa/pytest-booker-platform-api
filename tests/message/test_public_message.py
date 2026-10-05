@@ -1,33 +1,33 @@
 from http import HTTPStatus
 
-import allure
 import pytest
 from allure_commons.types import Severity
 
-from clients.message.public_message_client import PublicMessageClient
+import allure
+from clients.errors_schema import ValidationErrorSchema
 from clients.message.message_schema import (
+    CountSchema,
     MessageSchema,
     MessagesResponseSchema,
-    CountSchema,
 )
+from clients.message.public_message_client import PublicMessageClient
 from clients.message.routes import MessageRoutes
-from clients.errors_schema import  ValidationErrorSchema
-from utils.assertions.errors import  assert_validation_error
 from utils.allure.epics import AllureEpic
 from utils.allure.features import AllureFeature
 from utils.allure.stories import AllureStory
 from utils.allure.tags import AllureTag
 from utils.assertions.base import (
-    assert_status_code,
-    assert_positive,
     assert_is_instance,
     assert_not_none,
+    assert_positive,
+    assert_status_code,
 )
-from utils.assertions.schema import validate_json_schema
+from utils.assertions.errors import assert_validation_error
 from utils.assertions.message import (
     assert_create_message_response,
     assert_messages_list_contains,
 )
+from utils.assertions.schema import validate_json_schema
 
 
 @pytest.mark.message
@@ -40,6 +40,7 @@ class TestPublicMessageAPI:
     Test suite for public message operations (no authentication required).
     Covers create message, get all messages, get count.
     """
+
     @pytest.mark.smoke
     @allure.story(AllureStory.MESSAGE_CREATION)
     @allure.tag(AllureTag.CREATE_ENTITY)
@@ -164,12 +165,12 @@ class TestPublicMessageAPI:
         Returns 400 with ValidationErrorSchema.
         Uses assert_validation_error for structured error validation.
         """
-        response = public_message_client.client.post(
-            MessageRoutes.ROOT, json={}
-        )
+        response = public_message_client.client.post(MessageRoutes.ROOT, json={})
         assert_status_code(response.status_code, HTTPStatus.BAD_REQUEST)
         error_data = ValidationErrorSchema.model_validate_json(response.text)
-        assert_validation_error(error_data, expected_fields=["name", "email", "phone", "subject", "message"])
+        assert_validation_error(
+            error_data, expected_fields=["name", "email", "phone", "subject", "message"]
+        )
 
     @allure.story(AllureStory.MESSAGE_CREATION)
     @allure.tag(AllureTag.CREATE_ENTITY, AllureTag.NEGATIVE)
@@ -199,8 +200,16 @@ class TestPublicMessageAPI:
         """
         response = public_message_client.client.post(
             MessageRoutes.ROOT,
-            json={"name": "", "email": "", "phone": "", "subject": "", "description": ""},
+            json={
+                "name": "",
+                "email": "",
+                "phone": "",
+                "subject": "",
+                "description": "",
+            },
         )
         assert_status_code(response.status_code, HTTPStatus.BAD_REQUEST)
         error_data = ValidationErrorSchema.model_validate_json(response.text)
-        assert_validation_error(error_data, expected_fields=["name", "email", "phone", "subject", "message"])
+        assert_validation_error(
+            error_data, expected_fields=["name", "email", "phone", "subject", "message"]
+        )

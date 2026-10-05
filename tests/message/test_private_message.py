@@ -1,25 +1,25 @@
 from http import HTTPStatus
 
-import allure
 import pytest
 from allure_commons.types import Severity
 
-from clients.message.private_message_client import PrivateMessageClient
-from clients.message.message_schema import MessageSchema
+import allure
 from clients.errors_schema import BaseErrorResponse
+from clients.message.message_schema import MessageSchema
+from clients.message.private_message_client import PrivateMessageClient
 from fixtures.message import MessageFixture
 from utils.allure.epics import AllureEpic
 from utils.allure.features import AllureFeature
 from utils.allure.stories import AllureStory
 from utils.allure.tags import AllureTag
 from utils.assertions.base import (
-    assert_status_code,
     assert_is_instance,
+    assert_status_code,
 )
+from utils.assertions.errors import assert_base_error_response
 from utils.assertions.message import (
     assert_get_message_response,
 )
-from utils.assertions.errors import assert_base_error_response
 from utils.assertions.schema import validate_json_schema
 
 
@@ -33,6 +33,7 @@ class TestPrivateMessageAPI:
     Test suite for authenticated message operations.
     Covers get message by ID, mark as read, and delete.
     """
+
     @pytest.mark.smoke
     @allure.story(AllureStory.MESSAGE_RETRIEVAL)
     @allure.tag(AllureTag.GET_ENTITY)
@@ -48,7 +49,9 @@ class TestPrivateMessageAPI:
         Validates response structure and JSON schema compliance.
         """
         message_id = created_message.message_id
-        allure.dynamic.title(f"GET /message/{message_id} - Get message by ID successfully (200)")
+        allure.dynamic.title(
+            f"GET /message/{message_id} - Get message by ID successfully (200)"
+        )
         response = private_message_client.get_message_api(message_id)
         assert_status_code(response.status_code, HTTPStatus.OK)
         response_data = MessageSchema.model_validate_json(response.text)
@@ -70,7 +73,9 @@ class TestPrivateMessageAPI:
         Returns parsed Pydantic model MessageSchema.
         """
         message_id = created_message.message_id
-        allure.dynamic.title(f"GET /message/{message_id} - High-level method for getting message by ID")
+        allure.dynamic.title(
+            f"GET /message/{message_id} - High-level method for getting message by ID"
+        )
         response_data = private_message_client.get_message(message_id)
         assert_is_instance(response_data, MessageSchema, "response_data")
         assert_get_message_response(response_data, created_message.response)
@@ -89,7 +94,9 @@ class TestPrivateMessageAPI:
         Positive test: Verify that GET /message/{id} returns data matching the created message.
         """
         message_id = created_message.message_id
-        allure.dynamic.title(f"GET /message/{message_id} - Get message matches created message data")
+        allure.dynamic.title(
+            f"GET /message/{message_id} - Get message matches created message data"
+        )
 
         get_response_data = private_message_client.get_message(message_id)
         assert_get_message_response(get_response_data, created_message.response)
@@ -109,7 +116,9 @@ class TestPrivateMessageAPI:
         Real API returns 202 Accepted.
         """
         message_id = created_message.message_id
-        allure.dynamic.title(f"PUT /message/{message_id}/read - Mark message as read (202)")
+        allure.dynamic.title(
+            f"PUT /message/{message_id}/read - Mark message as read (202)"
+        )
         response = private_message_client.mark_read_api(message_id)
         assert_status_code(response.status_code, HTTPStatus.ACCEPTED)
 
@@ -127,7 +136,9 @@ class TestPrivateMessageAPI:
         Does not raise on success (202 is 2xx).
         """
         message_id = created_message.message_id
-        allure.dynamic.title(f"PUT /message/{message_id}/read - High-level mark as read")
+        allure.dynamic.title(
+            f"PUT /message/{message_id}/read - High-level mark as read"
+        )
         private_message_client.mark_read(message_id)
 
     @pytest.mark.smoke
@@ -168,7 +179,9 @@ class TestPrivateMessageAPI:
         Verifies message returns 500 after deletion.
         """
         message_id = created_message.message_id
-        allure.dynamic.title(f"DELETE /message/{message_id} - High-level delete message")
+        allure.dynamic.title(
+            f"DELETE /message/{message_id} - High-level delete message"
+        )
         private_message_client.delete_message(message_id)
 
         # Verify message is gone — API returns 500 for deleted/non-existent messages

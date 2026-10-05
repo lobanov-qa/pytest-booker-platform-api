@@ -1,10 +1,9 @@
 import pytest
-
 from httpx import Cookies
 
 from clients.branding.branding_schema import BrandingSchema
-from clients.branding.public_branding_client import PublicBrandingClient
 from clients.branding.private_branding_client import PrivateBrandingClient
+from clients.branding.public_branding_client import PublicBrandingClient
 from clients.client_factories import ClientFactory
 from data_factories.branding_factory import BrandingFactory
 

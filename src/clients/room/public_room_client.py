@@ -1,16 +1,14 @@
-import allure
-
-from typing import Optional
 from httpx import Response
 
+import allure
 from clients.api_client import APIClient
+from clients.api_coverage import tracker_room
 from clients.room.room_schema import (
+    GetRoomsQuerySchema,
     RoomResponseSchema,
     RoomsResponseSchema,
-    GetRoomsQuerySchema
 )
 from clients.room.routes import RoomRoutes
-from clients.api_coverage import tracker_room
 
 
 class PublicRoomClient(APIClient):
@@ -28,21 +26,26 @@ class PublicRoomClient(APIClient):
         :param event_hooks: Optional hooks (logging, etc.).
         :param kwargs: Passed to APIClient.
         """
-        super().__init__(base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs)
-
-
+        super().__init__(
+            base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs
+        )
 
     @allure.step("Get all rooms")
     @tracker_room.track_coverage_httpx(RoomRoutes.ROOT)
-    def get_rooms_api(self, query: Optional[GetRoomsQuerySchema] = None) -> Response:
+    def get_rooms_api(self, query: GetRoomsQuerySchema | None = None) -> Response:
         """
         Get all rooms optionally filtered by check-in/check-out dates (raw response).
         :param query: Optional date filter.
         :return: HTTP response.
         """
-        return self.get(RoomRoutes.ROOT, params=query.model_dump(exclude_none=True) if query else None)
+        return self.get(
+            RoomRoutes.ROOT,
+            params=query.model_dump(exclude_none=True) if query else None,
+        )
 
-    def get_rooms(self, query: Optional[GetRoomsQuerySchema] = None) -> RoomsResponseSchema:
+    def get_rooms(
+        self, query: GetRoomsQuerySchema | None = None
+    ) -> RoomsResponseSchema:
         """
         Get all rooms and return parsed model (expects success).
         :param query: Optional date filter.

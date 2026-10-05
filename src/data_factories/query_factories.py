@@ -1,6 +1,8 @@
-from typing import Optional
+from clients.booking.booking_schema import (
+    GetSummaryQuerySchema,
+    UnavailableDatesQuerySchema,
+)
 from utils.fakers import fake
-from clients.booking.booking_schema import UnavailableDatesQuerySchema, GetSummaryQuerySchema
 
 
 class UnavailableDatesQueryFactory:
@@ -11,10 +13,7 @@ class UnavailableDatesQueryFactory:
 
     @classmethod
     def build(
-            cls,
-            checkin: Optional[str] = None,
-            checkout: Optional[str] = None,
-            **overrides
+        cls, checkin: str | None = None, checkout: str | None = None, **overrides
     ) -> UnavailableDatesQuerySchema:
         """
         Creates a valid UnavailableDatesQuerySchema object.
@@ -33,19 +32,13 @@ class UnavailableDatesQueryFactory:
         return UnavailableDatesQuerySchema(**base_data)
 
 
-
-
 class GetSummaryQueryFactory:
     """
     Factory for creating query parameters for obtaining a summary of bookings.
     """
 
     @classmethod
-    def build(
-            cls,
-            roomid: Optional[int] = None,
-            **overrides
-    ) -> GetSummaryQuerySchema:
+    def build(cls, roomid: int | None = None, **overrides) -> GetSummaryQuerySchema:
         """
         Creates a valid GetSummaryQuerySchema object.
         """
@@ -57,4 +50,3 @@ class GetSummaryQueryFactory:
 
         base_data.update(overrides)
         return GetSummaryQuerySchema(**base_data)
-

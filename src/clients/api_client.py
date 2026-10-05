@@ -1,25 +1,26 @@
-from typing import Any, Mapping, Type, TypeVar
+from collections.abc import Mapping
+from typing import Any, TypeVar
+
+from httpx import URL, Client, QueryParams, Response
+from httpx._types import RequestData, RequestFiles
 from pydantic import BaseModel
+
 import allure
 
-from httpx import Client, URL, Response, QueryParams
-from httpx._types import RequestData, RequestFiles
 
 T = TypeVar("T", bound=BaseModel)
 
+
 class APIClient:
     def __init__(
-            self,
-            base_url: str,
-            timeout: float,
-            event_hooks: Mapping[str, list] | None = None,
-            **kwargs: Any
+        self,
+        base_url: str,
+        timeout: float,
+        event_hooks: Mapping[str, list] | None = None,
+        **kwargs: Any,
     ):
         self.client = Client(
-            base_url=base_url,
-            timeout=timeout,
-            event_hooks=event_hooks,
-            **kwargs
+            base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs
         )
 
     @allure.step("Make GET request to {url}")
@@ -35,11 +36,11 @@ class APIClient:
 
     @allure.step("Make POST request to {url}")
     def post(
-            self,
-            url: URL | str,
-            json: Any | None = None,
-            data: RequestData | None = None,
-            files: RequestFiles | None = None
+        self,
+        url: URL | str,
+        json: Any | None = None,
+        data: RequestData | None = None,
+        files: RequestFiles | None = None,
     ) -> Response:
         """
         Performs a POST request.
@@ -85,7 +86,7 @@ class APIClient:
         return self.client.delete(url)
 
     @staticmethod
-    def parse_response(response: Response, model: Type[T]) -> T:
+    def parse_response(response: Response, model: type[T]) -> T:
         """
         Parse JSON response and validate against Pydantic model.
         Raises HTTPStatusError if status is not 2xx.

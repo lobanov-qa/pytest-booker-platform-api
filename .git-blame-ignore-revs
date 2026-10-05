@@ -1,3 +1,8 @@
 # Commits whose changes should be skipped by git blame.
 # Add the SHA of formatting-only commits here.
 # Local setup: git config blame.ignoreRevsFile .git-blame-ignore-revs
+# Commits whose changes should be skipped by git blame.
+# Add the SHA of formatting-only commits here.
+# Local setup: git config blame.ignoreRevsFile .git-blame-ignore-revs
+
+397eade9de8a81178c620cdf09365a2fd8d3d6f0

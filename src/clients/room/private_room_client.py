@@ -1,13 +1,13 @@
-import allure
-from httpx import Response, Cookies
+from httpx import Cookies, Response
 
+import allure
 from clients.api_client import APIClient
+from clients.api_coverage import tracker_room
 from clients.room.room_schema import (
     RoomRequestSchema,
     RoomResponseSchema,
 )
 from clients.room.routes import RoomRoutes
-from clients.api_coverage import tracker_room
 
 
 class PrivateRoomClient(APIClient):
@@ -19,7 +19,14 @@ class PrivateRoomClient(APIClient):
     Designed to be used with authenticated session cookies.
     """
 
-    def __init__(self, base_url: str, timeout: float, cookies: Cookies, event_hooks=None, **kwargs):
+    def __init__(
+        self,
+        base_url: str,
+        timeout: float,
+        cookies: Cookies,
+        event_hooks=None,
+        **kwargs,
+    ):
         """
         :param base_url: Base URL of the room service (e.g., http://localhost:3001).
         :param timeout: Request timeout in seconds.
@@ -27,7 +34,13 @@ class PrivateRoomClient(APIClient):
         :param event_hooks: Optional hooks for logging, cURL printing, etc.
         :param kwargs: Additional arguments passed to APIClient.
         """
-        super().__init__(base_url=base_url, timeout=timeout, cookies=cookies, event_hooks=event_hooks, **kwargs)
+        super().__init__(
+            base_url=base_url,
+            timeout=timeout,
+            cookies=cookies,
+            event_hooks=event_hooks,
+            **kwargs,
+        )
 
     @allure.step("Create room")
     @tracker_room.track_coverage_httpx(RoomRoutes.ROOT)
@@ -37,7 +50,10 @@ class PrivateRoomClient(APIClient):
         :param request: Room data (room_name, type required).
         :return: Raw HTTP response.
         """
-        return self.post(RoomRoutes.ROOT, json=request.model_dump(mode="json", by_alias=True, exclude_none=True))
+        return self.post(
+            RoomRoutes.ROOT,
+            json=request.model_dump(mode="json", by_alias=True, exclude_none=True),
+        )
 
     def create_room(self, request: RoomRequestSchema) -> RoomResponseSchema:
         """
@@ -80,9 +96,13 @@ class PrivateRoomClient(APIClient):
         :return: Raw HTTP response.
         """
         path = RoomRoutes.ROOM_ID.format(id=roomid)
-        return self.put(path, json=request.model_dump(mode="json", by_alias=True, exclude_none=True))
+        return self.put(
+            path, json=request.model_dump(mode="json", by_alias=True, exclude_none=True)
+        )
 
-    def update_room(self, roomid: int, request: RoomRequestSchema) -> RoomResponseSchema:
+    def update_room(
+        self, roomid: int, request: RoomRequestSchema
+    ) -> RoomResponseSchema:
         """
         Update a room and return parsed model (expects success).
         :param roomid: ID of the room.

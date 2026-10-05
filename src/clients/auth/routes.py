@@ -1,7 +1,6 @@
 from enum import StrEnum
 
 
-
 class AuthRoutes(StrEnum):
     LOGIN = "/login"
     VALIDATE = "/validate"

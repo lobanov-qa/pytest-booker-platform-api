@@ -1,11 +1,10 @@
 import pytest
-
-from pydantic import BaseModel
 from httpx import Cookies
+from pydantic import BaseModel
 
+from clients.client_factories import ClientFactory
 from clients.message.message_schema import CreateMessageRequestSchema, MessageSchema
 from clients.message.public_message_client import PublicMessageClient
-from clients.client_factories import ClientFactory
 from data_factories.message_factory import MessageRequestFactory
 
 
@@ -13,6 +12,7 @@ class MessageFixture(BaseModel):
     """
     Message context - used to pass data between tests and validation.
     """
+
     request: CreateMessageRequestSchema
     response: MessageSchema
 

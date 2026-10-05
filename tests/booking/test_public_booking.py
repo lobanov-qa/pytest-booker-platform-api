@@ -1,22 +1,22 @@
 from http import HTTPStatus
 
-import allure
 import pytest
 from allure_commons.types import Severity
 
-from clients.booking.public_booking_client import PublicBookingClient
+import allure
 from clients.booking.booking_schema import (
     CreateBookingRequestSchema,
     CreateBookingResponseSchema,
-    UnavailableDatesResponseSchema,
     GetSummaryResponseSchema,
+    UnavailableDatesResponseSchema,
 )
+from clients.booking.public_booking_client import PublicBookingClient
 from clients.booking.routes import BookingRoutes
-from clients.errors_schema import ValidationErrorSchema, BaseErrorResponse
+from clients.errors_schema import BaseErrorResponse, ValidationErrorSchema
 from data_factories.booking_factory import CreateBookingRequestFactory
 from data_factories.query_factories import (
-    UnavailableDatesQueryFactory,
     GetSummaryQueryFactory,
+    UnavailableDatesQueryFactory,
 )
 from fixtures.booking import BookingFixture
 from utils.allure.epics import AllureEpic
@@ -24,14 +24,14 @@ from utils.allure.features import AllureFeature
 from utils.allure.stories import AllureStory
 from utils.allure.tags import AllureTag
 from utils.assertions.base import (
-    assert_status_code,
-    assert_positive,
-    assert_is_instance,
     assert_in,
+    assert_is_instance,
     assert_length_equal,
+    assert_positive,
+    assert_status_code,
 )
 from utils.assertions.booking import assert_create_booking_response
-from utils.assertions.errors import assert_validation_error, assert_base_error_response
+from utils.assertions.errors import assert_base_error_response, assert_validation_error
 from utils.assertions.schema import validate_json_schema
 
 
@@ -88,7 +88,9 @@ class TestPublicBookingAPI:
     @allure.tag(AllureTag.CREATE_ENTITY, AllureTag.NEGATIVE)
     @allure.title("POST /booking - Create booking with roomid=0 (400)")
     @allure.severity(Severity.NORMAL)
-    def test_create_booking_invalid_roomid_zero(self, booking_client: PublicBookingClient):
+    def test_create_booking_invalid_roomid_zero(
+        self, booking_client: PublicBookingClient
+    ):
         """
         Negative test: Create booking with roomid=0 (must be >=1).
         Should return 400 Bad Request with validation error.
@@ -122,7 +124,9 @@ class TestPublicBookingAPI:
     @allure.tag(AllureTag.CREATE_ENTITY, AllureTag.NEGATIVE)
     @allure.title("POST /booking - Create booking without firstname field (400)")
     @allure.severity(Severity.NORMAL)
-    def test_create_booking_missing_firstname(self, booking_client: PublicBookingClient):
+    def test_create_booking_missing_firstname(
+        self, booking_client: PublicBookingClient
+    ):
         """
         Negative test: Create booking without required firstname field.
         Should return 400 Bad Request with validation error.
@@ -147,7 +151,9 @@ class TestPublicBookingAPI:
         query = UnavailableDatesQueryFactory.build()
         response = booking_client.get_unavailable_api(query)
         assert_status_code(response.status_code, HTTPStatus.OK)
-        response_data = UnavailableDatesResponseSchema.model_validate_json(response.text)
+        response_data = UnavailableDatesResponseSchema.model_validate_json(
+            response.text
+        )
         validate_json_schema(response.json(), response_data.model_json_schema())
         assert_is_instance(response_data.root, list, "response_data.root")
 
@@ -175,7 +181,9 @@ class TestPublicBookingAPI:
         )
         response = booking_client.get_unavailable_api(query)
         assert_status_code(response.status_code, HTTPStatus.OK)
-        response_data = UnavailableDatesResponseSchema.model_validate_json(response.text)
+        response_data = UnavailableDatesResponseSchema.model_validate_json(
+            response.text
+        )
         validate_json_schema(response.json(), response_data.model_json_schema())
         assert_is_instance(response_data.root, list, "response_data.root")
 
@@ -185,7 +193,9 @@ class TestPublicBookingAPI:
 
     @allure.story(AllureStory.AVAILABILITY_CHECK)
     @allure.tag(AllureTag.GET_ENTITIES)
-    @allure.title("GET /booking/unavailable - High-level method for checking availability")
+    @allure.title(
+        "GET /booking/unavailable - High-level method for checking availability"
+    )
     @allure.severity(Severity.NORMAL)
     def test_unavailable_dates_high_level(self, booking_client: PublicBookingClient):
         """
@@ -194,7 +204,9 @@ class TestPublicBookingAPI:
         """
         query = UnavailableDatesQueryFactory.build()
         response_data = booking_client.get_unavailable_rooms(query)
-        assert_is_instance(response_data, UnavailableDatesResponseSchema, "response_data")
+        assert_is_instance(
+            response_data, UnavailableDatesResponseSchema, "response_data"
+        )
         assert_is_instance(response_data.root, list, "response_data.root")
         for room in response_data.root:
             assert_positive(room.roomid, "roomid")
@@ -224,7 +236,9 @@ class TestPublicBookingAPI:
     @allure.tag(AllureTag.GET_ENTITIES, AllureTag.NEGATIVE)
     @allure.title("GET /booking/unavailable - Non-existent date (500)")
     @allure.severity(Severity.MINOR)
-    def test_unavailable_dates_nonexistent_date_500(self, booking_client: PublicBookingClient):
+    def test_unavailable_dates_nonexistent_date_500(
+        self, booking_client: PublicBookingClient
+    ):
         """
         Negative test: Check availability with non-existent date.
         API returns 500 INTERNAL_SERVER_ERROR.
@@ -233,13 +247,17 @@ class TestPublicBookingAPI:
         response = booking_client.get(BookingRoutes.UNAVAILABLE, params=params)
         assert_status_code(response.status_code, HTTPStatus.INTERNAL_SERVER_ERROR)
         error_data = BaseErrorResponse.model_validate_json(response.text)
-        assert_base_error_response(error_data, expected_status=500, path_contains="unavailable")
+        assert_base_error_response(
+            error_data, expected_status=500, path_contains="unavailable"
+        )
 
     @allure.story(AllureStory.AVAILABILITY_CHECK)
     @allure.tag(AllureTag.GET_ENTITIES, AllureTag.NEGATIVE)
     @allure.title("GET /booking/unavailable - Invalid date format (500)")
     @allure.severity(Severity.MINOR)
-    def test_unavailable_dates_invalid_format_500(self, booking_client: PublicBookingClient):
+    def test_unavailable_dates_invalid_format_500(
+        self, booking_client: PublicBookingClient
+    ):
         """
         Negative test: Check availability with invalid date format.
         API returns 500 INTERNAL_SERVER_ERROR.
@@ -248,7 +266,9 @@ class TestPublicBookingAPI:
         response = booking_client.get(BookingRoutes.UNAVAILABLE, params=params)
         assert_status_code(response.status_code, HTTPStatus.INTERNAL_SERVER_ERROR)
         error_data = BaseErrorResponse.model_validate_json(response.text)
-        assert_base_error_response(error_data, expected_status=500, path_contains="unavailable")
+        assert_base_error_response(
+            error_data, expected_status=500, path_contains="unavailable"
+        )
 
     @allure.story(AllureStory.BOOKING_SUMMARY)
     @allure.tag(AllureTag.GET_ENTITIES)
@@ -284,7 +304,9 @@ class TestPublicBookingAPI:
         Positive test: Get summary with non-positive roomid.
         API returns 200 OK with empty bookings list.
         """
-        allure.dynamic.title(f"GET /booking/summary?roomid={roomid} - Non-positive roomid returns empty list")
+        allure.dynamic.title(
+            f"GET /booking/summary?roomid={roomid} - Non-positive roomid returns empty list"
+        )
         params = {"roomid": roomid}
         response = booking_client.get(BookingRoutes.SUMMARY, params=params)
         assert_status_code(response.status_code, HTTPStatus.OK)
@@ -319,7 +341,9 @@ class TestPublicBookingAPI:
         response = booking_client.get(BookingRoutes.SUMMARY, params={})
         assert_status_code(response.status_code, HTTPStatus.BAD_REQUEST)
         error_data = BaseErrorResponse.model_validate_json(response.text)
-        assert_base_error_response(error_data, expected_status=400, path_contains="summary")
+        assert_base_error_response(
+            error_data, expected_status=400, path_contains="summary"
+        )
 
     @allure.story(AllureStory.BOOKING_SUMMARY)
     @allure.tag(AllureTag.GET_ENTITIES, AllureTag.NEGATIVE)
@@ -334,9 +358,13 @@ class TestPublicBookingAPI:
         Negative test: Get summary with non-numeric roomid.
         API returns 500 INTERNAL_SERVER_ERROR.
         """
-        allure.dynamic.title(f"GET /booking/summary?roomid={invalid_value} - Non-numeric roomid (500)")
+        allure.dynamic.title(
+            f"GET /booking/summary?roomid={invalid_value} - Non-numeric roomid (500)"
+        )
         params = {"roomid": invalid_value}
         response = booking_client.get(BookingRoutes.SUMMARY, params=params)
         assert_status_code(response.status_code, HTTPStatus.INTERNAL_SERVER_ERROR)
         error_data = BaseErrorResponse.model_validate_json(response.text)
-        assert_base_error_response(error_data, expected_status=500, path_contains="summary")
+        assert_base_error_response(
+            error_data, expected_status=500, path_contains="summary"
+        )
