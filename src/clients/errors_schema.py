@@ -2,9 +2,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class ValidationErrorSchema(BaseModel):
-    """
-    Модель, описывающая структуру ошибки валидации API.
-    """
+    """Модель, описывающая структуру ошибки валидации API."""
 
     model_config = ConfigDict(populate_by_name=True)
 
@@ -15,9 +13,7 @@ class ValidationErrorSchema(BaseModel):
 
 
 class BaseErrorResponse(BaseModel):
-    """
-    Standard Spring Boot error.
-    """
+    """Standard Spring Boot error."""
 
     timestamp: str
     status: int

@@ -38,6 +38,7 @@ from utils.assertions.schema import validate_json_schema
 class TestPrivateBookingAPI:
     """
     Test suite for authenticated booking operations.
+
     These tests require valid authentication tokens.
     """
 
@@ -51,6 +52,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Positive test: Retrieve all bookings with valid authentication.
+
         Validates response structure and JSON schema compliance.
         """
         response = booking_private_client.get_bookings_api()
@@ -69,6 +71,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Positive test: Filter bookings using roomid query parameter.
+
         Verifies filtering functionality and that only bookings for specified room are returned.
         """
         roomid = str(created_booking.response.booking.roomid)
@@ -103,6 +106,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Positive test: Use convenience method get_all_bookings().
+
         Returns parsed Pydantic model GetBookingsResponseSchema.
         """
         response_data = booking_private_client.get_all_bookings()
@@ -119,6 +123,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Positive test: Use convenience method get_bookings_by_room().
+
         Returns parsed Pydantic model GetBookingsResponseSchema with filtered results.
         """
         roomid = str(created_booking.response.booking.roomid)
@@ -144,6 +149,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Negative test: Attempt to retrieve all bookings without authentication.
+
         Should return 403 Forbidden.
         """
         response = booking_private_client_invalid.get_bookings_api()
@@ -160,6 +166,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Negative test: Filter bookings with non-numeric roomid values.
+
         API returns 500 INTERNAL_SERVER_ERROR for invalid room ID format.
         """
         allure.dynamic.title(
@@ -182,6 +189,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Negative test: Filter bookings with non-existent roomid.
+
         Should return 200 OK with empty bookings list.
         """
         query = GetBookingQuerySchema(roomid="9999")
@@ -207,6 +215,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Positive test: Retrieve specific booking by booking ID.
+
         Validates response matches the created booking data.
         """
         booking_id = created_booking.response.bookingid
@@ -229,6 +238,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Positive test: Use convenience method get_booking().
+
         Returns parsed Pydantic model BookingSchema.
         """
         booking_id = created_booking.response.bookingid
@@ -249,6 +259,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Negative test: Attempt to retrieve booking without authentication.
+
         Should return 403 Forbidden.
         """
         booking_id = created_booking.response.bookingid
@@ -265,6 +276,7 @@ class TestPrivateBookingAPI:
     def test_get_booking_not_found(self, booking_private_client: PrivateBookingClient):
         """
         Negative test: Request booking with non-existent ID.
+
         Should return 404 Not Found.
         """
         response = booking_private_client.get_booking_api(9999)
@@ -279,6 +291,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Negative test: Request booking with non-numeric ID in path.
+
         Should return 404 Not Found.
         """
         path = BookingRoutes.BOOKING_ID.format(id="one")
@@ -296,6 +309,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Positive test: Successfully update existing booking.
+
         Validates update response and ensures data is correctly updated.
         """
         booking_id = created_booking.response.bookingid
@@ -333,6 +347,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Positive test: Use convenience method update_booking().
+
         Returns parsed Pydantic model UpdateBookingResponseSchema.
         """
         booking_id = created_booking.response.bookingid
@@ -368,6 +383,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Negative test: Attempt to update booking without authentication.
+
         Should return 403 Forbidden.
         """
         booking_id = created_booking.response.bookingid
@@ -395,6 +411,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Negative test: Update booking with non-existent ID.
+
         Should return 404 Not Found.
         """
         non_existent_id = 9999
@@ -420,6 +437,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Negative test: Update booking with invalid data (empty firstname).
+
         Should return 400 Bad Request with validation error details.
         """
         booking_id = created_booking.response.bookingid
@@ -452,6 +470,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Positive test: Successfully delete a booking.
+
         Validates 202 Accepted status and verifies booking is no longer accessible.
         """
         booking_id = created_booking.response.bookingid
@@ -479,6 +498,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Positive test: Use convenience method delete_booking().
+
         Method doesn't return a model (only validates status).
         """
         booking_id = created_booking.response.bookingid
@@ -501,6 +521,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Negative test: Attempt to delete booking without authentication.
+
         Should return 403 Forbidden.
         """
         booking_id = created_booking.response.bookingid
@@ -520,6 +541,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Negative test: Delete booking with non-existent ID.
+
         Should return 404 Not Found.
         """
         non_existent_id = 9999
@@ -536,6 +558,7 @@ class TestPrivateBookingAPI:
     ):
         """
         Negative test: Delete already deleted booking (idempotent operation).
+
         Should return 404 Not Found on second attempt.
         """
         booking_id = created_booking.response.bookingid

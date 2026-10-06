@@ -25,6 +25,7 @@ class PublicBookingClient(APIClient):
     def __init__(self, base_url: str, timeout: float, event_hooks=None, **kwargs):
         """
         :param base_url: Booking service base URL.
+
         :param timeout: Request timeout in seconds.
         :param event_hooks: Optional hooks (logging, etc.).
         :param kwargs: Passed to APIClient.
@@ -38,6 +39,7 @@ class PublicBookingClient(APIClient):
     def create_booking_api(self, request: CreateBookingRequestSchema) -> Response:
         """
         Create booking (raw response). For full control in negative tests.
+
         :param request: Booking data.
         :return: HTTP response.
         """
@@ -50,6 +52,7 @@ class PublicBookingClient(APIClient):
     ) -> CreateBookingResponseSchema:
         """
         Create booking and return parsed model (expects success).
+
         :param request: Valid booking data.
         :return: Response model with booking ID.
         :raises HTTPStatusError: If status != 2xx.
@@ -63,6 +66,7 @@ class PublicBookingClient(APIClient):
     def get_unavailable_api(self, query: UnavailableDatesQuerySchema) -> Response:
         """
         Get unavailable rooms for date range (raw response).
+
         :param query: Check-in/check-out dates.
         :return: HTTP response with room IDs.
         """
@@ -73,6 +77,7 @@ class PublicBookingClient(APIClient):
     ) -> UnavailableDatesResponseSchema:
         """
         Get unavailable rooms and return parsed model (expects success).
+
         :param query: Date range.
         :return: Parsed response with room IDs.
         :raises HTTPStatusError: If status != 2xx.
@@ -86,6 +91,7 @@ class PublicBookingClient(APIClient):
     def get_summary_api(self, query: GetSummaryQuerySchema) -> Response:
         """
         Get booking date ranges for room (raw response).
+
         :param query: Room ID.
         :return: HTTP response with date ranges.
         """
@@ -96,6 +102,7 @@ class PublicBookingClient(APIClient):
     ) -> GetSummaryResponseSchema:
         """
         Get booking summary and return parsed model (expects success).
+
         :param query: Room ID.
         :return: Parsed response with date ranges.
         :raises HTTPStatusError: If status != 2xx.

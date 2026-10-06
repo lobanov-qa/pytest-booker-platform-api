@@ -16,6 +16,7 @@ def assert_validation_error(
 ) -> None:
     """
     Validates key aspects of a validation error response.
+
     Does not require exact text match — only checks for field presence.
 
     :param error: Error received from the API.

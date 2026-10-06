@@ -32,6 +32,7 @@ class PrivateBookingClient(APIClient):
     ):
         """
         :param base_url: Base URL of the booking service (e.g., http://localhost:3000).
+
         :param timeout: Request timeout in seconds.
         :param cookies: Session cookies obtained via authentication (e.g., from AuthClient.login).
         :param event_hooks: Optional hooks for logging, cURL printing, etc.
@@ -50,6 +51,7 @@ class PrivateBookingClient(APIClient):
     def get_bookings_api(self, query: GetBookingQuerySchema | None = None) -> Response:
         """
         Retrieve all bookings with optional filtering by roomid.
+
         :param query: Optional query parameters (roomid).
         :return: Raw HTTP response.
         """
@@ -59,6 +61,7 @@ class PrivateBookingClient(APIClient):
     def get_all_bookings(self) -> GetBookingsResponseSchema:
         """
         High-level method: get all bookings (success path).
+
         :return: Parsed response model.
         """
         response = self.get_bookings_api()
@@ -67,6 +70,7 @@ class PrivateBookingClient(APIClient):
     def get_bookings_by_room(self, roomid: str) -> GetBookingsResponseSchema:
         """
         High-level method: get bookings filtered by roomid.
+
         :param roomid: ID of the room to filter by.
         :return: Parsed response model.
         """
@@ -79,6 +83,7 @@ class PrivateBookingClient(APIClient):
     def get_booking_api(self, bookingid: int) -> Response:
         """
         Retrieve booking details by ID.
+
         :param bookingid: ID of the booking.
         :return: Raw HTTP response.
         """
@@ -88,6 +93,7 @@ class PrivateBookingClient(APIClient):
     def get_booking(self, bookingid: int) -> BookingSchema:
         """
         High-level method: get booking by ID (success path).
+
         :param bookingid: ID of the booking.
         :return: Parsed response model.
         """
@@ -101,6 +107,7 @@ class PrivateBookingClient(APIClient):
     ) -> Response:
         """
         Update an existing booking.
+
         :param bookingid: ID of the booking to update.
         :param request: Data for update (all fields optional).
         :return: Raw HTTP response.
@@ -113,6 +120,7 @@ class PrivateBookingClient(APIClient):
     ) -> UpdateBookingResponseSchema:
         """
         High-level method: update booking (success path).
+
         :param bookingid: ID of the booking.
         :param request: Update data.
         :return: Parsed response model.
@@ -125,6 +133,7 @@ class PrivateBookingClient(APIClient):
     def delete_booking_api(self, bookingid: int) -> Response:
         """
         Delete a booking by ID.
+
         :param bookingid: ID of the booking to delete.
         :return: Raw HTTP response.
         """
@@ -134,6 +143,7 @@ class PrivateBookingClient(APIClient):
     def delete_booking(self, bookingid: int) -> None:
         """
         High-level method: delete booking by ID (success path).
+
         :param bookingid: ID of the booking.
         """
         response = self.delete_booking_api(bookingid)

@@ -12,6 +12,8 @@ T = TypeVar("T", bound=BaseModel)
 
 
 class APIClient:
+    """Thin httpx.Client wrapper adding base URL, timeout and event hooks."""
+
     def __init__(
         self,
         base_url: str,
@@ -89,6 +91,7 @@ class APIClient:
     def parse_response(response: Response, model: type[T]) -> T:
         """
         Parse JSON response and validate against Pydantic model.
+
         Raises HTTPStatusError if status is not 2xx.
 
         :param response: HTTP response from httpx.
@@ -99,4 +102,5 @@ class APIClient:
         return model.model_validate(response.json())
 
     def close(self):
+        """Closes the underlying HTTP client."""
         self.client.close()

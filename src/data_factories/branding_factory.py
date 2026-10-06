@@ -32,6 +32,7 @@ def _clean_phone(value: str) -> str:
 class BrandingFactory:
     """
     Factory for creating valid Branding objects.
+
     Used for both GET comparison and PUT update requests.
 
     NOTE: logoUrl MUST be a full URL (e.g., http://...), not a relative path.

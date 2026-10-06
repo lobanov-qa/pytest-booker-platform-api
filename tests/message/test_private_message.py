@@ -31,6 +31,7 @@ from utils.assertions.schema import validate_json_schema
 class TestPrivateMessageAPI:
     """
     Test suite for authenticated message operations.
+
     Covers get message by ID, mark as read, and delete.
     """
 
@@ -46,6 +47,7 @@ class TestPrivateMessageAPI:
     ):
         """
         Positive test: Retrieve a specific message by ID.
+
         Validates response structure and JSON schema compliance.
         """
         message_id = created_message.message_id
@@ -70,6 +72,7 @@ class TestPrivateMessageAPI:
     ):
         """
         Positive test: Use convenience method get_message().
+
         Returns parsed Pydantic model MessageSchema.
         """
         message_id = created_message.message_id
@@ -91,7 +94,9 @@ class TestPrivateMessageAPI:
         created_message: MessageFixture,
     ):
         """
-        Positive test: Verify that GET /message/{id} returns data matching the created message.
+        Positive test: Verify that GET /message/{id} returns data.
+
+        The returned message matches the created one.
         """
         message_id = created_message.message_id
         allure.dynamic.title(
@@ -113,6 +118,7 @@ class TestPrivateMessageAPI:
     ):
         """
         Positive test: Mark a message as read.
+
         Real API returns 202 Accepted.
         """
         message_id = created_message.message_id
@@ -133,6 +139,7 @@ class TestPrivateMessageAPI:
     ):
         """
         Positive test: Use convenience method mark_read().
+
         Does not raise on success (202 is 2xx).
         """
         message_id = created_message.message_id
@@ -153,6 +160,7 @@ class TestPrivateMessageAPI:
     ):
         """
         Positive test: Delete a message by ID.
+
         Real API returns 202 Accepted.
         Verifies message returns 500 after deletion (API crashes for non-existent IDs).
         """
@@ -176,6 +184,7 @@ class TestPrivateMessageAPI:
     ):
         """
         Positive test: Use convenience method delete_message().
+
         Verifies message returns 500 after deletion.
         """
         message_id = created_message.message_id
@@ -197,6 +206,7 @@ class TestPrivateMessageAPI:
     ):
         """
         Negative test: Request message with non-existent ID.
+
         Real API returns 500 Internal Server Error for non-existent message IDs.
         """
         response = private_message_client.get_message_api(9999)
@@ -213,6 +223,7 @@ class TestPrivateMessageAPI:
     ):
         """
         Negative test: Delete message with non-existent ID.
+
         API returns 404 Not Found for non-existent message IDs.
         """
         response = private_message_client.delete_message_api(9999)
@@ -227,6 +238,7 @@ class TestPrivateMessageAPI:
     ):
         """
         Negative test: Mark message as read with invalid authentication cookies.
+
         Should return 403 Forbidden.
         """
         response = private_message_client_invalid.mark_read_api(1)
@@ -241,6 +253,7 @@ class TestPrivateMessageAPI:
     ):
         """
         Negative test: Delete message with invalid authentication cookies.
+
         Should return 403 Forbidden.
         """
         response = private_message_client_invalid.delete_message_api(1)

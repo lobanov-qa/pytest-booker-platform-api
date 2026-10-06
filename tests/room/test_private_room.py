@@ -36,6 +36,7 @@ from utils.assertions.schema import validate_json_schema
 class TestPrivateRoomAPI:
     """
     Test suite for authenticated room operations.
+
     These tests require valid authentication tokens.
     """
 
@@ -51,6 +52,7 @@ class TestPrivateRoomAPI:
     ):
         """
         Positive test: Create room with full validation.
+
         Validates response structure and JSON schema compliance.
         """
         response = private_room_client.create_room_api(valid_room_request)
@@ -70,6 +72,7 @@ class TestPrivateRoomAPI:
     ):
         """
         Positive test: Use convenience method create_room().
+
         Returns parsed Pydantic model RoomResponseSchema.
         """
         response_data = private_room_client.create_room(valid_room_request)
@@ -89,6 +92,7 @@ class TestPrivateRoomAPI:
     ):
         """
         Positive test: Verify that GET /room/{id} returns data matching the created room.
+
         Uses assert_get_room_response for validation.
         """
         room_id = created_room.room_id
@@ -110,6 +114,7 @@ class TestPrivateRoomAPI:
     ):
         """
         Positive test: Successfully update existing room.
+
         Validates update response and ensures data is correctly updated.
         """
         room_id = created_room.room_id
@@ -139,6 +144,7 @@ class TestPrivateRoomAPI:
     ):
         """
         Positive test: Use convenience method update_room().
+
         Returns parsed Pydantic model RoomResponseSchema.
         """
         room_id = created_room.room_id
@@ -166,6 +172,7 @@ class TestPrivateRoomAPI:
     ):
         """
         Positive test: Successfully delete a room.
+
         Validates 202 Accepted status and verifies room returns 500 after deletion
         (API returns 500 for non-existent room IDs).
         """
@@ -189,6 +196,7 @@ class TestPrivateRoomAPI:
     ):
         """
         Positive test: Use convenience method delete_room().
+
         Method doesn't return a model (only validates status).
         """
         room_id = created_room.room_id
@@ -216,6 +224,7 @@ class TestPrivateRoomAPI:
     ):
         """
         Negative test: Attempt to create room without authentication.
+
         Should return 403 Forbidden.
         """
         response = private_room_client_invalid.create_room_api(valid_room_request)
@@ -231,6 +240,7 @@ class TestPrivateRoomAPI:
     ):
         """
         Negative test: Attempt to update room without authentication.
+
         Should return 403 Forbidden.
         """
         update_request = RoomRequestFactory.build()
@@ -247,6 +257,7 @@ class TestPrivateRoomAPI:
     ):
         """
         Negative test: Attempt to delete room without authentication.
+
         Should return 403 Forbidden.
         """
         response = private_room_client_invalid.delete_room_api(1)
@@ -262,6 +273,7 @@ class TestPrivateRoomAPI:
     ):
         """
         Negative test: Create room without required roomPrice field.
+
         Real API requires roomPrice >= 1; returns 400 with ValidationErrorSchema.
         Uses assert_validation_error for structured error validation.
         """
@@ -283,6 +295,7 @@ class TestPrivateRoomAPI:
     ):
         """
         Negative test: Update room with non-existent ID.
+
         Should return 404 Not Found.
         """
         update_request = RoomRequestFactory.build()
@@ -299,6 +312,7 @@ class TestPrivateRoomAPI:
     ):
         """
         Negative test: Delete room with non-existent ID.
+
         Should return 404 Not Found.
         """
         response = private_room_client.delete_room_api(9999)

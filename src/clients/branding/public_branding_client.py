@@ -18,6 +18,7 @@ class PublicBrandingClient(APIClient):
     def __init__(self, base_url: str, timeout: float, event_hooks=None, **kwargs):
         """
         :param base_url: Branding service base URL.
+
         :param timeout: Request timeout in seconds.
         :param event_hooks: Optional hooks (logging, etc.).
         :param kwargs: Passed to APIClient.
@@ -31,6 +32,7 @@ class PublicBrandingClient(APIClient):
     def get_branding_api(self) -> Response:
         """
         Get branding information (raw response).
+
         :return: HTTP response.
         """
         return self.get(BrandingRoutes.ROOT)
@@ -38,6 +40,7 @@ class PublicBrandingClient(APIClient):
     def get_branding(self) -> BrandingSchema:
         """
         Get branding information and return parsed model (expects success).
+
         :return: Parsed branding model.
         :raises HTTPStatusError: If status != 2xx.
         """

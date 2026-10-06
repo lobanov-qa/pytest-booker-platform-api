@@ -4,6 +4,7 @@ from pydantic import BaseModel, ConfigDict, EmailStr, Field
 class AddressSchema(BaseModel):
     """
     Schema for address information (nested in Branding).
+
     All fields are required.
     """
 
@@ -19,6 +20,7 @@ class AddressSchema(BaseModel):
 class MapSchema(BaseModel):
     """
     Schema for map coordinates (nested in Branding).
+
     Both latitude and longitude are required.
     """
 
@@ -29,6 +31,7 @@ class MapSchema(BaseModel):
 class ContactSchema(BaseModel):
     """
     Schema for contact information (nested in Branding).
+
     All fields are required.
     """
 
@@ -46,6 +49,7 @@ class ContactSchema(BaseModel):
 class BrandingSchema(BaseModel):
     """
     Schema for branding information (GET / response).
+
     Required fields: description, directions, logo_url, name.
     """
 

@@ -44,6 +44,10 @@ class TestPublicBrandingAPI:
     def test_get_branding_high_level(
         self, public_branding_client: PublicBrandingClient
     ):
-        """Positive test: Use convenience method get_branding() and verify returned Pydantic model type."""
+        """
+        Positive test: Use convenience method get_branding().
+
+        Verifies the returned Pydantic model type.
+        """
         branding = public_branding_client.get_branding()
         assert_is_instance(branding, BrandingSchema, "branding")

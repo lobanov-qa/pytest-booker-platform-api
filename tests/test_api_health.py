@@ -44,7 +44,10 @@ class TestHealth:
             data = response.json()
         except httpx.ResponseNotJSON:
             pytest.fail(
-                f"The response is not in JSON format. Status: {response.status_code}, Body: {response.text}"
+                pytest.fail(
+                    f"Response is not JSON. Status: {response.status_code}, "
+                    f"Body: {response.text}"
+                )
             )
 
         assert data.get("status") == "UP", (

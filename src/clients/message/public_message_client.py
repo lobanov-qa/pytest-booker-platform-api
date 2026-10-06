@@ -23,6 +23,7 @@ class PublicMessageClient(APIClient):
     def __init__(self, base_url: str, timeout: float, event_hooks=None, **kwargs):
         """
         :param base_url: Message service base URL.
+
         :param timeout: Request timeout in seconds.
         :param event_hooks: Optional hooks (logging, etc.).
         :param kwargs: Passed to APIClient.
@@ -36,6 +37,7 @@ class PublicMessageClient(APIClient):
     def create_message_api(self, request: CreateMessageRequestSchema) -> Response:
         """
         Create a new message (raw response). For full control in negative tests.
+
         :param request: Message data.
         :return: HTTP response.
         """
@@ -44,6 +46,7 @@ class PublicMessageClient(APIClient):
     def create_message(self, request: CreateMessageRequestSchema) -> MessageSchema:
         """
         Create a new message and return parsed model (expects success).
+
         :param request: Valid message data.
         :return: Response model with message ID.
         :raises HTTPStatusError: If status != 2xx.
@@ -55,6 +58,7 @@ class PublicMessageClient(APIClient):
     def get_messages_api(self) -> Response:
         """
         Get all messages (raw response).
+
         :return: HTTP response with message summaries.
         """
         return self.get(MessageRoutes.ROOT)
@@ -62,6 +66,7 @@ class PublicMessageClient(APIClient):
     def get_messages(self) -> MessagesResponseSchema:
         """
         Get all messages and return parsed model (expects success).
+
         :return: Parsed response with list of message summaries.
         :raises HTTPStatusError: If status != 2xx.
         """
@@ -72,6 +77,7 @@ class PublicMessageClient(APIClient):
     def get_count_api(self) -> Response:
         """
         Get total message count (raw response).
+
         :return: HTTP response with count.
         """
         return self.get(MessageRoutes.COUNT)
@@ -79,6 +85,7 @@ class PublicMessageClient(APIClient):
     def get_count(self) -> CountSchema:
         """
         Get total message count and return parsed model (expects success).
+
         :return: Parsed count model.
         :raises HTTPStatusError: If status != 2xx.
         """

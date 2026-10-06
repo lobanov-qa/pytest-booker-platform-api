@@ -21,7 +21,7 @@ def assert_report(actual: ReportSchema, expected: ReportSchema):
     assert_equal(len(actual.report), len(expected.report), "report length")
 
     for i, (actual_entry, expected_entry) in enumerate(
-        zip(actual.report, expected.report)
+        zip(actual.report, expected.report, strict=True)
     ):
         assert_entry_equal(actual_entry, expected_entry, index=i)
 

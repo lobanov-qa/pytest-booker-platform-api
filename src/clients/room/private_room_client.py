@@ -29,6 +29,7 @@ class PrivateRoomClient(APIClient):
     ):
         """
         :param base_url: Base URL of the room service (e.g., http://localhost:3001).
+
         :param timeout: Request timeout in seconds.
         :param cookies: Session cookies obtained via authentication (e.g., from AuthClient.login).
         :param event_hooks: Optional hooks for logging, cURL printing, etc.
@@ -47,6 +48,7 @@ class PrivateRoomClient(APIClient):
     def create_room_api(self, request: RoomRequestSchema) -> Response:
         """
         Create a new room (raw response).
+
         :param request: Room data (room_name, type required).
         :return: Raw HTTP response.
         """
@@ -58,6 +60,7 @@ class PrivateRoomClient(APIClient):
     def create_room(self, request: RoomRequestSchema) -> RoomResponseSchema:
         """
         Create a new room and return parsed model (expects success).
+
         :param request: Room data.
         :return: Parsed room model with roomid.
         :raises HTTPStatusError: If status != 2xx.
@@ -70,6 +73,7 @@ class PrivateRoomClient(APIClient):
     def get_room_api(self, roomid: int) -> Response:
         """
         Get a specific room by ID (raw response).
+
         :param roomid: Room identifier.
         :return: HTTP response.
         """
@@ -79,6 +83,7 @@ class PrivateRoomClient(APIClient):
     def get_room(self, roomid: int) -> RoomResponseSchema:
         """
         Get a specific room and return parsed model (expects success).
+
         :param roomid: Room identifier.
         :return: Parsed room model.
         :raises HTTPStatusError: If status != 2xx.
@@ -91,6 +96,7 @@ class PrivateRoomClient(APIClient):
     def update_room_api(self, roomid: int, request: RoomRequestSchema) -> Response:
         """
         Update an existing room (raw response).
+
         :param roomid: ID of the room to update.
         :param request: Updated room data.
         :return: Raw HTTP response.
@@ -105,6 +111,7 @@ class PrivateRoomClient(APIClient):
     ) -> RoomResponseSchema:
         """
         Update a room and return parsed model (expects success).
+
         :param roomid: ID of the room.
         :param request: Updated room data.
         :return: Parsed room model.
@@ -118,6 +125,7 @@ class PrivateRoomClient(APIClient):
     def delete_room_api(self, roomid: int) -> Response:
         """
         Delete a room by ID (raw response).
+
         :param roomid: ID of the room to delete.
         :return: Raw HTTP response.
         """
@@ -127,6 +135,7 @@ class PrivateRoomClient(APIClient):
     def delete_room(self, roomid: int) -> None:
         """
         Delete a room by ID (expects success).
+
         :param roomid: ID of the room.
         :raises HTTPStatusError: If status != 2xx.
         """

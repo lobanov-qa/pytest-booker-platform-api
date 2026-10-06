@@ -9,15 +9,14 @@ from data_factories.message_factory import MessageRequestFactory
 
 
 class MessageFixture(BaseModel):
-    """
-    Message context - used to pass data between tests and validation.
-    """
+    """Message context - used to pass data between tests and validation."""
 
     request: CreateMessageRequestSchema
     response: MessageSchema
 
     @property
     def message_id(self) -> int:
+        """Returns the message ID from the fixture response."""
         return self.response.messageid
 
 
@@ -55,6 +54,7 @@ def created_message(
 ) -> MessageFixture:
     """
     Fixture of the created message.
+
     Returns a validated MessageFixture container.
     """
     request = valid_message_request

@@ -12,15 +12,14 @@ from clients.booking.public_booking_client import PublicBookingClient
 
 
 class BookingFixture(BaseModel):
-    """
-    Booking context - used to pass data between tests and validation.
-    """
+    """Booking context - used to pass data between tests and validation."""
 
     request: CreateBookingRequestSchema
     response: CreateBookingResponseSchema
 
     @property
     def booking_id(self) -> int:
+        """Returns the booking ID from the fixture response."""
         return self.response.bookingid
 
 
@@ -43,6 +42,7 @@ def created_booking(
 ) -> BookingFixture:
     """
     Fixture of the created reservation.
+
     Returns a validated BookingFixture container.
     """
     request = valid_create_booking_request

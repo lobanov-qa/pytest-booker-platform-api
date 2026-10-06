@@ -25,6 +25,7 @@ class PublicReportClient(APIClient):
     def get_room_report_api(self, room_id: int) -> Response:
         """
         Retrieve report for a specific room (raw response).
+
         :param room_id: ID of the room.
         :return: HTTP response.
         """
@@ -34,6 +35,7 @@ class PublicReportClient(APIClient):
     def get_room_report(self, room_id: int) -> ReportSchema:
         """
         High-level method: get room report and return parsed model (expects success).
+
         :param room_id: ID of the room.
         :return: Parsed response model.
         :raises HTTPStatusError: If status != 2xx.

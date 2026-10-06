@@ -19,6 +19,7 @@ class RoomType(StrEnum):
 class RoomResponseSchema(BaseModel):
     """
     Schema for room response (GET /rooms/{id}, GET /rooms).
+
     All fields are required in responses.
     """
 
@@ -37,6 +38,7 @@ class RoomResponseSchema(BaseModel):
 class RoomRequestSchema(BaseModel):
     """
     Schema for creating and updating a room (POST /rooms, PUT /rooms/{id}).
+
     Only room_name and type are required per OpenAPI spec.
     """
 
@@ -52,9 +54,7 @@ class RoomRequestSchema(BaseModel):
 
 
 class RoomsResponseSchema(BaseModel):
-    """
-    Schema for response containing a list of rooms (GET /rooms).
-    """
+    """Schema for response containing a list of rooms (GET /rooms)."""
 
     rooms: list[RoomResponseSchema]
 
@@ -62,6 +62,7 @@ class RoomsResponseSchema(BaseModel):
 class GetRoomsQuerySchema(BaseModel):
     """
     Schema for query parameters when getting rooms (GET /rooms).
+
     checkin and checkout are optional parameters for filtering availability.
     """
 
@@ -75,6 +76,7 @@ class GetRoomsQuerySchema(BaseModel):
     @field_validator("checkout")
     @classmethod
     def validate_checkout(cls, v: str | None, info) -> str | None:
+        """Validates the checkout date against checkin."""
         if v is None:
             return v
         checkin = info.data.get("checkin")
@@ -83,7 +85,7 @@ class GetRoomsQuerySchema(BaseModel):
         try:
             checkin_date = date.fromisoformat(checkin)
             checkout_date = date.fromisoformat(v)
-        except ValueError:
-            raise ValueError("Invalid date format")
+        except ValueError as err:
+            raise ValueError("Invalid date format") from err
         validate_date_range(checkin_date, checkout_date)
         return v

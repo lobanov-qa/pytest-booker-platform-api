@@ -3,9 +3,7 @@ from utils.fakers import fake
 
 
 class RoomRequestFactory:
-    """
-    Factory for creating valid room requests.
-    """
+    """Factory for creating valid room requests."""
 
     @classmethod
     def build(cls, **overrides) -> RoomRequestSchema:

@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from httpx import HTTPStatusError, Response
 
 import allure
@@ -40,6 +42,7 @@ class AuthClient(APIClient):
     def login(self, request: LoginRequestSchema) -> str:
         """
         Authenticates the user and retrieves the session token from the cookie.
+
         :param request: LoginRequestSchema object with credentials.
         :return: String value of the session token.
         :raises Exception: If the response status is not 200 or the token is not found.
@@ -58,6 +61,7 @@ class AuthClient(APIClient):
     def validate_api(self, request: ValidateRequestSchema) -> Response:
         """
         Sends a token validation request to the server.
+
         :param request: ValidateRequestSchema object containing the token.
         :return: Raw response from the server.
         """
@@ -66,6 +70,7 @@ class AuthClient(APIClient):
     def is_token_valid(self, token: str) -> bool:
         """
         Validates a token and returns True if validation was successful (200 OK).
+
         :param token: Token string to validate.
         :return: True if token is valid, False otherwise.
         """
@@ -74,7 +79,7 @@ class AuthClient(APIClient):
         request = ValidateRequestSchema(token=token)
         try:
             response = self.validate_api(request)
-            return response.status_code == 200
+            return response.status_code == HTTPStatus.OK
         except HTTPStatusError:
             return False
 
@@ -83,6 +88,7 @@ class AuthClient(APIClient):
     def logout_api(self, request: LogoutRequestSchema) -> Response:
         """
         Sends a token logout request to the server.
+
         :param request: LogoutRequestSchema object containing the token.
         :return: Raw response from the server.
         """
@@ -100,6 +106,6 @@ class AuthClient(APIClient):
         request = LogoutRequestSchema(token=token)
         try:
             response = self.logout_api(request)
-            return response.status_code == 200
+            return response.status_code == HTTPStatus.OK
         except HTTPStatusError:
             return False

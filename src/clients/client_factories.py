@@ -101,6 +101,7 @@ class ClientFactory:
     def get_private_room_client(cookies: Cookies) -> PrivateRoomClient:
         """
         Creates and returns a configured PrivateRoomClient instance.
+
         :param cookies: Auth cookies obtained via authentication.
         :return: PrivateRoomClient configured with base URL, timeout and cookies.
         """

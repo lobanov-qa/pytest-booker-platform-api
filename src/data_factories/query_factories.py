@@ -8,6 +8,7 @@ from utils.fakers import fake
 class UnavailableDatesQueryFactory:
     """
     Factory for creating query parameters for checking room availability.
+
     Uses methods from fake for consistency.
     """
 
@@ -15,9 +16,7 @@ class UnavailableDatesQueryFactory:
     def build(
         cls, checkin: str | None = None, checkout: str | None = None, **overrides
     ) -> UnavailableDatesQuerySchema:
-        """
-        Creates a valid UnavailableDatesQuerySchema object.
-        """
+        """Creates a valid UnavailableDatesQuerySchema object."""
         if checkin is None or checkout is None:
             dates = fake.booking_dates()
             checkin = checkin or dates["checkin"]
@@ -33,15 +32,11 @@ class UnavailableDatesQueryFactory:
 
 
 class GetSummaryQueryFactory:
-    """
-    Factory for creating query parameters for obtaining a summary of bookings.
-    """
+    """Factory for creating query parameters for obtaining a summary of bookings."""
 
     @classmethod
     def build(cls, roomid: int | None = None, **overrides) -> GetSummaryQuerySchema:
-        """
-        Creates a valid GetSummaryQuerySchema object.
-        """
+        """Creates a valid GetSummaryQuerySchema object."""
         room_id = roomid or fake.room_id()
 
         base_data = {

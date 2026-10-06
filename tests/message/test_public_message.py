@@ -38,6 +38,7 @@ from utils.assertions.schema import validate_json_schema
 class TestPublicMessageAPI:
     """
     Test suite for public message operations (no authentication required).
+
     Covers create message, get all messages, get count.
     """
 
@@ -51,6 +52,7 @@ class TestPublicMessageAPI:
     ):
         """
         Positive test: Create a new message with valid data.
+
         Real API returns 201 Created.
         Validates response structure and JSON schema compliance.
         """
@@ -69,6 +71,7 @@ class TestPublicMessageAPI:
     ):
         """
         Positive test: Use convenience method create_message().
+
         Returns parsed Pydantic model MessageSchema.
         """
         response_data = public_message_client.create_message(valid_message_request)
@@ -83,6 +86,7 @@ class TestPublicMessageAPI:
     def test_get_messages_returns_200(self, public_message_client: PublicMessageClient):
         """
         Positive test: Retrieve all messages.
+
         Validates response structure and JSON schema compliance.
         """
         response = public_message_client.get_messages_api()
@@ -99,6 +103,7 @@ class TestPublicMessageAPI:
     def test_get_messages_high_level(self, public_message_client: PublicMessageClient):
         """
         Positive test: Use convenience method get_messages().
+
         Returns parsed Pydantic model MessagesResponseSchema.
         """
         response_data = public_message_client.get_messages()
@@ -115,6 +120,7 @@ class TestPublicMessageAPI:
     def test_get_count_returns_200(self, public_message_client: PublicMessageClient):
         """
         Positive test: Retrieve total message count.
+
         Validates response structure and JSON schema compliance.
         """
         response = public_message_client.get_count_api()
@@ -130,6 +136,7 @@ class TestPublicMessageAPI:
     def test_get_count_high_level(self, public_message_client: PublicMessageClient):
         """
         Positive test: Use convenience method get_count().
+
         Returns parsed Pydantic model CountSchema.
         """
         response_data = public_message_client.get_count()
@@ -148,6 +155,7 @@ class TestPublicMessageAPI:
     ):
         """
         Positive test: Verify that a newly created message appears in the messages list.
+
         Uses assert_messages_list_contains for validation.
         """
         response_data = public_message_client.get_messages()
@@ -162,6 +170,7 @@ class TestPublicMessageAPI:
     ):
         """
         Negative test: Create message with missing required fields.
+
         Returns 400 with ValidationErrorSchema.
         Uses assert_validation_error for structured error validation.
         """
@@ -181,6 +190,7 @@ class TestPublicMessageAPI:
     ):
         """
         Negative test: Create message with empty JSON body.
+
         Should return 400 Bad Request.
         """
         response = public_message_client.client.post(MessageRoutes.ROOT, json={})
@@ -195,6 +205,7 @@ class TestPublicMessageAPI:
     ):
         """
         Negative test: Create message with empty string values.
+
         Returns 400 with ValidationErrorSchema.
         Uses assert_validation_error for structured error validation.
         """

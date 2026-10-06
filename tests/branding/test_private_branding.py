@@ -51,7 +51,11 @@ class TestPrivateBrandingAPI:
         private_branding_client: PrivateBrandingClient,
         valid_branding_update: BrandingSchema,
     ):
-        """Positive test: Use convenience method update_branding() and validate response fields match request."""
+        """
+        Positive test: Use convenience method update_branding().
+
+        Validates that response fields match the request.
+        """
         updated = private_branding_client.update_branding(valid_branding_update)
         assert_is_instance(updated, BrandingSchema, "updated")
         assert_update_branding_response(updated, valid_branding_update)

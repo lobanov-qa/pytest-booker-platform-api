@@ -72,7 +72,7 @@ def assert_get_booking_response(
 def assert_update_booking_response(
     request: UpdateBookingRequestSchema, response: UpdateBookingResponseSchema
 ):
-    """Checking response to booking update"""
+    """Checking response to booking update."""
     logger.info("Check update booking response")
     assert_equal(response.bookingid, request.bookingid, "bookingid")
     assert_equal(response.booking.depositpaid, request.depositpaid, "depositpaid")

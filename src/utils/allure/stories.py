@@ -2,10 +2,12 @@ from enum import StrEnum
 
 
 class AllureStory(StrEnum):
+    """Allure story labels for test grouping."""
+
     # Authentication Stories
     LOGIN_WITH_VALID_CREDENTIALS = "User login to the system"
     USER_LOGOUT = "User logout from the system"
-    TOKEN_VALIDATION = "Token validation process"
+    TOKEN_VALIDATION = "Token validation process"  # noqa: S105  # Allure label, not a credential
 
     # Booking Stories - Public endpoints
     BOOKING_CREATION = "Create new booking"

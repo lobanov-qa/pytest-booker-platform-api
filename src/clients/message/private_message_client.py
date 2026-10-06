@@ -26,6 +26,7 @@ class PrivateMessageClient(APIClient):
     ):
         """
         :param base_url: Base URL of the message service (e.g., http://localhost:3006).
+
         :param timeout: Request timeout in seconds.
         :param cookies: Session cookies obtained via authentication (e.g., from AuthClient.login).
         :param event_hooks: Optional hooks for logging, cURL printing, etc.
@@ -44,6 +45,7 @@ class PrivateMessageClient(APIClient):
     def get_message_api(self, messageid: int) -> Response:
         """
         Retrieve a message by ID (raw response).
+
         :param messageid: ID of the message.
         :return: Raw HTTP response.
         """
@@ -53,6 +55,7 @@ class PrivateMessageClient(APIClient):
     def get_message(self, messageid: int) -> MessageSchema:
         """
         High-level method: get message by ID (success path).
+
         :param messageid: ID of the message.
         :return: Parsed response model.
         :raises HTTPStatusError: If status != 2xx.
@@ -65,6 +68,7 @@ class PrivateMessageClient(APIClient):
     def mark_read_api(self, messageid: int) -> Response:
         """
         Mark a message as read (raw response).
+
         :param messageid: ID of the message.
         :return: Raw HTTP response.
         """
@@ -74,6 +78,7 @@ class PrivateMessageClient(APIClient):
     def mark_read(self, messageid: int) -> None:
         """
         High-level method: mark message as read by ID (success path).
+
         :param messageid: ID of the message.
         :raises HTTPStatusError: If status != 2xx.
         """
@@ -85,6 +90,7 @@ class PrivateMessageClient(APIClient):
     def delete_message_api(self, messageid: int) -> Response:
         """
         Delete a message by ID (raw response).
+
         :param messageid: ID of the message to delete.
         :return: Raw HTTP response.
         """
@@ -94,6 +100,7 @@ class PrivateMessageClient(APIClient):
     def delete_message(self, messageid: int) -> None:
         """
         High-level method: delete message by ID (success path).
+
         :param messageid: ID of the message.
         :raises HTTPStatusError: If status != 2xx.
         """

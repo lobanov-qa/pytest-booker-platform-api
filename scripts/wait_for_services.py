@@ -1,10 +1,8 @@
-"""
-Wait until all microservices are healthy.
-Used in CI to wait for services to be ready before running tests.
-"""
+"""Wait until all microservices are healthy."""
 
 import sys
 import time
+from http import HTTPStatus
 
 import httpx
 
@@ -46,7 +44,8 @@ The script waits this amount before retrying if not all services are ready.
 
 
 def check_service(name: str, port: int) -> bool:
-    """Check the health status of a single microservice.
+    """
+    Check the health status of a single microservice.
 
     Sends a GET request to the /actuator/health endpoint and validates:
       - HTTP status code is 200
@@ -66,7 +65,7 @@ def check_service(name: str, port: int) -> bool:
     print(f"🔍 Checking {name} at {url}...")
     try:
         response = httpx.get(url, timeout=TIMEOUT_PER_SERVICE)
-        if response.status_code == 200:
+        if response.status_code == HTTPStatus.OK:
             try:
                 data = response.json()
                 if data.get("status") == "UP":
@@ -87,8 +86,27 @@ def check_service(name: str, port: int) -> bool:
     return False
 
 
+def report_pending(pending: list, elapsed_ok: bool) -> None:
+    """
+    Print pending services and abort after TOTAL_TIMEOUT is exceeded.
+
+    Args:
+        pending: Services that are not healthy yet.
+        elapsed_ok: False when the overall timeout has been reached.
+
+    Exits with code 1 on timeout.
+    """
+    if elapsed_ok:
+        return
+    print("💥 Timeout while waiting for services.")
+    for s in pending:
+        print(f"🛑 Failed to wait for: {s['name']}:{s['port']}")
+    sys.exit(1)
+
+
 def wait_for_services():
-    """Main function that waits for all microservices to become healthy.
+    """
+    Main function that waits for all microservices to become healthy.
 
     In a loop, checks each service from the SERVICES list using check_service.
     Healthy services are removed from the remaining list.
@@ -105,21 +123,13 @@ def wait_for_services():
     remaining = SERVICES.copy()
 
     while remaining:
-        if time.time() - start_time > TOTAL_TIMEOUT:
-            print("💥 Timeout while waiting for services.")
-            for s in remaining:
-                print(f"🛑 Failed to wait for: {s['name']}:{s['port']}")
-            sys.exit(1)
+        within_budget = time.time() - start_time <= TOTAL_TIMEOUT
+        report_pending(remaining, within_budget)
 
         print(f"\n🔄 Check attempt... Remaining: {[s['name'] for s in remaining]}")
-        newly_healthy = []
-
-        for service in remaining:
+        for service in list(remaining):
             if check_service(service["name"], service["port"]):
-                newly_healthy.append(service)
-
-        for s in newly_healthy:
-            remaining.remove(s)
+                remaining.remove(service)
 
         if remaining:
             time.sleep(INTERVAL)

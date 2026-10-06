@@ -30,6 +30,7 @@ from utils.assertions.base import (
 class TestAuthentication:
     """
     Test suite for authentication operations.
+
     Covers login, token validation, and logout functionality.
     """
 
@@ -42,6 +43,7 @@ class TestAuthentication:
     ):
         """
         Positive test: Raw API login method.
+
         Validates status code and token presence in cookies.
         """
         request = LoginRequestSchema()
@@ -57,6 +59,7 @@ class TestAuthentication:
     def test_login_returns_token(self, authentication_client: AuthClient):
         """
         Positive test: High-level login method.
+
         Returns parsed token string.
         """
         request = LoginRequestSchema()
@@ -75,6 +78,7 @@ class TestAuthentication:
     ):
         """
         Positive test: Raw API validate method with valid token.
+
         Validates status code 200.
         """
         token = authentication_client.login(LoginRequestSchema())
@@ -94,6 +98,7 @@ class TestAuthentication:
     ):
         """
         Positive test: High-level validate method.
+
         Returns True for valid token.
         """
         token = authentication_client.login(LoginRequestSchema())
@@ -112,6 +117,7 @@ class TestAuthentication:
     ):
         """
         Negative test: High-level validate method.
+
         Returns False for invalid token.
         """
         is_valid = authentication_client.is_token_valid("invalid_token")
@@ -128,6 +134,7 @@ class TestAuthentication:
     ):
         """
         Negative test: High-level validate method.
+
         Returns False for empty/null token.
         """
         is_valid_empty = authentication_client.is_token_valid("")
@@ -145,6 +152,7 @@ class TestAuthentication:
     ):
         """
         Positive test: Raw API logout method.
+
         Validates status code 200.
         """
         token = authentication_client.login(LoginRequestSchema())
@@ -160,6 +168,7 @@ class TestAuthentication:
     def test_logout_returns_true_on_success(self, authentication_client: AuthClient):
         """
         Positive test: High-level logout method.
+
         Returns True for successful logout.
         """
         token = authentication_client.login(LoginRequestSchema())
@@ -176,6 +185,7 @@ class TestAuthentication:
     def test_logout_after_logout_returns_false(self, authentication_client: AuthClient):
         """
         Negative test: High-level logout method for already logged out token.
+
         Returns False for second logout attempt.
         """
         token = authentication_client.login(LoginRequestSchema())
@@ -195,6 +205,7 @@ class TestAuthentication:
     def test_token_is_invalid_after_logout(self, authentication_client: AuthClient):
         """
         Positive test: High-level validate method after logout.
+
         Returns False for invalidated token.
         """
         token = authentication_client.login(LoginRequestSchema())
@@ -218,6 +229,7 @@ class TestAuthentication:
     ):
         """
         Negative test: High-level logout method with invalid token.
+
         Returns False for invalid token.
         """
         logout_result = authentication_client.logout("invalid_token")

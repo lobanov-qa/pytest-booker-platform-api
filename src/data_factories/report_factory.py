@@ -5,9 +5,7 @@ from utils.fakers import fake
 
 
 class EntryFactory:
-    """
-    Factory for creating valid report entries.
-    """
+    """Factory for creating valid report entries."""
 
     @classmethod
     def build(cls, **overrides) -> EntrySchema:

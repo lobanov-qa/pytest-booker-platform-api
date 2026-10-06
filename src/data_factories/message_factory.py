@@ -3,9 +3,7 @@ from utils.fakers import fake
 
 
 class MessageRequestFactory:
-    """
-    Factory for creating valid message requests.
-    """
+    """Factory for creating valid message requests."""
 
     @classmethod
     def build(cls, **overrides) -> CreateMessageRequestSchema:

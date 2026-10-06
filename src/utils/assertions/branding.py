@@ -52,6 +52,7 @@ def assert_update_branding_response(
 ):
     """
     Checks that updated branding fields match the update request.
+
     Compares all fields from update_request against updated response.
 
     :param updated: Branding data after update.

@@ -2,6 +2,8 @@ from enum import StrEnum
 
 
 class MessageRoutes(StrEnum):
+    """Endpoints of the message-service."""
+
     ROOT = "/"
     MESSAGE_ID = "/{id}"
     MESSAGE_READ = "/{id}/read"

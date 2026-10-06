@@ -2,6 +2,7 @@ import logging
 
 
 def get_logger(name: str) -> logging.Logger:
+    """Creates a debug-level console logger for the given name."""
     logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)
 

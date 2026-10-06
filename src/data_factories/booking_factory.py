@@ -9,9 +9,7 @@ from utils.fakers import fake
 
 
 class CreateBookingRequestFactory:
-    """
-    Factory for creating valid new booking requests.
-    """
+    """Factory for creating valid new booking requests."""
 
     @classmethod
     def build(cls, **overrides) -> CreateBookingRequestSchema:
@@ -68,7 +66,6 @@ class UpdateBookingRequestFactory:
 
         Returns:
             Valid UpdateBookingRequestSchema ready for PUT request.
-
         """
         checkin_str, checkout_str = fake.booking_dates().values()
         checkin = date.fromisoformat(checkin_str)

@@ -2,6 +2,8 @@ from enum import StrEnum
 
 
 class AllureEpic(StrEnum):
+    """Allure epic labels for test grouping."""
+
     AUTH = "Authentication"
     BOOKING = "Booking"
     ROOM = "Room"

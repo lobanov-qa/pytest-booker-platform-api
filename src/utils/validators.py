@@ -4,6 +4,7 @@ from datetime import date
 def validate_date_range(checkin: date, checkout: date) -> None:
     """
     Validates that checkout date is after check-in date.
+
     Raises ValueError if not.
 
     Used across multiple schemas to avoid duplication.
@@ -18,6 +19,7 @@ def validate_date_range(checkin: date, checkout: date) -> None:
 def validate_stringified_positive_int(v: str) -> str:
     """
     Validates that a string is a positive integer (e.g. '1', '123').
+
     Used for query parameters like roomid, bookingid, etc.
 
     Raises:

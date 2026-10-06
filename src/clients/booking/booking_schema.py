@@ -9,6 +9,7 @@ from utils.validators import validate_date_range, validate_stringified_positive_
 class BookingDates(BaseModel):
     """
     Schema for booking dates (check-in and check-out).
+
     Validates that check-out is after check-in.
     """
 
@@ -18,6 +19,7 @@ class BookingDates(BaseModel):
     @field_validator("checkout")
     @classmethod
     def check_checkout_after_checkin(cls, v: date, info) -> date:
+        """Validates that checkout is later than checkin."""
         checkin = info.data.get("checkin")
         if checkin:
             validate_date_range(checkin, v)
@@ -25,9 +27,7 @@ class BookingDates(BaseModel):
 
 
 class BookingSchema(BaseModel):
-    """
-    Schema for a full booking record.
-    """
+    """Schema for a full booking record."""
 
     bookingid: int
     depositpaid: bool
@@ -40,6 +40,7 @@ class BookingSchema(BaseModel):
 class GetBookingQuerySchema(BaseModel):
     """
     Schema for GET /bookings — get all bookings or filter by roomid.
+
     roomid is optional: if not provided, returns all bookings.
     """
 
@@ -48,31 +49,26 @@ class GetBookingQuerySchema(BaseModel):
     @field_validator("roomid")
     @classmethod
     def validate_roomid(cls, v: str | None) -> str | None:
+        """Validates the stringified room ID."""
         if v is None:
             return v
         return validate_stringified_positive_int(v)
 
 
 class GetBookingsResponseSchema(BaseModel):
-    """
-    Schema for response containing a list of bookings.
-    """
+    """Schema for response containing a list of bookings."""
 
     bookings: list[BookingSchema]
 
 
 class GetBookingResponseSchema(BaseModel):
-    """
-    Schema for response containing a single booking.
-    """
+    """Schema for response containing a single booking."""
 
     booking: BookingSchema
 
 
 class CreateBookingRequestSchema(BaseModel):
-    """
-    Schema for creating a new booking.
-    """
+    """Schema for creating a new booking."""
 
     depositpaid: bool = None
     roomid: Annotated[int, Field(ge=1, description="Room ID, minimum 1")]
@@ -84,9 +80,7 @@ class CreateBookingRequestSchema(BaseModel):
 
 
 class CreateBookingResponseSchema(BaseModel):
-    """
-    Schema for response after creating a booking.
-    """
+    """Schema for response after creating a booking."""
 
     bookingid: int
     booking: BookingSchema
@@ -95,6 +89,7 @@ class CreateBookingResponseSchema(BaseModel):
 class UpdateBookingRequestSchema(BaseModel):
     """
     Schema for updating an existing booking (partial update).
+
     All fields are optional.
     """
 
@@ -114,18 +109,14 @@ class UpdateBookingRequestSchema(BaseModel):
 
 
 class UpdateBookingResponseSchema(BaseModel):
-    """
-    Schema for response after updating a booking.
-    """
+    """Schema for response after updating a booking."""
 
     bookingid: int
     booking: BookingSchema
 
 
 class UnavailableDatesQuerySchema(BaseModel):
-    """
-    Schema for query parameters to check room availability in date range.
-    """
+    """Schema for query parameters to check room availability in date range."""
 
     checkin: str = Field(
         ..., pattern=r"^\d{4}-\d{2}-\d{2}$", description="Check-in date (YYYY-MM-DD)"
@@ -137,22 +128,21 @@ class UnavailableDatesQuerySchema(BaseModel):
     @field_validator("checkout")
     @classmethod
     def validate_checkout(cls, v: str, info) -> str:
+        """Validates the checkout date against checkin."""
         checkin = info.data.get("checkin")
         if not checkin:
             return v
         try:
             checkin_date = date.fromisoformat(checkin)
             checkout_date = date.fromisoformat(v)
-        except ValueError:
-            raise ValueError("Invalid date format")
+        except ValueError as err:
+            raise ValueError("Invalid date format") from err
         validate_date_range(checkin_date, checkout_date)
         return v
 
 
 class UnavailableRoom(BaseModel):
-    """
-    Schema for a single unavailable room in response.
-    """
+    """Schema for a single unavailable room in response."""
 
     roomid: int = Field(
         ..., ge=1, description="ID of unavailable room (positive integer)"
@@ -162,6 +152,7 @@ class UnavailableRoom(BaseModel):
 class UnavailableDatesResponseSchema(RootModel[list[UnavailableRoom]]):
     """
     Schema for response listing unavailable rooms in a date range.
+
     Returns an array of room IDs. Empty array means all rooms are available.
     """
 
@@ -173,6 +164,7 @@ class UnavailableDatesResponseSchema(RootModel[list[UnavailableRoom]]):
 class GetSummaryQuerySchema(BaseModel):
     """
     Schema for query parameters to get booking summary by room ID.
+
     Accepts stringified integer (e.g. ?roomid=1).
     This matches API contract: roomid is passed as string in query params.
     """
@@ -182,13 +174,12 @@ class GetSummaryQuerySchema(BaseModel):
     @field_validator("roomid")
     @classmethod
     def validate_roomid(cls, v: str) -> str:
+        """Validates the stringified room ID."""
         return validate_stringified_positive_int(v)
 
 
 class SummaryBookingItem(BaseModel):
-    """
-    Schema for an item in booking summary — contains only booking dates.
-    """
+    """Schema for an item in booking summary — contains only booking dates."""
 
     model_config = ConfigDict(populate_by_name=True)
 
@@ -198,6 +189,7 @@ class SummaryBookingItem(BaseModel):
 class GetSummaryResponseSchema(BaseModel):
     """
     Schema for response from /booking/summary — list of booking date ranges.
+
     May be empty.
     """
 

@@ -9,15 +9,14 @@ from data_factories.room_factory import RoomRequestFactory
 
 
 class RoomFixture(BaseModel):
-    """
-    Room context - used to pass data between tests and validation.
-    """
+    """Room context - used to pass data between tests and validation."""
 
     request: RoomRequestSchema
     response: RoomResponseSchema
 
     @property
     def room_id(self) -> int:
+        """Returns the room ID from the fixture response."""
         return self.response.roomid
 
 
@@ -55,6 +54,7 @@ def created_room(
 ) -> RoomFixture:
     """
     Fixture of the created room.
+
     Returns a validated RoomFixture container.
     """
     request = valid_room_request

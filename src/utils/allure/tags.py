@@ -1,7 +1,9 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class AllureTag(str, Enum):
+class AllureTag(StrEnum):
+    """Allure tag labels for test grouping."""
+
     AUTH = "AUTH"
     BOOKING = "BOOKING"
     ROOM = "ROOM"

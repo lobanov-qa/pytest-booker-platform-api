@@ -35,6 +35,7 @@ from utils.assertions.schema import validate_json_schema
 class TestPublicRoomAPI:
     """
     Test suite for public room operations (no authentication required).
+
     Covers get all rooms, get room by ID, and filtering by dates.
     """
 
@@ -46,6 +47,7 @@ class TestPublicRoomAPI:
     def test_get_rooms_returns_200(self, public_room_client: PublicRoomClient):
         """
         Positive test: Retrieve all rooms without any filters.
+
         Validates response structure and JSON schema compliance.
         """
         response = public_room_client.get_rooms_api()
@@ -59,9 +61,7 @@ class TestPublicRoomAPI:
     @allure.title("GET /room/ - Get rooms filtered by dates")
     @allure.severity(Severity.CRITICAL)
     def test_get_rooms_with_dates(self, public_room_client: PublicRoomClient):
-        """
-        Positive test: Retrieve rooms filtered by check-in and check-out dates.
-        """
+        """Positive test: Retrieve rooms filtered by check-in and check-out dates."""
         query = GetRoomsQuerySchema(checkin="2025-12-01", checkout="2025-12-10")
         response = public_room_client.get_rooms_api(query)
         assert_status_code(response.status_code, HTTPStatus.OK)
@@ -77,6 +77,7 @@ class TestPublicRoomAPI:
     def test_get_rooms_high_level(self, public_room_client: PublicRoomClient):
         """
         Positive test: Use convenience method get_rooms().
+
         Returns parsed Pydantic model RoomsResponseSchema.
         """
         response_data = public_room_client.get_rooms()
@@ -93,6 +94,7 @@ class TestPublicRoomAPI:
     def test_get_room_by_id(self, public_room_client: PublicRoomClient):
         """
         Positive test: Retrieve a specific room by ID.
+
         Validates response structure and JSON schema compliance.
         """
         room_id = 1
@@ -110,6 +112,7 @@ class TestPublicRoomAPI:
     def test_get_room_high_level(self, public_room_client: PublicRoomClient):
         """
         Positive test: Use convenience method get_room().
+
         Returns parsed Pydantic model RoomResponseSchema.
         """
         room_id = 1
@@ -124,6 +127,7 @@ class TestPublicRoomAPI:
     def test_get_room_not_found_500(self, public_room_client: PublicRoomClient):
         """
         Negative test: Request room with non-existent ID.
+
         Real API returns 500 Internal Server Error for non-existent room IDs.
         """
         response = public_room_client.get_room_api(9999)
@@ -138,6 +142,7 @@ class TestPublicRoomAPI:
     def test_get_room_invalid_id_500(self, public_room_client: PublicRoomClient):
         """
         Negative test: Request room with ID=0 (must be >=1).
+
         Real API returns 500 Internal Server Error.
         """
         response = public_room_client.get_room_api(0)
@@ -155,6 +160,7 @@ class TestPublicRoomAPI:
     ):
         """
         Negative test: Request room with negative ID.
+
         Real API returns 404 Not Found for negative IDs.
         """
         response = public_room_client.get_room_api(invalid_id)
@@ -175,6 +181,7 @@ class TestPublicRoomAPI:
     ):
         """
         Positive test: Verify that a newly created room appears in the rooms list.
+
         Uses assert_rooms_list_contains for validation.
         """
         response_data = public_room_client.get_rooms()
@@ -188,6 +195,7 @@ class TestPublicRoomAPI:
     def test_get_rooms_invalid_dates_500(self, public_room_client: PublicRoomClient):
         """
         Negative test: Get rooms with invalid date format.
+
         API returns 500 INTERNAL_SERVER_ERROR.
         """
         params = {"checkin": "2025/12/01", "checkout": "2025/12/10"}

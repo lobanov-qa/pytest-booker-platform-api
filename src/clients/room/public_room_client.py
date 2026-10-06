@@ -22,6 +22,7 @@ class PublicRoomClient(APIClient):
     def __init__(self, base_url: str, timeout: float, event_hooks=None, **kwargs):
         """
         :param base_url: Room service base URL.
+
         :param timeout: Request timeout in seconds.
         :param event_hooks: Optional hooks (logging, etc.).
         :param kwargs: Passed to APIClient.
@@ -35,6 +36,7 @@ class PublicRoomClient(APIClient):
     def get_rooms_api(self, query: GetRoomsQuerySchema | None = None) -> Response:
         """
         Get all rooms optionally filtered by check-in/check-out dates (raw response).
+
         :param query: Optional date filter.
         :return: HTTP response.
         """
@@ -48,6 +50,7 @@ class PublicRoomClient(APIClient):
     ) -> RoomsResponseSchema:
         """
         Get all rooms and return parsed model (expects success).
+
         :param query: Optional date filter.
         :return: Parsed response with list of rooms.
         :raises HTTPStatusError: If status != 2xx.
@@ -59,6 +62,7 @@ class PublicRoomClient(APIClient):
     def get_room_api(self, roomid: int) -> Response:
         """
         Get a specific room by ID (raw response).
+
         :param roomid: Room identifier.
         :return: HTTP response.
         """
@@ -68,6 +72,7 @@ class PublicRoomClient(APIClient):
     def get_room(self, roomid: int) -> RoomResponseSchema:
         """
         Get a specific room and return parsed model (expects success).
+
         :param roomid: Room identifier.
         :return: Parsed room model.
         :raises HTTPStatusError: If status != 2xx.

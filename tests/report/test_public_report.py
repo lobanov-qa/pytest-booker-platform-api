@@ -32,7 +32,9 @@ class TestPublicReportAPI:
     @allure.title("GET /report/room/1 - Get report for existing room (200)")
     @allure.severity(Severity.BLOCKER)
     def test_get_room_report(self, report_public_client: PublicReportClient):
-        """Positive: get report for room id=1.
+        """
+        Positive: get report for room id=1.
+
         Validates response structure and that report has entries.
         """
         response = report_public_client.get_room_report_api(room_id=1)
@@ -118,7 +120,9 @@ class TestPublicReportAPI:
     @allure.title("GET /report/room/ — Missing id (404)")
     @allure.severity(Severity.MINOR)
     def test_get_room_report_no_id(self, report_public_client: PublicReportClient):
-        """Negative: request without id path parameter.
+        """
+        Negative: request without id path parameter.
+
         API should return 404 Not Found.
         """
         response = report_public_client.get("/room/")

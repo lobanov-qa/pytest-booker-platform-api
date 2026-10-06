@@ -43,6 +43,7 @@ from utils.assertions.schema import validate_json_schema
 class TestPublicBookingAPI:
     """
     Test suite for public booking operations (no authentication required).
+
     Covers create, check availability, and summary endpoints.
     """
 
@@ -58,6 +59,7 @@ class TestPublicBookingAPI:
     ):
         """
         Positive test: Create booking with full validation.
+
         Validates response structure and JSON schema compliance.
         """
         response = booking_client.create_booking_api(valid_create_booking_request)
@@ -77,6 +79,7 @@ class TestPublicBookingAPI:
     ):
         """
         Positive test: Use convenience method create_booking().
+
         Returns parsed Pydantic model CreateBookingResponseSchema.
         """
         response_data = booking_client.create_booking(valid_create_booking_request)
@@ -93,6 +96,7 @@ class TestPublicBookingAPI:
     ):
         """
         Negative test: Create booking with roomid=0 (must be >=1).
+
         Should return 400 Bad Request with validation error.
         """
         request = CreateBookingRequestFactory.build()
@@ -110,6 +114,7 @@ class TestPublicBookingAPI:
     def test_create_booking_short_firstname(self, booking_client: PublicBookingClient):
         """
         Negative test: Create booking with firstname less than 3 characters.
+
         Should return 400 Bad Request with validation error.
         """
         request = CreateBookingRequestFactory.build()
@@ -129,6 +134,7 @@ class TestPublicBookingAPI:
     ):
         """
         Negative test: Create booking without required firstname field.
+
         Should return 400 Bad Request with validation error.
         """
         data = CreateBookingRequestFactory.build().model_dump(mode="json")
@@ -146,6 +152,7 @@ class TestPublicBookingAPI:
     def test_unavailable_dates_free_range(self, booking_client: PublicBookingClient):
         """
         Positive test: Check availability for free date range.
+
         Should return empty list or list without conflicts.
         """
         query = UnavailableDatesQueryFactory.build()
@@ -168,6 +175,7 @@ class TestPublicBookingAPI:
     ):
         """
         Positive test: Check availability during already booked period.
+
         Should return the room as unavailable.
         """
         dates = created_booking.response.booking.bookingdates
@@ -200,6 +208,7 @@ class TestPublicBookingAPI:
     def test_unavailable_dates_high_level(self, booking_client: PublicBookingClient):
         """
         Positive test: Use convenience method get_unavailable_rooms().
+
         Returns parsed Pydantic model UnavailableDatesResponseSchema.
         """
         query = UnavailableDatesQueryFactory.build()
@@ -223,6 +232,7 @@ class TestPublicBookingAPI:
     ):
         """
         Negative test: Check availability with missing required parameter.
+
         Should return 400 Bad Request.
         """
         params = {"checkin": "2025-01-01", "checkout": "2025-01-10"}
@@ -241,6 +251,7 @@ class TestPublicBookingAPI:
     ):
         """
         Negative test: Check availability with non-existent date.
+
         API returns 500 INTERNAL_SERVER_ERROR.
         """
         params = {"checkin": "2026-01-40", "checkout": "2026-01-45"}
@@ -260,6 +271,7 @@ class TestPublicBookingAPI:
     ):
         """
         Negative test: Check availability with invalid date format.
+
         API returns 500 INTERNAL_SERVER_ERROR.
         """
         params = {"checkin": "2026-01-20", "checkout": "2026/01/30"}
@@ -281,6 +293,7 @@ class TestPublicBookingAPI:
     ):
         """
         Positive test: Get booking summary for existing room ID.
+
         Validates response structure and JSON schema.
         """
         roomid = created_booking.response.booking.roomid
@@ -302,6 +315,7 @@ class TestPublicBookingAPI:
     ):
         """
         Positive test: Get summary with non-positive roomid.
+
         API returns 200 OK with empty bookings list.
         """
         allure.dynamic.title(
@@ -322,6 +336,7 @@ class TestPublicBookingAPI:
     def test_get_summary_high_level(self, booking_client: PublicBookingClient):
         """
         Positive test: Use convenience method get_booking_summary().
+
         Returns parsed Pydantic model GetSummaryResponseSchema.
         """
         query = GetSummaryQueryFactory.build()
@@ -336,6 +351,7 @@ class TestPublicBookingAPI:
     def test_get_summary_missing_roomid(self, booking_client: PublicBookingClient):
         """
         Negative test: Get summary without required roomid parameter.
+
         Should return 400 Bad Request.
         """
         response = booking_client.get(BookingRoutes.SUMMARY, params={})
@@ -356,6 +372,7 @@ class TestPublicBookingAPI:
     ):
         """
         Negative test: Get summary with non-numeric roomid.
+
         API returns 500 INTERNAL_SERVER_ERROR.
         """
         allure.dynamic.title(

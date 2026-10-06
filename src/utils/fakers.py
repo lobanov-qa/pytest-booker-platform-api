@@ -3,9 +3,14 @@ from datetime import date, timedelta
 from faker import Faker
 
 
+MIN_PHONE_LENGTH = 11
+MAX_PHONE_LENGTH = 21
+
+
 class Fake:
     """
     Generates random test data using the Faker library.
+
     All methods are wrapped to provide deterministic, valid test data
     matching the API constraints (length limits, patterns, etc.).
     """
@@ -35,9 +40,9 @@ class Fake:
     def phone(self) -> str:
         """Generates a phone number (11-21 chars, digits only)."""
         phone_number = self.faker.phone_number()
-        while len(phone_number) < 11:
+        while len(phone_number) < MIN_PHONE_LENGTH:
             phone_number = self.faker.phone_number()
-        return phone_number[:21]
+        return phone_number[:MAX_PHONE_LENGTH]
 
     def first_name(self, min_length: int = 3, max_length: int = 18) -> str:
         """Generates a first name within length constraints."""
@@ -54,75 +59,97 @@ class Fake:
         return name
 
     def deposit_paid(self) -> bool:
+        """Generates a random deposit-paid flag."""
         return self.faker.boolean()
 
     def email(self, domain: str | None = "example.com") -> str:
+        """Generates a syntactically valid email address."""
         return self.faker.email(domain=domain)
 
     def room_name(self) -> str:
+        """Generates a room name like Room Suite 12."""
         return f"Room {self.faker.word().title()} {self.integer(1, 999)}"
 
     def room_type(self) -> str:
+        """Generates one of the allowed room types."""
         return self.faker.random_element(
             ["Single", "Double", "Twin", "Family", "Suite"]
         )
 
     def room_accessible(self) -> bool:
+        """Generates a random accessibility flag."""
         return self.faker.boolean()
 
     def room_image(self) -> str:
+        """Generates a dummy image URL with random size."""
         return (
             f"https://dummyimage.com/{self.integer(100, 800)}x{self.integer(50, 600)}"
         )
 
     def room_description(self) -> str:
+        """Generates a short two-sentence room description."""
         return self.faker.paragraph(nb_sentences=2)
 
     def room_features(self) -> list[str]:
+        """Generates a list of three feature words."""
         return self.faker.words(nb=3)
 
     def room_price(self) -> int:
+        """Generates a room price within API bounds."""
         return self.integer(50, 999)
 
     def message_subject(self) -> str:
+        """Generates a message subject within the length limit."""
         return self.faker.sentence(nb_words=4)[:100]
 
     def message_description(self) -> str:
+        """Generates a message description within the length limit."""
         return self.faker.paragraph(nb_sentences=4)[:2000]
 
     def company_name(self) -> str:
+        """Generates a random company name."""
         return self.faker.company()
 
     def branding_description(self) -> str:
+        """Generates a short catch phrase for branding."""
         return self.faker.catch_phrase()
 
     def directions_text(self) -> str:
+        """Generates two-sentence location directions."""
         return self.faker.paragraph(nb_sentences=2)
 
     def logo_url(self) -> str:
+        """Generates a placeholder image URL."""
         return (
             f"https://placekitten.com/{self.integer(200, 800)}/{self.integer(200, 600)}"
         )
 
     def map_latitude(self) -> float:
+        """Generates a random latitude."""
         return self.faker.latitude()
 
     def map_longitude(self) -> float:
+        """Generates a random longitude."""
         return self.faker.longitude()
 
     def address_line1(self) -> str:
+        """Generates a primary street address."""
         return self.faker.street_address()
 
     def address_line2(self) -> str:
+        """Generates a secondary address line."""
         return self.faker.secondary_address()
 
     def post_town(self) -> str:
+        """Generates a city name for the address."""
         return self.faker.city()
 
     def county(self) -> str:
+        """Generates a state name for the address."""
         return self.faker.state()
 
     def post_code(self) -> str:
+        """Generates a postal code."""
         return self.faker.postcode()
 
 

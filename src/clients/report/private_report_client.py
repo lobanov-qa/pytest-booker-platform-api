@@ -26,6 +26,7 @@ class PrivateReportClient(APIClient):
     ):
         """
         :param base_url: Base URL of the report service (e.g., http://localhost:3005).
+
         :param timeout: Request timeout in seconds.
         :param cookies: Session cookies obtained via authentication (e.g., from AuthClient.login).
         :param event_hooks: Optional hooks for logging, cURL printing, etc.
@@ -44,6 +45,7 @@ class PrivateReportClient(APIClient):
     def get_all_reports_api(self) -> Response:
         """
         Retrieve all room reports (raw response).
+
         :return: HTTP response.
         """
         return self.get(ReportRoutes.ROOT)
@@ -51,6 +53,7 @@ class PrivateReportClient(APIClient):
     def get_all_reports(self) -> ReportSchema:
         """
         High-level method: get all reports and return parsed model (expects success).
+
         :return: Parsed response model.
         :raises HTTPStatusError: If status != 2xx.
         """

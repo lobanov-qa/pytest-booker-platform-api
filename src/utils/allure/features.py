@@ -2,8 +2,10 @@ from enum import StrEnum
 
 
 class AllureFeature(StrEnum):
+    """Allure feature labels for test grouping."""
+
     AUTH_LOGIN = "User Authentication"
-    AUTH_TOKEN = "Token Management"
+    AUTH_TOKEN = "Token Management"  # noqa: S105  # Allure label, not a credential
 
     BOOKING_CRUD = "Booking Management (CRUD)"
     BOOKING_VALIDATION = "Booking Validation & Availability"

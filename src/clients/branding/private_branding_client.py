@@ -26,6 +26,7 @@ class PrivateBrandingClient(APIClient):
     ):
         """
         :param base_url: Base URL of the branding service (e.g., http://localhost:3002).
+
         :param timeout: Request timeout in seconds.
         :param cookies: Session cookies obtained via authentication (e.g., from AuthClient.login).
         :param event_hooks: Optional hooks for logging, cURL printing, etc.
@@ -44,6 +45,7 @@ class PrivateBrandingClient(APIClient):
     def update_branding_api(self, request: BrandingSchema) -> Response:
         """
         Update branding information (raw response).
+
         :param request: Branding data to update (all fields optional).
         :return: HTTP response.
         """
@@ -55,6 +57,7 @@ class PrivateBrandingClient(APIClient):
     def update_branding(self, request: BrandingSchema) -> BrandingSchema:
         """
         Update branding and return parsed model (expects 202 Accepted).
+
         :param request: Valid branding update data.
         :return: Parsed branding model.
         :raises HTTPStatusError: If status != 2xx.
