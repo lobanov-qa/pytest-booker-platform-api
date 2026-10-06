@@ -8,5 +8,5 @@ class AuthRoutes(StrEnum):
     VALIDATE = "/validate"
     LOGOUT = "/logout"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.value

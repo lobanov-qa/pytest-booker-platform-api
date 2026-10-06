@@ -1,14 +1,17 @@
+from collections.abc import Generator
+from typing import Any
+
 import pytest
 from httpx import Cookies
 from pydantic import BaseModel
-from src.clients.client_factories import ClientFactory
-from src.data_factories.booking_factory import CreateBookingRequestFactory
 
 from clients.booking.booking_schema import (
     CreateBookingRequestSchema,
     CreateBookingResponseSchema,
 )
 from clients.booking.public_booking_client import PublicBookingClient
+from clients.client_factories import ClientFactory
+from data_factories.booking_factory import CreateBookingRequestFactory
 
 
 class BookingFixture(BaseModel):
@@ -24,7 +27,7 @@ class BookingFixture(BaseModel):
 
 
 @pytest.fixture
-def booking_client():
+def booking_client() -> Generator[Any, None, None]:
     client = ClientFactory.get_public_booking_client()
     yield client
     client.close()
@@ -51,14 +54,16 @@ def created_booking(
 
 
 @pytest.fixture
-def booking_private_client(auth_cookies: Cookies):
+def booking_private_client(auth_cookies: Cookies) -> Generator[Any, None, None]:
     client = ClientFactory.get_private_booking_client(auth_cookies)
     yield client
     client.close()
 
 
 @pytest.fixture
-def booking_private_client_invalid(invalid_cookies: Cookies):
+def booking_private_client_invalid(
+    invalid_cookies: Cookies,
+) -> Generator[Any, None, None]:
     """PrivateBookingClient с невалидными cookies."""
     client = ClientFactory.get_private_booking_client(invalid_cookies)
     yield client

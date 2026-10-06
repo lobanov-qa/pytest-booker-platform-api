@@ -63,7 +63,7 @@ class ClientFactory:
         )
 
     @staticmethod
-    def get_private_booking_client(cookies) -> PrivateBookingClient:
+    def get_private_booking_client(cookies: Cookies) -> PrivateBookingClient:
         """
         Creates and returns a configured PrivateBookingClient instance.
 

@@ -1,5 +1,9 @@
 import allure
-from clients.message.message_schema import CreateMessageRequestSchema, MessageSchema
+from clients.message.message_schema import (
+    CreateMessageRequestSchema,
+    MessageSchema,
+    MessageSummarySchema,
+)
 from utils.assertions.base import assert_equal, assert_is_instance, assert_positive
 from utils.logger import get_logger
 
@@ -10,7 +14,7 @@ logger = get_logger("MESSAGE_ASSERTIONS")
 @allure.step("Check create message response")
 def assert_create_message_response(
     request: CreateMessageRequestSchema, response: MessageSchema
-):
+) -> None:
     """
     Verifies that the message creation response matches the request.
 
@@ -28,7 +32,7 @@ def assert_create_message_response(
 
 
 @allure.step("Check message")
-def assert_message(actual: MessageSchema, expected: MessageSchema):
+def assert_message(actual: MessageSchema, expected: MessageSchema) -> None:
     """
     Checks that the actual message data matches the expected one.
 
@@ -48,7 +52,7 @@ def assert_message(actual: MessageSchema, expected: MessageSchema):
 @allure.step("Check get message response")
 def assert_get_message_response(
     get_response: MessageSchema, create_response: MessageSchema
-):
+) -> None:
     """
     Checks that the response when receiving a message matches the response when creating it.
 
@@ -61,7 +65,9 @@ def assert_get_message_response(
 
 
 @allure.step("Check messages list contains message")
-def assert_messages_list_contains(messages: list, expected_message: MessageSchema):
+def assert_messages_list_contains(
+    messages: list[MessageSummarySchema], expected_message: MessageSchema
+) -> None:
     """
     Checks that the list of message summaries contains the expected message.
 

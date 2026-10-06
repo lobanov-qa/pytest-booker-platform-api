@@ -15,7 +15,7 @@ class Fake:
     matching the API constraints (length limits, patterns, etc.).
     """
 
-    def __init__(self, faker: Faker):
+    def __init__(self, faker: Faker) -> None:
         self.faker = faker
 
     def integer(self, start: int = 1, end: int = 100) -> int:
@@ -24,7 +24,7 @@ class Fake:
 
     def booking_dates(
         self, checkin: date | None = None, delta: int = 1, max_days_ahead: int = 90
-    ) -> dict:
+    ) -> dict[str, str]:
         """Generates valid booking dates with checkin < checkout."""
         if checkin is None:
             random_offset = self.faker.random_int(min=1, max=max_days_ahead)
@@ -51,7 +51,7 @@ class Fake:
             name = self.faker.first_name()
         return name
 
-    def last_name(self, min_length: int = 3, max_length=30) -> str:
+    def last_name(self, min_length: int = 3, max_length: int = 30) -> str:
         """Generates a last name within length constraints."""
         name = self.faker.last_name()
         while len(name) < min_length or len(name) > max_length:
@@ -126,11 +126,11 @@ class Fake:
 
     def map_latitude(self) -> float:
         """Generates a random latitude."""
-        return self.faker.latitude()
+        return float(self.faker.latitude())
 
     def map_longitude(self) -> float:
         """Generates a random longitude."""
-        return self.faker.longitude()
+        return float(self.faker.longitude())
 
     def address_line1(self) -> str:
         """Generates a primary street address."""

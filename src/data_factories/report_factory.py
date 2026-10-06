@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from typing import Any
 
 from clients.report.report_schema import EntrySchema
 from utils.fakers import fake
@@ -8,7 +9,7 @@ class EntryFactory:
     """Factory for creating valid report entries."""
 
     @classmethod
-    def build(cls, **overrides) -> EntrySchema:
+    def build(cls, **overrides: Any) -> EntrySchema:
         """
         Creates a valid EntrySchema object with all required fields filled.
 

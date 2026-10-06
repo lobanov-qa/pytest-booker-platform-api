@@ -1,3 +1,5 @@
+from typing import Any
+
 from clients.message.message_schema import CreateMessageRequestSchema
 from utils.fakers import fake
 
@@ -6,7 +8,7 @@ class MessageRequestFactory:
     """Factory for creating valid message requests."""
 
     @classmethod
-    def build(cls, **overrides) -> CreateMessageRequestSchema:
+    def build(cls, **overrides: Any) -> CreateMessageRequestSchema:
         """
         Creates a valid CreateMessageRequestSchema object with all required fields filled.
 

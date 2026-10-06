@@ -1,3 +1,5 @@
+from collections.abc import Iterator
+
 import pytest
 from httpx import Cookies
 
@@ -9,7 +11,7 @@ from data_factories.branding_factory import BrandingFactory
 
 
 @pytest.fixture
-def public_branding_client() -> PublicBrandingClient:
+def public_branding_client() -> Iterator[PublicBrandingClient]:
     """PublicBrandingClient for accessing public branding endpoints."""
     client = ClientFactory.get_public_branding_client()
     yield client
@@ -17,7 +19,7 @@ def public_branding_client() -> PublicBrandingClient:
 
 
 @pytest.fixture
-def private_branding_client(auth_cookies: Cookies) -> PrivateBrandingClient:
+def private_branding_client(auth_cookies: Cookies) -> Iterator[PrivateBrandingClient]:
     """PrivateBrandingClient with valid authentication cookies."""
     client = ClientFactory.get_private_branding_client(auth_cookies)
     yield client
@@ -25,7 +27,9 @@ def private_branding_client(auth_cookies: Cookies) -> PrivateBrandingClient:
 
 
 @pytest.fixture
-def private_branding_client_invalid(invalid_cookies: Cookies) -> PrivateBrandingClient:
+def private_branding_client_invalid(
+    invalid_cookies: Cookies,
+) -> Iterator[PrivateBrandingClient]:
     """PrivateBrandingClient with invalid cookies for negative auth tests."""
     client = ClientFactory.get_private_branding_client(invalid_cookies)
     yield client

@@ -29,7 +29,7 @@ class TestPublicBrandingAPI:
     @allure.severity(Severity.BLOCKER)
     def test_get_branding_returns_200(
         self, public_branding_client: PublicBrandingClient
-    ):
+    ) -> None:
         """Positive test: Retrieve current branding via raw API method and validate JSON schema."""
         response = public_branding_client.get_branding_api()
         assert_status_code(response.status_code, HTTPStatus.OK)
@@ -43,7 +43,7 @@ class TestPublicBrandingAPI:
     @allure.severity(Severity.NORMAL)
     def test_get_branding_high_level(
         self, public_branding_client: PublicBrandingClient
-    ):
+    ) -> None:
         """
         Positive test: Use convenience method get_branding().
 

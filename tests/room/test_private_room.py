@@ -49,7 +49,7 @@ class TestPrivateRoomAPI:
         self,
         private_room_client: PrivateRoomClient,
         valid_room_request: RoomRequestSchema,
-    ):
+    ) -> None:
         """
         Positive test: Create room with full validation.
 
@@ -69,7 +69,7 @@ class TestPrivateRoomAPI:
         self,
         private_room_client: PrivateRoomClient,
         valid_room_request: RoomRequestSchema,
-    ):
+    ) -> None:
         """
         Positive test: Use convenience method create_room().
 
@@ -89,7 +89,7 @@ class TestPrivateRoomAPI:
         self,
         private_room_client: PrivateRoomClient,
         created_room: RoomFixture,
-    ):
+    ) -> None:
         """
         Positive test: Verify that GET /room/{id} returns data matching the created room.
 
@@ -111,7 +111,7 @@ class TestPrivateRoomAPI:
         self,
         private_room_client: PrivateRoomClient,
         created_room: RoomFixture,
-    ):
+    ) -> None:
         """
         Positive test: Successfully update existing room.
 
@@ -141,7 +141,7 @@ class TestPrivateRoomAPI:
         self,
         private_room_client: PrivateRoomClient,
         created_room: RoomFixture,
-    ):
+    ) -> None:
         """
         Positive test: Use convenience method update_room().
 
@@ -169,7 +169,7 @@ class TestPrivateRoomAPI:
         self,
         private_room_client: PrivateRoomClient,
         created_room: RoomFixture,
-    ):
+    ) -> None:
         """
         Positive test: Successfully delete a room.
 
@@ -193,7 +193,7 @@ class TestPrivateRoomAPI:
         self,
         private_room_client: PrivateRoomClient,
         created_room: RoomFixture,
-    ):
+    ) -> None:
         """
         Positive test: Use convenience method delete_room().
 
@@ -221,7 +221,7 @@ class TestPrivateRoomAPI:
         self,
         private_room_client_invalid: PrivateRoomClient,
         valid_room_request: RoomRequestSchema,
-    ):
+    ) -> None:
         """
         Negative test: Attempt to create room without authentication.
 
@@ -237,7 +237,7 @@ class TestPrivateRoomAPI:
     def test_update_room_unauthorized_403(
         self,
         private_room_client_invalid: PrivateRoomClient,
-    ):
+    ) -> None:
         """
         Negative test: Attempt to update room without authentication.
 
@@ -254,7 +254,7 @@ class TestPrivateRoomAPI:
     def test_delete_room_unauthorized_403(
         self,
         private_room_client_invalid: PrivateRoomClient,
-    ):
+    ) -> None:
         """
         Negative test: Attempt to delete room without authentication.
 
@@ -270,7 +270,7 @@ class TestPrivateRoomAPI:
     def test_create_room_without_room_price_400(
         self,
         private_room_client: PrivateRoomClient,
-    ):
+    ) -> None:
         """
         Negative test: Create room without required roomPrice field.
 
@@ -292,7 +292,7 @@ class TestPrivateRoomAPI:
     def test_update_room_not_found_404(
         self,
         private_room_client: PrivateRoomClient,
-    ):
+    ) -> None:
         """
         Negative test: Update room with non-existent ID.
 
@@ -309,7 +309,7 @@ class TestPrivateRoomAPI:
     def test_delete_room_not_found_404(
         self,
         private_room_client: PrivateRoomClient,
-    ):
+    ) -> None:
         """
         Negative test: Delete room with non-existent ID.
 

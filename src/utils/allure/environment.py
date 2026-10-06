@@ -4,7 +4,7 @@ import sys
 from config import settings
 
 
-def create_allure_environment_file():
+def create_allure_environment_file() -> None:
     """Writes Allure environment.properties with OS, Python and app details."""
     items = list()
     items.append(f"os_info={platform.system()}, {platform.release()}")

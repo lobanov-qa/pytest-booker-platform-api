@@ -1,8 +1,8 @@
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from typing import Any, TypeVar
 
-from httpx import URL, Client, QueryParams, Response
-from httpx._types import RequestData, RequestFiles
+from httpx import URL, Client, Response
+from httpx._types import QueryParamTypes, RequestData, RequestFiles
 from pydantic import BaseModel
 
 import allure
@@ -18,15 +18,19 @@ class APIClient:
         self,
         base_url: str,
         timeout: float,
-        event_hooks: Mapping[str, list] | None = None,
+        event_hooks: Mapping[str, list[Callable[..., None]]] | None = None,
         **kwargs: Any,
-    ):
+    ) -> None:
         self.client = Client(
             base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs
         )
 
     @allure.step("Make GET request to {url}")
-    def get(self, url: URL | str, params: QueryParams | None = None) -> Response:
+    def get(
+        self,
+        url: URL | str,
+        params: QueryParamTypes | None = None,
+    ) -> Response:
         """
         Performs a GET request.
 
@@ -101,6 +105,6 @@ class APIClient:
         response.raise_for_status()
         return model.model_validate(response.json())
 
-    def close(self):
+    def close(self) -> None:
         """Closes the underlying HTTP client."""
         self.client.close()

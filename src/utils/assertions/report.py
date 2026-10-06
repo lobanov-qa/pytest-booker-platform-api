@@ -8,7 +8,7 @@ logger = get_logger("REPORT_ASSERTIONS")
 
 
 @allure.step("Check report")
-def assert_report(actual: ReportSchema, expected: ReportSchema):
+def assert_report(actual: ReportSchema, expected: ReportSchema) -> None:
     """
     Checks that the actual report matches the expected one.
 
@@ -27,7 +27,9 @@ def assert_report(actual: ReportSchema, expected: ReportSchema):
 
 
 @allure.step("Check report entry at index {index}")
-def assert_entry_equal(actual: EntrySchema, expected: EntrySchema, index: int = 0):
+def assert_entry_equal(
+    actual: EntrySchema, expected: EntrySchema, index: int = 0
+) -> None:
     """
     Checks that the actual entry matches the expected one.
 
@@ -42,7 +44,7 @@ def assert_entry_equal(actual: EntrySchema, expected: EntrySchema, index: int = 
 
 
 @allure.step("Check report not empty")
-def assert_report_not_empty(report: ReportSchema):
+def assert_report_not_empty(report: ReportSchema) -> None:
     """
     Checks that the report is not empty (has at least one entry).
 

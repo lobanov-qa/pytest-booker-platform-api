@@ -1,7 +1,7 @@
 from datetime import date
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, ValidationInfo, field_validator
 
 from utils.validators import validate_date_range
 
@@ -75,7 +75,7 @@ class GetRoomsQuerySchema(BaseModel):
 
     @field_validator("checkout")
     @classmethod
-    def validate_checkout(cls, v: str | None, info) -> str | None:
+    def validate_checkout(cls, v: str | None, info: ValidationInfo) -> str | None:
         """Validates the checkout date against checkin."""
         if v is None:
             return v

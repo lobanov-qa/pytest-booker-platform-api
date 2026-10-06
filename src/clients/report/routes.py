@@ -7,5 +7,5 @@ class ReportRoutes(StrEnum):
     ROOT = "/"
     ROOM_REPORT = "/room/{id}"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.value

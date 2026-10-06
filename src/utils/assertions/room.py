@@ -10,7 +10,7 @@ logger = get_logger("ROOM_ASSERTIONS")
 @allure.step("Check create room response")
 def assert_create_room_response(
     request: RoomRequestSchema, response: RoomResponseSchema
-):
+) -> None:
     """
     Verifies that the room creation response matches the request.
 
@@ -36,7 +36,7 @@ def assert_create_room_response(
 
 
 @allure.step("Check room")
-def assert_room(actual: RoomResponseSchema, expected: RoomResponseSchema):
+def assert_room(actual: RoomResponseSchema, expected: RoomResponseSchema) -> None:
     """
     Checks that the actual room data matches the expected one.
 
@@ -58,7 +58,7 @@ def assert_room(actual: RoomResponseSchema, expected: RoomResponseSchema):
 @allure.step("Check get room response")
 def assert_get_room_response(
     get_response: RoomResponseSchema, create_response: RoomResponseSchema
-):
+) -> None:
     """
     Checks that the response when receiving a room matches the response when creating it.
 
@@ -73,7 +73,7 @@ def assert_get_room_response(
 @allure.step("Check rooms list contains room")
 def assert_rooms_list_contains(
     rooms: list[RoomResponseSchema], expected_room: RoomResponseSchema
-):
+) -> None:
     """
     Checks that the list of rooms contains the expected room.
 

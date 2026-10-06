@@ -9,5 +9,5 @@ class MessageRoutes(StrEnum):
     MESSAGE_READ = "/{id}/read"
     COUNT = "/count"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.value

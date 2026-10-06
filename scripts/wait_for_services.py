@@ -72,7 +72,7 @@ def check_service(name: str, port: int) -> bool:
                     print(f"✅ {name} (port {port}) is UP")
                     return True
                 print(f"🟡 {name} returned status: {data.get('status')}")
-            except httpx.ResponseNotJSON:
+            except ValueError:
                 print(f"❌ {name}: response is not JSON — {response.text}")
         else:
             print(f"❌ {name}: status {response.status_code} — {response.text}")

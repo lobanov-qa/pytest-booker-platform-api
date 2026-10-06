@@ -1,4 +1,5 @@
 import re
+from typing import Any
 
 from clients.branding.branding_schema import (
     AddressSchema,
@@ -40,7 +41,7 @@ class BrandingFactory:
     """
 
     @classmethod
-    def build(cls, **overrides) -> BrandingSchema:
+    def build(cls, **overrides: Any) -> BrandingSchema:
         """
         Creates a valid BrandingSchema with all required fields populated.
 

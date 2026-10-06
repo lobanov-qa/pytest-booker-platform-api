@@ -12,10 +12,11 @@ def authentication_client() -> AuthClient:
 
 
 @pytest.fixture
-def auth_cookies(authentication_client: AuthClient) -> dict:
+def auth_cookies(authentication_client: AuthClient) -> Cookies:
     login_request = LoginRequestSchema()
     response = authentication_client.login_api(login_request)
-    return response.cookies
+    cookies: Cookies = response.cookies
+    return cookies
 
 
 @pytest.fixture

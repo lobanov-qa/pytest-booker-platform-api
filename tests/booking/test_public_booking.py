@@ -56,7 +56,7 @@ class TestPublicBookingAPI:
         self,
         booking_client: PublicBookingClient,
         valid_create_booking_request: CreateBookingRequestSchema,
-    ):
+    ) -> None:
         """
         Positive test: Create booking with full validation.
 
@@ -76,7 +76,7 @@ class TestPublicBookingAPI:
         self,
         booking_client: PublicBookingClient,
         valid_create_booking_request: CreateBookingRequestSchema,
-    ):
+    ) -> None:
         """
         Positive test: Use convenience method create_booking().
 
@@ -93,7 +93,7 @@ class TestPublicBookingAPI:
     @allure.severity(Severity.NORMAL)
     def test_create_booking_invalid_roomid_zero(
         self, booking_client: PublicBookingClient
-    ):
+    ) -> None:
         """
         Negative test: Create booking with roomid=0 (must be >=1).
 
@@ -111,7 +111,9 @@ class TestPublicBookingAPI:
     @allure.tag(AllureTag.CREATE_ENTITY, AllureTag.NEGATIVE)
     @allure.title("POST /booking - Create booking with short firstname (400)")
     @allure.severity(Severity.NORMAL)
-    def test_create_booking_short_firstname(self, booking_client: PublicBookingClient):
+    def test_create_booking_short_firstname(
+        self, booking_client: PublicBookingClient
+    ) -> None:
         """
         Negative test: Create booking with firstname less than 3 characters.
 
@@ -131,7 +133,7 @@ class TestPublicBookingAPI:
     @allure.severity(Severity.NORMAL)
     def test_create_booking_missing_firstname(
         self, booking_client: PublicBookingClient
-    ):
+    ) -> None:
         """
         Negative test: Create booking without required firstname field.
 
@@ -149,7 +151,9 @@ class TestPublicBookingAPI:
     @allure.tag(AllureTag.GET_ENTITIES)
     @allure.title("GET /booking/unavailable - Check availability for free date range")
     @allure.severity(Severity.NORMAL)
-    def test_unavailable_dates_free_range(self, booking_client: PublicBookingClient):
+    def test_unavailable_dates_free_range(
+        self, booking_client: PublicBookingClient
+    ) -> None:
         """
         Positive test: Check availability for free date range.
 
@@ -172,7 +176,7 @@ class TestPublicBookingAPI:
         self,
         created_booking: BookingFixture,
         booking_client: PublicBookingClient,
-    ):
+    ) -> None:
         """
         Positive test: Check availability during already booked period.
 
@@ -205,7 +209,9 @@ class TestPublicBookingAPI:
         "GET /booking/unavailable - High-level method for checking availability"
     )
     @allure.severity(Severity.NORMAL)
-    def test_unavailable_dates_high_level(self, booking_client: PublicBookingClient):
+    def test_unavailable_dates_high_level(
+        self, booking_client: PublicBookingClient
+    ) -> None:
         """
         Positive test: Use convenience method get_unavailable_rooms().
 
@@ -229,7 +235,7 @@ class TestPublicBookingAPI:
         self,
         booking_client: PublicBookingClient,
         missing_param: str,
-    ):
+    ) -> None:
         """
         Negative test: Check availability with missing required parameter.
 
@@ -248,7 +254,7 @@ class TestPublicBookingAPI:
     @allure.severity(Severity.MINOR)
     def test_unavailable_dates_nonexistent_date_500(
         self, booking_client: PublicBookingClient
-    ):
+    ) -> None:
         """
         Negative test: Check availability with non-existent date.
 
@@ -268,7 +274,7 @@ class TestPublicBookingAPI:
     @allure.severity(Severity.MINOR)
     def test_unavailable_dates_invalid_format_500(
         self, booking_client: PublicBookingClient
-    ):
+    ) -> None:
         """
         Negative test: Check availability with invalid date format.
 
@@ -290,7 +296,7 @@ class TestPublicBookingAPI:
         self,
         created_booking: BookingFixture,
         booking_client: PublicBookingClient,
-    ):
+    ) -> None:
         """
         Positive test: Get booking summary for existing room ID.
 
@@ -312,7 +318,7 @@ class TestPublicBookingAPI:
         self,
         booking_client: PublicBookingClient,
         roomid: str,
-    ):
+    ) -> None:
         """
         Positive test: Get summary with non-positive roomid.
 
@@ -333,7 +339,7 @@ class TestPublicBookingAPI:
     @allure.tag(AllureTag.GET_ENTITIES)
     @allure.title("GET /booking/summary - High-level method for getting summary")
     @allure.severity(Severity.NORMAL)
-    def test_get_summary_high_level(self, booking_client: PublicBookingClient):
+    def test_get_summary_high_level(self, booking_client: PublicBookingClient) -> None:
         """
         Positive test: Use convenience method get_booking_summary().
 
@@ -348,7 +354,9 @@ class TestPublicBookingAPI:
     @allure.tag(AllureTag.GET_ENTITIES, AllureTag.NEGATIVE)
     @allure.title("GET /booking/summary - Missing roomid parameter (400)")
     @allure.severity(Severity.NORMAL)
-    def test_get_summary_missing_roomid(self, booking_client: PublicBookingClient):
+    def test_get_summary_missing_roomid(
+        self, booking_client: PublicBookingClient
+    ) -> None:
         """
         Negative test: Get summary without required roomid parameter.
 
@@ -369,7 +377,7 @@ class TestPublicBookingAPI:
         self,
         booking_client: PublicBookingClient,
         invalid_value: str,
-    ):
+    ) -> None:
         """
         Negative test: Get summary with non-numeric roomid.
 

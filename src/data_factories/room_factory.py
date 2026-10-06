@@ -1,3 +1,5 @@
+from typing import Any
+
 from clients.room.room_schema import RoomRequestSchema
 from utils.fakers import fake
 
@@ -6,7 +8,7 @@ class RoomRequestFactory:
     """Factory for creating valid room requests."""
 
     @classmethod
-    def build(cls, **overrides) -> RoomRequestSchema:
+    def build(cls, **overrides: Any) -> RoomRequestSchema:
         """
         Creates a valid RoomRequestSchema object with all optional fields filled.
 

@@ -44,7 +44,7 @@ class TestPublicRoomAPI:
     @allure.tag(AllureTag.GET_ENTITIES)
     @allure.title("GET /room/ - Get all rooms successfully (200)")
     @allure.severity(Severity.BLOCKER)
-    def test_get_rooms_returns_200(self, public_room_client: PublicRoomClient):
+    def test_get_rooms_returns_200(self, public_room_client: PublicRoomClient) -> None:
         """
         Positive test: Retrieve all rooms without any filters.
 
@@ -60,7 +60,7 @@ class TestPublicRoomAPI:
     @allure.tag(AllureTag.GET_ENTITIES)
     @allure.title("GET /room/ - Get rooms filtered by dates")
     @allure.severity(Severity.CRITICAL)
-    def test_get_rooms_with_dates(self, public_room_client: PublicRoomClient):
+    def test_get_rooms_with_dates(self, public_room_client: PublicRoomClient) -> None:
         """Positive test: Retrieve rooms filtered by check-in and check-out dates."""
         query = GetRoomsQuerySchema(checkin="2025-12-01", checkout="2025-12-10")
         response = public_room_client.get_rooms_api(query)
@@ -74,7 +74,7 @@ class TestPublicRoomAPI:
     @allure.tag(AllureTag.GET_ENTITIES)
     @allure.title("GET /room/ - High-level method for getting all rooms")
     @allure.severity(Severity.NORMAL)
-    def test_get_rooms_high_level(self, public_room_client: PublicRoomClient):
+    def test_get_rooms_high_level(self, public_room_client: PublicRoomClient) -> None:
         """
         Positive test: Use convenience method get_rooms().
 
@@ -91,7 +91,7 @@ class TestPublicRoomAPI:
     @allure.tag(AllureTag.GET_ENTITY)
     @allure.title("GET /room/1 - Get room by ID successfully (200)")
     @allure.severity(Severity.BLOCKER)
-    def test_get_room_by_id(self, public_room_client: PublicRoomClient):
+    def test_get_room_by_id(self, public_room_client: PublicRoomClient) -> None:
         """
         Positive test: Retrieve a specific room by ID.
 
@@ -109,7 +109,7 @@ class TestPublicRoomAPI:
     @allure.tag(AllureTag.GET_ENTITY)
     @allure.title("GET /room/1 - High-level method for getting room by ID")
     @allure.severity(Severity.NORMAL)
-    def test_get_room_high_level(self, public_room_client: PublicRoomClient):
+    def test_get_room_high_level(self, public_room_client: PublicRoomClient) -> None:
         """
         Positive test: Use convenience method get_room().
 
@@ -124,7 +124,7 @@ class TestPublicRoomAPI:
     @allure.tag(AllureTag.GET_ENTITY, AllureTag.NEGATIVE)
     @allure.title("GET /room/9999 - Retrieve non-existent room (500)")
     @allure.severity(Severity.NORMAL)
-    def test_get_room_not_found_500(self, public_room_client: PublicRoomClient):
+    def test_get_room_not_found_500(self, public_room_client: PublicRoomClient) -> None:
         """
         Negative test: Request room with non-existent ID.
 
@@ -139,7 +139,9 @@ class TestPublicRoomAPI:
     @allure.tag(AllureTag.GET_ENTITY, AllureTag.NEGATIVE)
     @allure.title("GET /room/0 - Retrieve room with invalid ID 0 (500)")
     @allure.severity(Severity.NORMAL)
-    def test_get_room_invalid_id_500(self, public_room_client: PublicRoomClient):
+    def test_get_room_invalid_id_500(
+        self, public_room_client: PublicRoomClient
+    ) -> None:
         """
         Negative test: Request room with ID=0 (must be >=1).
 
@@ -157,7 +159,7 @@ class TestPublicRoomAPI:
     @allure.severity(Severity.NORMAL)
     def test_get_room_invalid_id_negative(
         self, public_room_client: PublicRoomClient, invalid_id: int
-    ):
+    ) -> None:
         """
         Negative test: Request room with negative ID.
 
@@ -178,7 +180,7 @@ class TestPublicRoomAPI:
         public_room_client: PublicRoomClient,
         private_room_client: PrivateRoomClient,
         created_room: RoomFixture,
-    ):
+    ) -> None:
         """
         Positive test: Verify that a newly created room appears in the rooms list.
 
@@ -192,7 +194,9 @@ class TestPublicRoomAPI:
     @allure.tag(AllureTag.GET_ENTITIES, AllureTag.NEGATIVE)
     @allure.title("GET /room/ - Get rooms with invalid date format (500)")
     @allure.severity(Severity.MINOR)
-    def test_get_rooms_invalid_dates_500(self, public_room_client: PublicRoomClient):
+    def test_get_rooms_invalid_dates_500(
+        self, public_room_client: PublicRoomClient
+    ) -> None:
         """
         Negative test: Get rooms with invalid date format.
 

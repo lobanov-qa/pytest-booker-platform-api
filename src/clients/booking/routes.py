@@ -9,5 +9,5 @@ class BookingRoutes(StrEnum):
     SUMMARY = "/summary"
     BOOKING_ID = "/{id}"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.value

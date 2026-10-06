@@ -33,4 +33,5 @@ repos:
           - faker>=38.2
           - allure-pytest>=2.15
           - jsonschema>=4.25
+          - types-jsonschema
         files: ^(src/|tests/|fixtures/|config\.py|conftest\.py)

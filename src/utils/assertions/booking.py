@@ -17,7 +17,7 @@ logger = get_logger("BOOKING_ASSERTIONS")
 @allure.step("Check create booking response")
 def assert_create_booking_response(
     request: CreateBookingRequestSchema, response: CreateBookingResponseSchema
-):
+) -> None:
     """
     Verifies that the job creation response matches the request.
 
@@ -36,7 +36,7 @@ def assert_create_booking_response(
 
 
 @allure.step("Check booking")
-def assert_booking(actual: BookingSchema, expected: BookingSchema):
+def assert_booking(actual: BookingSchema, expected: BookingSchema) -> None:
     """
     Checks that the actual booking data matches the expected one.
 
@@ -56,7 +56,7 @@ def assert_booking(actual: BookingSchema, expected: BookingSchema):
 @allure.step("Check get booking response")
 def assert_get_booking_response(
     get_response: BookingSchema, create_response: BookingSchema
-):
+) -> None:
     """
     Checks that the response when receiving a booking matches the response when creating it.
 
@@ -71,7 +71,7 @@ def assert_get_booking_response(
 @allure.step("Check update booking response")
 def assert_update_booking_response(
     request: UpdateBookingRequestSchema, response: UpdateBookingResponseSchema
-):
+) -> None:
     """Checking response to booking update."""
     logger.info("Check update booking response")
     assert_equal(response.bookingid, request.bookingid, "bookingid")
@@ -86,7 +86,7 @@ def assert_update_booking_response(
 def assert_get_bookings_response(
     get_bookings_response: GetBookingsResponseSchema,
     expected_bookings: list[BookingSchema],
-):
+) -> None:
     """
     Checks that the response when receiving a list of bookings matches the expected bookings.
 

@@ -34,7 +34,7 @@ class TestFullHotelAudit:
         self,
         public_room_client,
         created_room,
-    ):
+    ) -> None:
         room_id = created_room.room_id
 
         room_list_resp = public_room_client.get_rooms_api()
@@ -52,7 +52,7 @@ class TestFullHotelAudit:
         booking_client,
         booking_private_client,
         created_room,
-    ):
+    ) -> None:
         room_id = created_room.room_id
         booking_request = CreateBookingRequestFactory.build(roomid=room_id)
         create_resp = booking_client.create_booking_api(booking_request)
@@ -80,7 +80,7 @@ class TestFullHotelAudit:
         public_message_client,
         private_message_client,
         created_message,
-    ):
+    ) -> None:
         message_id = created_message.message_id
 
         list_resp = public_message_client.get_messages_api()
@@ -108,7 +108,7 @@ class TestFullHotelAudit:
         report_public_client,
         report_private_client,
         created_room,
-    ):
+    ) -> None:
         room_id = created_room.room_id
         booking_request = CreateBookingRequestFactory.build(roomid=room_id)
         create_resp = booking_client.create_booking_api(booking_request)

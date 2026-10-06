@@ -8,7 +8,7 @@ from utils.logger import get_logger
 logger = get_logger("HTTP_CLIENT")
 
 
-def curl_event_hook(request: Request):
+def curl_event_hook(request: Request) -> None:
     """
     Event hook for automatically attaching a cURL command to an Allure report.
 
@@ -19,7 +19,7 @@ def curl_event_hook(request: Request):
     allure.attach(curl_command, "cURL command", allure.attachment_type.TEXT)
 
 
-def log_request_event_hook(request: Request):
+def log_request_event_hook(request: Request) -> None:
     """
     Logs information about a sent HTTP request.
 
@@ -28,7 +28,7 @@ def log_request_event_hook(request: Request):
     logger.info(f"Make {request.method} request to {request.url}")
 
 
-def log_response_event_hook(response: Response):
+def log_response_event_hook(response: Response) -> None:
     """
     Logs information about the received HTTP response.
 

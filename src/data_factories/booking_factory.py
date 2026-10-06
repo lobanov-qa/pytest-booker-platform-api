@@ -1,4 +1,5 @@
 from datetime import date
+from typing import Any
 
 from clients.booking.booking_schema import (
     BookingDates,
@@ -12,7 +13,7 @@ class CreateBookingRequestFactory:
     """Factory for creating valid new booking requests."""
 
     @classmethod
-    def build(cls, **overrides) -> CreateBookingRequestSchema:
+    def build(cls, **overrides: Any) -> CreateBookingRequestSchema:
         """
         Creates a valid CreateBookingRequestSchema object.
 
@@ -54,7 +55,7 @@ class UpdateBookingRequestFactory:
 
     @classmethod
     def build(
-        cls, booking_id: int, original_roomid: int | None = None, **overrides
+        cls, booking_id: int, original_roomid: int | None = None, **overrides: Any
     ) -> UpdateBookingRequestSchema:
         """
         Creates update request for an existing booking.

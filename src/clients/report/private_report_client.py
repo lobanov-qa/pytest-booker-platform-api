@@ -1,3 +1,6 @@
+from collections.abc import Mapping
+from typing import Any
+
 from httpx import Cookies, Response
 
 import allure
@@ -21,9 +24,9 @@ class PrivateReportClient(APIClient):
         base_url: str,
         timeout: float,
         cookies: Cookies,
-        event_hooks=None,
-        **kwargs,
-    ):
+        event_hooks: Mapping[str, list[Any]] | None = None,
+        **kwargs: Any,
+    ) -> None:
         """
         :param base_url: Base URL of the report service (e.g., http://localhost:3005).
 

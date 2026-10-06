@@ -40,7 +40,7 @@ class TestAuthentication:
     @allure.title("POST /auth/login - Raw API method returns 200 with token cookie")
     def test_login_api_returns_token_in_cookies(
         self, authentication_client: AuthClient
-    ):
+    ) -> None:
         """
         Positive test: Raw API login method.
 
@@ -56,7 +56,7 @@ class TestAuthentication:
     @allure.severity(Severity.CRITICAL)
     @allure.tag(AllureTag.AUTH, AllureTag.CREATE_ENTITY)
     @allure.title("POST /auth/login - High-level method returns valid token")
-    def test_login_returns_token(self, authentication_client: AuthClient):
+    def test_login_returns_token(self, authentication_client: AuthClient) -> None:
         """
         Positive test: High-level login method.
 
@@ -75,7 +75,7 @@ class TestAuthentication:
     @allure.title("POST /auth/validate - Raw API method for valid token returns 200")
     def test_validate_api_returns_200_for_valid_token(
         self, authentication_client: AuthClient
-    ):
+    ) -> None:
         """
         Positive test: Raw API validate method with valid token.
 
@@ -95,7 +95,7 @@ class TestAuthentication:
     )
     def test_is_token_valid_returns_true_for_valid_token(
         self, authentication_client: AuthClient
-    ):
+    ) -> None:
         """
         Positive test: High-level validate method.
 
@@ -114,7 +114,7 @@ class TestAuthentication:
     )
     def test_is_token_valid_returns_false_for_invalid_token(
         self, authentication_client: AuthClient
-    ):
+    ) -> None:
         """
         Negative test: High-level validate method.
 
@@ -131,7 +131,7 @@ class TestAuthentication:
     )
     def test_is_token_valid_returns_false_for_empty_token(
         self, authentication_client: AuthClient
-    ):
+    ) -> None:
         """
         Negative test: High-level validate method.
 
@@ -140,7 +140,7 @@ class TestAuthentication:
         is_valid_empty = authentication_client.is_token_valid("")
         assert_equal(is_valid_empty, False, "empty token validity")
 
-        is_valid_none = authentication_client.is_token_valid(None)
+        is_valid_none = authentication_client.is_token_valid(token=None)
         assert_equal(is_valid_none, False, "null token validity")
 
     @allure.story(AllureStory.USER_LOGOUT)
@@ -149,7 +149,7 @@ class TestAuthentication:
     @allure.title("POST /auth/logout - Raw API method returns 200 for valid token")
     def test_logout_api_returns_200_for_valid_token(
         self, authentication_client: AuthClient
-    ):
+    ) -> None:
         """
         Positive test: Raw API logout method.
 
@@ -165,7 +165,9 @@ class TestAuthentication:
     @allure.severity(Severity.NORMAL)
     @allure.tag(AllureTag.AUTH, AllureTag.VALIDATE_ENTITY)
     @allure.title("POST /auth/logout - High-level method returns True for valid token")
-    def test_logout_returns_true_on_success(self, authentication_client: AuthClient):
+    def test_logout_returns_true_on_success(
+        self, authentication_client: AuthClient
+    ) -> None:
         """
         Positive test: High-level logout method.
 
@@ -182,7 +184,9 @@ class TestAuthentication:
     @allure.title(
         "POST /auth/logout - High-level method returns False for second logout"
     )
-    def test_logout_after_logout_returns_false(self, authentication_client: AuthClient):
+    def test_logout_after_logout_returns_false(
+        self, authentication_client: AuthClient
+    ) -> None:
         """
         Negative test: High-level logout method for already logged out token.
 
@@ -202,7 +206,9 @@ class TestAuthentication:
     @allure.severity(Severity.NORMAL)
     @allure.tag(AllureTag.AUTH, AllureTag.VALIDATE_ENTITY)
     @allure.title("POST /auth/validate - High-level method returns False after logout")
-    def test_token_is_invalid_after_logout(self, authentication_client: AuthClient):
+    def test_token_is_invalid_after_logout(
+        self, authentication_client: AuthClient
+    ) -> None:
         """
         Positive test: High-level validate method after logout.
 
@@ -226,7 +232,7 @@ class TestAuthentication:
     )
     def test_logout_returns_false_on_invalid_token(
         self, authentication_client: AuthClient
-    ):
+    ) -> None:
         """
         Negative test: High-level logout method with invalid token.
 

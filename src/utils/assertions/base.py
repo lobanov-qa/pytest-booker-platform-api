@@ -9,7 +9,7 @@ logger = get_logger("BASE_ASSERTIONS")
 
 
 @allure.step("Check that response status code equals to {expected}")
-def assert_status_code(actual: int, expected: int):
+def assert_status_code(actual: int, expected: int) -> None:
     """
     Validates that the actual response status code matches the expected one.
 
@@ -27,7 +27,7 @@ def assert_status_code(actual: int, expected: int):
 
 
 @allure.step("Check that {name} equals to {expected}")
-def assert_equal(actual: Any, expected: Any, name: str):
+def assert_equal(actual: Any, expected: Any, name: str) -> None:
     """
     Validates that the actual value equals the expected value.
 
@@ -44,7 +44,7 @@ def assert_equal(actual: Any, expected: Any, name: str):
 
 
 @allure.step("Check that {name} is true")
-def assert_is_true(actual: Any, name: str):
+def assert_is_true(actual: Any, name: str) -> None:
     """
     Validates that the actual value is truthy.
 
@@ -57,7 +57,7 @@ def assert_is_true(actual: Any, name: str):
     assert actual, f'Incorrect value: "{name}". Expected true value but got: {actual}'
 
 
-def assert_length(actual: Sized, expected: Sized, name: str):
+def assert_length(actual: Sized, expected: Sized, name: str) -> None:
     """
     Validates that the lengths of two objects are equal.
 
@@ -77,7 +77,7 @@ def assert_length(actual: Sized, expected: Sized, name: str):
 
 
 @allure.step("Check that {name} is greater than zero")
-def assert_positive(actual: int, name: str):
+def assert_positive(actual: int, name: str) -> None:
     """
     Validates that the value is positive (greater than zero).
 
@@ -89,7 +89,7 @@ def assert_positive(actual: int, name: str):
     assert actual > 0, f'Expected "{name}" > 0, but got: {actual}'
 
 
-def assert_is_instance(obj: Any, expected_type: type, name: str):
+def assert_is_instance(obj: Any, expected_type: type[Any], name: str) -> None:
     """
     Validates that an object is an instance of the specified type.
 
@@ -117,7 +117,7 @@ def assert_is_instance(obj: Any, expected_type: type, name: str):
 
 
 @allure.step("Check that {item} is in {collection_name}")
-def assert_in(item: Any, collection: list[Any], collection_name: str):
+def assert_in(item: Any, collection: list[Any], collection_name: str) -> None:
     """
     Validates that an element is present in the collection.
 
@@ -134,7 +134,7 @@ def assert_in(item: Any, collection: list[Any], collection_name: str):
 
 
 @allure.step("Check that length of {name} is {expected_length}")
-def assert_length_equal(actual: Sized, expected_length: int, name: str):
+def assert_length_equal(actual: Sized, expected_length: int, name: str) -> None:
     """
     Validates that the length of an object equals the expected length.
 
@@ -151,7 +151,7 @@ def assert_length_equal(actual: Sized, expected_length: int, name: str):
 
 
 @allure.step("Check that {name} is not None")
-def assert_not_none(actual: Any, name: str):
+def assert_not_none(actual: Any, name: str) -> None:
     """
     Validates that the value is not None.
 

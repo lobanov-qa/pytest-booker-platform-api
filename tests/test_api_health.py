@@ -26,7 +26,7 @@ SERVICES = [
 class TestHealth:
     @pytest.mark.parametrize("service", SERVICES)
     @allure.story("Checking the server's health")
-    def test_check_health(self, service: dict):
+    def test_check_health(self, service: dict[str, object]) -> None:
         name = service["name"]
         port = service["port"]
         url = f"http://localhost:{port}/{name}/actuator/health"
@@ -42,12 +42,10 @@ class TestHealth:
 
         try:
             data = response.json()
-        except httpx.ResponseNotJSON:
+        except ValueError:
             pytest.fail(
-                pytest.fail(
-                    f"Response is not JSON. Status: {response.status_code}, "
-                    f"Body: {response.text}"
-                )
+                f"Response is not JSON. Status: {response.status_code}, "
+                f"Body: {response.text}"
             )
 
         assert data.get("status") == "UP", (

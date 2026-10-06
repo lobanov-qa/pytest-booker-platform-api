@@ -1,7 +1,15 @@
 from datetime import date
 from typing import Annotated
 
-from pydantic import BaseModel, ConfigDict, EmailStr, Field, RootModel, field_validator
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    EmailStr,
+    Field,
+    RootModel,
+    ValidationInfo,
+    field_validator,
+)
 
 from utils.validators import validate_date_range, validate_stringified_positive_int
 
@@ -18,7 +26,7 @@ class BookingDates(BaseModel):
 
     @field_validator("checkout")
     @classmethod
-    def check_checkout_after_checkin(cls, v: date, info) -> date:
+    def check_checkout_after_checkin(cls, v: date, info: ValidationInfo) -> date:
         """Validates that checkout is later than checkin."""
         checkin = info.data.get("checkin")
         if checkin:
@@ -70,7 +78,7 @@ class GetBookingResponseSchema(BaseModel):
 class CreateBookingRequestSchema(BaseModel):
     """Schema for creating a new booking."""
 
-    depositpaid: bool = None
+    depositpaid: bool | None = None
     roomid: Annotated[int, Field(ge=1, description="Room ID, minimum 1")]
     firstname: Annotated[str, Field(min_length=3, max_length=18)]
     lastname: Annotated[str, Field(min_length=3, max_length=30)]
@@ -127,7 +135,7 @@ class UnavailableDatesQuerySchema(BaseModel):
 
     @field_validator("checkout")
     @classmethod
-    def validate_checkout(cls, v: str, info) -> str:
+    def validate_checkout(cls, v: str, info: ValidationInfo) -> str:
         """Validates the checkout date against checkin."""
         checkin = info.data.get("checkin")
         if not checkin:

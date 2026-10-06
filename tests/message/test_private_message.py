@@ -44,7 +44,7 @@ class TestPrivateMessageAPI:
         self,
         private_message_client: PrivateMessageClient,
         created_message: MessageFixture,
-    ):
+    ) -> None:
         """
         Positive test: Retrieve a specific message by ID.
 
@@ -69,7 +69,7 @@ class TestPrivateMessageAPI:
         self,
         private_message_client: PrivateMessageClient,
         created_message: MessageFixture,
-    ):
+    ) -> None:
         """
         Positive test: Use convenience method get_message().
 
@@ -92,7 +92,7 @@ class TestPrivateMessageAPI:
         self,
         private_message_client: PrivateMessageClient,
         created_message: MessageFixture,
-    ):
+    ) -> None:
         """
         Positive test: Verify that GET /message/{id} returns data.
 
@@ -115,7 +115,7 @@ class TestPrivateMessageAPI:
         self,
         private_message_client: PrivateMessageClient,
         created_message: MessageFixture,
-    ):
+    ) -> None:
         """
         Positive test: Mark a message as read.
 
@@ -136,7 +136,7 @@ class TestPrivateMessageAPI:
         self,
         private_message_client: PrivateMessageClient,
         created_message: MessageFixture,
-    ):
+    ) -> None:
         """
         Positive test: Use convenience method mark_read().
 
@@ -157,7 +157,7 @@ class TestPrivateMessageAPI:
         self,
         private_message_client: PrivateMessageClient,
         created_message: MessageFixture,
-    ):
+    ) -> None:
         """
         Positive test: Delete a message by ID.
 
@@ -181,7 +181,7 @@ class TestPrivateMessageAPI:
         self,
         private_message_client: PrivateMessageClient,
         created_message: MessageFixture,
-    ):
+    ) -> None:
         """
         Positive test: Use convenience method delete_message().
 
@@ -203,7 +203,7 @@ class TestPrivateMessageAPI:
     @allure.severity(Severity.NORMAL)
     def test_get_message_not_found_500(
         self, private_message_client: PrivateMessageClient
-    ):
+    ) -> None:
         """
         Negative test: Request message with non-existent ID.
 
@@ -220,7 +220,7 @@ class TestPrivateMessageAPI:
     @allure.severity(Severity.NORMAL)
     def test_delete_message_not_found_404(
         self, private_message_client: PrivateMessageClient
-    ):
+    ) -> None:
         """
         Negative test: Delete message with non-existent ID.
 
@@ -235,7 +235,7 @@ class TestPrivateMessageAPI:
     @allure.severity(Severity.CRITICAL)
     def test_mark_read_unauthorized_403(
         self, private_message_client_invalid: PrivateMessageClient
-    ):
+    ) -> None:
         """
         Negative test: Mark message as read with invalid authentication cookies.
 
@@ -250,7 +250,7 @@ class TestPrivateMessageAPI:
     @allure.severity(Severity.CRITICAL)
     def test_delete_message_unauthorized_403(
         self, private_message_client_invalid: PrivateMessageClient
-    ):
+    ) -> None:
         """
         Negative test: Delete message with invalid authentication cookies.
 

@@ -49,7 +49,7 @@ class TestPrivateBookingAPI:
     @allure.severity(Severity.BLOCKER)
     def test_get_all_bookings_success(
         self, booking_private_client: PrivateBookingClient
-    ):
+    ) -> None:
         """
         Positive test: Retrieve all bookings with valid authentication.
 
@@ -68,7 +68,7 @@ class TestPrivateBookingAPI:
         self,
         booking_private_client: PrivateBookingClient,
         created_booking: BookingFixture,
-    ):
+    ) -> None:
         """
         Positive test: Filter bookings using roomid query parameter.
 
@@ -103,7 +103,7 @@ class TestPrivateBookingAPI:
     @allure.severity(Severity.NORMAL)
     def test_get_all_bookings_high_level(
         self, booking_private_client: PrivateBookingClient
-    ):
+    ) -> None:
         """
         Positive test: Use convenience method get_all_bookings().
 
@@ -120,7 +120,7 @@ class TestPrivateBookingAPI:
         self,
         booking_private_client: PrivateBookingClient,
         created_booking: BookingFixture,
-    ):
+    ) -> None:
         """
         Positive test: Use convenience method get_bookings_by_room().
 
@@ -146,7 +146,7 @@ class TestPrivateBookingAPI:
     def test_get_all_bookings_without_auth(
         self,
         booking_private_client_invalid: PrivateBookingClient,
-    ):
+    ) -> None:
         """
         Negative test: Attempt to retrieve all bookings without authentication.
 
@@ -163,7 +163,7 @@ class TestPrivateBookingAPI:
         self,
         booking_private_client: PrivateBookingClient,
         invalid_value: str,
-    ):
+    ) -> None:
         """
         Negative test: Filter bookings with non-numeric roomid values.
 
@@ -186,7 +186,7 @@ class TestPrivateBookingAPI:
     @allure.severity(Severity.NORMAL)
     def test_get_bookings_nonexistent_roomid(
         self, booking_private_client: PrivateBookingClient
-    ):
+    ) -> None:
         """
         Negative test: Filter bookings with non-existent roomid.
 
@@ -212,7 +212,7 @@ class TestPrivateBookingAPI:
         self,
         booking_private_client: PrivateBookingClient,
         created_booking: BookingFixture,
-    ):
+    ) -> None:
         """
         Positive test: Retrieve specific booking by booking ID.
 
@@ -235,7 +235,7 @@ class TestPrivateBookingAPI:
         self,
         booking_private_client: PrivateBookingClient,
         created_booking: BookingFixture,
-    ):
+    ) -> None:
         """
         Positive test: Use convenience method get_booking().
 
@@ -256,7 +256,7 @@ class TestPrivateBookingAPI:
         self,
         booking_private_client_invalid: PrivateBookingClient,
         created_booking: BookingFixture,
-    ):
+    ) -> None:
         """
         Negative test: Attempt to retrieve booking without authentication.
 
@@ -273,7 +273,9 @@ class TestPrivateBookingAPI:
     @allure.tag(AllureTag.GET_ENTITY, AllureTag.NEGATIVE)
     @allure.title("GET /booking/9999 - Retrieve non-existent booking (404)")
     @allure.severity(Severity.NORMAL)
-    def test_get_booking_not_found(self, booking_private_client: PrivateBookingClient):
+    def test_get_booking_not_found(
+        self, booking_private_client: PrivateBookingClient
+    ) -> None:
         """
         Negative test: Request booking with non-existent ID.
 
@@ -288,7 +290,7 @@ class TestPrivateBookingAPI:
     @allure.severity(Severity.NORMAL)
     def test_get_booking_invalid_id_format(
         self, booking_private_client: PrivateBookingClient
-    ):
+    ) -> None:
         """
         Negative test: Request booking with non-numeric ID in path.
 
@@ -306,7 +308,7 @@ class TestPrivateBookingAPI:
         self,
         booking_private_client: PrivateBookingClient,
         created_booking: BookingFixture,
-    ):
+    ) -> None:
         """
         Positive test: Successfully update existing booking.
 
@@ -344,7 +346,7 @@ class TestPrivateBookingAPI:
         self,
         booking_private_client: PrivateBookingClient,
         created_booking: BookingFixture,
-    ):
+    ) -> None:
         """
         Positive test: Use convenience method update_booking().
 
@@ -380,7 +382,7 @@ class TestPrivateBookingAPI:
         self,
         booking_private_client_invalid: PrivateBookingClient,
         created_booking: BookingFixture,
-    ):
+    ) -> None:
         """
         Negative test: Attempt to update booking without authentication.
 
@@ -408,7 +410,7 @@ class TestPrivateBookingAPI:
     @allure.severity(Severity.NORMAL)
     def test_update_booking_not_found(
         self, booking_private_client: PrivateBookingClient
-    ):
+    ) -> None:
         """
         Negative test: Update booking with non-existent ID.
 
@@ -434,7 +436,7 @@ class TestPrivateBookingAPI:
         self,
         booking_private_client: PrivateBookingClient,
         created_booking: BookingFixture,
-    ):
+    ) -> None:
         """
         Negative test: Update booking with invalid data (empty firstname).
 
@@ -467,7 +469,7 @@ class TestPrivateBookingAPI:
         self,
         booking_private_client: PrivateBookingClient,
         created_booking: BookingFixture,
-    ):
+    ) -> None:
         """
         Positive test: Successfully delete a booking.
 
@@ -495,7 +497,7 @@ class TestPrivateBookingAPI:
         self,
         booking_private_client: PrivateBookingClient,
         created_booking: BookingFixture,
-    ):
+    ) -> None:
         """
         Positive test: Use convenience method delete_booking().
 
@@ -518,7 +520,7 @@ class TestPrivateBookingAPI:
         self,
         booking_private_client_invalid: PrivateBookingClient,
         created_booking: BookingFixture,
-    ):
+    ) -> None:
         """
         Negative test: Attempt to delete booking without authentication.
 
@@ -538,7 +540,7 @@ class TestPrivateBookingAPI:
     @allure.severity(Severity.NORMAL)
     def test_delete_booking_not_found(
         self, booking_private_client: PrivateBookingClient
-    ):
+    ) -> None:
         """
         Negative test: Delete booking with non-existent ID.
 
@@ -555,7 +557,7 @@ class TestPrivateBookingAPI:
         self,
         booking_private_client: PrivateBookingClient,
         created_booking: BookingFixture,
-    ):
+    ) -> None:
         """
         Negative test: Delete already deleted booking (idempotent operation).
 

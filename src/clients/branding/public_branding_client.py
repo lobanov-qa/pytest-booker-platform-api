@@ -1,3 +1,6 @@
+from collections.abc import Mapping
+from typing import Any
+
 from httpx import Response
 
 import allure
@@ -15,7 +18,13 @@ class PublicBrandingClient(APIClient):
     and parsed models (domain methods) for positive flows.
     """
 
-    def __init__(self, base_url: str, timeout: float, event_hooks=None, **kwargs):
+    def __init__(
+        self,
+        base_url: str,
+        timeout: float,
+        event_hooks: Mapping[str, list[Any]] | None = None,
+        **kwargs: Any,
+    ) -> None:
         """
         :param base_url: Branding service base URL.
 

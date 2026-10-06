@@ -49,7 +49,7 @@ class TestPublicMessageAPI:
     @allure.severity(Severity.BLOCKER)
     def test_create_message_returns_201(
         self, public_message_client: PublicMessageClient, valid_message_request
-    ):
+    ) -> None:
         """
         Positive test: Create a new message with valid data.
 
@@ -68,7 +68,7 @@ class TestPublicMessageAPI:
     @allure.severity(Severity.NORMAL)
     def test_create_message_high_level(
         self, public_message_client: PublicMessageClient, valid_message_request
-    ):
+    ) -> None:
         """
         Positive test: Use convenience method create_message().
 
@@ -83,7 +83,9 @@ class TestPublicMessageAPI:
     @allure.tag(AllureTag.GET_ENTITIES)
     @allure.title("GET /message/ - Get all messages successfully (200)")
     @allure.severity(Severity.BLOCKER)
-    def test_get_messages_returns_200(self, public_message_client: PublicMessageClient):
+    def test_get_messages_returns_200(
+        self, public_message_client: PublicMessageClient
+    ) -> None:
         """
         Positive test: Retrieve all messages.
 
@@ -100,7 +102,9 @@ class TestPublicMessageAPI:
     @allure.tag(AllureTag.GET_ENTITIES)
     @allure.title("GET /message/ - High-level method for getting all messages")
     @allure.severity(Severity.NORMAL)
-    def test_get_messages_high_level(self, public_message_client: PublicMessageClient):
+    def test_get_messages_high_level(
+        self, public_message_client: PublicMessageClient
+    ) -> None:
         """
         Positive test: Use convenience method get_messages().
 
@@ -117,7 +121,9 @@ class TestPublicMessageAPI:
     @allure.tag(AllureTag.GET_ENTITIES)
     @allure.title("GET /message/count - Get message count successfully (200)")
     @allure.severity(Severity.CRITICAL)
-    def test_get_count_returns_200(self, public_message_client: PublicMessageClient):
+    def test_get_count_returns_200(
+        self, public_message_client: PublicMessageClient
+    ) -> None:
         """
         Positive test: Retrieve total message count.
 
@@ -133,7 +139,9 @@ class TestPublicMessageAPI:
     @allure.tag(AllureTag.GET_ENTITIES)
     @allure.title("GET /message/count - High-level method for getting message count")
     @allure.severity(Severity.NORMAL)
-    def test_get_count_high_level(self, public_message_client: PublicMessageClient):
+    def test_get_count_high_level(
+        self, public_message_client: PublicMessageClient
+    ) -> None:
         """
         Positive test: Use convenience method get_count().
 
@@ -152,7 +160,7 @@ class TestPublicMessageAPI:
         self,
         public_message_client: PublicMessageClient,
         created_message,
-    ):
+    ) -> None:
         """
         Positive test: Verify that a newly created message appears in the messages list.
 
@@ -167,7 +175,7 @@ class TestPublicMessageAPI:
     @allure.severity(Severity.NORMAL)
     def test_create_message_invalid_data_400(
         self, public_message_client: PublicMessageClient
-    ):
+    ) -> None:
         """
         Negative test: Create message with missing required fields.
 
@@ -187,7 +195,7 @@ class TestPublicMessageAPI:
     @allure.severity(Severity.NORMAL)
     def test_create_message_empty_body_400(
         self, public_message_client: PublicMessageClient
-    ):
+    ) -> None:
         """
         Negative test: Create message with empty JSON body.
 
@@ -202,7 +210,7 @@ class TestPublicMessageAPI:
     @allure.severity(Severity.NORMAL)
     def test_create_message_empty_strings_400(
         self, public_message_client: PublicMessageClient
-    ):
+    ) -> None:
         """
         Negative test: Create message with empty string values.
 

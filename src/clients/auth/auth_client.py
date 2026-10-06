@@ -1,4 +1,6 @@
+from collections.abc import Mapping
 from http import HTTPStatus
+from typing import Any
 
 from httpx import HTTPStatusError, Response
 
@@ -21,11 +23,17 @@ class AuthClient(APIClient):
     Based on the base APIClient client.
     """
 
-    def __init__(self, base_url: str, timeout: float, event_hooks=None, **kwargs):
+    def __init__(
+        self,
+        base_url: str,
+        timeout: float,
+        event_hooks: Mapping[str, list[Any]] | None = None,
+        **kwargs: Any,
+    ) -> None:
         super().__init__(
             base_url=base_url, timeout=timeout, event_hooks=event_hooks, **kwargs
         )
-        self.token = None
+        self.token: str | None = None
 
     @allure.step("Authenticate user")
     @tracker_auth.track_coverage_httpx(AuthRoutes.LOGIN)
@@ -53,8 +61,8 @@ class AuthClient(APIClient):
         token = cookies.get("token")
         if not token:
             raise Exception("Token not found in response cookies")
-        self.token = token
-        return token
+        self.token = str(token)
+        return self.token
 
     @allure.step("Validate authentication token")
     @tracker_auth.track_coverage_httpx(AuthRoutes.VALIDATE)
@@ -67,7 +75,7 @@ class AuthClient(APIClient):
         """
         return self.post(AuthRoutes.VALIDATE, json=request.model_dump())
 
-    def is_token_valid(self, token: str) -> bool:
+    def is_token_valid(self, token: str | None) -> bool:
         """
         Validates a token and returns True if validation was successful (200 OK).
 
@@ -79,7 +87,7 @@ class AuthClient(APIClient):
         request = ValidateRequestSchema(token=token)
         try:
             response = self.validate_api(request)
-            return response.status_code == HTTPStatus.OK
+            return bool(response.status_code == HTTPStatus.OK)
         except HTTPStatusError:
             return False
 
@@ -106,6 +114,6 @@ class AuthClient(APIClient):
         request = LogoutRequestSchema(token=token)
         try:
             response = self.logout_api(request)
-            return response.status_code == HTTPStatus.OK
+            return bool(response.status_code == HTTPStatus.OK)
         except HTTPStatusError:
             return False

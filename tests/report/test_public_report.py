@@ -31,7 +31,7 @@ class TestPublicReportAPI:
     @allure.tag(AllureTag.GET_ENTITIES)
     @allure.title("GET /report/room/1 - Get report for existing room (200)")
     @allure.severity(Severity.BLOCKER)
-    def test_get_room_report(self, report_public_client: PublicReportClient):
+    def test_get_room_report(self, report_public_client: PublicReportClient) -> None:
         """
         Positive: get report for room id=1.
 
@@ -55,7 +55,9 @@ class TestPublicReportAPI:
     @allure.tag(AllureTag.GET_ENTITIES)
     @allure.title("GET /report/room/1 - High-level method returns parsed model")
     @allure.severity(Severity.NORMAL)
-    def test_get_room_report_high_level(self, report_public_client: PublicReportClient):
+    def test_get_room_report_high_level(
+        self, report_public_client: PublicReportClient
+    ) -> None:
         """Positive: use convenience get_room_report() → ReportSchema."""
         report = report_public_client.get_room_report(room_id=1)
         assert_is_instance(report, ReportSchema, "report")
@@ -68,7 +70,7 @@ class TestPublicReportAPI:
     @allure.severity(Severity.NORMAL)
     def test_get_room_report_nonexistent_room(
         self, report_public_client: PublicReportClient
-    ):
+    ) -> None:
         """Positive: check non-existent room id=999999 returns 200 with empty report."""
         response = report_public_client.get_room_report_api(room_id=999999)
         assert_status_code(response.status_code, HTTPStatus.OK)
@@ -84,7 +86,7 @@ class TestPublicReportAPI:
     @allure.severity(Severity.NORMAL)
     def test_get_room_report_non_numeric_id(
         self, report_public_client: PublicReportClient
-    ):
+    ) -> None:
         """Negative: non-numeric id like 'abc' → 404 (path mismatch)."""
         path = ReportRoutes.ROOM_REPORT.format(id="abc")
         response = report_public_client.get(path)
@@ -96,7 +98,7 @@ class TestPublicReportAPI:
     @allure.severity(Severity.NORMAL)
     def test_get_room_report_negative_id(
         self, report_public_client: PublicReportClient
-    ):
+    ) -> None:
         """Negative: id=-1 → 404 (valid path, resource not found)."""
         path = ReportRoutes.ROOM_REPORT.format(id=-1)
         response = report_public_client.get(path)
@@ -106,7 +108,9 @@ class TestPublicReportAPI:
     @allure.tag(AllureTag.GET_ENTITY)
     @allure.title("GET /report/room/0 - Zero id returns 200 (empty report)")
     @allure.severity(Severity.NORMAL)
-    def test_get_room_report_zero_id(self, report_public_client: PublicReportClient):
+    def test_get_room_report_zero_id(
+        self, report_public_client: PublicReportClient
+    ) -> None:
         """Positive: id=0 → 200 OK with empty report."""
         path = ReportRoutes.ROOM_REPORT.format(id=0)
         response = report_public_client.get(path)
@@ -119,7 +123,9 @@ class TestPublicReportAPI:
     @allure.tag(AllureTag.GET_ENTITY, AllureTag.NEGATIVE)
     @allure.title("GET /report/room/ — Missing id (404)")
     @allure.severity(Severity.MINOR)
-    def test_get_room_report_no_id(self, report_public_client: PublicReportClient):
+    def test_get_room_report_no_id(
+        self, report_public_client: PublicReportClient
+    ) -> None:
         """
         Negative: request without id path parameter.
 

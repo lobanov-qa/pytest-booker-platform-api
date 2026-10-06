@@ -1,3 +1,6 @@
+from collections.abc import Generator
+from typing import Any
+
 import pytest
 from httpx import Cookies
 from pydantic import BaseModel
@@ -21,21 +24,21 @@ class RoomFixture(BaseModel):
 
 
 @pytest.fixture
-def public_room_client():
+def public_room_client() -> Generator[Any, None, None]:
     client = ClientFactory.get_public_room_client()
     yield client
     client.close()
 
 
 @pytest.fixture
-def private_room_client(auth_cookies: Cookies):
+def private_room_client(auth_cookies: Cookies) -> Generator[Any, None, None]:
     client = ClientFactory.get_private_room_client(auth_cookies)
     yield client
     client.close()
 
 
 @pytest.fixture
-def private_room_client_invalid(invalid_cookies: Cookies):
+def private_room_client_invalid(invalid_cookies: Cookies) -> Generator[Any, None, None]:
     """PrivateRoomClient with invalid cookies for negative auth tests."""
     client = ClientFactory.get_private_room_client(invalid_cookies)
     yield client

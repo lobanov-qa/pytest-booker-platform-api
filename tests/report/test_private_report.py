@@ -27,7 +27,7 @@ class TestPrivateReportAPI:
     @allure.tag(AllureTag.GET_ENTITIES)
     @allure.title("GET /report/ - Retrieve all reports successfully (200)")
     @allure.severity(Severity.BLOCKER)
-    def test_get_all_reports(self, report_private_client: PrivateReportClient):
+    def test_get_all_reports(self, report_private_client: PrivateReportClient) -> None:
         """Positive: get all reports with valid auth -> 200 OK."""
         response = report_private_client.get_all_reports_api()
         assert_status_code(response.status_code, HTTPStatus.OK)
@@ -49,7 +49,7 @@ class TestPrivateReportAPI:
     @allure.severity(Severity.NORMAL)
     def test_get_all_reports_high_level(
         self, report_private_client: PrivateReportClient
-    ):
+    ) -> None:
         """Positive: convenience get_all_reports() -> ReportSchema."""
         report = report_private_client.get_all_reports()
         assert_is_instance(report, ReportSchema, "report")
@@ -62,7 +62,7 @@ class TestPrivateReportAPI:
     @allure.severity(Severity.CRITICAL)
     def test_get_all_reports_without_auth(
         self, report_private_client_invalid: PrivateReportClient
-    ):
+    ) -> None:
         """Negative: no valid cookies -> 500 Internal Server Error (API bug)."""
         response = report_private_client_invalid.get_all_reports_api()
         assert_status_code(response.status_code, HTTPStatus.INTERNAL_SERVER_ERROR)

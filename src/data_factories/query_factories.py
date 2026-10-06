@@ -1,3 +1,5 @@
+from typing import Any
+
 from clients.booking.booking_schema import (
     GetSummaryQuerySchema,
     UnavailableDatesQuerySchema,
@@ -14,7 +16,7 @@ class UnavailableDatesQueryFactory:
 
     @classmethod
     def build(
-        cls, checkin: str | None = None, checkout: str | None = None, **overrides
+        cls, checkin: str | None = None, checkout: str | None = None, **overrides: Any
     ) -> UnavailableDatesQuerySchema:
         """Creates a valid UnavailableDatesQuerySchema object."""
         if checkin is None or checkout is None:
@@ -35,7 +37,9 @@ class GetSummaryQueryFactory:
     """Factory for creating query parameters for obtaining a summary of bookings."""
 
     @classmethod
-    def build(cls, roomid: int | None = None, **overrides) -> GetSummaryQuerySchema:
+    def build(
+        cls, roomid: int | None = None, **overrides: Any
+    ) -> GetSummaryQuerySchema:
         """Creates a valid GetSummaryQuerySchema object."""
         room_id = roomid or fake.room_id()
 

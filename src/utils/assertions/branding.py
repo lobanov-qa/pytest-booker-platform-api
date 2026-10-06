@@ -8,7 +8,7 @@ logger = get_logger("BRANDING_ASSERTIONS")
 
 
 @allure.step("Check branding")
-def assert_branding(actual: BrandingSchema, expected: BrandingSchema):
+def assert_branding(actual: BrandingSchema, expected: BrandingSchema) -> None:
     """
     Checks that the actual branding data matches the expected one.
 
@@ -49,7 +49,7 @@ def assert_branding(actual: BrandingSchema, expected: BrandingSchema):
 @allure.step("Check update branding response")
 def assert_update_branding_response(
     updated: BrandingSchema, update_request: BrandingSchema
-):
+) -> None:
     """
     Checks that updated branding fields match the update request.
 
@@ -66,26 +66,35 @@ def assert_update_branding_response(
     assert_equal(updated.description, update_request.description, "description")
     assert_equal(updated.directions, update_request.directions, "directions")
 
-    assert updated.map is not None, "Expected updated map but got None"
-    assert_equal(updated.map.latitude, update_request.map.latitude, "map.latitude")
-    assert_equal(updated.map.longitude, update_request.map.longitude, "map.longitude")
+    updated_map = updated.map
+    request_map = update_request.map
+    assert updated_map is not None, "Expected updated map but got None"
+    assert request_map is not None, "Expected request map but got None"
+    assert_equal(updated_map.latitude, request_map.latitude, "map.latitude")
+    assert_equal(updated_map.longitude, request_map.longitude, "map.longitude")
 
-    assert updated.contact is not None, "Expected updated contact but got None"
-    assert_equal(updated.contact.name, update_request.contact.name, "contact.name")
-    assert_equal(updated.contact.phone, update_request.contact.phone, "contact.phone")
+    updated_contact = updated.contact
+    request_contact = update_request.contact
+    assert updated_contact is not None, "Expected updated contact but got None"
+    assert request_contact is not None, "Expected request contact but got None"
+    assert_equal(updated_contact.name, request_contact.name, "contact.name")
+    assert_equal(updated_contact.phone, request_contact.phone, "contact.phone")
     assert_equal(
-        str(updated.contact.email), str(update_request.contact.email), "contact.email"
+        str(updated_contact.email), str(request_contact.email), "contact.email"
     )
 
-    assert updated.address is not None, "Expected updated address but got None"
-    assert_equal(updated.address.line1, update_request.address.line1, "address.line1")
-    assert_equal(updated.address.line2, update_request.address.line2, "address.line2")
+    updated_address = updated.address
+    request_address = update_request.address
+    assert updated_address is not None, "Expected updated address but got None"
+    assert request_address is not None, "Expected request address but got None"
+    assert_equal(updated_address.line1, request_address.line1, "address.line1")
+    assert_equal(updated_address.line2, request_address.line2, "address.line2")
     assert_equal(
-        updated.address.post_town, update_request.address.post_town, "address.post_town"
+        updated_address.post_town, request_address.post_town, "address.post_town"
     )
+    assert_equal(updated_address.county, request_address.county, "address.county")
     assert_equal(
-        updated.address.county, update_request.address.county, "address.county"
-    )
-    assert_equal(
-        updated.address.post_code, update_request.address.post_code, "address.post_code"
+        updated_address.post_code,
+        request_address.post_code,
+        "address.post_code",
     )
